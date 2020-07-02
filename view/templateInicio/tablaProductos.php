@@ -35,7 +35,7 @@
               
               //cuando la pagina inicia solo presenta los datos normales
               $page = ( isset($_GET["page"]) ) ? $_GET["page"] : 1;
-              Pagination::config($page, 3, " producto , proveedor , genero ", $where1, null , 10); 
+              Pagination::config($page, 1, " producto , proveedor , genero ", $where1, null , 10); 
               $data = Pagination::data(); 
           }
             
@@ -133,29 +133,26 @@
 
                 </table>
                 <?php if( $banderaError==false){  // si no exite resultado osea marcar erro entonces no presentra paginacion?>
-    
                         <nav aria-label="Page navigation example">
-                        
-                            
                             <ul class="pagination pg-blue">
                                 <?php if ($data["actual-section"] != 1): ?> 		  			
-                                    <li class="page-item " ><a href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=1">Inicio</a></li>
-                                    <li><a class="page-link" href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=<?php echo $data['previous']; ?>">&laquo;</a></li>
+                                    <li class="page-item" ><a class="page-link" href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=1">Inicio</a></li>
+                                    <li class="page-item" ><a class="page-link"" href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=<?php echo $data['previous']; ?>">&laquo;</a></li>
                                 <?php endif; ?>
 
                                 <?php for ($i = $data["section-start"]; $i <= $data["section-end"]; $i++): ?>					
                                 <?php if ($i > $data["total-pages"]): break; endif; ?>
                                 <?php $active = ($i == $data["this-page"]) ? "active" : ""; ?>			    
                                     <li class="page-item <?php echo $active; ?>">
-                                    <a href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=<?php echo $i; ?>">
+                                    <a class="page-link" href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=<?php echo $i; ?>">
                                         <?php echo $i; ?>			    		
                                     </a>
                                     </li>
                                     <?php endfor; ?>
                                 
                                 <?php if ($data["actual-section"] != $data["total-sections"]): ?>
-                                    <li class="page-item "  ><a href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=<?php echo $data['next']; ?>">&raquo;</a></li>
-                                    <li><a href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=<?php echo $data['total-pages']; ?>">Final</a></li>
+                                    <li  class="page-item"  ><a lass="page-link"  href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=<?php echo $data['next']; ?>">&raquo;</a></li>
+                                    <li  class="page-item"><a class="page-link"  href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=<?php echo $data['total-pages']; ?>">Final</a></li>
                                     <?php endif; ?>
                             </ul>
                         </nav>

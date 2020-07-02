@@ -20,11 +20,11 @@
 
         public function __construct(){
 
-            @$modo_developer=false;//aqui cambio el modo
+            @$modo_developer=true;//aqui cambio el modo
 
             if($modo_developer){
                 try{
-                    $this->link = new PDO("mysql:host=localhost;dbname=bd_latin_edit",
+                    $this->link = new PDO("mysql:host=localhost;dbname=latin_edit",
                     "root",
                     "root",
                     array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
