@@ -8,6 +8,7 @@
 
 // //Creacion del objeto
 $plantilla= new controlerPlantillaAdmin();
+$plantilla->usuario_autentificado();
  $plantilla->ctr_header();
 $plantilla->ctr_navegador_Izquierda();
 
@@ -30,42 +31,33 @@ $plantilla->ctr_navegador_Izquierda();
                     <form role="form"  method="post" id="idAgregarProveedor" name="FormAddProveedor" action="../controler/ctrProveedor.php" enctype="multipart/form-data" target="_blank">
                         <div class="box-body">
 
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label for="labelNombre">Nombre</label>
-                                        <input type="text" class="form-control" id="idInputNomProveedor"  required="" name="inputNombre">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label for="labelApellido">Apellido</label>
-                                        <input type="text" class="form-control" id="idInputApeliidoProveedor"  required="" name="inputApeliidor">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="form-group">
-                                        <label for="labelPseudo Nombre">Pseudo Nombre</label>
-                                        <input type="text" class="form-control" id="idInputPseudoNombreProve"  required="" name="inputPseudoNombre">
-                                    </div>
-                                </div>
+                            <div class="form-group">
+                                <label for="labelNombre">Nombre</label>
+                                <input type="text" class="form-control" id="idInputNomProveedor"  required="" name="inputNombre">
                             </div>
-
-
-                            <div  class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="labelCorreo">Correo</label>
-                                        <input type="email" class="form-control" id="idInputCorreo"  required="" name="inputCorreo">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="labelPassword">Password</label>
-                                        <input type="text" class="form-control" id="idInputPassword"  required="" name="inputPassword">
-                                    </div>
-                                </div>
+                        
+                            <div class="form-group">
+                                <label for="labelApellido">Apellido</label>
+                                <input type="text" class="form-control" id="idInputApeliidoProveedor"  required="" name="inputApeliidor">
                             </div>
+                            
+                            <div class="form-group">
+                                <label for="labelPseudo Nombre">Pseudo Nombre</label>
+                                <input type="text" class="form-control" id="idInputPseudoNombreProve"  required="" name="inputPseudoNombre">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="labelCorreo">Correo</label>
+                                <input type="email" class="form-control" id="idInputCorreo"  required="" name="inputCorreo">
+                            </div>
+                        
+                        
+                            <div class="form-group">
+                                <label for="labelPassword">Password (Maximo 20 Digitos) </label>
+                                <input type="text" class="form-control" id="idInputPassword"  maxlength="20"  required="" name="inputPassword">
+                            </div>
+                                
+                           
 
                             <input type="hidden" name="Proveedor" value="addProveedor">
                         </div>
@@ -74,7 +66,7 @@ $plantilla->ctr_navegador_Izquierda();
                             <div class="col-lg-6 inputFile">
                                 <label for="labelLogo"> Logo </label>
                                 <input type="file" id="files"  required=""  accept="image/*"  name="fileLogoDj" / >
-                                <output id="list"></output>
+                                <output id="list"  class="rounded mx-auto d-block"></output>
                                
                             </div>
                         </div>
@@ -90,9 +82,13 @@ $plantilla->ctr_navegador_Izquierda();
                                 <h4 class="porcentaje_h4">0% Complete (success)</h4>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                                <div class="smsEspera"></div>
+                        </div>
                        
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn bg-olive margin">Guardar</button>
                         </div>
                     </form>
                 </div>

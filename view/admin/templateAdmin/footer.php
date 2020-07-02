@@ -1,4 +1,5 @@
 
+
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>LatinEdits.com</b>
@@ -233,6 +234,7 @@
 <!-- //=======================AJAX=============================// -->
 <script src="../controler/js/ajaxGenero.js"></script>
 <script src="../controler/js/ajaxProveedor.js"></script>
+<script src="../controler/js/ajaxProducto.js"></script>
 
 <!-- //=======================TOSTADA=============================// -->
 <script src="../tostada/toast-alert-message-kk/jquery-kk-message/message.js"></script>
@@ -244,6 +246,17 @@
 
 <!-- //=======================SWIT ALERT=============================// -->
 <script src="../alert/sweetalert2.all.min.js"></script>
+
+  <!-- ===================Animacion de espera============================== -->
+  <script src="../controler/js/animacionEspera.js"></script>
+
+<!-- =============================REPRODUCTOR DE AUDIO=============================== -->
+<link rel="stylesheet" type="text/css" href="../jPlayer Flat Audio Theme/css/jplayer-flat-audio-theme.css" />
+<script type="text/javascript" src="../jPlayer Flat Audio Theme/js/jquery.jplayer.min.js"></script> 
+<script type="text/javascript" src="../controler/js/jPlayerPersonalizado.js"></script>
+
+
+
 <script>
   
 function archivo(evt) {
@@ -262,7 +275,7 @@ function archivo(evt) {
            reader.onload = (function(theFile) {
                return function(e) {
                // Creamos la imagen.
-                      document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+                      document.getElementById("list").innerHTML = ['<img class="thumb rounded mx-auto d-block" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
                };
            })(f);
  

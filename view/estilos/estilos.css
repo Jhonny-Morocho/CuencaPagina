@@ -11,10 +11,34 @@
     margin-left: 20px;
 }
 
+#labelFileFormularioProducto{
+    font-size: 20px;
+    padding-top: 20px;
+}
+#labelFileFormularioProducto i{
+    color: #2196f3;
+}
+
+.fileColumna{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.reproducirContenedor {
+   
+    cursor: pointer;
+}
+
+.reproducirContenedor i {
+   
+   font-size: 20px;
+}
+
+
 .thumb {
    
     color: #b9b9b9;
-    height: 50%;
+    /* height: 50%; */
     border: 3px dashed #e8e8e8;
     padding: 5%;
     line-height: 3;
@@ -31,3 +55,64 @@
     background-color: red;
     width: 100%;
 }
+
+span.producto-detalle {
+    color: red;
+    font-weight: bold;
+    
+
+}
+
+.product-content h4 {
+    font-size: 12px;
+    font-weight: 600;
+    border-bottom: 1px solid #444444;
+    margin-bottom: 8px;
+}
+
+.acciones{
+    font-weight: 600;
+    border-bottom: 1px solid #444444;
+    margin-bottom: 8px;
+}
+.product-label{
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.product-label span {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    line-height: 50px;
+    display: block;
+    margin-left: 13px;
+    cursor: pointer;
+    color: #3d9970 ; 
+    /* -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%; */
+    text-transform: uppercase;
+}
+
+/* ================ICONO DE LA TABLA PRODUCTOS========== */
+.bontIconosProducto i{
+    font-size: 25px;
+    cursor: pointer;
+}
+/* ====================Reproductor de Musica=========== */
+#container{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* ========================Tabla productos========================== */
+/* td{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+} */

@@ -1,14 +1,26 @@
 <?php
     //require'class_mdl_bd_conexion.php';
     ini_set('display_errors', 'On');
-    
+
+
+ /*    $conn=new mysqli('localhost','jvoowiez_jhonny','/jhonnydj2011@/','jvoowiez_latin_edit');
+
+
+    if($conn->connect_error){
+        echo $error->$conn->connect_error;
+        echo "<br>.existe un error ".$error->$conn->connect_error;
+    }else{
+        echo "conexion correcta";
+    }
+*/
+
     class Conexion{
         
         private $link;
 
         public function __construct(){
 
-            @$modo_developer=true;//aqui cambio el modo
+            @$modo_developer=false;//aqui cambio el modo
 
             if($modo_developer){
                 try{
@@ -26,9 +38,10 @@
                 $this->link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
             }else{
                     try{
-                        $this->link = new PDO("mysql:host=127.0.0.1;dbname=pro_edit",
-                        "jhonnydj",
-                        "ky4lkexwbsc8",
+                        $this->link = new PDO("mysql:host=localhost;dbname=jvoowiez_latin_edit",
+                        "jvoowiez_jhonny",
+                        "/jhonnydj2011@/",
+                      
                         array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION,
                             PDO::MYSQL_ATTR_INIT_COMMAND=>"SET NAMES utf8")
                         );

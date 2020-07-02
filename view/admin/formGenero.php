@@ -8,6 +8,7 @@
 
 // //Creacion del objeto
 $plantilla= new controlerPlantillaAdmin();
+$plantilla->usuario_autentificado();
  $plantilla->ctr_header();
 $plantilla->ctr_navegador_Izquierda();
 
@@ -34,7 +35,7 @@ $plantilla->ctr_navegador_Izquierda();
                           </div>
                           <!-- /.box-body -->
                           <div class="box-footer">
-                              <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn bg-olive margin">Guardar</button>
                           </div>
                       </form>
                   </div>

@@ -10,6 +10,14 @@ console.log("SOY AJAX PROVEEDOR");
 
 $('#idAgregarProveedor').on('submit',function(e){
     e.preventDefault();
+    // mostramos un mensaje de espera
+    $(".smsEspera").html('<div class="alert alert-info alert-dismissible ">'+
+    '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+    '<h4><i class="icon fa fa-warning"></i> Aviso !</h4>'+
+    'Espere por favor....'+
+    '</div>');
+    
+    
     //console.log("Click");
     var datos=new FormData(this);
     for (var pair of datos.entries()) {
@@ -50,15 +58,30 @@ $('#idAgregarProveedor').on('submit',function(e){
 				console.log("Resultado "+resultado.respuesta);
 				/*console.log("Resultado "+resultado.post);*/
 				/*console.log("Resultado "+resultado.file);*/
-
+                $(".smsEspera").html('<div class="alert alert-success alert-dismissible">'+
+                '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+                '<h4><i class="icon fa fa-warning"></i> Aviso !</h4>'+
+                'Datos guardos exitosamente'+
+                '</div>');
 				/////////////////AGREGO ANIMACION DE CARGA///////////////////////
                 switch (data.respuesta) {
                     case 'existeArchivo':
-                        kkMessgae.warning('Ya existe Archivo Imagen con el mismo nombre');
+                        $(".smsEspera").html('<div class="alert alert-warning alert-dismissible">'+
+                        '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+                        '<h4><i class="icon fa fa-warning"></i> Aviso !</h4>'+
+                        'Ya existe Archivo Imagen con el mismo nombre'+
+                        '</div>');
+                        
                       break;
                       
                     case 'exitoRegistroBd':
-                        kkMessgae.success('Registro Guardado Exitosamente');
+
+                        $(".smsEspera").html('<div class="alert alert-success alert-dismissible">'+
+                        '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+                        '<h4><i class="icon fa fa-warning"></i> Aviso !</h4>'+
+                        'Datos guardos exitosamente'+
+                        '</div>');
+
                         $('#idInputNomProveedor').val('');
                         $('#idInputApeliidoProveedor').val('');
                         $('#idInputPseudoNombreProve').val('');
@@ -73,17 +96,23 @@ $('#idAgregarProveedor').on('submit',function(e){
                             break;
 
                     case 'correo_repetido':
-                        kkMessgae.warning('Ya existe un Proveedor con el mismo correo');
+                        
+                        $(".smsEspera").html('<div class="alert alert-warning alert-dismissible">'+
+                        '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+                        '<h4><i class="icon fa fa-warning"></i> Aviso !</h4>'+
+                        'Ya existe un Proveedor con el mismo correo'+
+                        '</div>');
+
+                        $(".progress-bar").css("width", "0" + "%");
+                        $(".porcentaje_h4").html('0' + "% Completado");
                             break;
                     default:
-                        kkMessgae.error('Error al guardar');
+                         $(".smsEspera").html('<div class="alert alert-danger alert-dismissible">'+
+                            '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+                            '<h4><i class="icon fa fa-warning"></i> Aviso !</h4>'+
+                            'Error al guardar'+
+                            '</div>');
                     break;
-                }
-				///////////////////remover nodo////////////////
-				if(resultado.respuesta=='exito'){
-			
-				}else{
-				
                 }
         	}
 		});
@@ -162,56 +191,120 @@ footer: '<a href>Verifica que todos los campos esten con check</a>'
 
 });
 
-
-/*---------------------EDITAR PROVEEDOR----------------------*/
-/*---------------------EDITAR PROVEEDOR----------------------*/
-/*---------------------EDITAR PROVEEDOR----------------------*/
-/*---------------------EDITAR PROVEEDOR----------------------*/
-
-
-
-
-$('#id_editar_proveedor').on('submit',function(e){
+// ============================EDITAR PROVEEDOR IMG================================//
+// ============================EDITAR PROVEEDOR IMG================================//
+// ============================EDITAR PROVEEDOR IMG================================//
+$('.editProveedorImg').on('click',function(e){
     e.preventDefault();
-    //document.forms["editar_proveedor"].submit();
-   
-    console.log("Click en editar proveeedor");
-    // obtnemos los datos del formulario
-    var datos=$(this).serializeArray();
-    console.log(datos);
 
+    // obtener el id del proveedor
+    var id=$(this).attr('data-id');
+ 
+    console.log(id);
+
+    //asignar el id del proveedor en el formulario de editar Img
+    $('.idProveedor').val(id);
+  
+
+    //aqui llenar formulario con post para enviar los datos
+    $("#idEditarProveedorImg").on('submit',function(e){
+        e.preventDefault();
+        //es importate trabajar con FormData , es utilizado para archivos
+        var datos=new FormData(this);
+        for (var pair of datos.entries()) {
+            console.log(pair[0]+ ', ' + pair[1]); 
+        }
+        console.log(datos);
+        $.ajax({
+            xhr: function() {
+				var xhr = new window.XMLHttpRequest();
+				// Upload progress.
+				xhr.upload.addEventListener("progress", function(evt){
+					if (evt.lengthComputable) {
+						var porcentaje = Math.floor(evt.loaded / evt.total * 100);
+
+						$(".progress-bar").attr("aria-valuenow", porcentaje);
+						$(".progress-bar").css("width", porcentaje + "%");
+						$(".sr-only").html(porcentaje + "% Completado");
+						$(".porcentaje_h4").html(porcentaje + "% Completado");
+						console.log(porcentaje);
+						console.log(porcentaje);
+					}
+				}, false);
+				
+				return xhr;
+			},
+            type:'post',
+            data:datos,
+            url:$(this).attr('action'),
+            dataType:'json',//json
+            // datos asicionales
+			 contentType:false,
+			 processData:false,
+			 async:true,
+			 cache:false,
+            success:function(data){
+                console.log(data);
+                if(data.respuesta=='exito'){
+                    kkMessgae.success('Registro Actualizado Exitosamente');
+                    kkMessgae.loading('Loading...');
+                    setTimeout(function(){ window.location.href  = '../view/admin/listarProveedor.php';}, 4000);
+                }else{
+                    
+                    kkMessgae.error('Error al actulizar');
+                }
+            }
+        });
+
+    });
+        
+});
+// ============================EDITAR PROVEEDOR DATOS================================//
+// ============================EDITAR PROVEEDOR DATOS================================//
+// ============================EDITAR PROVEEDOR DATOS================================//
+
+
+
+$('.editProveedor').on('click',function(e){
+    e.preventDefault();
+    // obtenemos los atrivutos de la etiqueta , en donde se encuentran alojados los datos solo para llenar el formulario
+    var id=$(this).attr('data-id');
+    var nombre=$(this).attr('data-nombre');
+    var apellido=$(this).attr('data-apellido');
+    var apodo=$(this).attr('data-apodo');
+    var correo=$(this).attr('data-correo');
+
+ 
+    // asignamos los datos al formulario
+    $('#idInputNomProveedor').val(nombre);
+    $('#idInputApeliidoProveedor').val(apellido);
+    $('#idInputPseudoNombreProve').val(apodo);
+    $('#idInputCorreo').val(correo);
+    $('.idProveedor').val(id);
+    console.log();
+    
+    //enviamos los datos mediante el metodo Post
+    $("#idEditarProveedor").on('submit',function(e){
+        e.preventDefault();
+        var datos=$(this).serializeArray();
         $.ajax({
             type:$(this).attr('method'),
             data:datos,
             url:$(this).attr('action'),
-            dataType:'json',//json
+            dataType:'json',//json/text
             success:function(data){
                 console.log(data);
-                var password="";
-                if(data.password=='true'){
-                    password="El password se actulizo";
-                }else{
-                    password="El password sigue siendo el actual";
-                    
-                }
-
                 if(data.respuesta=='exito'){
-                    swal(
-                          'Registro Exitoso! <br>Nombre: '+data.nombre+" <br>Apellido :"+data.apellido+" <br> Password: "+password+" <br> Apodo: "+data.apodo,
-                          'Correo ! '+data.correo +' <br> Imagen: '+data.img,
-                          'success'
-                        )
+                    kkMessgae.success('Registro Actualizado Exitosamente');
+                    kkMessgae.loading('Loading...');
+                    setTimeout(function(){ window.location.href  = '../view/admin/listarProveedor.php';}, 4000);
                 }else{
-                    console.log("No se actualizo el registro");
-                    swal({
-                      type: 'error',
-                      title: 'Oops...',
-                      text: 'Revise bien los datos ingresado!',
-                      footer: '<a href>Ingresastes correctamente lo datos?</a>'
-                    })
+                    
+                    kkMessgae.error('Error al actulizar');
                 }
             }
         });
+    })
 
 });
 
@@ -219,17 +312,16 @@ $('#id_editar_proveedor').on('submit',function(e){
 // ================================Eliminar Proveedor===============================
 // ================================Eliminar Proveedor===============================
 
-$('.borrar_registro_proveedor').on('click',function(e){
+$('.deletProveedor').on('click',function(e){
 e.preventDefault();// es para q cuando haga click no brinque 
 
 var id=$(this).attr('data-id');
 var apodo=$(this).attr('data-apodo');
-var tipo=$(this).attr('data-tipo');// pueden venir n tipo de dara tipo
+var img=$(this).attr('data-img');
 console.log("ID :"+ id);
-console.log("Tipo: "+ tipo);
 //BOTON DE ALERTA
     swal({
-        title: 'Estás seguro que desea Eliminar a :<br>  '+apodo,
+        title: 'Estás seguro en eliminar a   '+apodo,
         text: "No podrass revertir esto!",
         type: 'warning',
         showCancelButton: true,
@@ -244,10 +336,11 @@ console.log("Tipo: "+ tipo);
                   data:{
                       //aqui envio los datos al servidor
                       'id':id,
-                      'proveedor':'eliminar'
+                      'img':img,
+                      'Proveedor':'eliminarProveedor'
 
                   },
-                      url:'../Vista/admin/agregar_editar_ajax.php',// mando al servidor con la opcion que sea(modelo_proveedor.php)
+                      url:'../controler/ctrProveedor.php',// mando al servidor con la opcion que sea(modelo_proveedor.php)
                       success:function(data){// si el llamado es correcto nos regresa uno datos
                       //console.log(data);// me regresa un string y solo con convierto
                       console.log(data);
@@ -258,21 +351,11 @@ console.log("Tipo: "+ tipo);
 
                       }else{// si no se puede elimnar presenta este mensaje
                           // presenta eset mensaje si no se elimina de la base de datos
-                          swal({
-                            type: 'error',
-                            title: 'Oops...',
-                            text: 'Algo salió mal!',
-                            footer: '<a href>Why do I have this issue?</a>'
-                          })
+                          kkMessgae.error('Error al actulizar');
                       }				
                   }
               });/// fin ajaxa
-          swal(// si se elimno presenta el mensaje de confirmacion
-
-            'Eliminado!',
-            'Tu archivo ha sido eliminado.',
-            'success'
-          )
+            kkMessgae.success('Registro Eliminado Exitosamente');
         }
       })        
     

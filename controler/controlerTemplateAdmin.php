@@ -6,11 +6,12 @@ ini_set('display_errors', 'On');
 
     public  function ctr_header(){
         require"../../view/admin/templateAdmin/header.php";
-        //require"Animacion/animacion_espera.php";
+        require"../../animacionEspera/animacionEsperaAdmin.php";
        
     }
     public  function ctr_footer(){
         require"../../view/admin/templateAdmin/footer.php";
+      
     }
 
     public  function ctr_navegador_Izquierda(){
@@ -23,6 +24,52 @@ ini_set('display_errors', 'On');
             
         require"../../view/admin/tablas/tablaGenero.php";
         
+    }
+
+    public function ctr_tabla_proveedor(){
+        require"../../view/admin/tablas/tablaProveedor.php";
+    }
+
+    public function ctr_tabla_productos(){
+        require"../../view/admin/tablas/tablaProductos.php";
+    }
+
+    public function ctr_tabla_mis_productos(){
+        require"../../view/admin/tablas/tablaMisProductos.php";
+    }
+
+    // ==================Funciones para session==================
+    // ==================Funciones para session==================
+    public function usuario_autentificado(){
+           
+
+            @session_start();
+            
+            function revisar_usuario_session(){
+
+                if($_SESSION['tipo_usuario']=='admin' or $_SESSION['tipo_usuario']=='proveedor'){
+
+                    return isset($_SESSION['usuario']);
+                }else{
+                    return 0;
+                }
+            }
+
+            if(!revisar_usuario_session()){
+                header('location:../../index.php');
+                exit();
+            }
+
+
+    }
+
+    
+    public function cerrar_session($cerrar_session){
+        $cerrar_session=@$_GET['cerrar_session'];
+        if($cerrar_session){// si se emvio la session entonces destruir
+          session_destroy();
+          header('location:../../index.php');
+        }
     }
 
 }

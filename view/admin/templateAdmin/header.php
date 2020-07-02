@@ -45,11 +45,11 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="../" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini">M<b>A</b>L</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">Latin<b>Edits</b>.com</span>
+      <span class="logo-lg">Latin<b>Edit</b>.com</span>
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
@@ -141,28 +141,28 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="dist/img/user-160x160.jpg" class="user-image" alt="User Image">
+              <img src="<?php echo"../img/proveedores/". @$_SESSION['img']?>" class="user-image" alt="User Image">
               <span class="hidden-xs">Thanh Nguyen</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="dist/img/user-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="<?php echo"../img/proveedores/". @$_SESSION['img']?>" class="img-circle" alt="User Image">
 
                 <p>
-                  Thanh Nguyen - Web Developer
-                  <small>Member since Nov. 2012</small>
+                <?php echo @$_SESSION['usuario']." ".@$_SESSION['apellido']?>
+                  <small><?php echo @$_SESSION['fechaRegistro']?></small>
                 </p>
               </li>
 
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
+                <!-- <div class="pull-left">
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
+                </div> -->
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="../view/admin/index_admin.php?cerrar_session=true" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -177,5 +177,4 @@
     </nav>
   </header>
 
-  
 

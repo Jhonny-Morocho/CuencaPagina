@@ -61,14 +61,16 @@ $(document).ready(function(){
                     switch (data.respuesta) {
                         case 'exito':
                             console.log("exito");
-                            kkMessgae.success('SUCCESS Actulizado');
+							kkMessgae.success('SUCCESS Actulizado');
+							kkMessgae.loading('Loading...');
                             
                             setTimeout(function(){ window.location.href  = '../view/admin/listarGenero.php';}, 4000);
                             //window.location='../view/admin/listarGenero.php';
                             break;
                         case 'noExisteCambios': // foo es 0, por lo tanto se cumple la condición y se ejecutara el siguiente bloque
                             console.log("noExisteCambios");
-                            kkMessgae.warning('WARNING Es el mismo nombre');
+							kkMessgae.warning('WARNING Es el mismo nombre');
+							break;
                             // NOTA: el "break" olvidado debería estar aquí
                         case 'error': // No hay sentencia "break" en el 'case 0:', por lo tanto este caso también será ejecutado
                             console.log("error try");

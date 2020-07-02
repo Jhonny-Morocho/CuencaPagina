@@ -1,0 +1,235 @@
+   /* TEMPLATE STYLES */
+
+main {
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+}
+
+.extra-margins {
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.jumbotron {
+    text-align: center;
+}
+
+.navbar {
+    background-color: #3b295a;
+}
+
+
+footer.page-footer {
+    background-color: #3b295a;
+    margin-top: 2rem;
+}
+.navbar .btn-group .dropdown-menu a:hover {
+    color: #000 !important;
+}
+.navbar .btn-group .dropdown-menu a:active {
+    color: #fff !important;
+}
+
+/* .navbar ul li{
+    display: inline-block;
+    float: none;
+} */
+
+.contenedorCarrito{
+    background-color: #0247b1;
+    /* width: 50%; */
+    /* height: 100%; */
+}
+/* .carrito p{
+    color: #ffffff;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+} */
+
+.special-color-dark {
+    background-color: #444444 !important;
+}
+@media (min-width: 992px){
+    .ulNavegacixon .xx{
+         padding-right: 2.8rem !important;
+        padding-left: 2.1rem !important; 
+        /* margin-left: 40px !important;
+        margin-right: 20px !important; */
+    }
+}
+
+.ulNavegacion{
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    
+}
+
+/* =============centrar los ul li del nav =========== */
+.navbar-nav {
+    float: left;
+    margin: 0;
+    left: 50%;
+    transform: translatex(-50%);
+    position: relative;
+}
+.contenedorReproductos{
+    background-color: #444444 ;
+    width: 100%;
+    height: 50px;
+}
+.ulNavegacion li{
+  text-align: center;
+  margin-left: 80px;
+}
+/* @media (min-width: 992px) {
+    .navbar {
+        height:50px;
+    }
+} */
+
+/* .navbar-toggle
+{
+       position: absolute;
+       width: 100%;
+       left: 0;
+       text-align: center;
+       margin:0 auto;
+} */
+/* .navbar-toggle {
+       z-index:3;
+} */
+
+ /* .navLatinEdit{
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+}  */
+.navLatinEdit ul li a:hover{
+    background-color: black;
+} 
+
+.buy{
+    background-color: blue;
+    width: 100%;
+}
+
+
+/* .intro-2 {
+    background: url("https://mdbootstrap.com/img/Photos/Others/img (40).jpg")no-repeat center center;
+    background-size: cover;
+} */
+
+.navLatinEdit {
+    background-color: transparent;
+}
+
+.navbar {
+    background-color: rgba(0,0,0,0.18) !important; 
+    /* background-color: #444444 !important; */
+  
+
+}
+
+.top-nav-collapse {
+    background-color: #4285F4;
+}
+
+@media only screen and (max-width: 768px) {
+    .navLatinEdit {
+        background-color: #4285F4;
+    }
+}
+
+
+/* //============================= FX NAV TRASPARENTE=====================// */
+
+/* 
+.intro-2 {
+    background: url("https://mdbootstrap.com/img/Photos/Others/img (40).jpg")no-repeat center center;
+    background-size: cover;
+}
+
+.navbar {
+    background-color: transparent;
+}
+
+.top-nav-collapse {
+    background-color: #4285F4;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar {
+        background-color: #4285F4;
+    }
+} */
+
+/* //===========cuando hago scroll se hace trasparente el nav=============  */
+.top-nav-collapse {
+    
+    background-color: #444444!important;
+    
+}
+
+
+/* ========================campo tabla buy==================== */
+
+
+.buy{
+    background-color: #0247b1;
+}
+
+.buy .precio{
+    color: #fff;
+}
+ .buy .addcarrito i{
+    color: #fff;
+    margin-right: 10px; 
+}
+
+.reproducirContenedor .reproducir i{
+    color: #0247b1;
+    text-align: center;
+    margin-right: 20px;
+}
+.reproducirContenedor{
+    background-color: #fff;
+    cursor: pointer;
+    
+}
+
+
+.buy{
+    cursor: pointer;
+}
+/* .contenedorBuy{
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    
+} */
+/* =============SEPARACION DE LOS ITEMS DEL NAV=================== */
+.dropdown:hover .dropdown-menu {display: block;
+}
+
+.contenedorLogin{
+    padding-top: 120px;
+}
+
+/* ====================Tabla========== */
+ /* td{
+ 
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}  */
+td {
+    /* width:100%; */
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+  }
+  
