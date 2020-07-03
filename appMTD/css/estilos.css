@@ -178,11 +178,12 @@ footer.page-footer {
 
 
 .buy{
-    background-color: #0247b1;
+    background-color: #23539b;
 }
 
 .buy .precio{
     color: #fff;
+    text-align: center;
 }
  .buy .addcarrito i{
     color: #fff;
@@ -200,6 +201,9 @@ footer.page-footer {
     
 }
 
+.price{
+ background-color: #0247b1;
+}
 
 .buy{
     cursor: pointer;

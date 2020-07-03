@@ -84,7 +84,7 @@
         <form class="text-center" style="color: #757575;" action="#!">
 
 <div class="form-row">
-
+    
     <div class="col">
         <!-- First name -->
         <div class="md-form">
@@ -121,7 +121,7 @@
     </div><div class="col">
         <!-- Last name -->
         <div class="md-form">
-          <button class="btn btn-info  btn-block" type="submit">Buscar</button>
+          <button class="btn btn-info " type="submit">Buscar</button>
         </div>
     </div>
     
@@ -159,15 +159,17 @@
                           <td>
                             <div class="container">
                                   <div class="row">
-                                    <div class="col-lg-3 reproducirContenedor" data-demo="../../editDemos/<?php echo $row['demo']?>">
+                                    <div class="col-lg-4 reproducirContenedor" data-demo="../../editDemos/<?php echo $row['demo']?>">
                                         <span class="reproducir">
                                           <i class="fa fa-play-circle" aria-hidden="true"></i>
                                         </span>
                                       </div>
-                                      <div class="col-lg-9 buy">
+                                      <div class="col-lg-3 buy">
                                           <span class="addcarrito">
                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                           </span>
+                                      </div>
+                                      <div class="col-lg-5 price">
                                           <span class="precio">$
                                             <?php echo $row['precio']?>
                                           </span>

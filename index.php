@@ -6,7 +6,7 @@ ini_set('display_errors', 'On');
 
 session_start();
 require'model/conexion.php';
-//require'Modelo/class_mdl_proveedor.php';
+require'view/cliente/formularioCliente.php';
 //require'Modelo/class_mdl_cliente_producto.php';
 //require'Modelo/class_mdl_producto.php';
 
