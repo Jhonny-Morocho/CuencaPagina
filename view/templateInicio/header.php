@@ -46,11 +46,11 @@
                     <a class="nav-link" href="#">MEMBRESIAS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#modalLRForm">CUENTA</a>
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#modalLRForm" >CUENTA</a>
                 </li>
                 <li class="nav-item">
                     <div class="contenedorCarrito">
-                      <a class="nav-link" href="#" class="btn btn-default btn-rounded my-3" data-toggle="modal" data-target="#modalLRForm" ><span><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>  CARRITO <span>(0)</span> </a>
+                      <a class="nav-link" href="#"  ><span><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>  CARRITO <span>(0)</span> </a>
                     </div>
                     
                 </li>

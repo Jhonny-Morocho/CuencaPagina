@@ -35,7 +35,7 @@
               
               //cuando la pagina inicia solo presenta los datos normales
               $page = ( isset($_GET["page"]) ) ? $_GET["page"] : 1;
-              Pagination::config($page, 1, " producto , proveedor , genero ", $where1, null , 10); 
+              Pagination::config($page, 6, " producto , proveedor , genero ", $where1, null , 10); 
               $data = Pagination::data(); 
           }
             
@@ -80,58 +80,60 @@
           </div> 
          
           <div class="col-lg-10">
-             
-        <form class="text-center" style="color: #757575;" action="#!">
-
-<div class="form-row">
-    
-    <div class="col">
-        <!-- First name -->
-        <div class="md-form">
-            <!-- <i class="fas fa-search" aria-hidden="true"></i> -->
-            <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
-              aria-label="Search">
-        </div>
-    </div>
-    <div class="col">
-        <!-- First name -->
-        <div class="md-form">
-            <select class="browser-default custom-select mb-3">
-                <option value="" disabled>Choose option</option>
-                <option value="1" selected>Feedback</option>
-                <option value="2">Report a bug</option>
-                <option value="3">Feature request</option>
-                <option value="4">Feature request</option>
-            </select>
-            
-        </div>
-    </div>
-    <div class="col">
-        <!-- Last name -->
-        <div class="md-form">
-          <select class="browser-default custom-select mb-3">
-                <option value="" disabled>Choose option</option>
-                <option value="1" selected>Feedback</option>
-                <option value="2">Report a bug</option>
-                <option value="3">Feature request</option>
-                <option value="4">Feature request</option>
-            </select>
-        </div>
-      
-    </div><div class="col">
-        <!-- Last name -->
-        <div class="md-form">
-          <button class="btn btn-info " type="submit">Buscar</button>
-        </div>
-    </div>
-    
-</div>
-
+             <div class="col-lg-12">
+                  <form class="text-center" style="color: #757575;" action="#!">
+        
+                    <div class="form-row">
+                        
+                        <div class="col">
+                            <!-- First name -->
+                            <div class="md-form">
+                                <!-- <i class="fas fa-search" aria-hidden="true"></i> -->
+                                <input class="form-control form-control-sm ml-4 w-150" type="text" placeholder="Search"
+                                  aria-label="Search">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- First name -->
+                            <div class="md-form">
+                                <select class="browser-default custom-select form-control form-control-sm ml-4 w-90 ">
+                                    <option value="" disabled>Choose option</option>
+                                    <option value="1" selected>Feedback</option>
+                                    <option value="2">Report a bug</option>
+                                    <option value="3">Feature request</option>
+                                    <option value="4">Feature request</option>
+                                </select>
+                                
+                            </div>
+                        </div>
+                        <div class="col">
+                            <!-- Last name -->
+                            <div class="md-form">
+                              <select class="browser-default custom-select form-control form-control-sm ml-4 w-90 ">
+                                    <option value="" disabled>Choose option</option>
+                                    <option value="1" selected>Feedback</option>
+                                    <option value="2">Report a bug</option>
+                                    <option value="3">Feature request</option>
+                                    <option value="4">Feature request</option>
+                                </select>
+                            </div>
+                          
+                        </div><div class="col">
+                            <div class="md-form">
+                              <button class="btn btn-info form-control form-control-sm ml-3 w-90 " type="submit">Buscar</button>
+                            </div>
+                        </div>
+                        
+                    </div>
 
 
 
 
-</form>
+
+                    </form>
+
+             </div>
+       
                 <!-- </div>
               </div> -->
               <table class="table table-hover table-sm table-responsive table-dark text-nowrap">
