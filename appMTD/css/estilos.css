@@ -181,19 +181,27 @@ footer.page-footer {
     background-color: #23539b;
 }
 
+.container.cotenedorBuy div{
+    height: 23px;
+}
+
 .buy .precio{
     color: #fff;
     text-align: center;
+    padding-top: 5px;
 }
+
  .buy .addcarrito i{
     color: #fff;
     margin-right: 10px; 
+    padding-top: 5px;
 }
 
 .reproducirContenedor .reproducir i{
     color: #0247b1;
     text-align: center;
     margin-right: 20px;
+    padding-top: 5px;
 }
 .reproducirContenedor{
     background-color: #fff;

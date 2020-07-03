@@ -35,7 +35,7 @@
               
               //cuando la pagina inicia solo presenta los datos normales
               $page = ( isset($_GET["page"]) ) ? $_GET["page"] : 1;
-              Pagination::config($page, 6, " producto , proveedor , genero ", $where1, null , 10); 
+              Pagination::config($page, 1, " producto , proveedor , genero ", $where1, null , 10); 
               $data = Pagination::data(); 
           }
             
@@ -89,16 +89,16 @@
                             <!-- First name -->
                             <div class="md-form">
                                 <!-- <i class="fas fa-search" aria-hidden="true"></i> -->
-                                <input class="form-control form-control-sm ml-4 w-150" type="text" placeholder="Search"
+                                <input class="form-control form-control-sm ml-3 w-70" type="text" placeholder="Search"
                                   aria-label="Search">
                             </div>
                         </div>
                         <div class="col">
                             <!-- First name -->
                             <div class="md-form">
-                                <select class="browser-default custom-select form-control form-control-sm ml-4 w-90 ">
-                                    <option value="" disabled>Choose option</option>
-                                    <option value="1" selected>Feedback</option>
+                                <select class=" form-control form-control-sm ml-3 w-60 ">
+                                    <option value="" >GENER</option>
+                                    <!-- <option value="1" selected>Feedback</option> -->
                                     <option value="2">Report a bug</option>
                                     <option value="3">Feature request</option>
                                     <option value="4">Feature request</option>
@@ -109,9 +109,9 @@
                         <div class="col">
                             <!-- Last name -->
                             <div class="md-form">
-                              <select class="browser-default custom-select form-control form-control-sm ml-4 w-90 ">
-                                    <option value="" disabled>Choose option</option>
-                                    <option value="1" selected>Feedback</option>
+                              <select class=" form-control form-control-sm ml-3 w-60 ">
+                                    <option value="" >REMIXER</option>
+                                    <!-- <option value="1" selected>Feedback</option> -->
                                     <option value="2">Report a bug</option>
                                     <option value="3">Feature request</option>
                                     <option value="4">Feature request</option>
@@ -120,7 +120,7 @@
                           
                         </div><div class="col">
                             <div class="md-form">
-                              <button class="btn btn-info form-control form-control-sm ml-3 w-90 " type="submit">Buscar</button>
+                              <button class="form-control form-control-sm  ml-3 w-60 " type="submit">Buscar</button>
                             </div>
                         </div>
                         
@@ -136,7 +136,7 @@
        
                 <!-- </div>
               </div> -->
-              <table class="table table-hover table-sm table-responsive table-dark text-nowrap">
+              <table class="table table-hover  table-responsive table-dark text-nowrap">
                 <thead class="black white-text">
                     <tr>
                     <th scope="col">Date</th>
@@ -159,7 +159,7 @@
                           <td><?php echo $row['bpm']?></td>
                           <td><?php echo $row['genero']?></td>
                           <td>
-                            <div class="container">
+                            <div class="container cotenedorBuy" >
                                   <div class="row">
                                     <div class="col-lg-4 reproducirContenedor" data-demo="../../editDemos/<?php echo $row['demo']?>">
                                         <span class="reproducir">
@@ -190,31 +190,35 @@
                 </tbody>
 
                 </table>
-                <?php if( $banderaError==false){  // si no exite resultado osea marcar erro entonces no presentra paginacion?>
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination pg-blue">
-                                <?php if ($data["actual-section"] != 1): ?> 		  			
-                                    <li class="page-item" ><a class="page-link" href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=1">Inicio</a></li>
-                                    <li class="page-item" ><a class="page-link"" href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=<?php echo $data['previous']; ?>">&laquo;</a></li>
-                                <?php endif; ?>
 
-                                <?php for ($i = $data["section-start"]; $i <= $data["section-end"]; $i++): ?>					
-                                <?php if ($i > $data["total-pages"]): break; endif; ?>
-                                <?php $active = ($i == $data["this-page"]) ? "active" : ""; ?>			    
-                                    <li class="page-item <?php echo $active; ?>">
-                                    <a class="page-link" href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=<?php echo $i; ?>">
-                                        <?php echo $i; ?>			    		
-                                    </a>
-                                    </li>
-                                    <?php endfor; ?>
-                                
-                                <?php if ($data["actual-section"] != $data["total-sections"]): ?>
-                                    <li  class="page-item"  ><a lass="page-link"  href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=<?php echo $data['next']; ?>">&raquo;</a></li>
-                                    <li  class="page-item"><a class="page-link"  href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=<?php echo $data['total-pages']; ?>">Final</a></li>
-                                    <?php endif; ?>
-                            </ul>
-                        </nav>
-                    <?php }  ?>
+                <div class="d-flex justify-content-center">
+                  <?php if( $banderaError==false){  // si no exite resultado osea marcar erro entonces no presentra paginacion?>
+                          <nav aria-label="Page navigation example">
+                              <ul class="pagination pg-blue">
+                                  <?php if ($data["actual-section"] != 1): ?> 		  			
+                                      <li class="page-item" ><a class="page-link" href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=1">Inicio</a></li>
+                                      <li class="page-item" ><a class="page-link"" href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=<?php echo $data['previous']; ?>">&laquo;</a></li>
+                                  <?php endif; ?>
+
+                                  <?php for ($i = $data["section-start"]; $i <= $data["section-end"]; $i++): ?>					
+                                  <?php if ($i > $data["total-pages"]): break; endif; ?>
+                                  <?php $active = ($i == $data["this-page"]) ? "active" : ""; ?>			    
+                                      <li class="page-item <?php echo $active; ?>">
+                                      <a class="page-link" href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=<?php echo $i; ?>">
+                                          <?php echo $i; ?>			    		
+                                      </a>
+                                      </li>
+                                      <?php endfor; ?>
+                                  
+                                  <?php if ($data["actual-section"] != $data["total-sections"]): ?>
+                                      <li  class="page-item"  ><a lass="page-link"  href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=<?php echo $data['next']; ?>">&raquo;</a></li>
+                                      <li  class="page-item"><a class="page-link"  href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&page=<?php echo $data['total-pages']; ?>">Final</a></li>
+                                      <?php endif; ?>
+                              </ul>
+                          </nav>
+                      <?php }  ?>
+                </div>
+               
            </div>
 
     </div> <!-- end row -->
