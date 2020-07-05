@@ -142,7 +142,13 @@
           //$idRemixer=intval($_GET['remixer']);// convierto en entero
           //(is_int($idRemixer)=="TRUE" && !$_GET['genero']) ? Pagination::config($page, $numeroFilas, " producto , proveedor , genero  ", $whereRemixer, null , 10,'todo'): Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $where1, null , 10,'inicio'); 
 
-          $data = Pagination::data();    
+          try {
+            //code...
+            $data = Pagination::data();// si exite un error q reenvie al index
+          } catch (\Throwable $th) {
+            header('Location: ./');
+          }
+          
       ?> 
 
     <div class="container-fluid">
