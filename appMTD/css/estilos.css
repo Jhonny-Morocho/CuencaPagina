@@ -1,10 +1,5 @@
    /* TEMPLATE STYLES */
 
-main {
-    padding-top: 3rem;
-    padding-bottom: 2rem;
-}
-
 .extra-margins {
     margin-top: 1rem;
     margin-bottom: 2.5rem;
@@ -245,3 +240,9 @@ td {
     word-wrap: break-word;
   }
   
+
+  
+/* //=====================Option select==============================// */
+.selectGeneroRemixer {
+    text-transform: uppercase;
+}

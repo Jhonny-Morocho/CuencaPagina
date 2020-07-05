@@ -11,7 +11,7 @@ class Pagination {
 	private static $section_size;	
 	private static $pagination_model;
 
-	public static function config($page, $range, $table,$where, $custom_select = null, $section_size = 5)
+	public static function config($page, $range, $table,$where, $custom_select = null, $section_size = 5,$tipo)
 	{
 		self::$page = (string)($page);
 		self::$range = $range;
@@ -19,7 +19,7 @@ class Pagination {
 
 		if ($custom_select == null && $table != null)
 		{
-			self::$pagination_model = new PaginationModel($table,$where);			
+			self::$pagination_model = new PaginationModel($table,$where,$tipo);			
 		}
 		else
 		{

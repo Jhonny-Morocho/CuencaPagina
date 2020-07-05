@@ -6,36 +6,72 @@
 class PaginationModel {
 	private $query;
 
-	public function __construct($query,$where, $custom = false){
+	public function __construct($query,$where,$tipo, $custom = false){
        
 		if ($custom){
 
 			$this->query = $query;
 			$this->where = $where;
+			$this->tipo = $tipo;
 			
 		}
 		else{
 
 			//aqui hay q hacer las consultas 
-			$this->query = "SELECT  
-			producto.id,
-			producto.idProveedor,
-			producto.artista,
-			producto.nombrePista,
-			producto.fecha,
-			producto.bpm,
-			producto.idGenero,
-			producto.precio,
-			producto.demo,
-			producto.remixCompleto,
-			producto.precio,
 
-			proveedor.apodo,
+			switch ($tipo) {
+				case 'inicio':
+					# code...
+					$this->query = "SELECT  
+		         producto.id,
+				producto.idProveedor,
+				producto.artista,
+				producto.nombrePista,
+				producto.fecha,
+				producto.bpm,
+				producto.idGenero,
+				producto.precio,
+				producto.demo,
+				producto.remixCompleto,
+				producto.precio,
 
-			genero.genero
+				proveedor.apodo,
+
+				genero.genero
 
 
 			FROM  " . addslashes($query) ." ". $where;
+					break;
+
+					
+				case 'todo':
+					# code...
+				$this->query = "SELECT 
+		         producto.id,
+				producto.idProveedor,
+				producto.artista,
+				producto.nombrePista,
+				producto.fecha,
+				producto.bpm,
+				producto.idGenero,
+				producto.precio,
+				producto.demo,
+				producto.remixCompleto,
+				producto.precio,
+
+				proveedor.apodo,
+
+				genero.genero
+
+
+			FROM  " . addslashes($query) ." ". $where;
+					break;
+				
+				default:
+					# code...
+					break;
+			}
+			
 		}
 	}
 
