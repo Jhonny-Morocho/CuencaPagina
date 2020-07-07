@@ -17,9 +17,9 @@
   <!-- Material Design Bootstrap -->
   <link rel="stylesheet" href="css/mdb.min.css">
   <!-- Your custom styles (optional) -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=1">
   <!-- =================== APP==================== -->
-  <link rel="stylesheet" href="../css/estilos.css">
+  <link rel="stylesheet" href="../css/estilos.css?v=1">
 
 </head>
 <body>
@@ -50,7 +50,7 @@
                 </li>
                 <li class="nav-item">
                     <div class="contenedorCarrito">
-                      <a class="nav-link" href="#"  ><span><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>  CARRITO <span>(0)</span> </a>
+                      <a class="nav-link" href="#"  ><span><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>  CARRITO <span class="cart-notification">(0)</span> </a>
                     </div>
                     
                 </li>

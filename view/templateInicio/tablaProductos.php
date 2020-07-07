@@ -55,7 +55,7 @@
                              proveedor.id=".intval(@$_GET['remixer'])." and   producto.demo LIKE '%".@$_GET['busqueda']."%'   ";
 
 
-        $numeroFilas=10;
+        $numeroFilas=7;
         
        
         
@@ -84,6 +84,8 @@
 
 
         $data="";
+
+        
         //1. Caso//  buscador= vacio; genero=vacio; remixer=vacio
         if(!@$_GET['busqueda'] && !@$_GET['genero'] && !@$_GET['remixer'] ){// primer caso// no necesita validaciion x q la data es vacia
           Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $where1, null , 10,'inicio');
@@ -294,49 +296,56 @@
        
                 <!-- </div>
               </div> -->
-              <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+              <table id="dtBasicExample" class="table  table-striped table-bordered table-sm" cellspacing="0" width="100%">
              
                 <thead class="black white-text">
                     <tr>
-                    <th scope="col">Date</th>
-                    <th scope="col">REMIXER</th>
-                    <th scope="col">ARTIST</th>
-                    <th scope="col">TITLE</th>
-                    <th scope="col">BPM</th>
-                    <th scope="col">GENER</th>
-                    <th scope="col">BUY</th>
+                    <th >Date</th>
+                    <th >REMIXER</th>
+                    <th >ARTIST</th>
+                    <th >TITLE</th>
+                    <th >BPM</th>
+                    <th >GENER</th>
+                    <th >BUY</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach (Pagination::show_rows("id") as $row): ?>
                     <?php  $banderaError=false; if( $row['apodo']!== 'Error: vacío' ){ ?>
                         <tr>
-                          <th scope="row"><?php echo $row['fecha']?></th>
+                          <th><?php echo $row['fecha']?></th>
                           <td><?php echo $row['apodo']?></td>
                           <td><?php echo $row['artista']?></td>
-                          <td class="overflow-ellipsis"><?php echo $row['nombrePista']?></td>
+                          <td ><?php echo $row['nombrePista']?></td>
                           <td><?php echo $row['bpm']?></td>
                           <td><?php echo $row['genero']?></td>
                           <td>
-                            <div class="container cotenedorBuy" >
-                                  <div class="row">
-                                    <div class="col-lg-4 reproducirContenedor" data-demo="../../editDemos/<?php echo $row['demo']?>">
+                             <div class="cotenedorBuy" >
+                                <div class="row">
+                                     <div class="col-lg-4 reproducirContenedor" data-demo="../../editDemos/<?php echo $row['demo']?>">
                                         <span class="reproducir">
                                           <i class="fa fa-play-circle" aria-hidden="true"></i>
                                         </span>
                                       </div>
-                                      <div class="col-lg-3 buy">
+
+                                      <div  class="col-lg-3 buy " data-id="<?php echo $row['id']?>" data-nombre="<?php echo $row['demo']?>" data-precio="<?php echo $row['precio']?>">
                                           <span class="addcarrito">
                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                           </span>
                                       </div>
+
                                       <div class="col-lg-5 price">
+                                          <!-- <button class="btn btn-primary text-nowrap" type="button">
+                                            <span class="spinner-border spinner-border-sm mr-2"></span>
+                                            Enviando datos...
+                                          </button> -->
                                           <span class="precio">$
                                             <?php echo $row['precio']?>
                                           </span>
                                       </div>
-                                  </div>
+                                      
                                 </div>
+                             </div>
                           </td>
                         </tr>
                     <?php }else{

@@ -83,7 +83,12 @@
          <!--========================ANIMACION DE ESPERA==================================================== -->
          <script type="text/javascript" src="../../controler/js/carritoCompras.js">></script> 
          <script type="text/javascript" src="../../controler/js/ajaxVlidacionCampos.js">></script> 
-        
+
+         <!-- =============================TOSTADAS BOOSTRAP====================================== -->
+         <script type="text/javascript" src="../../Toast-Notification/src/bootoast.js">></script> 
+         <link rel="stylesheet" href="../../Toast-Notification/src/bootoast.css">
+
+     
 
 
 </html>        

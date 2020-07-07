@@ -176,14 +176,21 @@ footer.page-footer {
     background-color: #23539b;
 }
 
-.container.cotenedorBuy div{
+/* .cotenedorBuy div{
     height: 23px;
-}
+    width:130px ;
+} */
 
-.buy .precio{
-    color: #fff;
+.price {
+   
     text-align: center;
     padding-top: 5px;
+    background-color: #23539b;
+}
+.price span{
+   
+   color: white;
+
 }
 
  .buy .addcarrito i{
@@ -204,9 +211,9 @@ footer.page-footer {
     
 }
 
-.price{
+/* .price{
  background-color: #0247b1;
-}
+} */
 
 .buy{
     cursor: pointer;
@@ -226,19 +233,42 @@ footer.page-footer {
 }
 
 /* ====================Tabla========== */
- /* td{
- 
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}  */
+
 td {
-    /* width:100%; */
-    overflow:hidden;
+    max-width: 200px;
+    font-size: 40px;
+    border: solid 2px gray;
+    overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    word-wrap: break-word;
   }
+  /* //======================TABLA RESPONSIVA======================// */
+  @media screen and (max-width: 600px) {
+    table {
+        width:100%;
+    }
+    thead {
+        display: none;
+    }
+    tr:nth-of-type(2n) {
+        background-color: inherit;
+    }
+    tr td:first-child {
+        background: #f0f0f0;
+        font-weight:bold;
+        font-size:1.3em;
+    }
+    tbody td {
+        display: block;
+        text-align:center;
+    }
+    tbody td:before {
+        content: attr(data-th);
+        display: block;
+        text-align:center;
+    }
+}
+
   
 
   
