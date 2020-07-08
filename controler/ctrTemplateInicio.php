@@ -58,6 +58,10 @@ class ControladorPlantillaInicio{
             require'view/templateInicio/tablaProductos.php';
         }
 
+        public function ctr_tabla_carritoCompras(){
+            require'view/templateInicio/tablaCarrito.php';
+        }
+
         public function ctr_Formulario_LoginAdmin(){
                 require'view/templateInicio/formularioLoginAdmin.php';
         }

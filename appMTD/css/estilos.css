@@ -276,3 +276,23 @@ td {
 .selectGeneroRemixer {
     text-transform: uppercase;
 }
+
+/* =======================Tabla productos car.php =========== */
+.cart-table td{
+    text-align: center;
+}
+
+
+.deleItemCar{
+    font-size: 20px;
+    color: red;
+    cursor: pointer;
+}
+
+.carritoVacio{
+    text-align: center;
+}
+
+.smsIniciarSession{
+    text-align: center;
+}
