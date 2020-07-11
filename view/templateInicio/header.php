@@ -50,7 +50,7 @@
                 </li>
                 <li class="nav-item">
                     <div class="contenedorCarrito">
-                      <a class="nav-link" href="../../car.php"  ><span><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>  CARRITO <span class="cart-notification">(0)</span> </a>
+                      <a class="nav-link" href="../../car.php"  ><span><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>  CARRITO <span class="cart-notification">0</span> </a>
                     </div>
                     
                 </li>

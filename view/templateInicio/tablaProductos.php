@@ -328,7 +328,7 @@
                                         </span>
                                       </div>
 
-                                      <div  class="col-lg-3 buy " data-id="<?php echo $row['id']?>" data-nombre="<?php echo $row['demo']?>" data-precio="<?php echo $row['precio']?>">
+                                      <div  class="col-lg-3 buy " data-id="<?php echo $row['id']?>" data-nombre="<?php echo $row['nombrePista']?>" data-precio="<?php echo $row['precio']?>">
                                           <span class="addcarrito">
                                             <i class="fa fa-plus" aria-hidden="true"></i>
                                           </span>
