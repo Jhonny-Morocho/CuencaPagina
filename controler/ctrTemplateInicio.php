@@ -86,7 +86,7 @@ class ControladorPlantillaInicio{
             session_start();
             function revisar_usuario_session(){
 
-                if($_SESSION['tipo_usuario']=='Cliente'){
+                if($_SESSION['tipo_usuario']=='cliente'){
 
                     return isset($_SESSION['usuario']);
                 }else{
@@ -95,7 +95,7 @@ class ControladorPlantillaInicio{
             }
 
             if(!revisar_usuario_session()){
-                header('location: index.php');
+                header('location: ./');
                 exit();
             }
 
@@ -107,7 +107,7 @@ class ControladorPlantillaInicio{
             $cerrar_session=@$_GET['cerrar_session'];
             if($cerrar_session){// si se emvio la session entonces destruir
             session_destroy();
-            header('location: index.php');
+            header('location: ./');
             }
         }
 

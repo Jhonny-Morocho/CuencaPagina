@@ -2,11 +2,6 @@
 // ===============================LOGIN CLIENTE============================
 // ===============================LOGIN CLIENTE============================
 
-
-    // $(".smsEsperaLogin").html('<div class="alert alert-success alert-dismissible">'+
-    // '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
-    // '<h4><i class="icon fa fa-warning"></i> Registro Exitoso </h4> Bienvenido '+
-    // '</div>');
 $('#login-cliente').on('submit',function(e){
     e.preventDefault();
 
@@ -15,39 +10,27 @@ $('#login-cliente').on('submit',function(e){
     var datos=$(this).serializeArray();
 
     console.log(datos);//imprimr los valores
-
-    // console.log("bandera_correo",bandera_correo);
-    // console.log("bandera_password_login",bandera_password_login);
-
-
         $.ajax({
             type:$(this).attr('method'),
             data:datos,
             url:$(this).attr('action'),
-            dataType:'text',//json
-
+            dataType:'json',//json
             success:function(data){
                 console.log(data);//el usuario si existe
                 if(data.respuesta=='true_password'){
-                    // $(".smsEsperaLogin").html( 
-                    //     '<div class="alert  alert-success alert-dismissible fade show" role="alert">  <strong> Bienvenido  </strong>'+
-                    //     data.usuario+
-                    //         '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
-                    //             '<span aria-hidden="true">&times;</span>'+
-                    //         '</button>'+
-                    //     '</div>');
+                    $(".smsEsperaLogin").html('<div class="alert alert-success alert-dismissible">'+
+                    '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+                    '<h4><i class="icon fa fa-warning"></i> Hola , Bienvenido </h4> Bienvenido '+data.usuario+
+                    '</div>');
                   
                     setTimeout(function(){
-                        window.location.href='../../view/admin/index_admin.php';
+                        window.location.href='../../adminCliente.php';
                     },2000);//tiempo de espera
                 }else{
-                    // $(".alertConfirmacion").html( 
-                    //                                 '<div class="alert alert-warning alert-dismissible fade show" role="alert">'+
-                    //                                 data.respuesta+
-                    //                                     '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
-                    //                                         '<span aria-hidden="true">&times;</span>'+
-                    //                                     '</button>'+
-                    //                                 '</div>');
+                    $(".smsEsperaLogin").html('<div class="alert alert-warning alert-dismissible">'+
+                    '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+                    '<h4><i class="icon fa fa-warning"></i> Aviso !</h4>'+data.respuesta+
+                    '</div>');
                    
                 }
             }

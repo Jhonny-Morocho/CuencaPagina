@@ -68,7 +68,6 @@ switch (@$_POST['Cliente']) {
                         $boolean_validacion=false;
                     }
                 }
-
                 //=================Verificar el password para darle ingreso al sistema=========================
                 //=================Verificar el password para darle ingreso al sistema=========================
                 //=================Verificar el password para darle ingreso al sistema=========================
@@ -78,23 +77,19 @@ switch (@$_POST['Cliente']) {
                     //print_r($respuesta);
                     if ($respuesta) {//verificar si existe el correo del usuario
                         if( password_verify(@$_POST['inputPasswordCliente'],@$respuesta['password']) ){
-                    
+
                                 @session_start();
-    
-                                @$_SESSION['id_proveedor']=$respuesta['id'];
+                                @$_SESSION['id_cliente']=$respuesta['id'];
                                 @$_SESSION['usuario']=$respuesta['nombre'];
                                 @$_SESSION['tipo_usuario']=$respuesta['rol'];
-                                @$_SESSION['apodo']=$respuesta['apodo'];
                                 @$_SESSION['apellido']=$respuesta['apellido'];
-                                @$_SESSION['img']=$respuesta['img'];
                                 @$_SESSION['fechaRegistro']=$respuesta['fechaRegistro'];
     
                                  $respuesta=array(
                                      'respuesta'=>'true_password',
                                      'usuario'=>$respuesta['nombre'],
                                      'rol'=>$respuesta['rol'],
-                                     'apellido'=>$respuesta['apellido'],
-                                     'apodo'=>$respuesta['apodo']
+                                     'apellido'=>$respuesta['apellido']
                                  );
                         
     

@@ -73,11 +73,11 @@
      
 
 
-      echo "VALIDACION : ".(validarNumeros(@$_GET['genero']));
+      //echo "VALIDACION : ".(validarNumeros(@$_GET['genero']));
       $validacionIdGenero=validarNumeros(@$_GET['genero']);
       $validacionIdRemixer=validarNumeros(@$_GET['remixer']);
       $validacionIdPaginacion=validarNumeros(@$_GET['page']);
-      echo "VALIDACIONPaginacion : ".(validarNumeros(@$_GET['page']));
+      //echo "VALIDACIONPaginacion : ".(validarNumeros(@$_GET['page']));
       
       $page = (validarNumeros(@$_GET['page'])=="true") ? $_GET["page"] : 1;
 

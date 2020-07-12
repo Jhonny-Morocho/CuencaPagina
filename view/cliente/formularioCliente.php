@@ -30,23 +30,25 @@
                 <div class="modal-body mb-1">
                   <div class="md-form form-sm mb-5">
                     <i class="fas fa-envelope prefix"></i>
-                    <input type="email" id="modalLRInput10" class="form-control form-control-sm validate" required="" name="inputEmailCliente">
+                    <input type="email" id="modalLRInput12" class="form-control form-control-sm validate" required="" name="inputEmailCliente">
                     <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
                   </div>
 
                   <div class="md-form form-sm mb-4">
                     <i class="fas fa-lock prefix"></i>
-                    <input type="password" id="modalLRInput11" class="form-control form-control-sm validate" maxlength="20" required="" name="inputPasswordCliente">
+                    <input type="password" id="modalLRInput13" class="form-control form-control-sm validate" maxlength="20" required="" name="inputPasswordCliente">
                     <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
                   </div>
+
+                  <div class="md-form form-sm mb-4">
+                    <div class="smsEsperaLogin"></div>
+                  </div>
+         
                   <div class="text-center mt-2">
                     <button class="btn btn-info">Log in <i class="fas fa-sign-in ml-1"></i></button>
                   </div>
                 </div>
-                
-                <div class="md-form form-sm mb-5">
-                  <div class="smsEsperaLogin"></div>
-                </div>
+              
                 <!--Footer-->
                 <div class="modal-footer">
                   <!-- <div class="options text-center text-md-right mt-1">
@@ -86,7 +88,7 @@
 
                 <div class="md-form form-sm mb-5">
                   <i class="fas fa-envelope prefix"></i>
-                  <input type="email" id="modalLRInput12" maxlength="20"  class="form-control form-control-sm validate" required="" name="inputEmailCliente">
+                  <input type="email" id="modalLRInput12"  class="form-control form-control-sm validate" required="" name="inputEmailCliente">
                   <label data-error="wrong" data-success="right" >Your email</label>
                 </div>
 

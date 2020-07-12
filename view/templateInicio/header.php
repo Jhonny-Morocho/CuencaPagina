@@ -46,7 +46,21 @@
                     <a class="nav-link" href="#">MEMBRESIAS</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#modalLRForm" >CUENTA</a>
+
+                <?php 
+                    if(isset($_SESSION['usuario'])){// si no existe session presentar esto admin_cliente
+                        
+                        switch (@$_SESSION['tipo_usuario']) {
+                            case 'cliente':
+                                    echo ' <a class="nav-link active" href="../../adminCliente.php">'.$_SESSION['usuario'].'</a>';
+                                break;
+                        }
+                        
+                    }else{
+                        echo'<a class="nav-link" href="#" data-toggle="modal" data-target="#modalLRForm" >CUENTA</a> ';
+                    }
+                    ?>
+                    <!-- <a class="nav-link" href="#" data-toggle="modal" data-target="#modalLRForm" >CUENTA</a> -->
                 </li>
                 <li class="nav-item">
                     <div class="contenedorCarrito">

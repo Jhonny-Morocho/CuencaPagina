@@ -1,3 +1,24 @@
+<!-- Single Tab Content End -->
+    <?php
+    
+        // obtener la informacion del cliente para que pueda editar su informacion
+        $cliente = new ModeloCliente();// para el formulario de informacion del cliente
+    
+        foreach($cliente->sqlListarClientes() as $key=>$value){
+            if($_SESSION['id_cliente']==$value['id']){
+                //variables para el formulario
+                $nombre=$value['nombre'];
+                $apellido=$value['apellido'];
+                $correo=$value['correo'];
+            }
+        }
+
+        // obtenermos todas las facturas con el id del cliente, para luego realizar un filtro
+        $facturas=ModeloFacura::sqlListarFacturas(@$_SESSION['id_cliente']);
+
+        
+    ?>
+
 <!-- breadcrumb area start -->
 <div class="breadcrumb-area">
     <div class="container">
@@ -6,8 +27,8 @@
                 <div class="breadcrumb-wrap">
                     <nav aria-label="breadcrumb">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="../admin_cliente.php">Mi Cuenta</a></li>
-                            <!-- <li class="breadcrumb-item active" aria-current="page"><?php echo $_SESSION['usuario']." ".$_SESSION['apellido']?></li> -->
+                            <li class="breadcrumb-item"><a href="../../adminCliente.php">Mi Cuenta</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><?php echo $_SESSION['usuario']." ".$_SESSION['apellido']?></li>
                         </ul>
                     </nav>
                 </div>
@@ -28,15 +49,10 @@
                     <div class="row">
                         <div class="col-lg-3 col-md-4">
                             <div class="myaccount-tab-menu nav" role="tablist">
-                                <a href="#dashboad" class="active" data-toggle="tab"><i class="fa fa-dashboard"></i>
-                                    Tablero</a>
-                                <a href="#download" data-toggle="tab"><i class="fa fa-cart-arrow-down" ></i> Productos Adquiridos</a>
-
-                                <!-- <a href="#payment-method" data-toggle="tab"><i class="fa fa-credit-card"></i> Payment
-                                    Method</a> -->
-                                <!-- <a href="#address-edit" data-toggle="tab"><i class="fa fa-map-marker"></i> address</a> -->
+                                <a href="#dashboad"  data-toggle="tab"><i class="fas fa-table"></i> Tablero</a>
+                                <a href="#download" data-toggle="tab" class="active"><i class="fa fa-cart-arrow-down" ></i> Productos Adquiridos</a>
                                 <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Detalles de Mi cuenta</a>
-                                <a href="../admin_cliente.php?cerrar_session=true"><i class="fa fa-sign-out"></i> Cerrar Session</a>
+                                <a href="../../adminCliente.php?cerrar_session=true" ><i class="fas fa-sign-out-alt"></i> Cerrar Session</a>
                             </div>
                         </div>
                         <!-- My Account Tab Menu End -->
@@ -45,169 +61,67 @@
                         <div class="col-lg-9 col-md-8">
                             <div class="tab-content" id="myaccountContent">
                                 <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade show active" id="dashboad" role="tabpanel">
+                                <div class="tab-pane fade" id="dashboad" role="tabpanel">
                                     <div class="myaccount-content">
 
                                             <div class="opciones_pagox">
                                                 <div class="row ">
-                                              
-                                                        <!-- //=============Membresia=============================// -->
-                                                        <div class="col-lg-6 pull-right ">
-                                                            <h2 class="sqr-btn d-block">Membresia Adquiridas</h2>
-                                                                <div class="membresia" >
-                                                          
-                                                                    <?php
-                                                                        // $listar_membresia=CtrMembresia::ctr_listar_membresia();
-                                                                        // $tipo_membresia="";
-                                                    
-                                                                        // foreach($listar_membresia as $key=>$value){
-                                                                        
-                                                                        //     if(@$_SESSION['id_cliente']==$value['id_cliente']){
 
-                                                                        //         switch (@$value['tipo']) {
-
-                                                                        //             case 'Nombre Cancion: Basico':
-
-                                                                        //                 $tipo_membresia="Basico";
-                                                                                    
-                                                                        //                 break;
-                                                                    
-                                                                        //             case 'Nombre Cancion: Premium':
-                                                                        //                 $tipo_membresia="Premium";
-                                                                                        
-                                                                        //                 break;
-                                                                    
-                                                                    
-                                                                        //             case 'Nombre Cancion: Ultimate':
-                                                                        //                     $tipo_membresia="Ultimate";
-                                                                                        
-                                                                        //                 break;
-                                                                        //         }
-                                                                        //             echo'<div class="alert alert-success" role="alert">';   
-                                                                        //                 echo '<br><label style="color: red">Tipo Membresia : </label>'.$tipo_membresia;
-                                                                        //                 echo '<br><label style="color: red">Fecha Adquisicion de la membresia : </label>'.$value['fecha_inicio'];
-                                                                        //                 echo '<br><label style="color: red">Fecha Culmininacion Membresia: </label>'.$value['fecha_culminacion'];
-                                                                        //                 echo '<br><label style="color: red">Descargas Disponibles : </label>'.$value['rango'];
-                                                                        //             echo"</div>";
-                                                                        //             echo"<br>";
-                                                                                    
-                                                                        //     }
-                                                                        // }
-
-                                                                    ?>
-                                                                       
-                                                                </div>        
-
-                                                        </div>
                                                 </div>
 
                                             </div>
                                         <h3>Tablero</h3>
                                         <div class="welcome">
-                                            <!-- <p>Hello, <strong><?php echo $_SESSION['usuario']." ".$_SESSION['apellido']?></strong></p> -->
+                                             <p>Hello, <strong><?php echo $_SESSION['usuario']." ".$_SESSION['apellido']?></strong></p>
                                         </div>
                                         <p class="mb-0">Desde el tablero de su cuenta, puede gestionar  su informacion y productos adquiridos, tambien editar sus datos personales</p>
                                     </div>
                                 </div>
-                                <!-- Single Tab Content End -->
+
 
                                 <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade" id="orders" role="tabpanel">
-                                    <div class="myaccount-content">
-                                        <h3>Gestionar Editores</h3>
-                                        <div class="myaccount-table table-responsive text-center">
-                                            <table class="table table-bordered">
+                                <div class="tab-pane fade show active" id="download" role="tabpanel">
+                                        <?php $cont=1; foreach($facturas as $key=>$value){?>
+                                            <p> <br> Fecha de compra: <?php echo $value['fechaFacturacion'] ?> </p>
+                                            <p>Total : <?php echo $value['totalCancelar'] ?></p>
+                                            <table id="example" class="table table-hover "  width="100%">
                                                 <thead class="thead-light">
-                                                    <tr>
-                                                        <th>Ordzzesr</th>
-                                                        <th>Date</th>
-                                                        <th>Status</th>
-                                                        <th>Total</th>
-                                                        <th>Action</th>
-                                                    </tr>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Download</th>
+                                                    <th>REMIXER</th>
+                                                    <th>ARTIST</th>
+                                                    <th>TITLE</th>
+                                                    <th>PRICE</th>
+                                                    <th>METHOD PAYMENT</th>
+                                                </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Aug 22, 2018</td>
-                                                        <td>Pending</td>
-                                                        <td>$3000</td>
-                                                        <td><a href="cart.html" class="check-btn sqr-btn ">View</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>July 22, 2018</td>
-                                                        <td>Approved</td>
-                                                        <td>$200</td>
-                                                        <td><a href="cart.html" class="check-btn sqr-btn ">View</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>June 12, 2017</td>
-                                                        <td>On Hold</td>
-                                                        <td>$990</td>
-                                                        <td><a href="cart.html" class="check-btn sqr-btn ">View</a></td>
-                                                    </tr>
+                                              
+                                                <?php 
+                                                    $cont_2=1;  
+                                                    // imprimir todos los productos que ha comprado el cliente
+                                                    $clienteProductos=ModeloClienteProducto::sqlListarProductosCliente(@$_SESSION['id_cliente'],$value['id']);
+                                                    //print_r($clienteProductos);
+                                                    foreach($clienteProductos as $key=>$value){
+                                                        echo'<tr>   
+                                                                <th scope="row">'.$cont_2.'</th>
+                                                                <td><a download   href="../../editCompletos/'.$value['remixCompleto'].'?download_csv=../editCompletos/'.$value['remixCompleto'].'" class="bontIconosProducto"><i class="fas fa-cloud-download-alt"></i></a></td>      
+                                                                <td>'.$value['apodo'].'</td>
+                                                                <td>'.$value['artista'].'</td>
+                                                                <td>'.$value['nombrePista'].'</td>
+                                                                <td>$ '.$value['precioCompra'].'</td>
+                                                                <td>'.$value['metodoCompra'].'</td>
+                                                            </tr>';
+                                                        $cont_2++;
+                                                    } 
+                                                    ?>
                                                 </tbody>
                                             </table>
-                                        </div>
+                                        <?php $cont++; } ?>
                                     </div>
-                                </div>
-                                <!-- Single Tab Content End -->
+                                    <!-- Single Tab Content End -->
 
-                                <?php
-
-                                $nombre="";
-                                $apellido="";
-                                $correo="";
-
-
-
-                                // $plantilla= new ControladorPlantilla();//traigo la tabla
-                                // $cliente =new CtrCliente();// para el formulario de informacion del cliente
-
-
-
-                                // foreach($cliente->ctr_listar_cliente() as $key=>$value){
-
-                                //     if($_SESSION['id_cliente']==$value['id']){
-                                //         //variables para el formulario
-                                //         $nombre=$value['nombre'];
-                                //         $apellido=$value['apellido'];
-                                //         $correo=$value['correo'];
-
-                                //     }
-
-
-                                // }
-
-
-                                // $plantilla->ctr_tabla_descargar_productos_cliente();
-                                ?>
-
-                                <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade" id="payment-method" role="tabpanel">
-                                    <div class="myaccount-content">
-                                        <h3>Payment Method</h3>
-                                        <p class="saved-message">You Can't Saved Your Payment Method yet.</p>
-                                    </div>
-                                </div>
-                                <!-- Single Tab Content End -->
-
-                                <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade" id="address-edit" role="tabpanel">
-                                    <div class="myaccount-content">
-                                        <h3>Billing Address</h3>
-                                        <address>
-                                            <p><strong>Alex Tuntuni</strong></p>
-                                            <p>1355 Market St, Suite 900 <br>
-                                                San Francisco, CA 94103</p>
-                                            <p>Mobile: (123) 456-7890</p>
-                                        </address>
-                                        <a href="#" class="check-btn sqr-btn "><i class="fa fa-edit"></i> Edit Address</a>
-                                    </div>
-                                </div>
-                                <!-- Single Tab Content End -->
 
                                 <!-- Single Tab Content Start Detalle de mi cuenta -->
                                     <div class="tab-pane fade" id="account-info" role="tabpanel">

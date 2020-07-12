@@ -100,7 +100,7 @@
                                     <div class="bontIconosProducto reproducirContenedor" data-demo="../editDemos/'.$value['demo'].'" ><i class="fa fa-fw fa-play-circle"></i></div>
                               </td>';
                      
-                          echo'<td><a download  href="../editCompletos/'.$value['remixCompleto'].'?download_csv=../editCompletos/'.$value['remixCompleto'].'" class="bontIconosProducto"><i class="fa fa-fw fa-cloud-download"></i></a></td>';
+                          echo'<td><a download  href="../editCompletos/'.$value['remixCompleto'].'?download_csv=../editCompletos/'.$value['remixCompleto'].'" class="bontIconosProducto"><i class="fas fa-cloud-download-alt"></i></a></td>';
                           echo'<td>
                                     <div class="bontIconosProducto editProducto"  data-toggle="modal" data-target="#modalEditarProducto"  
                                         data-idProducto="'.$value['id'].'"  data-idProveedor="'.$value['idProveedor'].'"  

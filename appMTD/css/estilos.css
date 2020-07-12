@@ -1,5 +1,7 @@
    /* TEMPLATE STYLES */
-
+.myaccount-tab-menu .active{
+    background-color: #0247b1;
+}
 .extra-margins {
     margin-top: 1rem;
     margin-bottom: 2.5rem;
@@ -343,3 +345,11 @@ td {
     font-weight: 400;
 }
 
+.myaccount-tab-menu a:last-child {
+    border-bottom: 1px solid #ccc;
+}
+
+.bontIconosProducto i{
+    font-size: 25px;
+    text-align: center;
+}
