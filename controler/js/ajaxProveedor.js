@@ -1,7 +1,7 @@
 
 
 $(document).ready(function(){
-console.log("SOY AJAX PROVEEDOR");
+
 
 
 //====================AGREGAR PROVEEDOR=========================//
@@ -121,28 +121,28 @@ $('#idAgregarProveedor').on('submit',function(e){
 
 });
 
-/*------------------------LOGIN PROVEEDOR-----------------------*/
-/*------------------------LOGIN PROVEEDOR-----------------------*/
-/*------------------------LOGIN PROVEEDOR-----------------------*/
-/*------------------------LOGIN PROVEEDOR-----------------------*/
-
-$('#login-proveedor').on('submit',function(e){
-e.preventDefault();
 
 
-
-console.log("Click en el login");
-
-var datos=$(this).serializeArray();
-console.log(datos);//imprimr los valores
-console.log("Este es el correo",datos[0].value);
-var correo_validar=datos[0].value;
+///////////////////////////////////   LOGIN   ADMIN//////////////////////////////////////////////////////////
+///////////////////////////////////   LOGIN   ADMIN//////////////////////////////////////////////////////////
+///////////////////////////////////   LOGIN   ADMIN//////////////////////////////////////////////////////////
+///////////////////////////////////   LOGIN   ADMIN//////////////////////////////////////////////////////////
 
 
 
+$('#login-admin').on('submit',function(e){
+    e.preventDefault();
 
-if(validar_email(correo_validar)==true){
-    /////////////SI EL CORREO ES CORRECTO DEJAR ACCEDER
+    animacion();
+    // obtnemos los datos del formulario
+    var datos=$(this).serializeArray();
+
+    console.log(datos);//imprimr los valores
+
+    // console.log("bandera_correo",bandera_correo);
+    // console.log("bandera_password_login",bandera_password_login);
+
+
         $.ajax({
             type:$(this).attr('method'),
             data:datos,
@@ -151,41 +151,32 @@ if(validar_email(correo_validar)==true){
 
             success:function(data){
                 console.log(data);//el usuario si existe
-                var resultado_login=data;
-                console.log(resultado_login.respuesta);
-                if(resultado_login.respuesta=='true_password'){
-                    swal(
-                        'Hola:  '+resultado_login.usuario,
-                        'Bienvenido a ProEditsClub.com ! ',
-                        'success'
-                        )
+                if(data.respuesta=='true_password'){
+                    $(".alertConfirmacion").html( 
+                        '<div class="alert  alert-success alert-dismissible fade show" role="alert">  <strong> Bienvenido  </strong>'+
+                        data.usuario+
+                            '  <button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                                '<span aria-hidden="true">&times;</span>'+
+                            '</button>'+
+                        '</div>');
+                  
                     setTimeout(function(){
-                        window.location.href='../Vista/admin/index_admin.php';
+                        window.location.href='../../view/admin/index_admin.php';
                     },2000);//tiempo de espera
                 }else{
-                    swal({
-                    type: 'error',
-                    title: 'Oops...',
-                    text: 'Revisa Tu Contraseña o tu Correo!',
-                    footer: '<a href>Ingresastes correctamente lo datos?</a>'
-                    })
+                    $(".alertConfirmacion").html( 
+                                                    '<div class="alert alert-warning alert-dismissible fade show" role="alert">'+
+                                                    data.respuesta+
+                                                        '<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
+                                                            '<span aria-hidden="true">&times;</span>'+
+                                                        '</button>'+
+                                                    '</div>');
+                   
                 }
             }
         });
 
-}else{
-////////////////////CORREO FALSO NO DEJAR ENTRAR//////////////
-////////////////////CORREO FALSO NO DEJAR ENTRAR//////////////
-////////////////////CORREO FALSO NO DEJAR ENTRAR//////////////
-swal({
-type: 'error',
-title: 'Oops...',
-text: 'Intenta de nuevo!',
-footer: '<a href>Verifica que todos los campos esten con check</a>'
-})
-
-}
-  
+   
 
 
 

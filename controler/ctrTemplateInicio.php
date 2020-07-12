@@ -39,9 +39,10 @@ class ControladorPlantillaInicio{
         //     require"Vista/template/reproductor.php";
         // }
 
-        // public function ctr_panel_admin(){
-        //     require"Vista/template/panel_admin.php";
-        // }
+         public function panelCliente(){
+             //require"Vista/template/panel_admin.php";
+             require'view/cliente/panelCliente.php';
+         }
 
 
         // public function ctr_tabla_descargar_productos_cliente(){

@@ -5,8 +5,7 @@
         
         var  listaCarrito,precioUnitarioProducto;
 
-        iniciarTabla();
-      
+        iniciarTabla();// tabla del carrito de compras
         // produce un error por que cuando voy al index de productos no hay los span del total por lo tanto controlo ese erro
         try {
           sumarProducto();

@@ -25,67 +25,94 @@
           <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
 
             <!--Body-->
-            <div class="modal-body mb-1">
-              <div class="md-form form-sm mb-5">
-                <i class="fas fa-envelope prefix"></i>
-                <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
-                <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
-              </div>
 
-              <div class="md-form form-sm mb-4">
-                <i class="fas fa-lock prefix"></i>
-                <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
-                <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
-              </div>
-              <div class="text-center mt-2">
-                <button class="btn btn-info">Log in <i class="fas fa-sign-in ml-1"></i></button>
-              </div>
-            </div>
-            <!--Footer-->
-            <div class="modal-footer">
-              <div class="options text-center text-md-right mt-1">
-                <p>Not a member? <a href="#" class="blue-text">Sign Up</a></p>
-                <p>Forgot <a href="#" class="blue-text">Password?</a></p>
-              </div>
-              <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
-            </div>
+              <form action="../../controler/ctrCliente.php" method="post" id="login-cliente">
+                <div class="modal-body mb-1">
+                  <div class="md-form form-sm mb-5">
+                    <i class="fas fa-envelope prefix"></i>
+                    <input type="email" id="modalLRInput10" class="form-control form-control-sm validate" required="" name="inputEmailCliente">
+                    <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
+                  </div>
 
+                  <div class="md-form form-sm mb-4">
+                    <i class="fas fa-lock prefix"></i>
+                    <input type="password" id="modalLRInput11" class="form-control form-control-sm validate" maxlength="20" required="" name="inputPasswordCliente">
+                    <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
+                  </div>
+                  <div class="text-center mt-2">
+                    <button class="btn btn-info">Log in <i class="fas fa-sign-in ml-1"></i></button>
+                  </div>
+                </div>
+                
+                <div class="md-form form-sm mb-5">
+                  <div class="smsEsperaLogin"></div>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                  <!-- <div class="options text-center text-md-right mt-1">
+                    <p>Not a member? <a href="#" class="blue-text">Sign Up</a></p>
+                    <p>Forgot <a href="#" class="blue-text">Password?</a></p>
+                  </div> -->
+                  <input type="hidden" name="Cliente" value="loginCliente">
+                  <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
+                </div>
+              </form>
           </div>
           <!--/.Panel 7-->
-
+          <!-- ===============FORM REGISTRAR CLIENTE ========================-->
+          <!-- ===============FORM REGISTRAR CLIENTE ========================-->
+          <!-- ===============FORM REGISTRAR CLIENTE ========================-->
           <!--Panel 8-->
           <div class="tab-pane fade" id="panel8" role="tabpanel">
 
             <!--Body-->
-            <div class="modal-body">
-              <div class="md-form form-sm mb-5">
-                <i class="fas fa-envelope prefix"></i>
-                <input type="email" id="modalLRInput12" class="form-control form-control-sm validate">
-                <label data-error="wrong" data-success="right" for="modalLRInput12">Your email</label>
-              </div>
 
-              <div class="md-form form-sm mb-5">
-                <i class="fas fa-lock prefix"></i>
-                <input type="password" id="modalLRInput13" class="form-control form-control-sm validate">
-                <label data-error="wrong" data-success="right" for="modalLRInput13">Your password</label>
-              </div>
+            <form action="../../controler/ctrCliente.php" method="post" id="registro-cliente">
+              <div class="modal-body">
 
-              <div class="md-form form-sm mb-4">
-                <i class="fas fa-lock prefix"></i>
-                <input type="password" id="modalLRInput14" class="form-control form-control-sm validate">
-                <label data-error="wrong" data-success="right" for="modalLRInput14">Repeat password</label>
-              </div>
 
-              <div class="text-center form-sm mt-2">
-                <button class="btn btn-info">Sign up <i class="fas fa-sign-in ml-1"></i></button>
-              </div>
+                <div class="md-form form-sm mb-5">
+                  <!-- <i class="fas fa-envelope prefix"></i> -->
+                  <i class="fas fa-user prefix"></i>
+                  <input type="text" maxlength="20" id="idRegistroName" class="form-control form-control-sm validate" required="" name="inpuNameCliente">
+                  <label data-error="wrong" data-success="right"  >Your Name</label>
+                </div>
 
-            </div>
+                <div class="md-form form-sm mb-5">
+                  <i class="fas fa-user prefix"></i>
+                  <input type="text" id="idRegistroLastName" maxlength="20" class="form-control form-control-sm validate" required="" name="inputApellidoCliente">
+                  <label data-error="wrong" data-success="right" >Your Last Name</label>
+                </div>
+
+                <div class="md-form form-sm mb-5">
+                  <i class="fas fa-envelope prefix"></i>
+                  <input type="email" id="modalLRInput12" maxlength="20"  class="form-control form-control-sm validate" required="" name="inputEmailCliente">
+                  <label data-error="wrong" data-success="right" >Your email</label>
+                </div>
+
+                <div class="md-form form-sm mb-5">
+                  <i class="fas fa-lock prefix"></i>
+                  <input type="password" id="modalLRInput13" maxlength="20" class="form-control form-control-sm validate" name="inputPasswordCliente" required="" >
+                  <label data-error="wrong" data-success="right" >Your password</label>
+                </div>
+
+                <div class="md-form form-sm mb-5">
+                  <div class="smsEspera"></div>
+                </div>
+
+                <div class="text-center form-sm mt-2">
+                <input type="hidden" name="Cliente" value="addCliente">
+                  <button class="btn btn-info" type="submit">Sign up <i class="fas fa-sign-in ml-1"></i></button>
+                </div>
+
+              </div>
+            </form>
+   
             <!--Footer-->
             <div class="modal-footer">
-              <div class="options text-right">
+              <!-- <div class="options text-right">
                 <p class="pt-1">Already have an account? <a href="#" class="blue-text">Log In</a></p>
-              </div>
+              </div> -->
               <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">Close</button>
             </div>
           </div>

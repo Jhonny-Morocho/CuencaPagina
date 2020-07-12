@@ -70,7 +70,8 @@
         <!-- APP -->
         <script type="text/javascript" src="../js/appLatinEdits.js"></script>
         <!-- ======================AJAX================================== -->
-        <script type="text/javascript" src="../../controler/js/ajaxLogin.js"></script>
+        <script type="text/javascript" src="../../controler/js/ajaxProveedor.js"></script>
+        <script type="text/javascript" src="../../controler/js/ajaxCliente.js"></script>
 
         <!-- =============================REPRODUCTOR DE AUDIO=============================== -->
         <link rel="stylesheet" type="text/css" href="../../jPlayer Flat Audio Theme/css/jplayer-flat-audio-theme.css" />
@@ -81,8 +82,6 @@
         <!--========================ANIMACION DE ESPERA==================================================== -->
          <script type="text/javascript" src="../../controler/js/animacionEspera.js">></script> 
          <!--========================ANIMACION DE ESPERA==================================================== -->
-         <script type="text/javascript" src="../../controler/js/carritoCompras.js">></script> 
-         <script type="text/javascript" src="../../controler/js/ajaxVlidacionCampos.js">></script> 
 
          <!-- =============================TOSTADAS BOOSTRAP====================================== -->
          <script type="text/javascript" src="../../Toast-Notification/src/bootoast.js">></script> 

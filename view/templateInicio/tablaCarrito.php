@@ -2,7 +2,7 @@
 
 <!--Main Layout-->
 
-<div class="container-fluid">
+<div class="container">
   
         <div class="row">
             <div class="col-lg-12">
@@ -13,7 +13,7 @@
         </div>
 
         <div class="row d-flex justify-content-center">
-            <div class="col-lg-10 ">
+            <div class="col-lg-10 ml-auto">
                 <div class="cart-table ">
                     <table id="dtBasicExample" class="table  table-striped table-bordered table-sm " cellspacing="0" width="100%">
                         <thead class="black white-text">
@@ -32,7 +32,7 @@
         </div>
 
         <div class="row d-flex justify-content-center">
-            <div class="opcionPago ">
+            <div class="opcionPago">
                 <h4>Option Payment</h4>
                 <div class="col-lg-4 form-group">
                     <label for="">
@@ -44,7 +44,7 @@
         </div>
 
         <div class="row ">
-            <div class="col-lg-6 ml-auto">
+            <div class="col-lg-4 ml-auto">
                 <div class="cart-calculator-wrapper">
                     <div class="cart-calculate-items">
                         <h4>Cart Total</h4>
