@@ -73,6 +73,7 @@
         <script type="text/javascript" src="../../controler/js/ajaxProveedor.js"></script>
         <script type="text/javascript" src="../../controler/js/ajaxCliente.js"></script>
         <script type="text/javascript" src="../../controler/js/carritoCompras.js"></script>
+        <script type="text/javascript" src="../../controler/js/ajaxPagar.js"></script>
 
         <!-- =============================REPRODUCTOR DE AUDIO=============================== -->
         <link rel="stylesheet" type="text/css" href="../../jPlayer Flat Audio Theme/css/jplayer-flat-audio-theme.css" />
