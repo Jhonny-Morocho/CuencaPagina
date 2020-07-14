@@ -9,7 +9,7 @@ require'../controler/ctrValidarCampos.php';
 
 $objValidacionCampos= new CtrValidarCampos();
 
-
+die(json_encode($_POST));
 
 switch (@$_POST['Cliente']) {
 

@@ -79,9 +79,6 @@
         var idProducto=$(this).attr("data-id");
         var nombreProducto=$(this).attr("data-nombre");
         var precio=$(this).attr("data-precio");
-        console.log('idProducto',idProducto);
-        console.log('nombreProducto',nombreProducto);
-        console.log('precio',precio);
        //notificacion se agrego producto
         bootoast.toast({
           message: 'Se agrego '+nombreProducto,

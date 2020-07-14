@@ -83,7 +83,7 @@ class ControladorPlantillaInicio{
         // ==================Funciones para session==================
         public function usuario_autentificado(){
 
-            session_start();
+            @session_start();
             function revisar_usuario_session(){
 
                 if($_SESSION['tipo_usuario']=='cliente'){

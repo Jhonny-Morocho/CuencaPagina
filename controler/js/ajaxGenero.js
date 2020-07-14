@@ -1,6 +1,13 @@
 $(document).ready(function(){
 
-
+	// var table = $('#example2').DataTable();
+	// table.rows.add( $(
+	// 		'<tr>'+
+	// 		'  <td>Tiger Nixon</td>'+
+	// 		'  <td>System Architect</td>'+
+	// 		'  <td>$3,120</td>'+
+	// 		'</tr>'
+	// ) ).draw();
     //=================AGREGAR GENERO=============================//
     //=================AGREGAR GENERO=============================//
     //=================AGREGAR GENERO=============================//

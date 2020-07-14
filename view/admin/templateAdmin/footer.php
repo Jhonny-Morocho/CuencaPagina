@@ -235,6 +235,7 @@
 <script src="../controler/js/ajaxGenero.js"></script>
 <script src="../controler/js/ajaxProveedor.js"></script>
 <script src="../controler/js/ajaxProducto.js"></script>
+<script src="../controler/js/ajaxCliente.js"></script>
 
 <!-- //=======================TOSTADA=============================// -->
 <script src="../tostada/toast-alert-message-kk/jquery-kk-message/message.js"></script>

@@ -10,16 +10,104 @@
           <h3 class="box-title">Productos</h3>
           
         </div>
-
-        <?php 
-
-        // =============EXPORTAMOS EL REPRODUCTOR=================
-        //require'../../MediaElement/mediaElement.php';
-        
-        ?>
-        <!-- /.box-header -->
         <div class="box-body">
-          <table id="example2"  class="table table-bordered table-striped table-responsive">
+            <form class="text-center " style="color: #757575;" method="get" action="../view/admin/listarProductos.php">
+            
+            <div class="form-row">
+                
+                <div class="col-lg-3">
+                    <!-- First name -->
+                    <div class="md-form">
+                        <!-- <i class="fas fa-search" aria-hidden="true"></i> -->
+                        <?php if(@$_GET['busqueda']) {?>
+                            <input class="form-control form-control-sm "  name="busqueda"  type="text" placeholder="Search"
+                            aria-label="Search" value="<?php echo $_GET['busqueda']  ?>">
+                        <?php }else{ ?>
+                          <input class="form-control form-control-sm "  name="busqueda"  type="text" placeholder="Search"
+                            aria-label="Search">
+                        <?php }?>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <!-- First name -->
+                    <div class="md-form">
+                      <?php if(@$_GET['genero']){?>                            
+                            <!-- xxx<option value="1" selected>Feedback</option> -->
+                            <?php 
+                                $genero=ModeloGenero::sql_lisartar_genero();
+
+                                foreach ($genero as $key => $value) {
+                                  if($_GET['genero']==$value['id']){ 
+                                    echo '<option value="'.$value['id'].'" >'.$value['genero'].'</option>';
+                                  }
+                                }
+                                //print_r($genero);
+                                echo '<option value="" >GENER</option>';
+                                foreach($genero as $key=>$value){ ?>
+                                  
+                                  <?php if($_GET['genero']!=$value['id']){ ?>
+                                    <option value="<?php echo$value['id'] ?>" > <?php echo$value['genero'] ?> </option>
+                                    <?php }?>
+                                <?php }?>
+                        </select>
+
+                      <?php }else{?>
+                        <select class="form-control form-control-sm ml-3 w-60 selectGeneroRemixer" name="genero" >
+                            <option value="" >GENER</option>
+                            <!--777 <option value="1" selected>Feedback</option> -->
+                            <?php 
+                                $genero=ModeloGenero::sql_lisartar_genero();
+                            
+                                foreach($genero as $key=>$value){ ?>
+                                    <option value="<?php echo$value['id'] ?>" > <?php echo$value['genero'] ?> </option>
+                            <?php }?>
+                        </select>
+                        <?php }?>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <!-- Last name -->
+                    <div class="md-form">
+                    <?php if(@$_GET['remixer']){?>
+                        <select class=" form-control form-control-sm ml-3 w-60 selectGeneroRemixer" name="remixer">
+                              <!-- <option value="" >REMIXER</option> -->
+                              <?php 
+                                  $remixer=ModeloProveedor::sql_lisartar_proveedor();
+                                  foreach ($remixer as $key => $value) {
+                                    if($_GET['remixer']==$value['id']){ 
+                                      echo '<option value="'.$value['id'].'" >'.$value['apodo'].'</option>';
+                                    }
+                                  }
+                                  echo '<option value="" >REMIXER</option>';
+                                  foreach($remixer as $key=>$value){ ?>
+                                        <?php if($_GET['remixer']!=$value['id']){ ?>
+                                            <option value="<?php echo$value['id'] ?>" > <?php echo$value['apodo'] ?> </option>
+                                        <?php } ?>
+                                  
+                                  <?php } ?>
+                        </select>
+                    <?php }else{ ?>
+                            <select class=" form-control form-control-sm ml-3 w-60 selectGeneroRemixer" name="remixer">
+                                    <option value="" >REMIXER</option>
+                                    <?php 
+                                        $remixer=ModeloProveedor::sql_lisartar_proveedor();
+                                        foreach($remixer as $key=>$value){ ?>
+                                            <option value=" <?php echo$value['id'] ?> " > <?php echo$value['apodo'] ?> </option>
+                                    <?php }?>
+                              </select>
+                            <?php } ?>
+                    </div>
+                  
+                </div><div class="col-lg-3">
+                    <div class="form-group">
+                      <button class="btn bg-olive margin" type="submit">Buscar</button>
+                    </div>
+                </div>
+                
+            </div>
+          </form>
+          </div>
+          <table id="example2cxxxxxc"  class="table table-bordered table-striped table-responsive">
             <thead>
             <tr>
               <th>Fecha</th>
@@ -29,29 +117,19 @@
               <th>Bpm</th>
               <th>Editor</th>
               <th>Precio</th>
-              <th>Acciones</th>
+              <th>Play</th>
               <th>Archivo</th>
               <th>Editar</th>
               <th>Eliminar</th>
             </tr>
             </thead>
             <tbody>
-
-                <!-- <div class="players" id="player2-container"> -->
-                 
-<!-- 
-                    <div class="bontIconosProducto reproducirContenedor" data-demo="../editDemos/Rossy War - Mujer Solitaria (intro Outro) Mixsao Dj - 102 Bpm.mp3" ><i class="fa fa-fw fa-play-circle"></i></div>';
-                    <div class="bontIconosProducto reproducirContenedor" data-demo="../editDemos/Sech Ft Darell - Otro Trago - Romax $ EditioN - 88Bpm.mp3" ><i class="fa fa-fw fa-play-circle"></i></div>
-              
-                     -->
                     <?php
                     //function descargar($ubicacionArchivo){
                       if (isset($_GET['download_csv'])) {
                         $file_example = $_GET['download_csv'];
                         if (file_exists($file_example)) {
                             header('Content-Description: File Transfer');
-
-
                             header('Content-Type: text/html; charset=iso-8859-1');
                             header('Content-Type: text/html; charset=utf-8');
                             header('Content-Type: text/plain'); // plain text file
@@ -61,8 +139,6 @@
                             header('Content-Type: audio/wav'); // Audio MPEG (MP3,...) file
                             header('Content-Type: audio/mp3'); // Audio MPEG (MP3,...) file
                             header('Content-Type: application/x-shockwave-flash'); // Flash animation
-
-
                             header('Content-Disposition: attachment; filename='.basename($file_example));
                             header('Content-Transfer-Encoding: binary');
                             header('Expires: 0');
@@ -80,8 +156,6 @@
                       }
                     //}
                     
-
-                
                       $productos=ModeloProducto::sql_lisartar_productos();
                       
                       //print_r($productos);
@@ -99,8 +173,7 @@
                           echo'<td>
                                     <div class="bontIconosProducto reproducirContenedor" data-demo="../editDemos/'.$value['demo'].'" ><i class="fa fa-fw fa-play-circle"></i></div>
                               </td>';
-                     
-                          echo'<td><a download  href="../editCompletos/'.$value['remixCompleto'].'?download_csv=../editCompletos/'.$value['remixCompleto'].'" class="bontIconosProducto"><i class="fas fa-cloud-download-alt"></i></a></td>';
+                          echo'<td><a download  href="../editCompletos/'.$value['remixCompleto'].'?download_csv=../editCompletos/'.$value['remixCompleto'].'" class="bontIconosProducto"><i class="fa fa-fw fa-cloud-download"></i></a></td>';
                           echo'<td>
                                     <div class="bontIconosProducto editProducto"  data-toggle="modal" data-target="#modalEditarProducto"  
                                         data-idProducto="'.$value['id'].'"  data-idProveedor="'.$value['idProveedor'].'"  
@@ -117,16 +190,12 @@
                                           <i class="fa fa-fw fa-trash"></i>
                                       </div>
                                   </td>';
-                        echo"</tr>";
-                        
-                        
+                        echo"</tr>"; 
                       }
-                     
                     ?>
-
-              
                     </tfoot>
                   </table>
+                  
                     <!-- ===================================Reproductor de Audio=================== -->
                     <?php require'../../jPlayer Flat Audio Theme/reproductor.php';  ?>
                <!-- end div audio-->

@@ -100,7 +100,12 @@ span.producto-detalle {
 }
 
 /* ================ICONO DE LA TABLA PRODUCTOS========== */
-.bontIconosProducto i{
+
+table td i{
+    font-size: 25px;
+    cursor: pointer;
+}
+table td a {
     font-size: 25px;
     cursor: pointer;
 }

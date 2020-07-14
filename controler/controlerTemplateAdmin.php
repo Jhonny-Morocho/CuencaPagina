@@ -34,6 +34,10 @@ ini_set('display_errors', 'On');
         require"../../view/admin/tablas/tablaProductos.php";
     }
 
+    public function ctr_tabla_clientes(){
+        require"../../view/admin/tablas/tablaClientes.php";
+    }
+
     public function ctr_tabla_mis_productos(){
         require"../../view/admin/tablas/tablaMisProductos.php";
     }

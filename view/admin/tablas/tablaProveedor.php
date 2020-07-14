@@ -25,8 +25,6 @@
             </tr>
             </thead>
             <tbody>
-
-           
             <?php
                 $proveedor=ModeloProveedor::sql_lisartar_proveedor();
 
@@ -64,11 +62,8 @@
                                   </button>
                               </div>
                     </td>';
-                  
                echo"</tr>";
-    
                }
-            
             ?>
             </tfoot>
           </table>

@@ -4,6 +4,11 @@
  require'../../controler/controlerTemplateAdmin.php';
  require'../../model/conexion.php';
  require'../../model/mdlProducto.php';
+ require'../../model/mdlProveedor.php';
+ 
+ require'../../model/mdlPaginacion.php';
+
+ require'../../controler/ctrPaginacion.php';
  
  require'modales/editarProducto.php';
 

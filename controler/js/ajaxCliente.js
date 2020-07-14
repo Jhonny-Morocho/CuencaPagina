@@ -83,74 +83,73 @@ $('#login-cliente').on('submit',function(e){
             }
         });
     });
-
-    //////////////////////////////////EDITAR CLIENTE//////////////////////////////////
-    //////////////////////////////////EDITAR CLIENTE//////////////////////////////////
-    //////////////////////////////////EDITAR CLIENTE//////////////////////////////////
-    //////////////////////////////////EDITAR CLIENTE//////////////////////////////////
-    //////////////////////////////////EDITAR CLIENTE//////////////////////////////////
-        $("#id_editar_cliente").on('submit',function(e){
-            e.preventDefault();
-            console.log("soy tu formulario editar");
-            var datosCliente=$(this).serializeArray();
-            console.log("daots_formulaio",datosCliente);
-
-            //BOTON DE ALERTA
-            swal({
-                    title: 'Estás seguro en editar tus datos?',
-                    text: "Se actualizara la informacion de tu cuenta!",
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Si!'
-                }).then((result) => {
-                if (result.value) {
-
-                    $.ajax({
-                        type:$(this).attr('method'),
-                        data:datosCliente,
-                        url:$(this).attr('action'),
-                        dataType:'json',//json
-                        success:function(data){
-
-                            console.log(data);
-
-                            //////////////////mensaje si se cambio el password
-                            if(data.respuesta=='exito'){
+// ============================EDITAR CLIENTE================================//
+// ============================EDITAR CLIENTE================================//
+// ============================EDITAR CLIENTE================================//
 
 
-                                    swal(
-                                        'Registro Editado con Exito!',
-                                        ' Cierre su session y vuela ingresar, para verificar los cambios realizados ! ',
-                                        'success'
-                                        )
+$('.editCliente').on('click',function(e){
+    //console.log("xxxxxx");
+    e.preventDefault();
+//     var table = $('#example2').DataTable();
+// table.page( 'next' ).draw( 'page' );
+var myTableApi = $('#example2').DataTable(); // D must be Capital in this.
+myTableApi.search(jQuery('input[type="search"]').val()).draw() ;
+    // obtenemos los atrivutos de la etiqueta , en donde se encuentran alojados los datos solo para llenar el formulario
+    var id=$(this).attr('data-id');
+    var nombre=$(this).attr('data-nombre');
+    var apellido=$(this).attr('data-apellido');
 
-                                    setTimeout(function(){
-                                        //window.location.href='admin_area.php';
-                                    },2000);//tiempo de espera
+ 
+    // asignamos los datos al formulario
+    $('#idRegistroName').val(nombre);
+    $('#idRegistroLastName').val(apellido);
+    $('.idCliente').val(id);
+    
+    //enviamos los datos mediante el metodo Post
+    $("#idEditarProveedor").on('submit',function(e){
+        e.preventDefault();
+        var datos=$(this).serializeArray();
+        $.ajax({
+            type:$(this).attr('method'),
+            data:datos,
+            url:$(this).attr('action'),
+            dataType:'text',//json/text
+            success:function(data){
+                console.log(data);
+                if(data.respuesta!='exito'){
+                  
+                    $(".smsConfirmacion").html('<div class="alert alert-success alert-dismissible">'+
+                    '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+                    '<h4><i class="icon fa fa-warning"></i> Aviso !</h4>'+
+                    'Datos guardos exitosamente'+
+                    '</div>');
+                   
+                    //table.draw();
+                    //var table = $('#example').DataTable();
 
+                    
+                    setTimeout(function(){ 
+                                        
 
+                                             //table.rows.add( $(
+                                             	//	'<tr>'+
+                                             	//	'  <td>Tiger Nixon</td>'+
+                                            // 		'  <td>System Architect</td>'+
+                                            // 		'  <td>$3,120</td>'+
+                                            // 		'</tr>'
+                                            // ) ).draw();
+                                        },4000);
+                }else{
+                    
+                    $(".smsConfirmacion").html('<div class="alert alert-danger alert-dismissible">'+
+                    '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+                    '<h4><i class="icon fa fa-warning"></i> Aviso !</h4>'+
+                    'Datos guardos exitosamente'+
+                    '</div>');
+                }
+            }
+        });
+    })
 
-                            }else{
-                               
-                                swal({
-                                type: 'error',
-                                title: 'Oops...',
-                                text: 'Revise bien los datos ingresado!',
-                                footer: '<a href>Ingresastes correctamente lo datos?</a>'
-                                })
-
-                            }
-                        }
-                    });
-
-                }//end del la pregunta
-            })
-
-
-
-
-
-            });
-
+});
