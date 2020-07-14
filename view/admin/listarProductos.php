@@ -5,6 +5,7 @@
  require'../../model/conexion.php';
  require'../../model/mdlProducto.php';
  require'../../model/mdlProveedor.php';
+ require'../../controler/ctrValidarCampos.php';
  
  require'../../model/mdlPaginacion.php';
 
