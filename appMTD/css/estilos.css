@@ -329,6 +329,6 @@ td {
     width: 50px;
 }
 
-.containerTopViral{
-    margin-top: 85px;
+.ratings span i  {
+    color: yellow;
 }

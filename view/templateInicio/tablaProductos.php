@@ -1,146 +1,3 @@
-    <?php 
-          ini_set('display_errors', 'On');
-
-          require'controler/ctrValidarCampos.php';
-          require'controler/ctrPaginacion.php';
-          require'model/mdlPaginacion.php';
-
-  
-          
-          $respuestaValidacionBuscador=Pagination::validarCamposBuscador(@$_GET['busqueda']);
-          
-
-          $where1="  where producto.idProveedor=proveedor.id and
-                      producto.idGenero=genero.id and 
-                      producto.estado=1 
-
-                          "; 
-
-          $where2=" where producto.idProveedor=proveedor.id and
-          producto.idGenero=genero.id and 
-          producto.estado=1  and 
-                                   producto.demo LIKE '%".@$_GET['busqueda']."%'
-                                 ";
-                                 
-          
-
-          $whereRemixer=" where producto.idProveedor=proveedor.id and
-          producto.idGenero=genero.id and 
-          producto.estado=1  and 
-                                  proveedor.id=".intval(@$_GET['remixer']);
-        // 1.Caso solo filtros de genero y remixer sin buscador
-        $whereGenero=" where producto.idProveedor=proveedor.id and
-             producto.idGenero=genero.id and 
-             producto.estado=1  and 
-                           genero.id=".intval(@$_GET['genero']);// conviuerrto en numero
-          
-        // 2.Caso solo filtros de genero y remixer sin buscado    
-        $whereRemixerGenero=" where producto.idProveedor=proveedor.id and
-        producto.idGenero=genero.id and 
-        producto.estado=1  and 
-                                proveedor.id=".intval(@$_GET['remixer'])." and  genero.id=".intval(@$_GET['genero']);
-
-        $whereDemoGenero=" where producto.idProveedor=proveedor.id and
-        producto.idGenero=genero.id and 
-        producto.estado=1  and 
-                                genero.id=".intval(@$_GET['genero'])." and   producto.demo LIKE '%".@$_GET['busqueda']."%'   ";
-                                
-        $whereDemoGeneroRemixer=" where producto.idProveedor=proveedor.id and
-        producto.idGenero=genero.id and 
-        producto.estado=1  and 
-                                genero.id=".intval(@$_GET['genero'])." and   proveedor.id=".intval(@$_GET['remixer'])." and   producto.demo LIKE '%".@$_GET['busqueda']."%'   ";
-        $whereDemoRemixer=" where producto.idProveedor=proveedor.id and
-        producto.idGenero=genero.id and 
-        producto.estado=1  and 
-                             proveedor.id=".intval(@$_GET['remixer'])." and   producto.demo LIKE '%".@$_GET['busqueda']."%'   ";
-
-
-        $numeroFilas=7;
-        
-       
-        
-      function validarNumeros($numero){
-
-          if (filter_var($numero, FILTER_VALIDATE_INT)) {
-              return true;
-              //print "<p>Ha escrito un número entero: $numero.</p>\n";
-          } else {
-            return false;
-              //print "<p>NO ha escrito un número entero: $numero.</p>\n";
-          }
-
-      }
-     
-
-
-      //echo "VALIDACION : ".(validarNumeros(@$_GET['genero']));
-      $validacionIdGenero=validarNumeros(@$_GET['genero']);
-      $validacionIdRemixer=validarNumeros(@$_GET['remixer']);
-      $validacionIdPaginacion=validarNumeros(@$_GET['page']);
-      //echo "VALIDACIONPaginacion : ".(validarNumeros(@$_GET['page']));
-      
-      $page = (validarNumeros(@$_GET['page'])=="true") ? $_GET["page"] : 1;
-
-
-
-        $data="";
-
-        
-        //1. Caso//  buscador= vacio; genero=vacio; remixer=vacio
-        if(!@$_GET['busqueda'] && !@$_GET['genero'] && !@$_GET['remixer'] ){// primer caso// no necesita validaciion x q la data es vacia
-          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $where1, null , 10,'inicio');
-          //echo "caso 1";
-        }
-
-        //2.Caso// buscador=data; genero=vacio; remixer=vacio
-          if(@$_GET['busqueda'] && !@$_GET['genero'] && !@$_GET['remixer'] && $respuestaValidacionBuscador['respuesta_validacion']=="TRUE"){
-            //echo "caso 2";
-          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $where2, null , 10,'todo');
-          }
-
-        //3.Caso// buscador=data; genero=data; remixer=vacio;
-        if(@$_GET['busqueda'] && @$_GET['genero'] && !@$_GET['remixer'] && $respuestaValidacionBuscador['respuesta_validacion']=="TRUE" && validarNumeros(@$_GET['genero'])=="TRUE" ){
-          //echo "caso 3";
-          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereDemoGenero, null , 10,'todo');
-          }
-
-        //4.Caso// buscador=data; genero=data; remixer=data;
-        if(@$_GET['busqueda'] && @$_GET['genero'] && @$_GET['remixer'] && $respuestaValidacionBuscador['respuesta_validacion']=="TRUE" && validarNumeros(@$_GET['genero'])=="TRUE" && validarNumeros(@$_GET['remixer'])=="TRUE" ){
-          //echo "caso 4";
-          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereDemoGeneroRemixer, null , 10,'todo');
-          }
-        //5.Caso// buscador=data;genero=vacio; remixer=data;
-        if(@$_GET['busqueda'] && !@$_GET['genero'] && @$_GET['remixer'] && $respuestaValidacionBuscador['respuesta_validacion']=="TRUE"  && validarNumeros(@$_GET['remixer'])=="TRUE"){
-          //echo "caso 5";
-          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereDemoRemixer, null , 10,'todo');
-        }
-
-        //6.Caso// buscador=vacio;genero=data; remixer=data;
-        if(!@$_GET['busqueda'] && @$_GET['genero'] && @$_GET['remixer'] && validarNumeros(@$_GET['genero'])=="true" && validarNumeros(@$_GET['remixer'])=="true"){
-          echo "caso 6";
-          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereRemixerGenero, null , 10,'todo');
-        }
-
-        //7.Caso// buscador=vacio;genero=vacio; remixer=data;
-          if(!@$_GET['busqueda'] && !@$_GET['genero'] && @$_GET['remixer']  && validarNumeros(@$_GET['remixer'])=="TRUE"){
-            //echo "caso 7";
-            Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereRemixer, null , 10,'todo');
-        }
-
-        //8.Caso// buscador=vacio;genero=data; remixer=vacio;
-          if(!@$_GET['busqueda'] && @$_GET['genero'] && !@$_GET['remixer'] && validarNumeros(@$_GET['genero'])=="TRUE"){
-            //echo "caso 8";
-            Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereGenero, null , 10,'todo');
-        }
-
-          try {
-            //code...
-            $data = Pagination::data();// si exite un error q reenvie al index
-          } catch (\Throwable $th) {
-            header('Location: ./');
-          }
-          
-      ?> 
 
     <div class="container-fluid">
       <div class="row">
@@ -175,14 +32,29 @@
 
                     <?php $cont=1; foreach ($clienteProductos as $key => $value) { ?>
 
-                      <?php   if($cont<30) { ?>
+                      <?php   if($cont<35) { ?>
                         <li class="list-group-item">
                           <div class="media">
                               <span class="media-left ">
-                                  <img src="../../img/<?php echo $value['img'] ?>" alt="...">
+                                  <img src="../../img/proveedores/<?php echo $value['img'] ?>" alt="...">
+                                  <div class="col-lg reproducirContenedor" data-demo="../../editDemos/<?php echo $value['demo'] ?>">
+                                        <span class="reproducir">
+                                          <i class="fa fa-play-circle" aria-hidden="true"></i>
+                                        </span>
+                                </div>
+
+                                <div class="col-lg buy " data-id="95" data-nombre="<?php echo $value['nombrePista'] ?>" data-precio="<?php echo $value['precio'] ?>">
+                                          <span class="addcarrito">
+                                            <i class="fas fa-cart-plus"></i>
+                                          </span>
+                                  </div>
                               </span>
+                     
+                         
+                      
                               <div class="media-body">
                                 <p><?php echo $value['nombrePista'] ?></p>
+                                <p>$<?php echo $value['precio'] ?></p>
                                 <div class="ratings">
                                     <span class="good"><i class="fa fa-star"></i></span>
                                     <span class="good"><i class="fa fa-star"></i></span>
@@ -403,3 +275,146 @@
     </div> <!-- end row -->
 </div> <!-- end container fluid -->
 
+<?php 
+          ini_set('display_errors', 'On');
+
+          require'controler/ctrValidarCampos.php';
+          require'controler/ctrPaginacion.php';
+          require'model/mdlPaginacion.php';
+
+  
+          
+          $respuestaValidacionBuscador=Pagination::validarCamposBuscador(@$_GET['busqueda']);
+          
+
+          $where1="  where producto.idProveedor=proveedor.id and
+                      producto.idGenero=genero.id and 
+                      producto.estado=1 
+
+                          "; 
+
+          $where2=" where producto.idProveedor=proveedor.id and
+          producto.idGenero=genero.id and 
+          producto.estado=1  and 
+                                   producto.nombrePista LIKE '%".@$_GET['busqueda']."%'
+                                 ";
+                                 
+          
+
+          $whereRemixer=" where producto.idProveedor=proveedor.id and
+          producto.idGenero=genero.id and 
+          producto.estado=1  and 
+                                  proveedor.id=".intval(@$_GET['remixer']);
+        // 1.Caso solo filtros de genero y remixer sin buscador
+        $whereGenero=" where producto.idProveedor=proveedor.id and
+             producto.idGenero=genero.id and 
+             producto.estado=1  and 
+                           genero.id=".intval(@$_GET['genero']);// conviuerrto en numero
+          
+        // 2.Caso solo filtros de genero y remixer sin buscado    
+        $whereRemixerGenero=" where producto.idProveedor=proveedor.id and
+        producto.idGenero=genero.id and 
+        producto.estado=1  and 
+                                proveedor.id=".intval(@$_GET['remixer'])." and  genero.id=".intval(@$_GET['genero']);
+
+        $whereDemoGenero=" where producto.idProveedor=proveedor.id and
+        producto.idGenero=genero.id and 
+        producto.estado=1  and 
+                                genero.id=".intval(@$_GET['genero'])." and   producto.nombrePista LIKE '%".@$_GET['busqueda']."%'   ";
+                                
+        $whereDemoGeneroRemixer=" where producto.idProveedor=proveedor.id and
+        producto.idGenero=genero.id and 
+        producto.estado=1  and 
+                                genero.id=".intval(@$_GET['genero'])." and   proveedor.id=".intval(@$_GET['remixer'])." and   producto.nombrePista LIKE '%".@$_GET['busqueda']."%'   ";
+        $whereDemoRemixer=" where producto.idProveedor=proveedor.id and
+        producto.idGenero=genero.id and 
+        producto.estado=1  and 
+                             proveedor.id=".intval(@$_GET['remixer'])." and   producto.nombrePista LIKE '%".@$_GET['busqueda']."%'   ";
+
+
+        $numeroFilas=30;
+        
+       
+        
+      function validarNumeros($numero){
+
+          if (filter_var($numero, FILTER_VALIDATE_INT)) {
+              return true;
+              //print "<p>Ha escrito un número entero: $numero.</p>\n";
+          } else {
+            return false;
+              //print "<p>NO ha escrito un número entero: $numero.</p>\n";
+          }
+
+      }
+     
+
+
+      //echo "VALIDACION : ".(validarNumeros(@$_GET['genero']));
+      $validacionIdGenero=validarNumeros(@$_GET['genero']);
+      $validacionIdRemixer=validarNumeros(@$_GET['remixer']);
+      $validacionIdPaginacion=validarNumeros(@$_GET['page']);
+      //echo "VALIDACIONPaginacion : ".(validarNumeros(@$_GET['page']));
+      
+      $page = (validarNumeros(@$_GET['page'])=="true") ? $_GET["page"] : 1;
+
+
+
+        $data="";
+
+        
+        //1. Caso//  buscador= vacio; genero=vacio; remixer=vacio
+        if(!@$_GET['busqueda'] && !@$_GET['genero'] && !@$_GET['remixer'] ){// primer caso// no necesita validaciion x q la data es vacia
+          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $where1, null , 10,'inicio');
+          //echo "caso 1";
+        }
+
+        //2.Caso// buscador=data; genero=vacio; remixer=vacio
+          if(@$_GET['busqueda'] && !@$_GET['genero'] && !@$_GET['remixer'] && $respuestaValidacionBuscador['respuesta_validacion']=="TRUE"){
+            //echo "caso 2";
+          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $where2, null , 10,'todo');
+          }
+
+        //3.Caso// buscador=data; genero=data; remixer=vacio;
+        if(@$_GET['busqueda'] && @$_GET['genero'] && !@$_GET['remixer'] && $respuestaValidacionBuscador['respuesta_validacion']=="TRUE" && validarNumeros(@$_GET['genero'])=="TRUE" ){
+          //echo "caso 3";
+          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereDemoGenero, null , 10,'todo');
+          }
+
+        //4.Caso// buscador=data; genero=data; remixer=data;
+        if(@$_GET['busqueda'] && @$_GET['genero'] && @$_GET['remixer'] && $respuestaValidacionBuscador['respuesta_validacion']=="TRUE" && validarNumeros(@$_GET['genero'])=="TRUE" && validarNumeros(@$_GET['remixer'])=="TRUE" ){
+          //echo "caso 4";
+          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereDemoGeneroRemixer, null , 10,'todo');
+          }
+        //5.Caso// buscador=data;genero=vacio; remixer=data;
+        if(@$_GET['busqueda'] && !@$_GET['genero'] && @$_GET['remixer'] && $respuestaValidacionBuscador['respuesta_validacion']=="TRUE"  && validarNumeros(@$_GET['remixer'])=="TRUE"){
+          //echo "caso 5";
+          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereDemoRemixer, null , 10,'todo');
+        }
+
+        //6.Caso// buscador=vacio;genero=data; remixer=data;
+        if(!@$_GET['busqueda'] && @$_GET['genero'] && @$_GET['remixer'] && validarNumeros(@$_GET['genero'])=="true" && validarNumeros(@$_GET['remixer'])=="true"){
+          echo "caso 6";
+          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereRemixerGenero, null , 10,'todo');
+        }
+
+        //7.Caso// buscador=vacio;genero=vacio; remixer=data;
+          if(!@$_GET['busqueda'] && !@$_GET['genero'] && @$_GET['remixer']  && validarNumeros(@$_GET['remixer'])=="TRUE"){
+            //echo "caso 7";
+            Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereRemixer, null , 10,'todo');
+        }
+
+        //8.Caso// buscador=vacio;genero=data; remixer=vacio;
+          if(!@$_GET['busqueda'] && @$_GET['genero'] && !@$_GET['remixer'] && validarNumeros(@$_GET['genero'])=="TRUE"){
+            //echo "caso 8";
+            Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereGenero, null , 10,'todo');
+        }
+
+          try {
+            //code...
+            $data = Pagination::data();// si exite un error q reenvie al index
+          } catch (\Throwable $th) {
+            header('Location: ./');
+          }
+          
+      ?> 
