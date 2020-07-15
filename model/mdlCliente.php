@@ -3,6 +3,8 @@
 ini_set('display_errors', 'On');
 //require'class_mdl_bd_conexion.php';
 
+
+
 	/**
 	 * 
 	 */
@@ -111,133 +113,39 @@ ini_set('display_errors', 'On');
 		}
 
 
-		public static function sql_login_proveedor($tabla,$correo){
-
-			$db=new Conexion();
-			$stmt= $db->conectar()->prepare("SELECT *FROM $tabla where correo ='$correo' ");
-		
-			$stmt->execute();
-
-
-			return $stmt->fetch();
-
-			$stmt->close();
-		}
-
-
-		
-		public static function sql_individual_proveedor($tabla,$id){
-
+		//============================EDITAR DATOS DE CLIENTE========================================//
+		public static function sqlEditarCliente($arrayCliente){
 			$db=new Conexion();
 
-			$stmt= $db->conectar()->prepare("SELECT *FROM $tabla where id ='$id' ");
-		
-			$stmt->execute();
-
-
-			return $stmt->fetch();
-
-			$stmt->close();
-		}
-
-		//============================ACTUALIZAR O EDITAR PROVEEDOR IMG========================================//
-		public static function sql_individual_editarImg($arrayProveedorImg){
-			$db=new Conexion();
-		
-			
-			//.1 SUbir la imganen
-			$directorio="../img/proveedores/";// la direecion donde quiero q se guarde
-		
-			if(move_uploaded_file($_FILES['fileLogoDj']['tmp_name'], $directorio.$_FILES['fileLogoDj']['name'])){
-				// para acceder al archiv q se alamceno con el siguiente comando
-				$respuesta=array(
-					'respuesta'=>'fileGuardado',
-					'urlLogoDj'=>$_FILES['fileLogoDj']['name']
-				);
-
-				$urLogoDj=$_FILES['fileLogoDj']['name'];
-				
-			
-			}else{
-				$respuesta=array('respuesta'=>'filFallo',
-									'error'=>error_get_last()
-					);// imprime el ultimo error que haya registrado al intentar subi este archivo
-			
-			}//end File
-			
 			//========datos del formuarlio================
-			$idProveedor=$arrayProveedorImg['idProveedor'];
-				try {
-					
-						$stmt= $db->conectar()->prepare("UPDATE proveedor SET 
-																	img='$urLogoDj'
-																WHERE id='$idProveedor' ");
-						
-				} catch (Exception $e) {
-					echo "Error".$e->getMessage();
-				}
-			
-				$stmt->execute();
-
-				if($stmt){
-					//si se realizo la inserccion
-					$respuesta=array(
-						'respuesta'=>'exito',
-						'img'=>$urLogoDj
-						);
-						return $respuesta;
-				}else{
-					$respuesta=array(
-						'respuesta'=>'false'
-						);
-						return $respuesta;
-				}
-			
-
-				//si alguna fila se modifico entonces si se edito
-
-				$stmt->close();
-		}
-
-		//============================ACTUALIZAR O EDITAR PROVEEDOR DATOS========================================//
-		public static function sql_individual_editar($arrayProveedor){
-			$db=new Conexion();
-			
-			//========datos del formuarlio================
-			$nombreProveedor=$arrayProveedor['inputNombre'];
-			$apellidoProveedor=$arrayProveedor['inputApeliidor'];
-			$correoProveedor=$arrayProveedor['inputCorreo'];
-			$passwordProveedor=$arrayProveedor['inputPassword'];
-			$apodo=$arrayProveedor['inputPseudoNombre'];
-			$idProveedor=$arrayProveedor['idProveedor'];
+			$nombreCliente=$arrayCliente['inpuNameCliente'];
+			$apellidoCliente=$arrayCliente['inputApellidoCliente'];
+			$passwordCliente=$arrayCliente['inputPasswordCliente'];
+			$idClente=$arrayCliente['idCliente'];
 
 				
 				try {
 					
 						$bandera_password=false;
-						if(empty($passwordProveedor)){//si viene vacio no actulizo el password
-							$stmt= $db->conectar()->prepare("UPDATE proveedor SET 
-																	nombre='$nombreProveedor', 
-																	apellido='$apellidoProveedor',
-																	apodo='$apodo',
-																	correo='$correoProveedor'
-																WHERE id='$idProveedor' ");
+						if(empty($passwordCliente)){//si viene vacio no actulizo el password
+							$stmt= $db->conectar()->prepare("UPDATE cliente SET 
+																	nombre='$nombreCliente', 
+																	apellido='$apellidoCliente'
+																WHERE id='$idClente' ");
 						}else{
 							$bandera_password=true;
 							$opciones=array(
 								'cost'=>12
 							);
 
-							$hash_password=password_hash($passwordProveedor,
+							$hash_password=password_hash($passwordCliente,
 											PASSWORD_BCRYPT,$opciones);
 
-							$stmt=$db->conectar()->prepare(" UPDATE proveedor  SET 
-																	nombre='$nombreProveedor', 
-																	apellido='$apellidoProveedor',
-																	apodo='$apodo',
-																	correo='$correoProveedor' ,
+							$stmt=$db->conectar()->prepare(" UPDATE cliente  SET 
+																	nombre='$nombreCliente', 
+																	apellido='$apellidoCliente',
 																	password='$hash_password'
-															WHERE id='$idProveedor' ");
+															WHERE id='$idClente' ");
 						}
 				} catch (Exception $e) {
 					echo "Error".$e->getMessage();
@@ -249,10 +157,8 @@ ini_set('display_errors', 'On');
 					//si se realizo la inserccion
 					$respuesta=array(
 						'respuesta'=>'exito',
-						'nombre'=>$nombreProveedor,
-						'apellido'=>$apellidoProveedor,
-						'correo'=>$correoProveedor,
-						'apodo'=>$apodo,
+						'nombre'=>$nombreCliente,
+						'apellido'=>$apellidoCliente,
 						'password'=>$bandera_password
 						);
 						return $respuesta;

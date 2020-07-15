@@ -9,7 +9,7 @@
          <!-- DATA TABLE GENERO -->
          <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Genero Musical</h3>
+          <h3 class="box-title">Clientes</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">

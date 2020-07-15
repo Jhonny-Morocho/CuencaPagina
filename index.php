@@ -6,10 +6,11 @@ ini_set('display_errors', 'On');
 
 session_start();
 require'model/conexion.php';
-require'view/cliente/formularioCliente.php';
-//require'Modelo/class_mdl_cliente_producto.php';
+
+require'model/mdlProveedor.php';
 //require'Modelo/class_mdl_producto.php';
 
+require'model/mdlGenero.php';
 
 
 
@@ -21,8 +22,8 @@ require'view/cliente/formularioCliente.php';
 
 
 
-//=============================creacion de objetos==========================
-//=============================creacion de objetos==========================
+//=============================creacion de objetos IMPOTATANTE SIEMPRE VA LA CABEZERA PARA QUE EL HEADER NO ME DE PROBLEMA CON DIRECCIONAMIENTO==========================
+//=============================creacion de objetos IMPOTATANTE SIEMPRE VA LA CABEZERA PARA QUE EL HEADER NO ME DE PROBLEMA CON DIRECCIONAMIENTO==========================
 
 require_once 'controler/ctrTemplateInicio.php';
 $plantilla= new ControladorPlantillaInicio();
@@ -31,6 +32,10 @@ $plantilla= new ControladorPlantillaInicio();
 //$plantilla->usuario_autentificado();
 //$plantilla->cerrar_session(@$_GET['cerrar_session']);//aqui cierro la session
 $plantilla->ctr_header();
+
+$plantilla->formLoginCliente();
+
+
 $plantilla->ctr_slider();
 // $plantilla->ctr_categorias();
 // $plantilla->ctr_lista_update();

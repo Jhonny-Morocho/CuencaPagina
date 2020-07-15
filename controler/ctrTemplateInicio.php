@@ -13,8 +13,7 @@ class ControladorPlantillaInicio{
          public  function ctr_slider(){
              require"view/templateInicio/carrusel.php";
           
-            
-            
+        
          }
 
         // public  function ctr_categorias(){
@@ -63,9 +62,14 @@ class ControladorPlantillaInicio{
             require'view/templateInicio/tablaCarrito.php';
         }
 
-        public function ctr_Formulario_LoginAdmin(){
-                require'view/templateInicio/formularioLoginAdmin.php';
+        public function formLoginCliente(){
+            require'view/cliente/formularioCliente.php';
         }
+        public function formLoginProveedor(){
+            require'view/templateInicio/formularioLoginAdmin.php';
+        }
+
+    
          public function ctrFormularioCliente(){
                 require'view/cliente/formularioCliente.php';
          }

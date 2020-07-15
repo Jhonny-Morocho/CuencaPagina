@@ -239,7 +239,9 @@ $('.editProveedorImg').on('click',function(e){
                 if(data.respuesta=='exito'){
                     kkMessgae.success('Registro Actualizado Exitosamente');
                     kkMessgae.loading('Loading...');
-                    setTimeout(function(){ window.location.href  = '../view/admin/listarProveedor.php';}, 4000);
+                    setTimeout(function(){ 
+                        location.reload();             
+                    },4000);
                 }else{
                     
                     kkMessgae.error('Error al actulizar');
@@ -288,7 +290,9 @@ $('.editProveedor').on('click',function(e){
                 if(data.respuesta=='exito'){
                     kkMessgae.success('Registro Actualizado Exitosamente');
                     kkMessgae.loading('Loading...');
-                    setTimeout(function(){ window.location.href  = '../view/admin/listarProveedor.php';}, 4000);
+                    setTimeout(function(){ 
+                        location.reload();             
+                    },4000);
                 }else{
                     
                     kkMessgae.error('Error al actulizar');
@@ -353,9 +357,5 @@ console.log("ID :"+ id);
 });
 
 
-function validar_email( email ){
-var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-return regex.test(email) ? true : false;
-}
 
 });// fin document

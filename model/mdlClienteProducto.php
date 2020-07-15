@@ -9,9 +9,28 @@ class ModeloClienteProducto {
 
 
     //satic cuando recibo algo siempre van como static
-     public static  function sqlListarTop($tabla){// los productos recien adquieridos el top 15
+     public static  function sqlListarTop(){// los productos recien adquieridos el top 15
         $db=new Conexion();
-        $stmt= $db->conectar()->prepare($tabla);
+        $stmt= $db->conectar()->prepare("SELECT  DISTINCT 
+        cliente_producto.idProducto,
+        cliente_producto.fechaCompra,
+        producto.nombrePista,
+        proveedor.apodo,
+        proveedor.img,
+        genero.id,
+        genero.genero,
+        proveedor.apodo,
+        producto.idProveedor,
+        producto.id,
+        producto.precio
+        
+        FROM 			cliente_producto,proveedor,producto,genero
+
+        WHERE 			cliente_producto.idProducto=producto.id 
+                    AND producto.idGenero=genero.id
+                    AND producto.idProveedor=proveedor.id
+                    AND proveedor.id=producto.idProveedor
+                    AND proveedor.estado=1 ORDER by  cliente_producto.fechaCompra desc");
 
         $stmt->execute();
         return $stmt->fetchAll();

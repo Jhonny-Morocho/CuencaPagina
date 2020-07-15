@@ -8,7 +8,12 @@
  //require'../../model/mdlGenero.php';
  //require'../../controler/crtGenero.php';
 
+//===============Paginacion=========================//
+require'../../controler/ctrValidarCampos.php';
+ 
+require'../../model/mdlPaginacion.php';
 
+require'../../controler/ctrPaginacion.php';
 
 
 // //Creacion del objeto

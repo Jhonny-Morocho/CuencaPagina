@@ -61,7 +61,7 @@
                         <div class="col-lg-9 col-md-8">
                             <div class="tab-content" id="myaccountContent">
                                 <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade" id="dashboad" role="tabpanel">
+                                <div class="tab-pane fade card" id="dashboad" role="tabpanel">
                                     <div class="myaccount-content">
 
                                             <div class="opciones_pagox">
@@ -80,93 +80,97 @@
 
 
                                 <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade show active" id="download" role="tabpanel">
-                                        <?php $cont=1; foreach($facturas as $key=>$value){?>
-                                            <p> <br> Fecha de compra: <?php echo $value['fechaFacturacion'] ?> </p>
-                                            <p>Total : <?php echo $value['totalCancelar'] ?></p>
-                                            <table id="example" class="table table-hover "  width="100%">
-                                                <thead class="thead-light">
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Download</th>
-                                                    <th>REMIXER</th>
-                                                    <th>ARTIST</th>
-                                                    <th>TITLE</th>
-                                                    <th>PRICE</th>
-                                                    <th>METHOD PAYMENT</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                              
-                                                <?php 
-                                                    $cont_2=1;  
-                                                    // imprimir todos los productos que ha comprado el cliente
-                                                    $clienteProductos=ModeloClienteProducto::sqlListarProductosCliente(@$_SESSION['id_cliente'],$value['id']);
-                                                    //print_r($clienteProductos);
-                                                    foreach($clienteProductos as $key=>$value){
-                                                        echo'<tr>   
-                                                                <th scope="row">'.$cont_2.'</th>
-                                                                <td><a download   href="../../editCompletos/'.$value['remixCompleto'].'?download_csv=../editCompletos/'.$value['remixCompleto'].'" class="bontIconosProducto"><i class="fas fa-cloud-download-alt"></i></a></td>      
-                                                                <td>'.$value['apodo'].'</td>
-                                                                <td>'.$value['artista'].'</td>
-                                                                <td>'.$value['nombrePista'].'</td>
-                                                                <td>$ '.$value['precioCompra'].'</td>
-                                                                <td>'.$value['metodoCompra'].'</td>
-                                                            </tr>';
-                                                        $cont_2++;
-                                                    } 
-                                                    ?>
-                                                </tbody>
-                                            </table>
-                                        <?php $cont++; } ?>
-                                    </div>
+                                <div class="tab-pane fade show active " id="download" role="tabpanel">
+                                        <div class="card">
+                                            <?php $cont=1; foreach($facturas as $key=>$value){?>
+                                                <p> <br> Fecha de compra: <?php echo $value['fechaFacturacion'] ?> </p>
+                                                <p>Total : <?php echo $value['totalCancelar'] ?></p>
+                                                <table id="example" class="table table-hover "  width="100%">
+                                                    <thead class="thead-light ">
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Download</th>
+                                                        <th>REMIXER</th>
+                                                        <th>ARTIST</th>
+                                                        <th>TITLE</th>
+                                                        <th>PRICE</th>
+                                                        <th>METHOD PAYMENT</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                
+                                                    <?php 
+                                                        $cont_2=1;  
+                                                        // imprimir todos los productos que ha comprado el cliente
+                                                        $clienteProductos=ModeloClienteProducto::sqlListarProductosCliente(@$_SESSION['id_cliente'],$value['id']);
+                                                        //print_r($clienteProductos);
+                                                        foreach($clienteProductos as $key=>$value){
+                                                            echo'<tr>   
+                                                                    <th scope="row">'.$cont_2.'</th>
+                                                                    <td><a download   href="../../editCompletos/'.$value['remixCompleto'].'?download_csv=../editCompletos/'.$value['remixCompleto'].'" class="bontIconosProducto"><i class="fas fa-cloud-download-alt"></i></a></td>      
+                                                                    <td>'.$value['apodo'].'</td>
+                                                                    <td>'.$value['artista'].'</td>
+                                                                    <td>'.$value['nombrePista'].'</td>
+                                                                    <td>$ '.$value['precioCompra'].'</td>
+                                                                    <td>'.$value['metodoCompra'].'</td>
+                                                                </tr>';
+                                                            $cont_2++;
+                                                        } 
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                            <?php $cont++; } ?>
+                                        </div>
+                                 </div>
                                     <!-- Single Tab Content End -->
 
 
                                 <!-- Single Tab Content Start Detalle de mi cuenta -->
-                                    <div class="tab-pane fade" id="account-info" role="tabpanel">
-                                    <div class="myaccount-content">
+                                <div class="tab-pane fade" id="account-info" role="tabpanel">
+                                    <div class="myaccount-content card">
                                         <h3>Account Details</h3>
-                                        <div class="account-details-form">
-                                                <form  method="post" action="../registro_login_ajax.php"  id="id_editar_cliente">
-                                                <div class="row">
-                                                        <div class="col-lg-6">
-                                                            <div class="single-input-item ">
-                                                            <p class="p_nombre"></p>
-                                                                <input type="text" placeholder="Pirmer Nombre" required="" name="nombre" id="id_nombre" value="<?php echo $nombre?>">
+                                        <div class="account-details-form ">
+                                                <form  method="post" action="../../controler/ctrCliente.php" id="idEditarCliente" name="FormAddProveedor" enctype="multipart/form-data" target="_blank">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="md-form">
+                                                                <input type="text" maxlength="20" id="idRegistroName" class="form-control form-control-sm validate" required="" name="inpuNameCliente" value="<?php echo $nombre?>">
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-6">
-                                                            <div class="single-input-item">
-                                                            <p class="p_epellido"></p>
-                                                                <input type="text" placeholder="Primer Apellido" required=""  name="apellido" id="id_apellido" value="<?php echo $apellido?>">
+
+                                                        <div class="col-lg-12">
+                                                            <div class="md-form">
+                                                                <input type="text" id="idRegistroLastName" maxlength="20" class="form-control form-control-sm validate" required="" name="inputApellidoCliente" value="<?php echo $apellido?>">
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="single-input-item">
-                                                                <p class="p_correo"></p>
-                                                            <input type="email" placeholder="Correro" required="" name="correo" id="id_correo" value="<?php echo $correo?>">
+
+                                                        <div class="col-lg-12">
+                                                            <div class="md-form">
+                                                                <input type="password" id="id_password_login" class="form-control" name="inputPasswordCliente"  maxlength="20">
+                                                                <label for="materialLoginFormPassword">Password</label>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
 
-
-                                                <div class="row contraseña_check">
-                                                    <div class="col-lg-6">
-                                                        <div class="single-input-item ">
-                                                            <label for="">Cambiar contraseña <input  id='bmm" + (i + 1) + "' rel='canvas" + (i + 1) + "' type='checkbox' class='squaredThreex fantasma hh' name='check' value='0'></label>
-
+                                                        <div class="col-lg-12">
+                                                            <div class="md-form">
+                                                                <input type="email" id="id_password_login" class="form-control"  value="<?php echo $correo ?>" disabled>
+                                                                <label for="materialLoginFormPassword">Email</label>
+                                                            </div>
                                                         </div>
+
+                                                        <div class="col-lg-12">
+                                                            <div class="md-form">
+                                                                <div class="smsConfirmacion">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                     </div>
-                                                </div>
 
-
-                                                <div class="single-input-item">
-                                                    <input type="hidden" name="cliente" value="editar">
-                                                    <input type="hidden" name="id_cliente" value="<?php echo $_SESSION['id_cliente']?>">
-                                                    <button class="sqr-btn">Guardar datos editados</button>
+                                                <div class="md-form">
+                                                    <input type="hidden" name="Cliente" value="editCliente">
+                                                    <input type="hidden" name="idCliente" class="idCliente" value="<?php echo $_SESSION['id_cliente']?>">
+                                                    <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0">Guardar datos editados</button>
                                                 </div>
                                             </form>
                                         </div>

@@ -219,6 +219,10 @@ $('.editProducto').on('click',function(e){
                         $(".porcentaje_h4").html('0' + "% Completado");
                         //borramos los campos 
                         $('.thumb').remove();
+
+                        setTimeout(function(){ 
+                            location.reload();             
+                        },4000);
                             break;
 
                     default:

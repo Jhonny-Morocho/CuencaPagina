@@ -83,18 +83,16 @@ $('#login-cliente').on('submit',function(e){
             }
         });
     });
-// ============================EDITAR CLIENTE================================//
-// ============================EDITAR CLIENTE================================//
-// ============================EDITAR CLIENTE================================//
+// ============================EDITAR CLIENTE DESDE EL PANEL DE ADMIN================================//
+// ============================EDITAR CLIENTE DESDE EL PANEL DE ADMIN================================//
+// ============================EDITAR CLIENTE DESDE EL PANEL DE ADMIN================================//
 
 
 $('.editCliente').on('click',function(e){
     //console.log("xxxxxx");
     e.preventDefault();
 //     var table = $('#example2').DataTable();
-// table.page( 'next' ).draw( 'page' );
-var myTableApi = $('#example2').DataTable(); // D must be Capital in this.
-myTableApi.search(jQuery('input[type="search"]').val()).draw() ;
+
     // obtenemos los atrivutos de la etiqueta , en donde se encuentran alojados los datos solo para llenar el formulario
     var id=$(this).attr('data-id');
     var nombre=$(this).attr('data-nombre');
@@ -105,47 +103,37 @@ myTableApi.search(jQuery('input[type="search"]').val()).draw() ;
     $('#idRegistroName').val(nombre);
     $('#idRegistroLastName').val(apellido);
     $('.idCliente').val(id);
-    
+
     //enviamos los datos mediante el metodo Post
-    $("#idEditarProveedor").on('submit',function(e){
+    $("#idEditarCliente").on('submit',function(e){
         e.preventDefault();
+
+        
         var datos=$(this).serializeArray();
         $.ajax({
             type:$(this).attr('method'),
             data:datos,
             url:$(this).attr('action'),
-            dataType:'text',//json/text
+            dataType:'json',//json/text
             success:function(data){
                 console.log(data);
-                if(data.respuesta!='exito'){
+                if(data.respuesta=='exito'){
                   
                     $(".smsConfirmacion").html('<div class="alert alert-success alert-dismissible">'+
                     '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
                     '<h4><i class="icon fa fa-warning"></i> Aviso !</h4>'+
                     'Datos guardos exitosamente'+
                     '</div>');
-                   
-                    //table.draw();
-                    //var table = $('#example').DataTable();
-
-                    
                     setTimeout(function(){ 
-                                        
-
-                                             //table.rows.add( $(
-                                             	//	'<tr>'+
-                                             	//	'  <td>Tiger Nixon</td>'+
-                                            // 		'  <td>System Architect</td>'+
-                                            // 		'  <td>$3,120</td>'+
-                                            // 		'</tr>'
-                                            // ) ).draw();
-                                        },4000);
+                        location.reload();             
+                    },4000);
+                    
                 }else{
                     
                     $(".smsConfirmacion").html('<div class="alert alert-danger alert-dismissible">'+
                     '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
                     '<h4><i class="icon fa fa-warning"></i> Aviso !</h4>'+
-                    'Datos guardos exitosamente'+
+                    'No se puede realizar los Cambios'+
                     '</div>');
                 }
             }
@@ -153,3 +141,41 @@ myTableApi.search(jQuery('input[type="search"]').val()).draw() ;
     })
 
 });
+// ============================EDITAR CLIENTE SIN HACER CLICK DIRECTO DESDE EL PANEL DE CLIENTE===============================//
+// ============================EDITAR CLIENTE SIN HACER CLICK DIRECTO DESDE EL PANEL DE CLIENTE===============================//
+// ============================EDITAR CLIENTE SIN HACER CLICK DIRECTO DESDE EL PANEL DE CLIENTE===============================//
+
+$("#idEditarCliente").on('submit',function(e){
+    e.preventDefault();
+    
+    var datos=$(this).serializeArray();
+    console.log(datos);
+    $.ajax({
+        type:$(this).attr('method'),
+        data:datos,
+        url:$(this).attr('action'),
+        dataType:'json',//json/text
+        success:function(data){
+            console.log(data);
+            if(data.respuesta=='exito'){
+              
+                $(".smsConfirmacion").html('<div class="alert alert-success alert-dismissible">'+
+                '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+                '<h4><i class="icon fa fa-warning"></i> Aviso !</h4>'+
+                'Datos guardos exitosamente'+
+                '</div>');
+                setTimeout(function(){ 
+                    location.reload();             
+                },4000);
+                
+            }else{
+                
+                $(".smsConfirmacion").html('<div class="alert alert-danger alert-dismissible">'+
+                '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+                '<h4><i class="icon fa fa-warning"></i> Aviso !</h4>'+
+                'No se puede realizar los Cambios'+
+                '</div>');
+            }
+        }
+    });
+})

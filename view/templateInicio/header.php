@@ -36,12 +36,26 @@
         </button>
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto ulNavegacion">
+                
                 <li class="nav-item active">
                     <a class="nav-link" href="../../">INICIO <span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">REMIXERS</a>
+
+                <li class="nav-item dropdown multi-level-dropdown remixerDropdown">
+                    <a href="#" id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle text-uppercase">REMIXERS</a>
+                    <ul class="dropdown-menu mt-2 rounded-0 special-color-dark darken-4 border-0 z-depth-1 ">
+                        <?php
+                            //include'model/mdlCliente.php';
+                            $proveedor=ModeloProveedor::sql_lisartar_proveedor();
+                            foreach ($proveedor as $key => $value) {
+                            echo '<li class="dropdown-item dropdown-submenu p-0 "><a href="#"  class="text-white w-100">'.$value['apodo'].' </a></li>';
+                            }
+                        ?>
+                    </ul>
                 </li>
+
+    
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">MEMBRESIAS</a>
                 </li>
@@ -52,7 +66,7 @@
                         
                         switch (@$_SESSION['tipo_usuario']) {
                             case 'cliente':
-                                    echo ' <a class="nav-link active" href="../../adminCliente.php">'.$_SESSION['usuario'].'</a>';
+                                    echo ' <a class="nav-link active contenedorCarrito" href="../../adminCliente.php">'.$_SESSION['usuario'].'</a>';
                                 break;
                         }
                         

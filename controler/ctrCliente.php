@@ -9,7 +9,6 @@ require'../controler/ctrValidarCampos.php';
 
 $objValidacionCampos= new CtrValidarCampos();
 
-die(json_encode($_POST));
 
 switch (@$_POST['Cliente']) {
 
@@ -42,17 +41,8 @@ switch (@$_POST['Cliente']) {
             // die(json_encode($respuesta));
             break;
 
-            case 'editProveedor':
-       
-           
-            $respuesta=ModeloProveedor::sql_individual_editar(@$_POST);
-            die(json_encode($respuesta));
-            break;
-
 
         case 'loginCliente':
- 
-
                 //=================Validcacion de Campos=========================
                 //=================Validcacion de Campos=========================
                 $boolean_validacion=true;
@@ -114,6 +104,30 @@ switch (@$_POST['Cliente']) {
 
             die(json_encode($respuesta));
             
+            break;
+
+        case 'editCliente':
+           
+            $boolean_validacion=true;
+            $ValidarCampos=array(
+                'soloLetrasInputNombre'=>$objValidacionCampos->solo_letras(@$_POST['inpuNameCliente']),
+                'soloLetrasInputApellido'=>$objValidacionCampos->solo_letras(@$_POST['inputApellidoCliente']),
+                'CamposVaciosInputApellido'=>$objValidacionCampos->validar_campos_vacios(@$_POST['inputApellidoCliente']),
+                'CamposVaciosInputNombre'=>$objValidacionCampos->validar_campos_vacios(@$_POST['inpuNameCliente']),
+                'longitudCaracteresNombre'=>$objValidacionCampos->validar_campos_vacios(@$_POST['inpuNameCliente']),
+                'longitudCaracteresApellido'=>$objValidacionCampos->validar_campos_vacios(@$_POST['inputApellidoCliente'])
+            );
+            foreach ($ValidarCampos as $key => $value) {// recorrer todas las respueta de los campos vacios
+                
+                if($value==false){//si llega vacio hacer imprimir
+                    
+                    //echo'<br>'.$key .' '.$value;
+                    $boolean_validacion=false;
+                }
+            }
+            //=====Verificar Validacion
+            ($boolean_validacion==true)? $respuesta=ModeloCliente::sqlEditarCliente(@$_POST):$respuesta=array('mensaje'=>"Caracteres no permitidos ","arrayValidacion"=>$ValidarCampos);
+            die(json_encode($respuesta));
             break;
     
     default:

@@ -165,7 +165,7 @@
           
         </div>
         <div class="box-body">
-            <form class="text-center " style="color: #757575;" method="get" action="../view/admin/listarProductos.php">
+          <form class="text-center " style="color: #757575;" method="get" action="../view/admin/listarProductos.php">
             
             <div class="form-row">
                 
@@ -262,7 +262,7 @@
             </div>
           </form>
           </div>
-          <table id="example2cxxxxxc"  class="table table-bordered table-striped table-responsive">
+          <table id=""  class="table table-bordered table-striped table-responsive">
             <thead>
             <tr>
               <th>Fecha</th>

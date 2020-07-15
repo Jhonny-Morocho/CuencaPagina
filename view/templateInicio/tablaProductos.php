@@ -1,11 +1,11 @@
     <?php 
           ini_set('display_errors', 'On');
-          //validacion de campos
+
           require'controler/ctrValidarCampos.php';
           require'controler/ctrPaginacion.php';
           require'model/mdlPaginacion.php';
-          require'model/mdlGenero.php';
-          require'model/mdlProveedor.php';
+
+  
           
           $respuestaValidacionBuscador=Pagination::validarCamposBuscador(@$_GET['busqueda']);
           
@@ -132,17 +132,6 @@
             //echo "caso 8";
             Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereGenero, null , 10,'todo');
         }
-         //(@$_GET['busqueda'] && $respuestaValidacionBuscador['respuesta_validacion']=="TRUE" )?  Pagination::config($page, $numeroFilas, " producto , proveedor , genero  ", $where2, null , 10,'todo'): Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $where1, null , 10,'inicio'); 
-          
-          //2. Caso// select con el genero musical // en esta busqueda solo se buscara todos los resultados con el genero de coincidencia, validamos si no es entero entonces se va  la pagina de inicio
-          // convierto el idGenero a entero , ya que siempre vienen en formato string
-          //$idGenero=intval($_GET['genero']);// convierto en entero
-          //(is_int($idGenero)=="TRUE" && !$_GET['remixer']) ? Pagination::config($page, $numeroFilas, " producto , proveedor , genero  ", $whereGenero, null , 10,'todo'): Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $where1, null , 10,'inicio'); 
-
-          //3. Caso// select con el genero remixer // en esta busqueda solo se buscara todos los resultados con el remixer de coincidencia, validamos si no es entero entonces se va  la pagina de inicio
-          // convierto el idGenero a entero , ya que siempre vienen en formato string
-          //$idRemixer=intval($_GET['remixer']);// convierto en entero
-          //(is_int($idRemixer)=="TRUE" && !$_GET['genero']) ? Pagination::config($page, $numeroFilas, " producto , proveedor , genero  ", $whereRemixer, null , 10,'todo'): Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $where1, null , 10,'inicio'); 
 
           try {
             //code...
@@ -169,29 +158,51 @@
 
 <div class="container-fluid">
       <div class="row">
-          <div class="col-lg-2 container">
-            <table class="table table-hover table-sm table-responsive table-dark">
-            <thead class="black white-text">
-                <tr>
-                <th scope="col">Top Viral</th>
-                <th scope="col">REMIXER</th>
-      
-                </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                    <th scope="row">2020/06/1</th>
-                    <td>Dj Reto</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2020/06/2</th>
-                    <td>Dj Deyzer</td>
-                  </tr>
-              </tbody>
-            </table>
+
+          <div class="col-lg-3 containerTopViral" >
+
+            <div class="row">
+                <div class="col-lg-12">
+                <section>
+
+                  <ul class="list-group" style="max-width: 22rem;">
+                    <li class="list-group-item active">TOP VIRAL</li>
+                    <?php 
+                        require'model/mdlClienteProducto.php';
+                        $clienteProductos=ModeloClienteProducto::sqlListarTop(); 
+                        //print_r($clienteProductos);
+                    ?>
+
+                    <?php $cont=1; foreach ($clienteProductos as $key => $value) { ?>
+
+                      <?php   if($cont<30) { ?>
+                        <li class="list-group-item">
+                          <div class="media">
+                              <span class="media-left ">
+                                  <img src="../../img/<?php echo $value['img'] ?>" alt="...">
+                              </span>
+                              <div class="media-body">
+                                <p><?php echo $value['nombrePista'] ?></p>
+                                <div class="ratings">
+                                    <span class="good"><i class="fa fa-star"></i></span>
+                                    <span class="good"><i class="fa fa-star"></i></span>
+                                    <span class="good"><i class="fa fa-star"></i></span>
+                                    <span class="good"><i class="fa fa-star"></i></span>
+                                    <span><i class="fa fa-star"></i></span>
+                                </div>
+                              </div>
+                          </div>
+                        </li>
+                      <?php  $cont++; } ?>
+                      <?php } ?>
+                  </ul>
+                  </section>
+                </div>
+            </div>
+           
           </div> 
          
-          <div class="col-lg-10">
+          <div class="col-lg-9">
              <div class="col-lg-12 ">
                   <form class="text-center " style="color: #757575;" method="get" action="../../">
         

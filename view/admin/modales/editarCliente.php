@@ -10,7 +10,7 @@
         </button>
       </div>
       <div class="modal-body">
-      <form role="form"  method="post" id="idEditarProveedor" name="FormAddProveedor" action="../controler/ctrCliente.php" enctype="multipart/form-data" target="_blank">
+      <form role="form"  method="post" id="idEditarCliente" name="FormAddProveedor" action="../controler/ctrCliente.php" enctype="multipart/form-data" target="_blank">
             <div class="box-body">
                 <div class="form-group">
                     <label for="labelNombre">Nombre</label>
@@ -32,7 +32,7 @@
                 </div>                  
             </div>
             <input type="hidden" name="Cliente" value="editCliente">
-            <input type="hidden" name="idProveedor" class="idCliente" value="">
+            <input type="hidden" name="idCliente" class="idCliente" value="">
             
             <div class="box-footer">
                 <button type="submit" class="btn bg-olive btn-flat margin">Submit</button>

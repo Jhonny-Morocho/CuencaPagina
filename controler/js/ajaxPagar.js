@@ -79,7 +79,3 @@ function enviarDatosPasarelaPago(datos){
     });
 }
 
-bootoast.toast({
-    message: 'Se agrego '+nombreProducto,
-    type: 'success'
-  });

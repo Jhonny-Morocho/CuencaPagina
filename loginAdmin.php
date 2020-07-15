@@ -9,7 +9,7 @@ require'model/conexion.php';
 //require'Modelo/class_mdl_proveedor.php';
 //require'Modelo/class_mdl_cliente_producto.php';
 //require'Modelo/class_mdl_producto.php';
-
+require'model/mdlProveedor.php';
 
 
 
@@ -31,10 +31,11 @@ $plantilla= new ControladorPlantillaInicio();
 //$plantilla->usuario_autentificado();
 //$plantilla->cerrar_session(@$_GET['cerrar_session']);//aqui cierro la session
 $plantilla->ctr_header();
-//$plantilla->ctr_slider();
-$plantilla->ctr_Formulario_LoginAdmin();
-// $plantilla->ctr_lista_update();
+$plantilla->ctr_slider();
 
+// $plantilla->ctr_lista_update();
+$plantilla->formLoginCliente();
+$plantilla->formLoginProveedor();
 $plantilla->ctr_footer();
 // $plantilla->wassap();
 // $plantilla->contadorOferta();

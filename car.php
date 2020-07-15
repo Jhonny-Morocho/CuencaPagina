@@ -6,10 +6,10 @@ ini_set('display_errors', 'On');
 
 session_start();
 require'model/conexion.php';
-require'view/cliente/formularioCliente.php';
+
 //require'Modelo/class_mdl_cliente_producto.php';
 //require'Modelo/class_mdl_producto.php';
-
+require'model/mdlProveedor.php';
 
 
 
@@ -32,6 +32,10 @@ $plantilla= new ControladorPlantillaInicio();
 //$plantilla->cerrar_session(@$_GET['cerrar_session']);//aqui cierro la session
 $plantilla->ctr_header();
 $plantilla->ctr_slider();
+
+$plantilla->formLoginCliente();
+
+
 // $plantilla->ctr_categorias();
 // $plantilla->ctr_lista_update();
 $plantilla->ctr_tabla_carritoCompras();
