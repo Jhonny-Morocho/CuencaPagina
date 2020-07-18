@@ -9,7 +9,6 @@
 var arrayNombreProducto=[];
 var arrayPrecioProducto=[];
 var arrayIdProducto=[];
-
 var datos=new FormData();
 var data_type="json";
 var urlPasarelaPago="../../Paypal/ctrPasarelaPago.php";
@@ -59,7 +58,7 @@ function enviarDatosPasarelaPago(datos){
         cache:false,
         contentType:false,
         processData:false,
-        dataType:'json',//json//data_type
+        dataType:data_type,//json//data_type
         success:function(data){
             console.log(data);
 

@@ -61,7 +61,7 @@
                         <div class="col-lg-9 col-md-8">
                             <div class="tab-content" id="myaccountContent">
                                 <!-- Single Tab Content Start -->
-                                <div class="tab-pane fade card" id="dashboad" role="tabpanel">
+                                <div class="tab-pane fade " id="dashboad" role="tabpanel">
                                     <div class="myaccount-content">
                                         <h3>Tablero</h3>
                                         <div class="welcome">
@@ -74,13 +74,13 @@
 
                                 <!-- Single Tab Content Start -->
                                 <div class="tab-pane fade show active " id="download" role="tabpanel">
-                                        <div class="myaccount-content card">
+                                        <div class="myaccount-content ">
                                             <?php $cont=1; foreach($facturas as $key=>$value){?>
                                               
-                                                <table id="dtBasicExample" class="table  table-striped table-bordered table-sm"  width="100%">
+                                                <table id="dtBasicExample" class="table  table-striped table-bordered table-sm table-hover table-dark"  width="100%">
                                                 <p> <br> Fecha de compra: <?php echo $value['fechaFacturacion'] ?> </p>
-                                                <p>Total : <?php echo $value['totalCancelar'] ?></p>
-                                                    <thead class="thead-light ">
+                                                <p>Total :$ <?php echo $value['totalCancelar'] ?></p>
+                                                    <thead class="tablaCabezera">
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Download</th>
@@ -121,7 +121,7 @@
 
                                 <!-- Single Tab Content Start Detalle de mi cuenta -->
                                 <div class="tab-pane fade" id="account-info" role="tabpanel">
-                                    <div class="myaccount-content card">
+                                    <div class="myaccount-content ">
                                         <h3>Account Details</h3>
                                         <div class="account-details-form ">
                                                 <form  method="post" action="../../controler/ctrCliente.php" id="idEditarCliente" name="FormAddProveedor" enctype="multipart/form-data" target="_blank">

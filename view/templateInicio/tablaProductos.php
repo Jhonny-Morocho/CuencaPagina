@@ -297,7 +297,7 @@
                           
                         </div><div class="col">
                             <div class="md-form">
-                              <button class="form-control form-control-sm  ml-3 w-60 " type="submit">Buscar</button>
+                              <button class="form-control form-control-sm  ml-3 w-60 btnBuscar" type="submit">Buscar</button>
                             </div>
                         </div>
                         
@@ -309,9 +309,9 @@
        
                 <!-- </div>
               </div> -->
-              <table id="dtBasicExample" class="table  table-striped table-bordered table-sm" cellspacing="0" width="100%">
+              <table id="dtBasicExample" class="table  table-striped table-bordered table-sm table-hover table-dark" cellspacing="0" width="100%">
              
-                <thead class="black white-text">
+                <thead class="tablaCabezera">
                     <tr>
                     <th >DATE</th>
                     <th >REMIXER</th>

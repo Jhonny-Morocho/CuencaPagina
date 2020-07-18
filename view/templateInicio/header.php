@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Material Design for Bootstrap</title>
+  <title>LatinEdit.com</title>
   <!-- MDB icon -->
   <base href="appMTD/AppMaterial/">
-  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+  <link rel="icon" href="../../img/logoLatinEdit.png" type="image/x-icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Google Fonts Roboto -->
@@ -48,7 +48,7 @@
                             //include'model/mdlCliente.php';
                             $proveedor=ModeloProveedor::sql_lisartar_proveedor();
                             foreach ($proveedor as $key => $value) {
-                            echo '<li class="dropdown-item dropdown-submenu p-0 "><a href="#"  class="text-white w-100">'.$value['apodo'].' </a></li>';
+                            echo '<li class="dropdown-item dropdown-submenu p-0 "><a href="../../?remixer='.$value['id'].'"  class="text-white w-100">'.$value['apodo'].' </a></li>';
                             }
                         ?>
                     </ul>
@@ -57,7 +57,7 @@
     
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">MEMBRESIAS</a>
+                    <a class="nav-link" href="../../">MEMBRESIAS</a>
                 </li>
                 <li class="nav-item">
 

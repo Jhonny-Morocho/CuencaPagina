@@ -315,6 +315,15 @@ td {
 .myaccount-content {
     border: 2px solid #eeeeee;
     padding: 30px;
+    color: white;
+}
+.myaccount-content input{
+ 
+    color: white;
+}
+
+.myaccount-content  i.fas.fa-cloud-download-alt {
+    color: white;
 }
 
 .myaccount-tab-menu a {
@@ -389,3 +398,79 @@ td {
 .ratings span i  {
     color: yellow;
 }
+
+.list-group-item.active {
+
+    background-color: #6b6b6b !important;
+    border-color: #6b6b6b !important;
+    text-align: center;
+    font-weight: bold;
+}
+.list-group-item {
+
+    background-color: #0d0d0d!important;
+    border: 1px solid #343a40 !important;
+}
+.media-body{
+    color: white;
+}
+body{
+background-color: #0d0d0d;
+}
+
+.tablaCabezera{
+    background-color: #c6c6c6;
+    text-align: center;
+    color: black;
+}
+.cart-calculate-items {
+    color: white;
+}
+select.form-control.form-control-sm.ml-3.w-60.selectGeneroRemixer {
+    color: white;
+}
+select option  {
+    background-color: black;
+}
+
+
+
+.table-dark.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(255,255,255,.05);
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,0,0,.05);
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+.table-dark{
+    background-color: #000000!important;
+}
+tbody.dataProductos {
+    color: white;
+}
+.opcionPago {
+    color: white;
+}
+
+button.form-control.form-control-sm.ml-3.w-60.btnBuscar {
+    color: white;
+}
+
+tr.trTotalPagar {
+    color: white;
+}
+
+
+.myaccount-tab-menu a{
+    color: white;
+}
+
+
