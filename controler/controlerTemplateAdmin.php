@@ -42,6 +42,15 @@ ini_set('display_errors', 'On');
         require"../../view/admin/tablas/tablaMisProductos.php";
     }
 
+    public function ctr_tabla_productos_cliente(){
+        require"../../view/admin/tablas/tablaComprasProductoClientes.php";
+    }
+
+    public function ctr_tabla_ventas(){
+        require"../../view/admin/tablas/tablaVentas.php";
+    }
+
+
     // ==================Funciones para session==================
     // ==================Funciones para session==================
     public function usuario_autentificado(){

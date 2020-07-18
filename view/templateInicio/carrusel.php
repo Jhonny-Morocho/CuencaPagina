@@ -16,45 +16,45 @@
             <!--Slides-->
             <div class="carousel-inner" role="listbox">
                 <div class="carousel-item active">
-                <div class="view">
-                    <img class="d-block w-100" src="../../img/carrosul/flayer.png"
-                    alt="First slide">
-                    <div class="mask rgba-black-light"></div>
+                    <div class="view">
+                        <img class="d-block w-100" src="../../img/carrosul/portada latin pagina.png"
+                        alt="First slide">
+                        <div class="mask rgba-black-light"></div>
+                    </div>
+                    <!-- <div class="carousel-caption">
+                        <h3 class="h3-responsive">Light mask</h3>
+                        <p>First text</p>
+                    </div> -->
                 </div>
-                <div class="carousel-caption">
-                    <h3 class="h3-responsive">Light mask</h3>
-                    <p>First text</p>
-                </div>
-                </div>
-                <div class="carousel-item">
 
-                <!--Mask color-->
-                <div class="view">
-                    <img class="d-block w-100"  src="../../img/carrosul/flayer.png"
-                    alt="Second slide">
-                    <div class="mask rgba-black-strong"></div>
+                <div class="carousel-item ">
+                    <div class="view">
+                        <img class="d-block w-100" src="../../img/carrosul/portada latin pagina.png"
+                        alt="First slide">
+                        <div class="mask rgba-black-light"></div>
+                    </div>
+                    <!-- <div class="carousel-caption">
+                        <h3 class="h3-responsive">Light mask</h3>
+                        <p>First text</p>
+                    </div> -->
                 </div>
-                <div class="carousel-caption">
-                    <h3 class="h3-responsive">Strong mask</h3>
-                    <p>Secondary text</p>
-                </div>
-                </div>
-                <div class="carousel-item">
 
-                
-                <!--Mask color-->
-                <div class="view">
-                    <img class="d-block w-100"   src="../../img/carrosul/flayer.png"
-                    alt="Third slide">
-                    <div class="mask rgba-black-slight"></div>
+                <div class="carousel-item ">
+                    <div class="view">
+                        <img class="d-block w-100" src="../../img/carrosul/portada latin pagina.png"
+                        alt="First slide">
+                        <div class="mask rgba-black-light"></div>
+                    </div>
+                    <!-- <div class="carousel-caption">
+                        <h3 class="h3-responsive">Light mask</h3>
+                        <p>First text</p>
+                    </div> -->
                 </div>
-                <div class="carousel-caption">
-                    <h3 class="h3-responsive">Slight mask</h3>
-                    <p>Third text</p>
-                </div>
-                </div>
+
             </div>
             <!--/.Slides-->
+
+
             <!--Controls-->
             <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

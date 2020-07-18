@@ -79,6 +79,7 @@ class ModeloClienteProducto {
 
     }
 
+    
 
     //saber los productos vendidos por el proveedor
     public static function sql_listar_producto_vendido_proveedor($id_proveedor){
@@ -125,22 +126,22 @@ class ModeloClienteProducto {
     }
 
 
-     //agregar la facutura del cliente
-     public static function sql_crear_factura($tabla,$id_cliente,$total){
+     //asiganr los productos al cliente
+     public static function sqlAsignarProductoCliente($arrayInfoFactura,$idProducto,$precioUnidadProducto){
         $db=new Conexion();
         date_default_timezone_set('America/Guayaquil');
         $fecha_actual=date("Y-m-d H:i:s");
+        $idFactura=$arrayInfoFactura['idFactura'];
+        $idCliente=$arrayInfoFactura['idCliente'];
+        $metodoPago=$arrayInfoFactura['metodoPago'];
         try {
-            $stmt= $db->conectar()->prepare("INSERT INTO $tabla
-                                                        (total,
-                                                        id_cliente,
-                                                        fecha_factura
+            $stmt= $db->conectar()->prepare("INSERT INTO cliente_producto
+                                                        (idCliente,idProducto,fechaCompra,
+                                                        metodoCompra,precioCompra,idFactura
                                                         )
-                                                VALUES('$total',
-                                                        '$id_cliente',
-                                                        '$fecha_actual'
-
-                                                    )          ");
+                                                VALUES('$idCliente','$idProducto','$fecha_actual',
+                                                        '$metodoPago','$precioUnidadProducto','$idFactura') 
+                                            ");
 
 
                 $stmt->execute();
@@ -150,7 +151,10 @@ class ModeloClienteProducto {
                     //Se grabo bien en la base de datos
                     $respuesta=array(
                         'respuesta'=>'exito',
-                        'id_factura'=>$id
+                        'idProducto'=>$idProducto,
+                        'idClienteProducto'=>$id,
+                        'precioUnidadProducto'=>$precioUnidadProducto,
+                        'idFactura'=>$idFactura
                         );
 
                  }else{

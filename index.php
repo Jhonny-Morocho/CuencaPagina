@@ -37,7 +37,7 @@ $plantilla->formLoginCliente();
 
 
 $plantilla->ctr_slider();
-// $plantilla->ctr_categorias();
+$plantilla->reproductorAudio();
 // $plantilla->ctr_lista_update();
 $plantilla->ctr_tabla_productos();
 $plantilla->ctr_footer();

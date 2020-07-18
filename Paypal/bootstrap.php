@@ -33,7 +33,7 @@
 
     } else {
 
-    	define('URL_SITIO','http://proeditsclub.com');
+    	define('URL_SITIO','https://proeditsclub.com');
 	 	
         $apiContext = new \PayPal\Rest\ApiContext(
             new \PayPal\Auth\OAuthTokenCredential(

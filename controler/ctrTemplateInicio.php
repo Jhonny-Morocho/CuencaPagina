@@ -43,6 +43,12 @@ class ControladorPlantillaInicio{
              require'view/cliente/panelCliente.php';
          }
 
+         public function reproductorAudio(){
+            //require"Vista/template/panel_admin.php";
+            require'view/templateInicio/reproductor.php';
+        }
+
+
 
         // public function ctr_tabla_descargar_productos_cliente(){
         //     require'Vista/template/tabla_descargar_productos_cliente.php';

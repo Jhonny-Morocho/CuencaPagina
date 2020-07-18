@@ -22,7 +22,25 @@
 
 
         }  
+
+        function soloTextoBuscador($cadena){ 
+      
             
+            $patron_texto = "/^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙÑñ()1234567890&\s-]+$/";
+
+            //validar la longitudde de la cadena
+        
+            if(preg_match($patron_texto, $cadena) and strlen($cadena)<=100){//debe ser solo texto
+                return true; 
+            
+            }else{
+                return false; 
+            
+            }
+
+
+        }  
+         
         function validaEmail($valor){
 
   

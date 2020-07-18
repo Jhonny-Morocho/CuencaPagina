@@ -109,9 +109,8 @@ class Pagination {
 		$boolean_validacion=true;
    
 		$aValidarCampos=array(
-			'vacio_cadenaBusqueda'=>$Obj_validar->validar_campos_vacios($cadenaBusqueda),
-		   'validacion_cadenaBusqueda_texto'=>$Obj_validar->solo_letras($cadenaBusqueda),
-		   'validacion_cadenaBusqueda_longitud'=>$Obj_validar->validar_password($cadenaBusqueda)
+			
+		   'validacion_cadenaBusqueda_texto'=>$Obj_validar->soloTextoBuscador($cadenaBusqueda)
 		);
    
 		//================Recorrer validacion que no este vacio el campo para verificar que todos esten en TRUE

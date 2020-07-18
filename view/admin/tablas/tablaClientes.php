@@ -26,7 +26,7 @@
             </tr>
             </thead>
             <tbody>
-
+            <a href=""></a>
             <?php
                 $clientes=ModeloCliente::sqlListarClientes();
 
@@ -37,8 +37,8 @@
                        echo'<td>'.$value['nombre'].'</td>';
                        echo'<td>'.$value['apellido'].'</td>';
                        echo'<td>'.$value['correo'].'</td>';
-                       echo'<td><i class="fa fa-fw fa-list-alt"></i></td>';
-                       echo'<td><i class="fa fa-fw fa-list-alt"></i></td>';
+                       echo'<td><a href="../view/admin/listarComprasProductosCliente.php?correo='.$value['correo'].'&idCliente='.$value['id'].'"><i class="fa fa-fw fa-list-alt"></i></a></td>';
+                       echo'<td><a href="tablaComprasProdictoClientesxxxx.php">xxx<i class="fa fa-fw fa-list-alt"></i></a></td>';
                         echo'<td>
                                 <i class="fa fa-pencil editCliente" aria-hidden="true"  data-toggle="modal" data-target="#modalEditarCliente" 
                                                                                         data-id="'.$value['id'].'" 

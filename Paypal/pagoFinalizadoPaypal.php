@@ -84,17 +84,20 @@
                     /*echo $value->price.'<br>';*/
                     $array_precio[$key]=$value->price;
                    /* echo '----';*/
-
-                    if($value->sku=='1'){
-                      $tipo_membresia=$value->name;
-                      $precio_membresia=$value->price;
-                      $bandera_mebresia=true;//ha comprado una membresia
-                    }
+                  //===========Coemente esto x el producto no sera el numero 1====
+                    // if($value->sku=='1'){//comprobar si el producto es una membresia===Siempr el id de la membresia sera 1, o el id del producto, por q asi lo define yo= programador
+                    //   $tipoMembresia=$value->name;
+                    //   $precioMembresia=$value->price;
+                    //   $bandera_mebresia=true;//ha comprado una membresia
+                    // }
                 }
 
+                //print_r($itemsClient);              
+                // ===================Asignar productos al cliente=======================
+                require'ctrEntregarProductoCliente.php';
+                //se realiza el pago y se direcciona al cliente a visualizar sus productos
+                ClassEntregarProductoCliente::comproMusica($_GET['idCliente'],$total_paypal,$array_precio,$array_id_tema);
                 
-
-                echo "PAGO FIANLIZADO";
 
 
             }//end else

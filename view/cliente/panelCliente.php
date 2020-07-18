@@ -63,13 +63,6 @@
                                 <!-- Single Tab Content Start -->
                                 <div class="tab-pane fade card" id="dashboad" role="tabpanel">
                                     <div class="myaccount-content">
-
-                                            <div class="opciones_pagox">
-                                                <div class="row ">
-
-                                                </div>
-
-                                            </div>
                                         <h3>Tablero</h3>
                                         <div class="welcome">
                                              <p>Hello, <strong><?php echo $_SESSION['usuario']." ".$_SESSION['apellido']?></strong></p>
@@ -81,11 +74,12 @@
 
                                 <!-- Single Tab Content Start -->
                                 <div class="tab-pane fade show active " id="download" role="tabpanel">
-                                        <div class="card">
+                                        <div class="myaccount-content card">
                                             <?php $cont=1; foreach($facturas as $key=>$value){?>
+                                              
+                                                <table id="dtBasicExample" class="table  table-striped table-bordered table-sm"  width="100%">
                                                 <p> <br> Fecha de compra: <?php echo $value['fechaFacturacion'] ?> </p>
                                                 <p>Total : <?php echo $value['totalCancelar'] ?></p>
-                                                <table id="example" class="table table-hover "  width="100%">
                                                     <thead class="thead-light ">
                                                     <tr>
                                                         <th>#</th>

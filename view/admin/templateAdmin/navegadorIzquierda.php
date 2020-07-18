@@ -32,33 +32,6 @@
             <li><a href="../view/admin/listarProveedor.php"><i class="fa fa-list-ul" aria-hidden="true"></i> Listar</a></li>
           </ul>
         </li>
- 
-
-        <!-- <li class="treeview">
-          <a href="#">
-            <i class="fa fa-users"></i> <span>Clientes</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="../view/admin/formGenero.php"><i class="fa fa-plus" aria-hidden="true"></i> Agregar</a></li>
-            <li><a href="../view/admin/listarGenero.php"><i class="fa fa-list-ul" aria-hidden="true"></i> Listar</a></li>
-          </ul>
-        </li> -->
-
-        <!-- <li class="treeview">
-          <a href="#">
-            <i class="fa fa-users" ></i> <span>Clientes</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="../view/admin/formGenero.php"><i class="fa fa-plus" aria-hidden="true"></i> Agregar</a></li>
-            <li class="active"><a href="../view/admin/listarGenero.php"><i class="fa fa-list-ul" aria-hidden="true"></i> Listar</a></li>
-          </ul>
-        </li> -->
   
         <li class="treeview">
           <a href="#">
@@ -70,6 +43,18 @@
           <ul class="treeview-menu">
             <li><a href="../view/admin/formGenero.php"><i class="fa fa-plus" aria-hidden="true"></i> Agregar</a></li>
             <li ><a href="../view/admin/listarGenero.php"><i class="fa fa-list-ul" aria-hidden="true"></i> Listar</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-fw fa-shopping-cart"></i><span>Informe Ventas</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li ><a href="../view/admin/listarVentas.php"><i class="fa fa-list-ul" aria-hidden="true"></i> Listar</a></li>
           </ul>
         </li>
 

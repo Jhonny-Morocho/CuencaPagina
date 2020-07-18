@@ -37,6 +37,7 @@ footer.page-footer {
     /* width: 50%; */
     /* height: 100%; */
 }
+
 /* .carrito p{
     color: #ffffff;
     font-size: 20px;
@@ -72,7 +73,7 @@ footer.page-footer {
     position: relative;
 }
 .contenedorReproductos{
-    background-color: #444444 ;
+
     width: 100%;
     height: 50px;
 }
@@ -175,8 +176,13 @@ footer.page-footer {
 
 td {
     max-width: 200px;
-    font-size: 40px;
-    border: solid 2px gray;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  /* =======================Cortar texto ================ */
+  .containerTopViral .media-body{
+    max-width: 200px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -195,11 +201,62 @@ td {
   }
   /* //======================TABLA RESPONSIVA======================// */
 
-  
+  @media screen and (max-width: 640px) {
+
+    .containerTopViral{
+        display: none;
+    }
+    thead {
+        display: none;
+    }
+    tr:nth-of-type(2n) {
+        background-color: inherit;
+    }
+    tr td:first-child {
+        background: #f0f0f0;
+        font-weight:bold;
+        font-size:1.3em;
+    }
+    tbody td {
+        display: block;
+        text-align:center;
+    }
+    tbody td:before {
+        content: attr(data-th);
+        display: block;
+        text-align:center;
+    }
+  }
+
+  @media screen and (max-width: 823px) {
+    thead {
+        display: none;
+    }
+    tr:nth-of-type(2n) {
+        background-color: inherit;
+    }
+    tr td:first-child {
+        background: #f0f0f0;
+        font-weight:bold;
+        font-size:1.3em;
+    }
+    tbody td {
+        display: block;
+        text-align:center;
+    }
+    tbody td:before {
+        content: attr(data-th);
+        display: block;
+        text-align:center;
+    }
+  }
+
+
+
+
   @media screen and (max-width: 600px) {
   
-   
-    
+
     table {
         width:100%;
     }
