@@ -49,7 +49,14 @@ ini_set('display_errors', 'On');
     public function ctr_tabla_ventas(){
         require"../../view/admin/tablas/tablaVentas.php";
     }
+    
+    public function ctr_tabla_mis_ventas(){
+        require"../../view/admin/tablas/tablaMisProductosVendidos.php";
+    }
 
+    public function ctr_tabla_ventas_proveedor(){
+        require"../../view/admin/tablas/tablaVentasCadaProveedor.php";
+    }
 
     // ==================Funciones para session==================
     // ==================Funciones para session==================
@@ -69,7 +76,7 @@ ini_set('display_errors', 'On');
             }
 
             if(!revisar_usuario_session()){
-                header('location:../../index.php');
+                header('location:../../');
                 exit();
             }
 
@@ -81,7 +88,7 @@ ini_set('display_errors', 'On');
         $cerrar_session=@$_GET['cerrar_session'];
         if($cerrar_session){// si se emvio la session entonces destruir
           session_destroy();
-          header('location:../../index.php');
+          header('location:../../');
         }
     }
 

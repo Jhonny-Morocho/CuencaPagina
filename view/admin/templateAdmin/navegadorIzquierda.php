@@ -84,6 +84,7 @@
             <li><a href="../view/admin/listarProductos.php"><i class="fa fa-list-ul" aria-hidden="true"></i> Listar Todos</a></li>
             <?php } ?>
             <li><a href="../view/admin/listarMisProductos.php"><i class="fa fa-list-ul" aria-hidden="true"></i> Listar mis Edits</a></li>
+            <li><a href="../view/admin/listarMisVentas.php"><i class="fa fa-list-ul" aria-hidden="true"></i> Listar mis Ventas</a></li>
             
           </ul>
         </li> 

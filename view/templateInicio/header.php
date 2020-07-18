@@ -62,12 +62,22 @@
                 <li class="nav-item">
 
                 <?php 
+
                     if(isset($_SESSION['usuario'])){// si no existe session presentar esto admin_cliente
                         
                         switch (@$_SESSION['tipo_usuario']) {
                             case 'cliente':
                                     echo ' <a class="nav-link active contenedorCarrito" href="../../adminCliente.php">'.$_SESSION['usuario'].'</a>';
                                 break;
+                            case 'proveedor':
+                                echo ' <a class="nav-link active contenedorCarrito" href="../../view/admin/index_admin.php">'.$_SESSION['usuario'].'</a>';
+                            break;
+                            case 'admin':
+                                echo ' <a class="nav-link active contenedorCarrito" href="../../view/admin/index_admin.php">'.$_SESSION['usuario'].'</a>';
+                            break;
+                            default:
+                            # code...
+                            break;
                         }
                         
                     }else{

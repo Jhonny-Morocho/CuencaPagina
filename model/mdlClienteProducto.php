@@ -82,31 +82,30 @@ class ModeloClienteProducto {
     
 
     //saber los productos vendidos por el proveedor
-    public static function sql_listar_producto_vendido_proveedor($id_proveedor){
+    public static function sqlListarProductosVendidosProveedor($idProveedor){
         $db=new Conexion();
         try {
             $stmt= $db->conectar()->prepare("SELECT
-                                                        cliente_producto.id_producto,
-                                                        cliente_producto.id_factura,
-                                                        productos.url_directorio,
-                                                        cliente_producto.precio_compra,
-                                                        productos.id_proveedor,
-                                                        productos.url_descarga,
+                                                        cliente_producto.idProducto,
+                                                        cliente_producto.idFactura,
+                                                        producto.nombrePista,
+                                                        cliente_producto.precioCompra,
+                                                        producto.idProveedor,
 
-                                                        cliente_producto.fecha_compra,
-                                                        cliente_producto.metodo_compra,	
-                                                        cliente_producto.id_cliente
+                                                        cliente_producto.fechaCompra,
+                                                        cliente_producto.metodoCompra,	
+                                                        cliente_producto.idCliente
                                                 from
                                                         cliente_producto,
-                                                        productos
+                                                        producto
 
                                                 WHERE
-                                                        productos.id_proveedor='$id_proveedor'
+                                                        producto.idProveedor='$idProveedor'
 
-                                                and     cliente_producto.id_producto=productos.id
+                                                and     cliente_producto.idProducto=producto.id
 
 
-                                                ORDER by  cliente_producto.fecha_compra desc
+                                                ORDER by  cliente_producto.fechaCompra desc
                 ");
 
 

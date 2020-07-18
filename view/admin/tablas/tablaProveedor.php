@@ -22,6 +22,7 @@
               <th>Apellido</th>
               <th>Correo</th>
               <th>Acciones</th>
+              <th>Ventas</th>
             </tr>
             </thead>
             <tbody>
@@ -62,6 +63,7 @@
                                   </button>
                               </div>
                     </td>';
+                    echo'<td><a target="_blank" href="../view/admin/listarProductosVendidosProveedor.ph.php?apodo='.$value['apodo'].'&idProveedor='.$value['id'].'"><i class="fa fa-fw fa-list-alt"></i></a></td>';
                echo"</tr>";
                }
             ?>

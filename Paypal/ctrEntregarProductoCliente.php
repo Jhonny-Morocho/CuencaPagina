@@ -2,14 +2,6 @@
 
 ini_set('display_errors', 'On');
 
-// require'../Modelo/class_mdl_bd_conexion.php';
-// require'../Modelo/class_mdl_cliente_producto.php';
-// require'../Modelo/class_mdl_cliente_membresia.php';
-// require'../Modelo/class_mdl_membresia.php';
-
-// include'../Controlador/class_ctr_cliente_producto.php';
-// include'../Controlador/class_ctr_membresia.php';
-
 //============Conexion a la base datos=============//
 require'../model/conexion.php';
 //============Traer  del producto de cliente producto para poder realizar la facturacion=============//

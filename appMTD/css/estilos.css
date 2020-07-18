@@ -409,7 +409,7 @@ td {
 .list-group-item {
 
     background-color: #0d0d0d!important;
-    border: 1px solid #343a40 !important;
+    /* border: 1px solid #343a40 !important; */
 }
 .media-body{
     color: white;
@@ -473,4 +473,13 @@ tr.trTotalPagar {
     color: white;
 }
 
+button.form-control.form-control-sm.ml-3.w-60.btnBuscar {
+    background: #0247b1;
+}
+button.form-control.form-control-sm.ml-3.w-60.btnBuscar:hover {
+    background: blue;
+}
 
+input.form-control.form-control-sm.ml-3.w-120 {
+    color: white;
+}
