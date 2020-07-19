@@ -1,5 +1,5 @@
 
-    <div class="container-fluid">
+    <div class="">
       <div class="row">
         <div class="contenedorReproductos">
           <div class="col-lg-12">

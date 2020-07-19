@@ -75,10 +75,7 @@ class ControladorPlantillaInicio{
             require'view/templateInicio/formularioLoginAdmin.php';
         }
 
-    
-         public function ctrFormularioCliente(){
-                require'view/cliente/formularioCliente.php';
-         }
+ 
 
         // public function wassap(){
         //     require'Wassap/wassap.php';

@@ -30,14 +30,14 @@
                 <div class="modal-body mb-1">
                   <div class="md-form form-sm mb-5">
                     <i class="fas fa-envelope prefix"></i>
-                    <input type="email" id="modalLRInput12" class="form-control form-control-sm validate" required="" name="inputEmailCliente">
-                    <label data-error="wrong" data-success="right" for="modalLRInput10">Your email</label>
+                    <input type="email" id="modalLRInput1" class="form-control form-control-sm validate" required="" name="inputEmailCliente" placeholder="Your Email">
+                    
                   </div>
 
                   <div class="md-form form-sm mb-4">
                     <i class="fas fa-lock prefix"></i>
-                    <input type="password" id="modalLRInput13" class="form-control form-control-sm validate" maxlength="20" required="" name="inputPasswordCliente">
-                    <label data-error="wrong" data-success="right" for="modalLRInput11">Your password</label>
+                    <input type="password" id="modalLRInput19" class="form-control form-control-sm validate" maxlength="20" required="" name="inputPasswordCliente" placeholder="Your Password">
+               
                   </div>
 
                   <div class="md-form form-sm mb-4">
@@ -76,26 +76,26 @@
                 <div class="md-form form-sm mb-5">
                   <!-- <i class="fas fa-envelope prefix"></i> -->
                   <i class="fas fa-user prefix"></i>
-                  <input type="text" maxlength="20" id="idRegistroName" class="form-control form-control-sm validate" required="" name="inpuNameCliente">
-                  <label data-error="wrong" data-success="right"  >Your Name</label>
+                  <input type="text" maxlength="20" id="idRegistroName" class="form-control form-control-sm validate" required="" name="inpuNameCliente" placeholder="Your Name">
+                
                 </div>
 
                 <div class="md-form form-sm mb-5">
                   <i class="fas fa-user prefix"></i>
-                  <input type="text" id="idRegistroLastName" maxlength="20" class="form-control form-control-sm validate" required="" name="inputApellidoCliente">
-                  <label data-error="wrong" data-success="right" >Your Last Name</label>
+                  <input type="text" id="idRegistroLastName" maxlength="20" class="form-control form-control-sm validate" required="" name="inputApellidoCliente" placeholder="Your Laste Name">
+                 
                 </div>
 
                 <div class="md-form form-sm mb-5">
                   <i class="fas fa-envelope prefix"></i>
-                  <input type="email" id="modalLRInput12"  class="form-control form-control-sm validate" required="" name="inputEmailCliente">
-                  <label data-error="wrong" data-success="right" >Your email</label>
+                  <input type="email" id="modalLRInput12"  class="form-control form-control-sm validate" required="" name="inputEmailCliente" placeholder="Your Email">
+                 
                 </div>
 
                 <div class="md-form form-sm mb-5">
                   <i class="fas fa-lock prefix"></i>
-                  <input type="password" id="modalLRInput13" maxlength="20" class="form-control form-control-sm validate" name="inputPasswordCliente" required="" >
-                  <label data-error="wrong" data-success="right" >Your password</label>
+                  <input type="password" id="modalLRInput13" maxlength="20" class="form-control form-control-sm validate" name="inputPasswordCliente" required="" placeholder="Your Password">
+                 
                 </div>
 
                 <div class="md-form form-sm mb-5">

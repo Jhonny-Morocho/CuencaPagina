@@ -152,9 +152,9 @@
             <div class="row">
                 <div class="col-lg-12">
                 <section>
-
+                  <li class="list-group-item active">TOP VIRAL</li>
                   <ul class="list-group" style="max-width: 22rem;">
-                    <li class="list-group-item active">TOP VIRAL</li>
+                  
                     <?php 
                         require'model/mdlClienteProducto.php';
                         $clienteProductos=ModeloClienteProducto::sqlListarTop(); 
@@ -165,22 +165,12 @@
 
                     <?php $cont=1; foreach ($clienteProductos as $key => $value) { ?>
 
-                      <?php   if($cont<35) { ?>
+                      <?php   if($cont<16) { ?>
                         <li class="list-group-item">
                           <div class="media">
                               <span class="media-left ">
                                   <img src="../../img/proveedores/<?php echo $value['img'] ?>" alt="...">
-                                  <div class="col-lg reproducirContenedor" data-demo="../../editDemos/<?php echo $value['demo'] ?>">
-                                        <span class="reproducir">
-                                          <i class="fa fa-play-circle" aria-hidden="true"></i>
-                                        </span>
-                                  </div>
-
-                                  <div class="col-lg buy " data-id="95" data-nombre="<?php echo $value['nombrePista'] ?>" data-precio="<?php echo $value['precio'] ?>">
-                                            <span class="addcarrito">
-                                              <i class="fas fa-cart-plus"></i>
-                                            </span>
-                                    </div>
+                              
                               </span>
                               <div class="media-body">
                                 <p><?php echo $value['nombrePista'] ?></p>

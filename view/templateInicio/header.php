@@ -57,7 +57,7 @@
     
 
                 <li class="nav-item">
-                    <a class="nav-link" href="../../">MEMBRESIAS</a>
+                    <a class="nav-link" href="../../">LATINEDITS +</a>
                 </li>
                 <li class="nav-item">
 
@@ -81,7 +81,7 @@
                         }
                         
                     }else{
-                        echo'<a class="nav-link" href="#" data-toggle="modal" data-target="#modalLRForm" >CUENTA</a> ';
+                        echo'<a class="nav-link" href="#" data-toggle="modal" data-target="#modalLRForm" >MI CUENTA</a> ';
                     }
                     ?>
                     <!-- <a class="nav-link" href="#" data-toggle="modal" data-target="#modalLRForm" >CUENTA</a> -->
