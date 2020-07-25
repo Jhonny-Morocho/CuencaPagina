@@ -70,6 +70,8 @@
           </ul>
         </li>
 
+      <li><a href="../view/admin/formCupon.php"><i class="fa fa-circle-o text-aqua"></i> <span>Cupon</span></a>
+      </li>
         <?php } //end if admin solo puede ver ?>
         <li class="treeview">
           <a href="#">

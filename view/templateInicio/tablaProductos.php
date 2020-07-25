@@ -165,7 +165,7 @@
 
                     <?php $cont=1; foreach ($clienteProductos as $key => $value) { ?>
 
-                      <?php   if($cont<16) { ?>
+                      <?php   if($cont<13) { ?>
                         <li class="list-group-item">
                           <div class="media">
                               <span class="media-left ">

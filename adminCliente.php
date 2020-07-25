@@ -22,4 +22,3 @@ $plantilla->ctr_footer();
 
 ?>
 
-

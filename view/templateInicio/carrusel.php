@@ -17,7 +17,7 @@
             <div class="carousel-inner" role="listbox">
                 <div class="carousel-item active">
                     <div class="view">
-                        <img class="d-block w-100" src="../../img/carrosul/portada latin pagina.png"
+                        <img class="d-block w-100" src="../../img/carrosul/portada latin pagina.jpg"
                         alt="First slide">
                         <div class="mask rgba-black-light"></div>
                     </div>
@@ -29,7 +29,7 @@
 
                 <div class="carousel-item ">
                     <div class="view">
-                        <img class="d-block w-100" src="../../img/carrosul/portada latin pagina.png"
+                        <img class="d-block w-100" src="../../img/carrosul/portada latin pagina.jpg"
                         alt="First slide">
                         <div class="mask rgba-black-light"></div>
                     </div>
@@ -41,7 +41,7 @@
 
                 <div class="carousel-item ">
                     <div class="view">
-                        <img class="d-block w-100" src="../../img/carrosul/portada latin pagina.png"
+                        <img class="d-block w-100" src="../../img/carrosul/portada latin pagina.jpg"
                         alt="First slide">
                         <div class="mask rgba-black-light"></div>
                     </div>

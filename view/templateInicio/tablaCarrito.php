@@ -29,10 +29,23 @@
                             <tbody class="dataProductos">
                             </tbody >
                         </table>
+
+                        <!-- ==============cupon de descuento=========== -->
+                        <div class="cuponDescuento  ">
+                            <div class="form-group row  d-flex justify-content-center">
+                                <!-- Material input -->
+                                <div class="col-sm-4">
+                                    <div class="md-form mt-0">
+                                        <input type="text" class="form-control inputCupon" placeholder="TIENES CUPON DE DESCUENTO" name="inputCupon">
+                                        <a href="" class="BtnaplicarCupon btn btn-primary btn-md">Aplicar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end cupon de descuento-->
                     </div>  
                 </div>
             </div>
-
+      
             <div class="row d-flex justify-content-center">
                 <div class="opcionPago">
                     <h4>Option Payment</h4>
@@ -67,7 +80,13 @@
                 </div>
             </div>
 
+
+
         </form>
+      
+        
+
+      
         
 </div> <!-- end container fluid -->
 

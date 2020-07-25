@@ -22,7 +22,7 @@ $(document).ready(function(){
   
       $(':input[type="submit"]').prop('disabled', true);
         for (var pair of datos.entries()) {
-            console.log(pair[0]+ ', ' + pair[1]); 
+            //console.log(pair[0]+ ', ' + pair[1]); 
         }
             $.ajax({
                 xhr: function() {
@@ -37,8 +37,8 @@ $(document).ready(function(){
                             $(".sr-only").html(porcentaje + "% Completado");
                             $(".porcentaje_h4").html(porcentaje + "% Completado");
                            
-                            console.log(porcentaje);
-                            console.log(porcentaje);
+                            //console.log(porcentaje);
+                            //console.log(porcentaje);
                         }
                     }, false);
                     

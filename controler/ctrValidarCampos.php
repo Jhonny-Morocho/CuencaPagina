@@ -26,7 +26,7 @@
         function soloTextoBuscador($cadena){ 
       
             
-            $patron_texto = "/^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙÑñ()1234567890&\s-]+$/";
+            $patron_texto = "/^[a-zA-ZáéíóúÁÉÍÓÚäëïöüÄËÏÖÜàèìòùÀÈÌÒÙÑñ() .1234567890&\s-]+$/";
 
             //validar la longitudde de la cadena
         

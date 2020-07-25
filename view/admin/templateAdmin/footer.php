@@ -236,6 +236,7 @@
 <script src="../controler/js/ajaxProveedor.js"></script>
 <script src="../controler/js/ajaxProducto.js"></script>
 <script src="../controler/js/ajaxCliente.js"></script>
+<script src="../controler/js/ajaxCupon.js"></script>
 
 <!-- //=======================TOSTADA=============================// -->
 <script src="../tostada/toast-alert-message-kk/jquery-kk-message/message.js"></script>
@@ -283,8 +284,12 @@ function archivo(evt) {
            reader.readAsDataURL(f);
        }
 }
-             
-      document.getElementById('files').addEventListener('change', archivo, false);
+      try {
+        document.getElementById('files').addEventListener('change', archivo, false);
+      } catch (error) {
+        
+      }
+     
  
 </script>
 

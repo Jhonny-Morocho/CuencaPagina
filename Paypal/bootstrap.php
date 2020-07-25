@@ -33,12 +33,12 @@
 
     } else {
 
-    	define('URL_SITIO','https://proeditsclub.com');
+    	define('URL_SITIO','http://latinedit.com');
 	 	
         $apiContext = new \PayPal\Rest\ApiContext(
             new \PayPal\Auth\OAuthTokenCredential(
-                    'AcoLZONEouMB-aKL4TUMB5lCBtnTNEFzt2R6CF2XN4mPI_IZGl0SgRwgjk1Nr-ccCyJZ2-zUrzw2OBYk',
-                    'EKV7yx85Qr5WH34p2efjVPCQTh_V6Ip47f2Fnc2eWiaQpoiR5ZAL0mSqGTrGBh6ECGqZmoTS66JNsXVt'
+                    'ARIq1R0UM6r98VPIpCiLOgz8UB4vlLX_Y9XJS9k_6lqJWQlErzqGIjBxvsmR0pP2iEIvtOaosBuonZjQ',
+                    'ELSyoQp5HTnfMhkD-JKzsciR2x8JjIiahVs1uz4VugTKX6L6g7XJzpo8lCGXzVLTeDGLPuclyElEPaFN'
                 )
         );
 

@@ -14,9 +14,14 @@ var data_type="json";
 var urlPasarelaPago="../../Paypal/ctrPasarelaPago.php";
 
 $("#idFormCarrito").on('submit',function(e){
+    
     e.preventDefault();
+    //debo borrar el formulario del cupon para que me deje ejecutar el pago
+    $('.BtnaplicarCupon').remove();
+    $('.cuponDescuento').remove();
+    
     var inputOptionPago=$(this).serializeArray();//obtengo valores de radios
-    console.log(inputOptionPago);
+    //console.log(inputOptionPago);
     //selecionodo todos los datos de la tabla
     var classNombreProducto=$(".classNomProducto");
     var classPrecioUnitarioProducto=$(".classPrecioCancion span");
@@ -41,14 +46,15 @@ $("#idFormCarrito").on('submit',function(e){
     datos.append("totalCancelar",classTotalCancelar);
    
     enviarDatosPasarelaPago(datos);//enviaar Data a la pasarela de pagos
-    // for (var pair of datos.entries()) {
-    //     console.log(pair[0]+ ', ' + pair[1]); 
-    // }
+    //  for (var pair of datos.entries()) {
+    //      console.log(pair[0]+ ', ' + pair[1]); 
+    //  }
 
 });
 
 
 function enviarDatosPasarelaPago(datos){
+    //console.log(datos);
     animacion();
     $.ajax({
 
@@ -60,7 +66,7 @@ function enviarDatosPasarelaPago(datos){
         processData:false,
         dataType:data_type,//json//data_type
         success:function(data){
-            console.log(data);
+            //console.log(data);
 
             switch (data.respuesta) {
                 case 'noExiseLogin':

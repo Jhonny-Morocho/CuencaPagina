@@ -199,6 +199,30 @@ td {
         position: relative !important;
     }
   }
+
+  /* mi monitor  */
+  @media screen and (max-width: 1024px) {
+    thead {
+        display: none;
+    }
+    tr:nth-of-type(2n) {
+        background-color: inherit;
+    }
+    tr td:first-child {
+        background: #f0f0f0;
+        font-weight:bold;
+        font-size:1.3em;
+    }
+    tbody td {
+        display: block;
+        text-align:center;
+    }
+    tbody td:before {
+        content: attr(data-th);
+        display: block;
+        text-align:center;
+    }
+  }
   /* //======================TABLA RESPONSIVA======================// */
 
   @media screen and (max-width: 640px) {
@@ -498,3 +522,30 @@ button.form-control.form-control-sm.ml-3.w-60.btnBuscar:hover {
 input.form-control.form-control-sm.ml-3.w-120 {
     color: white;
 }
+
+/* ============================Paginacion =========================== */
+/* ============================Paginacion =========================== */
+a.page-link.waves-effect.waves-effect {
+    color: white;
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: #212529!important;
+}
+
+/* =====================Carrito tabla=========== */
+@media screen and (max-width: 1024px){
+    tr td:first-child {
+        background: none!important
+      
+    }
+}
+/* ==========================CUPON DE DESCUENTO ================ */
+input.form-control.inputCupon {
+    color: white !important;
+}
+
+.disabledItemCupon{
+display: none;
+}
+

@@ -7,19 +7,24 @@
   <title>LatinEdit.com</title>
   <!-- MDB icon -->
   <base href="appMTD/AppMaterial/">
-  <link rel="icon" href="../../img/logoLatinEdit.png" type="image/x-icon">
+  <link rel="icon" href="../../img/logo-png-pagina.png" type="image/x-icon">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css?v=1.0.0">
   <!-- Google Fonts Roboto -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css?v=1.0.0">
   <!-- Material Design Bootstrap -->
-  <link rel="stylesheet" href="css/mdb.min.css">
+  <link rel="stylesheet" href="css/mdb.min.css?v=1.0.0">
   <!-- Your custom styles (optional) -->
-  <link rel="stylesheet" href="css/style.css?v=1">
+  <link rel="stylesheet" href="css/style.css?v=1.0.0">
   <!-- =================== APP==================== -->
-  <link rel="stylesheet" href="../css/estilos.css?v=1">
+  <link rel="stylesheet" href="../css/estilos.css?v=1.0.0">
+
+  <meta property="og:title" content="LatinEdit.com"/>
+  <meta property="og:description" content="The best of the record pool of djs" /> 
+  <meta property="og:image" content="../../img/perfil-facebook.png" />      
+  <meta property="og:url" content="https://www.LatinEdit.com/" />
 
 </head>
 <body>
@@ -29,7 +34,7 @@
 
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
         <!-- <a class="navbar-brand" href="#"><strong>Navbar</strong></a> -->
-        <img src="../../img/logoLatinEdit.png" alt=""  width="10%">
+        <img src="../../img/logo-png-pagina.png" alt=""  width="10%">
         <!-- <img src="..." alt="..." class="img-thumbnail"> -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
