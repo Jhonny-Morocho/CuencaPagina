@@ -19,7 +19,7 @@
   <!-- Your custom styles (optional) -->
   <link rel="stylesheet" href="css/style.css?v=1.0.0">
   <!-- =================== APP==================== -->
-  <link rel="stylesheet" href="../css/estilos.css?v=1.0.0">
+  <link rel="stylesheet" href="../css/estilos.css?v=1.0.1">
 
   <meta property="og:title" content="LatinEdit.com"/>
   <meta property="og:description" content="The best of the record pool of djs" /> 

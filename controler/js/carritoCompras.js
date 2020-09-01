@@ -25,6 +25,8 @@
             //escondo el total casillero
             $(".cart-calculator-wrapper").hide();
             $(".opcionPago").hide();
+            $('.BtnaplicarCupon').hide();
+            $('.cuponDescuento').hide();
           }
         }
 
@@ -204,6 +206,7 @@
  
         //console.log(inputCupon);
         //console.log(nombreCupon);
+
         if(inputCupon==nombreCupon && ofertaActiva==true && Number($(".total-amount span").text()) >=consumo ){
           $('.BtnaplicarCupon').hide();
           $('.cuponDescuento').hide();
@@ -234,7 +237,26 @@
           nuevoTotal=[];
           
         }else{
-          alert("NO COINCIDE EL CUPON");
+
+            if(inputCupon!=nombreCupon || ofertaActiva==false){
+              //alert("Cupon no valido , el cupon actual es "+nombreCupon+ " y expira el "+fechaExpiracion);
+              bootoast.toast({
+                message:"Cupon no valido , el cupon actual es "+nombreCupon+ " y expira el "+fechaExpiracion,
+                type: 'warning',
+                animationDuration: 1000
+              });
+            }
+            
+            if(Number($(".total-amount span").text()) <=consumo){
+              //alert("Tu compra debe ser mayor " +consumo + " para aplicar el cupon");
+              bootoast.toast({
+                message:"Tu compra debe ser mayor $ " +consumo + " para aplicar el cupon",
+                type: 'warning',
+                animationDuration: 1000
+              });
+            }
+
+            
         }
       })
 
@@ -246,7 +268,7 @@
           '<tr>'+'<td>'+(index+1)+'</td>'+
           
           '<TD  class="classNomProducto" nombre_cancion='+item.nombreProducto+'><p>'+item.nombreProducto+'</p</TD>'+
-          '<TD class="classPrecioCancion"><p>$<span>'+(item.precio-((item.precio)*porcentajeDescuento)).toFixed(2)+'</span></p></TD>'+
+          '<TD class="classPrecioCancion colorDescuento"><p>$<span>'+(item.precio-((item.precio)*porcentajeDescuento)).toFixed(2)+'</span></p></TD>'+
           ' <TD>'+
               '<i  class="fa fa-trash deleItemCar btnCarrito disabledItemCupon"  aria-hidden="true"  data-precioCancion='+(item.precio-((item.precio)*porcentajeDescuento)).toFixed(2)+' data-id-Producto='
               +item.idProducto+'></i>'

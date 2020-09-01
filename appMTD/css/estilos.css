@@ -549,3 +549,7 @@ input.form-control.inputCupon {
 display: none;
 }
 
+.colorDescuento p{
+    color: #00c851 ;
+    font-weight: bold;
+}

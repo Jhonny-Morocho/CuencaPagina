@@ -20,12 +20,14 @@
     display: block;
     max-width: 100%;
     overflow: auto;
+
 }
 
 .bootoast>.bootoast-alert-container>.bootoast-alert-content {
     display: table;
     width: 100%;
-    height: 100%
+    height: 100%;
+
 }
 
 .bootoast.alert-default {

@@ -17,11 +17,11 @@
          $cliente = new ModeloCliente();// para el formulario de informacion del cliente
    
          $facturas=ModeloFacura::sqlListarFacturasTodos();
-         //print_r($facturas);
+    
         $cont_2=1;
        ?>
         <?php  foreach($facturas as $key=>$value){?>
-                <div class="box">
+                <div class="">
                     <table id="dtBasicExample" class="table  table-striped table-bordered table-sm"  width="100%">
                     <p> <br> Fecha de compra: <?php echo $value['fechaFacturacion'] ?> </p>
                     <p>Total : <?php echo $value['totalCancelar'] ?></p>
@@ -41,26 +41,22 @@
                         </thead>
                         <tbody>
                         
-                
                         <?php 
-                            foreach ($facturas as $key => $value) {
                             
-                                $clienteProductos=ModeloClienteProducto::sqlListarProductosCliente($value['idCliente'],$value['id']);
-                                //print_r($clienteProductos);
-                                foreach($clienteProductos as $key=>$value){
-                                    echo'<tr>   
-                                            <th scope="row">'.$cont_2.'</th>
-                                            <td><a download   href="../../editCompletos/'.$value['remixCompleto'].'?download_csv=../editCompletos/'.$value['remixCompleto'].'" class="bontIconosProducto"><i class="fa fa-fw fa-cloud-download"></i></a></td>      
-                                            <td>'.$value['apodo'].'</td>
-                                            <td>'.$value['artista'].'</td>
-                                            <td>'.$value['nombrePista'].'</td>
-                                            <td>$ '.$value['precioCompra'].'</td>
-                                            <td>'.$value['metodoCompra'].'</td>
-                                        </tr>';
-                                    $cont_2++;
-                                } 
-                            }
-                
+                              $clienteProductos=ModeloClienteProducto::sqlListarProductosCliente($value['idCliente'],$value['id']);
+                              //print_r($clienteProductos);
+                              foreach($clienteProductos as $key=>$value){
+                                  echo'<tr>   
+                                          <th scope="row">'.$cont_2.'</th>
+                                          <td><a download   href="../../editCompletos/'.$value['remixCompleto'].'?download_csv=../editCompletos/'.$value['remixCompleto'].'" class="bontIconosProducto"><i class="fa fa-fw fa-cloud-download"></i></a></td>      
+                                          <td>'.$value['apodo'].'</td>
+                                          <td>'.$value['artista'].'</td>
+                                          <td>'.$value['nombrePista'].'</td>
+                                          <td>$ '.$value['precioCompra'].'</td>
+                                          <td>'.$value['metodoCompra'].'</td>
+                                      </tr>';
+                                  $cont_2++;
+                              } 
                             ?>
                         </tbody>
                     </table>

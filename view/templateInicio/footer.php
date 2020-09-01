@@ -67,8 +67,8 @@
         <script type="text/javascript" src="../../controler/js/ajaxProveedor.js?v=1.0.0"></script>
         <script type="text/javascript" src="../../controler/js/ajaxCliente.js?v=1.0.0"></script>
         <script src="https://unpkg.com/moment"></script>
-        <script type="text/javascript" src="../../controler/js/carritoCompras.js?v=1.0.0"></script>
-        <script type="text/javascript" src="../../controler/js/ajaxPagar.js?v=1.0.0"></script>
+        <script type="text/javascript" src="../../controler/js/carritoCompras.js?v=1.0.1"></script>
+        <script type="text/javascript" src="../../controler/js/ajaxPagar.js?v=1.0.1"></script>
         
 
         <!-- =============================REPRODUCTOR DE AUDIO=============================== -->
@@ -96,17 +96,17 @@
         </script>
 
           <script type="text/javascript">
-          // $(document).ready(function () {
-          //     //Disable full page
-          //     $("body").on("contextmenu",function(e){
-          //         return false;
-          //     });
+            $(document).ready(function () {
+                //Disable full page
+                $("body").on("contextmenu",function(e){
+                    return false;
+                });
               
-          //     //Disable part of page
-          //     $("#id").on("contextmenu",function(e){
-          //         return false;
-          //     });
-          // });
+                //Disable part of page
+                $("#id").on("contextmenu",function(e){
+                    return false;
+                });
+            });
 
           $(document).keydown(function (event) {
                   if (event.keyCode == 123) { // Prevent F12
@@ -116,8 +116,26 @@
                   }
               });
           </script>
-
           
+            <!-- Facebook Pixel Code -->
+            <script>
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '287666872670128');
+              fbq('track', 'PageView');
+            </script>
+            <noscript><img height="1" width="1" style="display:none"
+              src="https://www.facebook.com/tr?id=287666872670128&ev=PageView&noscript=1"
+            /></noscript>
+            <!-- End Facebook Pixel Code -->
+
+            <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/43e7b358c17a50edbc12de074/271195d8d40a356a969dcfac7.js");</script>
 
 </html>        
 
