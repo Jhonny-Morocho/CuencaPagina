@@ -237,6 +237,7 @@
 <script src="../controler/js/ajaxProducto.js"></script>
 <script src="../controler/js/ajaxCliente.js"></script>
 <script src="../controler/js/ajaxCupon.js"></script>
+<script src="../controler/js/ajaxPagarProveedor.js"></script>
 
 <!-- //=======================TOSTADA=============================// -->
 <script src="../tostada/toast-alert-message-kk/jquery-kk-message/message.js"></script>

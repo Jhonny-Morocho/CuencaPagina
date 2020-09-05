@@ -54,8 +54,23 @@ ini_set('display_errors', 'On');
         require"../../view/admin/tablas/tablaMisProductosVendidos.php";
     }
 
-    public function ctr_tabla_ventas_proveedor(){
-        require"../../view/admin/tablas/tablaVentasCadaProveedor.php";
+    public function ctrTablaMisVentasPagadas(){
+       require'../../view/admin/tablas/tablaProductosPagadosProveedor.php';
+    }
+    public function ctrTablaMisVentasNoPagadas(){
+        require'../../view/admin/tablas/tablaProductosNoPagadosProveedor.php';
+     }
+
+     public function ctr_tabla_ventas_proveedor(){
+         require"../../view/admin/tablas/tablaVentasCadaProveedor.php";
+     }
+
+    public function ctrTablaProveedoresInformePagos(){
+        require'../../view/admin/tablas/tablaProveedoresInformePagos.php';
+    }
+
+    public function ctr_tabla_reporteVentas(){
+        require"../../view/admin/tablas/tablaPagoPendienteProveedor.php";
     }
 
     // ==================Funciones para session==================

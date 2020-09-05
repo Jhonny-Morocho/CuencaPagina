@@ -7,7 +7,7 @@
          <!-- DATA TABLE GENERO -->
          <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Mis ventas</h3>
+          <h3 class="box-title">Mis ventas Pendiente cobrar</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -20,6 +20,7 @@
                     <th>Tipo Pago</th>
                     <th>Precio de Venta</th>
                     <th>Fecha de venta</th>
+                    <th>Estado Pago</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,7 +31,7 @@
                     $productos_vendidos=ModeloClienteProducto::sqlListarProductosVendidosProveedor(@$_SESSION['id_proveedor']);
                         foreach($productos_vendidos as $key=>$value){
 
-                            if($_SESSION['id_proveedor']==$value['idProveedor']){
+                            if($_SESSION['id_proveedor']==$value['idProveedor'] && $value['estadoPagoProveedor']==0 ){
 
                                 echo'<tr>
                                             <td>'.( $value['idProducto'] ).'</td>
@@ -40,10 +41,18 @@
                                             <td>'.( $value['idFactura'] ).'</td>
                                             <td>'.( $value['metodoCompra'] ).'</td>
                                             <td>$'.( $value['precioCompra'] ).'</td>
-                                            <td>'.( $value['fechaCompra'] ).'</td>
+                                            <td>'.( $value['fechaCompra'] ).'</td>';
                                         
-                                    </tr>' ;
+                                            
+                                            if($value['estadoPagoProveedor'] ==0){
+                                              echo'<td><small class="label  bg-yellow">Pendiente</small> </td>';
+                                        
+                                            }else{
+                                              echo ' <td><small class="label  bg-green">Pagado</small> </td>';
+                                            
+                                            }
                                     
+                                    echo"</tr>";
                                     $suma_total=$value['precioCompra']+$suma_total;
 
                             }

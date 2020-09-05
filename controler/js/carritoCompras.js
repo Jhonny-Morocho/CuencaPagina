@@ -279,3 +279,4 @@
          nuevoTotal.push(item.precio-((item.precio)*porcentajeDescuento)).toFixed(2);
        // nuevoTotal=(item.precio*0.50).toFixed(2)+nuevoTotal;
       }
+

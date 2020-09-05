@@ -90,8 +90,9 @@ class ModeloClienteProducto {
                                                         cliente_producto.idFactura,
                                                         producto.nombrePista,
                                                         cliente_producto.precioCompra,
+                                                        cliente_producto.estadoPagoProveedor,
                                                         producto.idProveedor,
-
+                                                        cliente_producto.id,
                                                         cliente_producto.fechaCompra,
                                                         cliente_producto.metodoCompra,	
                                                         cliente_producto.idCliente
@@ -121,6 +122,95 @@ class ModeloClienteProducto {
 
         $stmt->close();
 
+
+    }
+
+    //============================FILTRO PARA PAGAR  A LOS DJS O PROVEEDORES =====================//
+    //============================FILTRO PARA PAGAR  A LOS DJS O PROVEEDORES =====================//
+    //============================FILTRO PARA PAGAR  A LOS DJS O PROVEEDORES =====================//
+    //============================FILTRO PARA PAGAR  A LOS DJS O PROVEEDORES =====================//
+     //saber los productos vendidos por el proveedor fitlro
+     public static function sqlListarProductosVendidosProveedorFiltroFecha($idProveedor,$fechaInicio,$fechaFin){
+        $db=new Conexion();
+        try {
+            $stmt= $db->conectar()->prepare("SELECT
+                                                        cliente_producto.idProducto,
+                                                        cliente_producto.idFactura,
+                                                        producto.nombrePista,
+                                                        cliente_producto.precioCompra,
+                                                        cliente_producto.estadoPagoProveedor,
+                                                        producto.idProveedor,
+                                                        cliente_producto.id,
+
+                                                        cliente_producto.fechaCompra,
+                                                        cliente_producto.metodoCompra,	
+                                                        cliente_producto.idCliente
+                                                from
+                                                        cliente_producto,
+                                                        producto
+
+                                                WHERE
+                                                        producto.idProveedor='$idProveedor'
+
+                                                and     cliente_producto.idProducto=producto.id
+
+                                                and     cliente_producto.fechaCompra between  '$fechaInicio' and '$fechaFin'
+
+
+                                                ORDER by  cliente_producto.fechaCompra desc
+                ");
+
+
+                $stmt->execute();
+
+            } catch (Exception $e) {
+                $error=$e->getMessage();
+                echo $error;
+
+              }
+
+        return $stmt->fetchAll();
+
+        $stmt->close();
+
+
+    }
+
+
+    public static  function editarClienteProductoEstadoPagoProveedor($idRegistrosClienteProducto){
+
+            
+        $db=new Conexion();
+        
+        try {
+            //code...
+            $stmt= $db->conectar()->prepare("UPDATE cliente_producto SET
+                                                    estadoPagoProveedor=1
+                                                    WHERE id='$idRegistrosClienteProducto' ");
+
+            $stmt->execute();
+
+            if ( $stmt->rowCount() > 0) {
+                //Se grabo bien
+                    $respuesta=array(
+                        'respuesta'=>'exito'
+                        );
+                }else{
+                    $respuesta=array(
+                        'respuesta'=>'noExisteCambios'
+                        );
+                }
+                   
+             
+
+        } catch (Exception $e) {
+            $respuesta=array(
+                'try'=>$e->getMessage(),
+                'respuesta'=>'error'
+                );
+        }
+    return $respuesta;
+    $stmt->close();
 
     }
 
