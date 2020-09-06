@@ -123,13 +123,14 @@ $(document).ready(function(){
 
       // obtnemos los datos del formulario
       var datos=$(this).serializeArray();
-      //animacion();
+      console.log(datos);
+      animacion();
       var nodoIdClienteProducto=$('.idClienteProducto');
       var nodoNombrePista=$('.nombrePista');
       var nodoMetodoCompra=$('.metodoCompra');
       var nodoPrecioCompra=$('.precioCompra');
       var nodofechaCompra=$('.fechaCompra');
-     
+
       var arrayNodosConValorId=[];
       var arrayNodosNombrePista=[];
       var arrayNodosMetodoCompra=[];
@@ -140,16 +141,13 @@ $(document).ready(function(){
       for (let index = 0; index < nodoIdClienteProducto.length; index++) {
           arrayNodosConValorId[index]=nodoIdClienteProducto[index].innerText;
           arrayNodosNombrePista[index]=nodoNombrePista[index].innerText;
-          arrayNodosMetodoCompra=nodoMetodoCompra[index].innerText;
-          arrayNodosfechaCompra=nodofechaCompra[index].innerText;
-          arrayNodosPrecioCompra=nodoPrecioCompra[index].innerText;
+          arrayNodosMetodoCompra[index]=nodoMetodoCompra[index].innerText;
+          arrayNodosfechaCompra[index]=nodofechaCompra[index].innerText;
+          arrayNodosPrecioCompra[index]=nodoPrecioCompra[index].innerText;
           
       }
-
-      console.log(arrayNodosConValorId);
-      console.log(arrayNodosNombrePista);
-      console.log(arrayNodosMetodoCompra);
       // comprobar si existen datos para enviar caso contrario monstramos mensaje
+
         animacion();
         $.ajax({
           type:$(this).attr('method'),
@@ -159,7 +157,7 @@ $(document).ready(function(){
             metodoCompra:arrayNodosMetodoCompra,
             fechaCompra:arrayNodosfechaCompra,
             precioCompra:arrayNodosPrecioCompra,
-            FiltroPagoProveedor:'GenerarPdf'},
+            FiltroPagoProveedor:'GenerarPdf',nombreDj:datos[2].value},
           url:$(this).attr('action'),
           dataType:'text',//json
           success:function(data){

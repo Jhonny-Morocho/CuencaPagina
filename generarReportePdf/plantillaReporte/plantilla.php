@@ -1,27 +1,33 @@
 <?php
 class ClassPlantilla{
   
-  function funcionPlantilla($nombreProducto,$fechaCompra,$precioVenta,$metodoPago){
+  public static function funcionPlantilla($nombreProducto,$fechaCompra,$precioVenta,$metodoPago,$nombreDj){
 
+    $nombreDueño="Sr. Marco Arias";
+    date_default_timezone_set('America/Guayaquil');
+    $fecha_actual=date("Y-m-d");
+    $empresa="WWW.LATINEDITS.COM";
+
+    $correo="";
     
-    $htmlPlantilla='<body id="content">
+    $htmlPlantilla1='<body id="content">
       <header class="clearfix">
         <div id="logo">
-          <img src="plantillaReporte/logo.png" width="20%">
+          <img src="../generarReportePdf/plantillaReporte/logo-png-pagina.png" width="20%">
         </div>
-        <h1>INVOICE 3-2-1</h1>
+        <h1>'.$empresa.'</h1>
         <div id="company" class="clearfix">
-          <div>Company Name</div>
+          <div>'.$empresa.'</div>
           <div>455 Foggy Heights,<br /> AZ 85004, US</div>
           <div>(602) 519-0450</div>
           <div><a href="mailto:company@example.com">company@example.com</a></div>
         </div>
         <div id="project">
-          <div><span>PROJECT</span> Sr. Marco Arias </div>
-          <div><span>CLIENT</span> Nombre del dj</div>
+          <div><span>PROJECT</span>'.$nombreDueño.'</div>
+          <div><span>CLIENT</span>'.$nombreDj.'</div>
           <div><span>ADDRESS</span> 796 Silver Harbour, TX 79273, US</div>
           <div><span>EMAIL</span> <a href="mailto:john@example.com">john@example.com</a></div>
-          <div><span>DATE</span> August 17, 2015</div>
+          <div><span>DATE</span>'.'</div>
           <div><span>DUE DATE</span> September 17, 2015</div>
         </div>
       </header>
@@ -29,56 +35,49 @@ class ClassPlantilla{
         <table>
           <thead>
             <tr>
-              <th>#ID VENTA PRODUCTO</th>
+              <th>#ID</th>
               <th class="service">PRODUCTO</th>
               <th class="desc">DATE/th>
               <th>PRICE</th>
               <th>METHOD PAYMET</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td class="service">1</td>
-              <td class="desc">	Liro Liro Clean - Steady Tempo</td>
-              <td class="unit">2020-07-25</td>
-              <td class="qty">$2.99</td>
-              <td class="total">PAYPAL</td>
-            </tr>
-            <tr>
-              <td class="service">2</td>
-              <td class="desc">	Liro Liro Clean - Steady Tempo</td>
-              <td class="unit">2020-07-25</td>
-              <td class="qty">$2.99</td>
-              <td class="total">PAYPAL</td>
-            </tr>
-            </tr>
-            <tr>
-              <td class="service">Fecha de venta</td>
-              <td class="desc">Optimize the site for search engines (SEO)</td>
-              <td class="unit">$40.00</td>
-              <td class="qty">20</td>
-              <td class="total">$800.00</td>
-            </tr>
-            <tr>
-              <td class="service">Training</td>
-              <td class="desc">Initial training sessions for staff responsible for uploading web content</td>
-              <td class="unit">$40.00</td>
-              <td class="qty">4</td>
-              <td class="total">$160.00</td>
-            </tr>
-            <tr>
+          <tbody>';
+          
+        $htmlPlantillaItem="";
+        $tabla="";
+          for ($i=0; $i < count($nombreProducto); $i++) { 
+            $htmlPlantillaItem= '<tr>
+                        <td class="service">'.(count($nombreProducto)-$i).'</td>
+                        <td class="desc">'.$nombreProducto[$i].'</td>
+                        <td class="unit">'.$fechaCompra[$i].'</td>
+                        <td class="qty">'.$precioVenta[$i].'</td>
+                        <td class="total">'.$metodoPago[$i].'</td>
+                      </tr>';
+            $tabla=$htmlPlantillaItem.$tabla;
+          }
+  
+
+
+$htmlPlantillaComision='<tr>
               <td colspan="4">SUBTOTAL</td>
               <td class="total">$5,200.00</td>
-            </tr>
-            <tr>
+            </tr>';
+
+
+
+$htmlPlantillaComision='<tr>
               <td colspan="4">TAX 25%</td>
               <td class="total">$1,300.00</td>
             </tr>
             <tr>
               <td colspan="4" class="grand total">GRAND TOTAL</td>
               <td class="grand total">$6,500.00</td>
-            </tr>
-          </tbody>
+            </tr>';
+
+
+
+ $htmlPlantilla2='</tbody>
         </table>
         <div id="notices">
           <div>NOTICE:</div>
@@ -90,7 +89,7 @@ class ClassPlantilla{
       </footer>
     </body>';
   
-    return $htmlPlantilla;
+    return $htmlPlantilla1.$tabla.$htmlPlantilla2;
   
   }
   

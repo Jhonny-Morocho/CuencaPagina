@@ -33,6 +33,7 @@
                             <label for="exampleInputEmail1">Comision %</label>
                             <input type="number" class="form-control" id="exampleInputEmail1" required name="comision" value="60">
                             <input type="hidden" name="FiltroPagoProveedor" value="GenerarPdf">
+                            <input type="hidden" name="nombreDj" value="<?php echo $_GET['nombreProveedor']?>">
                         <button type="submit" class="btn bg-navy margin" title="Generar Reporte PDF"><i class="fa fa-fw fa-file-pdf-o"></i></button> 
                     </div>
                 </div>

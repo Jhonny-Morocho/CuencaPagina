@@ -29,12 +29,17 @@ switch (@$_POST['FiltroPagoProveedor']) {
              require_once'../generarReportePdf/vendor/autoload.php';
              require_once'../generarReportePdf/plantillaReporte/plantilla.php';
              $css=file_get_contents('../generarReportePdf/plantillaReporte/style.css');
+            //print_r($_POST);
+             //die(json_encode($_POST));
             
-             $mpdf = new \Mpdf\Mpdf();
-             $mpdf->WriteHTML($css,\Mpdf\HTMLParserMode::HEADER_CSS);
-             $mpdf->WriteHTML(ClassPlantilla::funcionPlantilla($nombreProducto,$fechaCompra,$precioVenta,$metodoPago),\Mpdf\HTMLParserMode::HTML_BODY);
-             $mpdf->Output();
-            die(json_encode($_POST));
+            $mpdf = new \Mpdf\Mpdf();
+            $mpdf->WriteHTML($css,\Mpdf\HTMLParserMode::HEADER_CSS);
+            $mpdf->WriteHTML(ClassPlantilla::funcionPlantilla($_POST['nombrePista'],$_POST['fechaCompra'],$_POST['precioCompra'],$_POST['metodoCompra'],$_POST['nombreDj']),\Mpdf\HTMLParserMode::HTML_BODY);
+            $mpdf->Output();
+            //$respuesta=ClassPlantilla::funcionPlantilla($_POST['nombrePista'],$_POST['fechaCompra'],$_POST['precioCompra'],$_POST['metodoCompra'],$_POST['nombreDj']);
+
+            //print_r($respuesta);
+            //die(json_encode($respuesta));
 
             //return die(json_encode($_POST));
             break;
