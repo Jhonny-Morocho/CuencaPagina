@@ -1,0 +1,9 @@
+{
+    "require": {
+        "ivan1986/dev-container": "^0.4.2",
+        "myclabs/deep-copy": "^1.10",
+        "paragonie/random_compat": "^9.99",
+        "ext-gd": "*",
+        "mpdf/mpdf": "^8.0"
+    }
+}

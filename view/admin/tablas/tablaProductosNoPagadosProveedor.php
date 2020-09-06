@@ -22,30 +22,42 @@
                     <div class="form-group col-md-4">
                         <input type="hidden" name="idProveedor" value="<?php echo $_GET['idProveedor'] ?>">
                         <input type="hidden" name="FiltroPagoProveedor" value="FiltrarFechas">
-                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                        <button type="submit" class="btn bg-purple btn-flat margin" title="Filtrar"><i class="fa fa-fw fa-search"></i></button>
                     </div>
                 </div>
             </form>
-        
-            <form role="form" class="col-md-4" method="post" action="../controler/ctrPagosProveedor.php" id="idCambiarEstado">
+            <form role="form" class="col-md-3" method="post" action="../controler/ctrPagosProveedor.php" id="idGenerarPdf" target="alt">
+                <div class="box-body ">
+                 
+                        <div class="form-group ">
+                            <label for="exampleInputEmail1">Comision %</label>
+                            <input type="number" class="form-control" id="exampleInputEmail1" required name="comision" value="60">
+                            <input type="hidden" name="FiltroPagoProveedor" value="GenerarPdf">
+                        <button type="submit" class="btn bg-navy margin" title="Generar Reporte PDF"><i class="fa fa-fw fa-file-pdf-o"></i></button> 
+                    </div>
+                </div>
+            </form>
+            
+            <form role="form" class="col-md-2" method="post" action="../controler/ctrPagosProveedor.php" id="idFormVerTodo">
+                <div class="box-body ">
+               
+                    <div class="form-group ">
+
+                        <button type="submit" class="btn bg-olive margin" title="Ver todos los resultados"><i class="fa fa-fw fa-th-list"></i></button> 
+                    </div>
+                </div>
+            </form>
+            <form role="form" class="col-md-2" method="post" action="../controler/ctrPagosProveedor.php" id="idCambiarEstado">
                 <div class="box-body ">
                     <div class="form-group ">
                     
                      
-                        <button type="submit" class="btn btn-primary">Cambiar a estado pagado</button> 
+                        <button type="submit" class="btn bg-maroon margin" title="Cambiar de estado pendiente a pagado"><i class="fa fa-fw fa-pencil"></i></i></button> 
                 
                     </div>
                 </div>
             </form>
 
-            <form role="form" class="col-md-4" method="post" action="../controler/ctrPagosProveedor.php" id="idFormVerTodo">
-                <div class="box-body ">
-                    <div class="form-group ">
-    
-                        <button type="submit" class="btn btn-primary">Ver todos los resultados</button> 
-                    </div>
-                </div>
-            </form>
         </div>
         <!-- /.box-header -->
         <div class="box-body ">
@@ -77,11 +89,11 @@
                                             <td class="idClienteProducto">'.( $value['id'] ).'</td>
                         
                                             <td>'.( $value['idFactura'] ).'</td>
-                                            <td>'.( $value['nombrePista'] ).'</td>
+                                            <td class="nombrePista">'.( $value['nombrePista'] ).'</td>
                                         
-                                            <td>'.( $value['metodoCompra'] ).'</td>
-                                            <td>$'.( $value['precioCompra'] ).'</td>
-                                            <td>'.( $value['fechaCompra'] ).'</td>';
+                                            <td class="metodoCompra">'.( $value['metodoCompra'] ).'</td>
+                                            <td class="precioCompra">$'.( $value['precioCompra'] ).'</td>
+                                            <td class="fechaCompra">'.( $value['fechaCompra'] ).'</td>';
                                         
                                             
                                             if($value['estadoPagoProveedor'] ==0){

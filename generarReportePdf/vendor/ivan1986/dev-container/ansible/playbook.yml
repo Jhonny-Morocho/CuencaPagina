@@ -1,0 +1,9 @@
+- hosts: all
+  become: yes
+  become_user: root
+  become_method: sudo
+  roles:
+    - common_system_deb
+    - mariadb_deb
+    - symfony2-site
+- hosts: all

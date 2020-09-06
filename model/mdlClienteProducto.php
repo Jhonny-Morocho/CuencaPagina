@@ -177,7 +177,7 @@ class ModeloClienteProducto {
     }
 
 
-    public static  function editarClienteProductoEstadoPagoProveedor($idRegistrosClienteProducto){
+    public static  function editarClienteProductoEstadoPagoProveedor($idRegistrosClienteProducto,$estado){
 
             
         $db=new Conexion();
@@ -185,7 +185,7 @@ class ModeloClienteProducto {
         try {
             //code...
             $stmt= $db->conectar()->prepare("UPDATE cliente_producto SET
-                                                    estadoPagoProveedor=1
+                                                    estadoPagoProveedor='$estado'
                                                     WHERE id='$idRegistrosClienteProducto' ");
 
             $stmt->execute();
