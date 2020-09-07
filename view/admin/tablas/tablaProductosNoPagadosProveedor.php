@@ -115,7 +115,7 @@
         </table>
         <div class="small-box bg-aqua">
             <div class="inner">
-              <h3 class="sumaTotal"><?php echo "Suma total: $ ".$suma_total;?></h3>
+              <h3 class="sumaTotal"><? echo$suma_total;?></h3>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>

@@ -96,17 +96,17 @@
         </script>
 
           <script type="text/javascript">
-            $(document).ready(function () {
-                //Disable full page
-                $("body").on("contextmenu",function(e){
-                    return false;
-                });
+            // $(document).ready(function () {
+            //     //Disable full page
+            //     $("body").on("contextmenu",function(e){
+            //         return false;
+            //     });
               
-                //Disable part of page
-                $("#id").on("contextmenu",function(e){
-                    return false;
-                });
-            });
+            //     //Disable part of page
+            //     $("#id").on("contextmenu",function(e){
+            //         return false;
+            //     });
+            // });
 
           $(document).keydown(function (event) {
                   if (event.keyCode == 123) { // Prevent F12

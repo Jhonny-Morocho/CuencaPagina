@@ -104,6 +104,7 @@ $descripcionProducto="";
                 print_r(json_decode($pce->getData()));
                 exit;
                 echo"</pre>";
+                
             }
             
             $aprobado=$pago->getApprovalLink();
@@ -113,7 +114,6 @@ $descripcionProducto="";
                              'respuesta'=>'exito',
                             'tipoRespuesta'=>'paypal',
                             'totoal_cancelar'=>@$_POST['totalCancelar']);
-        
              die(json_encode($respuesta));
     }
    

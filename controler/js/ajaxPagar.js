@@ -54,7 +54,7 @@ $("#idFormCarrito").on('submit',function(e){
 
 
 function enviarDatosPasarelaPago(datos){
-    //console.log(datos);
+    console.log(datos);
     animacion();
     $.ajax({
 
@@ -66,7 +66,7 @@ function enviarDatosPasarelaPago(datos){
         processData:false,
         dataType:data_type,//json//data_type
         success:function(data){
-            //console.log(data);
+            console.log(data);
 
             switch (data.respuesta) {
                 case 'noExiseLogin':
