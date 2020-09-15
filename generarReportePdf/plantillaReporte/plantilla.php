@@ -31,7 +31,7 @@ class ClassPlantilla{
             <tr>
               <th>#ID</th>
               <th class="service">PRODUCTO</th>
-              <th class="desc">DATE/th>
+              <th class="desc">DATE</th>
               <th>PRICE</th>
               <th>METHOD PAYMET</th>
             </tr>

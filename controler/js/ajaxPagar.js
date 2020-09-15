@@ -64,7 +64,7 @@ function enviarDatosPasarelaPago(datos){
         cache:false,
         contentType:false,
         processData:false,
-        dataType:data_type,//json//data_type
+        dataType:'text',//json//data_type
         success:function(data){
             console.log(data);
 

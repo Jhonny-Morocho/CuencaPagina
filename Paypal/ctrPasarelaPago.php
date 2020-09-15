@@ -112,6 +112,7 @@ $descripcionProducto="";
             //print_r($_POST);
             $respuesta=array('urlPaypal'=>$aprobado,
                              'respuesta'=>'exito',
+                             '$pce'=>$pce,
                             'tipoRespuesta'=>'paypal',
                             'totoal_cancelar'=>@$_POST['totalCancelar']);
              die(json_encode($respuesta));

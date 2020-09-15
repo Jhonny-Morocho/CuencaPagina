@@ -1,7 +1,7 @@
 <?php 
           ini_set('display_errors', 'On');
           //validacion de campos
-  
+          require'../../model/mdlGenero.php';
           
           $respuestaValidacionBuscador=Pagination::validarCamposBuscador(@$_GET['busqueda']);
           
@@ -211,6 +211,7 @@
                             <option value="" >GENER</option>
                             <!--777 <option value="1" selected>Feedback</option> -->
                             <?php 
+                            
                                 $genero=ModeloGenero::sql_lisartar_genero();
                             
                                 foreach($genero as $key=>$value){ ?>

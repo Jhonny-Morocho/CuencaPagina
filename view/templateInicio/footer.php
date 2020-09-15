@@ -50,7 +50,9 @@
 
 </body>
         <!-- jQuery -->
-       <script type="text/javascript" src="js/jquery.min.js?v=1.0.0"></script> 
+           <!-- UNDER LINE  -->
+           <script type="text/javascript" src="js/jquery.min.js?v=1.0.0"></script> 
+            <script src="../../underline/underline.js"></script>
       
         <!-- Bootstrap tooltips -->
         <script type="text/javascript" src="js/popper.min.js?v=1.0.0"></script>
@@ -85,6 +87,9 @@
          <script type="text/javascript" src="../../Toast-Notification/src/bootoast.js?v=1.0.0"></script> 
          <link rel="stylesheet" href="../../Toast-Notification/src/bootoast.css?v=1.0.0">
 
+     
+ 
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167467233-1"></script>
         <script>
@@ -108,13 +113,13 @@
             //     });
             // });
 
-          $(document).keydown(function (event) {
-                  if (event.keyCode == 123) { // Prevent F12
-                      return false;
-                  } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
-                      return false;
-                  }
-              });
+          // $(document).keydown(function (event) {
+          //         if (event.keyCode == 123) { // Prevent F12
+          //             return false;
+          //         } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
+          //             return false;
+          //         }
+          //     });
           </script>
           
             <!-- Facebook Pixel Code -->
@@ -139,3 +144,20 @@
 
 </html>        
 
+
+
+<!-- 
+This is a React.js app
+
+ORIGINAL DEMO CAN BE SEEN HERE:
+https://text-hover-effects.herokuapp.com/
+
+CODE CAN BE FOUND HERE:
+https://github.com/tonkec/text_hover_effects/
+-->
+
+
+
+</body>
+
+</html>

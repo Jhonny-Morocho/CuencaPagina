@@ -147,54 +147,8 @@
 <div class="container-fluid">
       <div class="row">
 
-          <div class="col-lg-3 containerTopViral" >
-
-            <div class="row">
-                <div class="col-lg-12">
-                <section>
-                  <li class="list-group-item active">TOP VIRAL</li>
-                  <ul class="list-group" style="max-width: 22rem;">
-                  
-                    <?php 
-                        require'model/mdlClienteProducto.php';
-                        $clienteProductos=ModeloClienteProducto::sqlListarTop(); 
-                        //print_r($clienteProductos);
-
-                
-                    ?>
-
-                    <?php $cont=1; foreach ($clienteProductos as $key => $value) { ?>
-
-                      <?php   if($cont<13) { ?>
-                        <li class="list-group-item">
-                          <div class="media">
-                              <span class="media-left ">
-                                  <img src="../../img/proveedores/<?php echo $value['img'] ?>" alt="...">
-                              
-                              </span>
-                              <div class="media-body">
-                                <p><?php echo $value['nombrePista'] ?></p>
-                                <p>$<?php echo $value['precio'] ?></p>
-                                <div class="ratings">
-                                    <span class="good"><i class="fa fa-star"></i></span>
-                                    <span class="good"><i class="fa fa-star"></i></span>
-                                    <span class="good"><i class="fa fa-star"></i></span>
-                                    <span class="good"><i class="fa fa-star"></i></span>
-                                    <span><i class="fa fa-star"></i></span>
-                                </div>
-                              </div>
-                          </div>
-                        </li>
-                      <?php  $cont++; } ?>
-                      <?php } ?>
-                  </ul>
-                  </section>
-                </div>
-            </div>
-           
-          </div> 
-         
-          <div class="col-lg-9">
+  
+          <div class="col-lg-12">
              <div class="col-lg-12 ">
                   <form class="text-center " style="color: #757575;" method="get" action="../../">
         
@@ -298,69 +252,75 @@
              </div>
        
                 <!-- </div>
+                
               </div> -->
-              <table id="dtBasicExample" class="table  table-striped table-bordered table-sm table-hover table-dark" cellspacing="0" width="100%">
-             
-                <thead class="tablaCabezera">
-                    <tr>
-                    <th >DATE</th>
-                    <th >REMIXER</th>
-                    <th >ARTIST</th>
-                    <th >TITLE</th>
-                    <th >BPM</th>
-                    <th >GENER</th>
-                    <th >PLAY/BUY/PRICE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach (Pagination::show_rows("id") as $row): ?>
-                    <?php  $banderaError=false; if( $row['apodo']!== 'Error: vacío' ){ ?>
-                        <tr>
-                          <th><?php echo $row['fecha']?></th>
-                          <td><?php echo $row['apodo']?></td>
-                          <td title="<?php echo $row['artista']?>"><?php echo $row['artista']?></td>
-                          <td title="<?php echo $row['nombrePista']?>"><?php echo $row['nombrePista']?></td>
-                          <td><?php echo $row['bpm']?></td>
-                          <td><?php echo $row['genero']?></td>
-                          <td>
-                             <div class="cotenedorBuy" >
-                                <div class="row">
-                                     <div class="col-lg-4 reproducirContenedor" data-demo="../../editDemos/<?php echo $row['demo']?>">
-                                        <span class="reproducir">
-                                          <i class="fa fa-play-circle" aria-hidden="true"></i>
-                                        </span>
-                                      </div>
 
-                                      <div  class="col-lg-3 buy " data-id="<?php echo $row['id']?>" data-nombre="<?php echo $row['nombrePista']?>" data-precio="<?php echo $row['precio']?>">
-                                          <span class="addcarrito">
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                          </span>
-                                      </div>
 
-                                      <div class="col-lg-5 price">
-                                          <!-- <button class="btn btn-primary text-nowrap" type="button">
-                                            <span class="spinner-border spinner-border-sm mr-2"></span>
-                                            Enviando datos...
-                                          </button> -->
-                                          <span class="precio">$
-                                            <?php echo $row['precio']?>
-                                          </span>
-                                      </div>
-                                      
-                                </div>
-                             </div>
-                          </td>
-                        </tr>
-                    <?php }else{
-                          echo '<div class="alert alert-primary" role="alert">
-                                  No existe resultado para la cadena de busqueda 
-                              </div>';
-                          $banderaError=true;
-                      } ?>	
-                  <?php endforeach; ?>
-                </tbody>
+        <div class="likes-this">
+                Ty Stelmach listens to this 
+          <a class="tooltips" href="#">
+            <span>Ty Stelmach</span>
+          <img class="tooltips" src="https://scontent.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/10998045_1798369970387402_1856748562792294014_n.jpg?oh=fbc7eca2fe190f5919fa121836e5814c&oe=55DA3885"></a>
+          </div>
+          
+        <section id="first-tab-group" class="tabgroup">
+            <div class="overview playlist" id="tab1">
+            <div class="popular">
+                <h4>Popular</h4>
+                <ul class="popular-songs">
+                    <li><div class="album-cover"><img src="http://newnoisemagazine.com/wp-content/uploads/2014/04/Expire-Pretty-Low-cover.jpg"></div> <span class="number" onClick = "newSrc = 'http://bridge9.bandcamp.com/track/pretty-low'; playTrack()"><span>1</span></span> <span>+</span><span class="title">Pretty Low</span><span class="misc"><i class="fa fa-ellipsis-h"></i></span><span class="total-plays">163,957</span></li>
+                    
+                    <li><div class="album-cover"><img src="https://f1.bcbits.com/img/a1012212014_10.jpg"></div> <span class="number"><span>2</span></span> <span>+</span><span class="title">Just Fine</span><span class="explicit">explicit</span><span class="misc"><i class="fa fa-ellipsis-h"></i></span><span class="total-plays">288,903</span></li>
+                    
+                    <li><div class="album-cover"><img src="https://f1.bcbits.com/img/a1012212014_10.jpg"></div> <span class="number"><span>3</span></span> <span>+</span><span class="title">Abyss</span><span class="misc"><i class="fa fa-ellipsis-h"></i></span><span class="total-plays">230,744</span></li>
+                    
+                    <li><div class="album-cover"><img src="http://newnoisemagazine.com/wp-content/uploads/2014/04/Expire-Pretty-Low-cover.jpg"></div> <span class="number"><span>4</span></span> <span>+</span><span class="title">Just Don't</span><span class="misc"><i class="fa fa-ellipsis-h"></i></span><span class="total-plays">110,322</span></li>
+                    
+                    <li><div class="album-cover"><img src="https://f1.bcbits.com/img/a1012212014_10.jpg"></div> <span class="number"><span>5</span></span> <span>+</span><span class="title">Spit Out</span><span class="explicit">explicit</span><span class="misc"><i class="fa fa-ellipsis-h"></i></span><span class="total-plays">193,433</span></li>
+                    <ul class="five-more popular-songs" style="display: none;">
+                    <li><div class="album-cover"><img src="http://newnoisemagazine.com/wp-content/uploads/2014/04/Expire-Pretty-Low-cover.jpg"></div> <span class="number"><span>6</span></span> <span>+</span><span class="title">Fiction</span><span class="misc"><i class="fa fa-ellipsis-h"></i></span><span class="total-plays">92,666</span></li>
+                    
+                    <li><div class="album-cover"><img src="http://newnoisemagazine.com/wp-content/uploads/2014/04/Expire-Pretty-Low-cover.jpg"></div> <span class="number"><span>7</span></span> <span>+</span><span class="title">Gravity</span><span class="misc"><i class="fa fa-ellipsis-h"></i></span><span class="total-plays">88,384</span></li>
+                    
+                    <li><div class="album-cover"><img src="http://newnoisemagazine.com/wp-content/uploads/2014/04/Expire-Pretty-Low-cover.jpg"></div> <span class="number"><span>8</span></span> <span>+</span><span class="title">Forgetting</span><span class="misc"><i class="fa fa-ellipsis-h"></i></span><span class="total-plays">81,923</span></li>
+                    
+                    <li><div class="album-cover"><img src="http://newnoisemagazine.com/wp-content/uploads/2014/04/Expire-Pretty-Low-cover.jpg"></div> <span class="number"><span>4</span></span> <span>+</span><span class="title">Old Habits</span><span class="misc"><i class="fa fa-ellipsis-h"></i></span><span class="total-plays">78,636</span></li>
+                    
+                    <li class="doubles"><div class="album-cover"><img src="https://f1.bcbits.com/img/a1012212014_10.jpg"></div> <span class="number"><span>10</span></span> <span class="plus">+</span><span class="title">Reputation</span><span class="misc"><i class="fa fa-ellipsis-h"></i></span><span class="total-plays">174,608</span></li>
+                    </ul>
+                    <button id="show-five">Show 5 More</button>
 
-                </table>
+                </ul>
+            </div>
+                        
+            <div class="related-artist">
+                <h4>Related Artist</h4>
+                <ul>
+                    <li><div class="album-cover"><img src="https://revhq.com/images/covers/250/reap048.jpg"></div><span class="title">Backtrack</span></li>
+                    <li><div class="album-cover"><img src="https://f1.bcbits.com/img/a2096683780_10.jpg"></div><span class="title">Suburban Scum</span></li>
+                    <li><div class="album-cover"><img src="http://blowthescene.com/files/2011/09/Rotting-Out-street-prowl-cover.jpg"></div><span class="title">Rotting Out</span></li>
+                    <li><div class="album-cover"><img src="https://f1.bcbits.com/img/0001314837_10.jpg"></div><span class="title">Incendiary</span></li>
+                    <li><div class="album-cover"><img src="http://www.metalkingdom.net/album/cover/d38/71614_twitching_tongues_demo_2010.jpg"></div><span class="title">Twitching Tongues</span></li>
+                    <ul class="five-more" style="display: none;">
+                    <li><div class="album-cover"><img src="http://lgoat.com/i/news/Turnstile_nonstop_feeling_cover.jpg"></div><span class="title">Turnstile</span></li>
+                    <li><div class="album-cover"><img src="http://www.altpress.com/images/uploads/news/Cruel_Hand_-_The_Negatives.jpg"></div><span class="title">Cruel Hand</span></li>
+                    <li><div class="album-cover"><img src="http://i.ytimg.com/vi/vF67KfKQ7EY/hqdefault.jpg"></div><span class="title">Dead End Path</span></li>
+                    <li><div class="album-cover"><img src="http://www.metalsucks.net/wp-content/uploads/2012/08/Xibalba-Hasta-La-Muerte.jpeg"></div><span class="title">Xibalba</span></li>
+                    </ul>
+                </ul>
+            </div>  
+    
+
+
+
+
+
+
+
+
+
+
+ 
 
                 <div class="d-flex justify-content-center">
                   <?php if( $banderaError==false){  // si no exite resultado osea marcar erro entonces no presentra paginacion?>

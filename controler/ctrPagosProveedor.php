@@ -15,7 +15,7 @@ switch (@$_POST['FiltroPagoProveedor']) {
         require'../model/conexion.php';
         require'../model/mdlClienteProducto.php';
     
-        print_r($_POST['idProductos']);
+
          for ($i=0; $i < count(($_POST['idProductos'])); $i++) { 
            
              ModeloClienteProducto::editarClienteProductoEstadoPagoProveedor($_POST['idProductos'][$i],1);
@@ -30,7 +30,7 @@ switch (@$_POST['FiltroPagoProveedor']) {
             require'../model/conexion.php';
             require'../model/mdlClienteProducto.php';
         
-            print_r($_POST['idProductos']);
+     
              for ($i=0; $i < count(($_POST['idProductos'])); $i++) { 
                
                  ModeloClienteProducto::editarClienteProductoEstadoPagoProveedor($_POST['idProductos'][$i],0);

@@ -142,12 +142,9 @@ class ControladorPlantillaInicio{
             
         // }
 
-        // public static function contadorOferta(){
-   
-        //     require"ContadorOferta/contadorOferta.php";
-            
-        // }
-
+        public static function toTop(){
+            require "blackTotop/toTop.php";
+        }
 
         
 

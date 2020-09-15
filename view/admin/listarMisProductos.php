@@ -5,7 +5,7 @@
  require'../../model/conexion.php';
  require'../../model/mdlProducto.php';
  require'modales/editarProducto.php';
- //require'../../model/mdlGenero.php';
+
  //require'../../controler/crtGenero.php';
 
 //===============Paginacion=========================//

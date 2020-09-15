@@ -13,11 +13,12 @@ require'model/mdlGenero.php';
 require_once 'controler/ctrTemplateInicio.php';
 $plantilla= new ControladorPlantillaInicio();
 $plantilla->ctr_header();
-$plantilla->formLoginCliente();
+// $plantilla->formLoginCliente();
 $plantilla->ctr_slider();
 $plantilla->reproductorAudio();
 $plantilla->ctr_tabla_productos();
 $plantilla->ctr_footer();
+$plantilla->toTop();
 
 ?>
 
