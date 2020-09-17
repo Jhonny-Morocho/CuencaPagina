@@ -87,8 +87,9 @@
          <script type="text/javascript" src="../../Toast-Notification/src/bootoast.js?v=1.0.0"></script> 
          <link rel="stylesheet" href="../../Toast-Notification/src/bootoast.css?v=1.0.0">
 
-     
- 
+        <!-- ===================================SILIDER CON IMAGNES ============================== -->
+        <script src="../../Logo-carousel/js/jquery.rcbrand.js"></script>
+        <script src="../../Logo-carousel/js/sliderConImagenes.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167467233-1"></script>

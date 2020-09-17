@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0">
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+</head>
+<style>
+    *, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+html, body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+  font-display: auto;
+  color: rgba(255, 255, 255, 0.7);
+  background: #1e1e1e;
+  scrollbar-width: none;
+  overflow-y: hidden; }
+
+main {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 1600px;
+  min-height: 100vh;
+  margin: 0 auto;
+  overflow-x: hidden;
+  position: relative;
+  font-size: 12px;
+  letter-spacing: .25px;
+  scrollbar-width: none; }
+
+a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  outline: none; }
+
+h1 {
+  width: 100%;
+  font-weight: 700;
+  line-height: 3;
+  font-size: 24px;
+  text-align: center;
+  color: #ffffff; }
+  @media (min-width: 768px) {
+    h1 {
+      font-size: 40px;
+      text-align: left; } }
+
+h3 {
+  font-size: 10px;
+  letter-spacing: 1px; }
+
+::-webkit-scrollbar {
+  width: 0; }
+
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 15px; }
+  ::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background: #191919; }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3); }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.6); } }
+
+
+
+
+
+
+.song {
+  width: 100%;
+  height: 100vmax;
+  margin-top: 45px;
+  padding: 0 20px 80px;
+  position: relative;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-image: linear-gradient(to bottom, #2c2c2c, #1e1e1e 20%);
+  scrollbar-width: none; }
+  @media (min-width: 768px) {
+    .song {
+      width: calc(100% - 200px);
+      height: calc(100vh - 60px - 45px);
+      padding: 0 40px 20px;
+      scrollbar-width: auto;
+      scrollbar-color: rgba(255, 255, 255, 0.3) #191919; } }
+
+
+
+.account__search, .account__info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap; }
+
+.account__menu {
+  transform: rotate(90deg); }
+
+.account__settings {
+  background: #191919;
+  position: absolute;
+  top: 45px;
+  right: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-wrap: nowrap; }
+
+.account__item-settings {
+  height: 40px;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-wrap: nowrap; }
+  .account__item-settings:hover {
+    background: #2c2c2c; }
+
+.account__input {
+  width: 175px;
+  height: 25px;
+  padding-left: 20px;
+  margin-left: 5px;
+  background: #ffffff;
+  border: 0;
+  outline: 0;
+  border-radius: 25px;
+  display: none; }
+  @media (min-width: 768px) {
+    .account__input {
+      display: flex; } }
+
+.account__arrow {
+  height: 30px;
+  width: 30px;
+  margin: 0 5px; }
+  .account__arrow:nth-of-type(1) {
+    transform: rotate(180deg); }
+  .account__arrow:nth-of-type(2) {
+    opacity: .2; }
+
+.account__title {
+  font-weight: 400;
+  letter-spacing: .5px; }
+
+.account__photo {
+  height: 30px;
+  width: 30px;
+  margin-right: 15px;
+  border-radius: 50%; }
+
+.bar__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  z-index: 200;
+  border-radius: 50%;
+  background: #00d76a;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  transition: all .5s ease; }
+  @media (min-width: 768px) {
+    .bar__container {
+      display: none; } }
+
+.bar__line {
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: #ffffff; }
+  .bar__line:nth-of-type(2) {
+    transform: rotate(90deg); }
+
+.playlist__list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 100%;
+  padding-bottom: 20px; }
+
+.playlist__subtitle {
+  padding: 20px 0 10px 24px;
+  letter-spacing: 2px;
+  font-weight: 300; }
+
+.playlist__item {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 16px;
+  width: 100%;
+  padding-left: 20px;
+  margin: 7px 0;
+  border-left: 4px solid transparent; }
+  .playlist__item:hover {
+    color: #ffffff; }
+
+.player__current {
+  display: none; }
+  @media (min-width: 768px) {
+    .player__current {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      flex-wrap: wrap;
+      height: 100%;
+      min-width: 250px;
+      flex-grow: 1; } }
+
+.player__settings {
+  display: none; }
+  @media (min-width: 768px) {
+    .player__settings {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      height: 100%;
+      min-width: 250px;
+      padding-right: 20px;
+      flex-grow: 1; } }
+
+.player__menu {
+  min-width: 100%;
+  padding: 10px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap; }
+  @media (min-width: 768px) {
+    .player__menu {
+      padding: 0;
+      height: 100%;
+      min-width: 350px; } }
+
+.player__photo {
+  height: 50px;
+  width: 50px;
+  margin: 5px;
+  background: url("https://github.com/ricardoolivaalonso/Spotify/blob/master/img/album.jpeg?raw=true");
+  background-repeat: no-repeat;
+  background-size: contain; }
+
+.player__song, .player__artist {
+  width: 100%;
+  line-height: 2;
+  margin: 0 5px; }
+
+.player__song {
+  color: #ffffff; }
+
+.player__control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%; }
+
+.player__icon {
+  width: 13px;
+  height: 13px;
+  margin: 0 17.5px;
+  opacity: .7; }
+  .player__icon:nth-of-type(2) {
+    transform: rotate(180deg); }
+  .player__icon:nth-of-type(3) {
+    width: 17px;
+    height: 17px; }
+  .player__icon:hover {
+    opacity: 1; }
+
+.player__time {
+  width: 100%;
+  max-width: 530px;
+  height: 4px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  margin-top: 15px; }
+  .player__time::before {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.6); }
+  @media (min-width: 768px) {
+    .player__time::after {
+      content: '3:06';
+      position: absolute;
+      top: -5px;
+      left: -35px;
+      font-size: 10px; } }
+
+.player__volume {
+  width: 100%;
+  max-width: 70px;
+  height: 4px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  margin-left: 15px; }
+  .player__volume::before {
+    content: '';
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.7); }
+
+.song__generic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap; }
+  @media (min-width: 768px) {
+    .song__generic {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+      flex-wrap: nowrap; } }
+
+.song__item {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 55px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 5px 0;
+  color: #ffffff;
+  position: relative;
+  cursor: pointer; }
+  @media (min-width: 768px) {
+    .song__item {
+      margin: 0;
+      height: 42px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: row;
+      flex-wrap: nowrap; }
+      .song__item:hover::before {
+        content: '';
+        position: absolute;
+        height: 15px;
+        width: 15px;
+        top: 12.5px;
+        left: 20px;
+        background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMiIgZD0ibTQuOTkzLDIuNDk2Yy0wLjQ3NywtMC4yNzMgLTAu%0D%0AOTkzLC0wLjA0NiAtMC45OTMsMC41MDRsMCwyNmMwLDAuNTUgMC41MTYsMC43NzcgMC45OTMsMC41%0D%0AMDRsMjIuODI2LC0xMy4wMDhjMC40NzgsLTAuMjczIDAuNDQ2LC0wLjcxOSAtMC4wMzEsLTAuOTky%0D%0AbC0yMi43OTUsLTEzLjAwOHoiLz4KICA8cGF0aCBmaWxsPSIjZmZmZmZmIiBpZD0ic3ZnXzMiIGQ9%0D%0AIm00LjU4NSwzMC42MmwwLDBjLTAuOTA0LDAgLTEuNTg1LC0wLjY5NyAtMS41ODUsLTEuNjJsMCwt%0D%0AMjZjMCwtMC45MjMgMC42ODEsLTEuNjIgMS41ODUsLTEuNjJjMC4zMDksMCAwLjYyMSwwLjA4NSAw%0D%0ALjkwNCwwLjI0OGwyMi43OTQsMTMuMDA3YzAuNTU5LDAuMzE5IDAuODc4LDAuODIzIDAuODc4LDEu%0D%0AMzgyYzAsMC41NDggLTAuMzA5LDEuMDM5IC0wLjg0NywxLjM0N2wtMjIuODI2LDEzLjAwOWMtMC4y%0D%0AODIsMC4xNjEgLTAuNTk0LDAuMjQ3IC0wLjkwMywwLjI0N3ptMC40MTUsLTI2Ljk2OWwwLDI0LjY5%0D%0AOGwyMS42NTUsLTEyLjM0bC0yMS42NTUsLTEyLjM1OHoiLz4KIDwvZz4KPC9zdmc+");
+        background-repeat: no-repeat;
+        background-size: contain; }
+      .song__item:hover {
+        background: #2c2c2c; } }
+
+.song__th {
+  display: none; }
+  @media (min-width: 768px) {
+    .song__th {
+      display: flex;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: #1e1e1e; } }
+
+.song__button {
+  width: 150px;
+  height: 30px;
+  background: #00cd65;
+  color: #ffffff;
+  border: 0;
+  outline: 0;
+  border-radius: 30px;
+  font-size: 11px;
+  letter-spacing: 2px; }
+  .song__button:hover {
+    background: #00d76a;
+    transform: scale(1.06);
+    transition: all .3s; }
+
+.song__input {
+  width: 100%;
+  height: 40px;
+  margin: 20px 0;
+  padding-left: 20px;
+  background: none;
+  border: 0;
+  outline: 0;
+  color: #ffffff;
+  border-radius: 3px;
+  position: relative;
+  background: #2c2c2c; }
+  @media (min-width: 768px) {
+    .song__input {
+      background: none; }
+      .song__input:focus {
+        background: #2c2c2c; } }
+
+.song__like {
+  display: none; }
+  @media (min-width: 768px) {
+    .song__like {
+      display: flex;
+      width: 15px;
+      height: 15px;
+      margin-left: 60px; } }
+  .song__like:hover {
+    opacity: .5; }
+
+@media (min-width: 768px) {
+  .song__title {
+    width: auto;
+    flex-grow: 1;
+    min-width: 200px;
+    padding: 0 20px;
+    overflow: hidden; } }
+
+.song__artist {
+  color: rgba(255, 255, 255, 0.7); }
+  @media (min-width: 768px) {
+    .song__artist {
+      color: #ffffff;
+      min-width: 170px;
+      overflow: hidden; } }
+
+.song__album {
+  display: none; }
+  @media (min-width: 768px) {
+    .song__album {
+      min-width: 220px;
+      overflow: hidden;
+      display: flex; } }
+
+.song__date {
+  display: none; }
+  @media (min-width: 768px) {
+    .song__date {
+      min-width: 150px;
+      overflow: hidden;
+      display: flex; } }
+
+.song__duration {
+  display: none; }
+  @media (min-width: 768px) {
+    .song__duration {
+      min-width: 50px;
+      overflow: hidden;
+      display: flex; } }
+
+.song__switch {
+  display: none; }
+  @media (min-width: 768px) {
+    .song__switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px; } }
+
+.song__switch input {
+  opacity: 0;
+  width: 0;
+  height: 0; }
+
+/* https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #1e1e1e;
+  border: 1px solid #2c2c2c;
+  -webkit-transition: .4s;
+  transition: .4s; }
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 19px;
+  width: 19px;
+  left: 0px;
+  bottom: 0px;
+  background-color: #ffffff;
+  border: 1px solid transparent;
+  -webkit-transition: .4s;
+  transition: .4s; }
+
+input:checked + .slider {
+  background-color: #00d76a; }
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #191919; }
+
+input:checked + .slider:before {
+  transform: translateX(26px); }
+
+.slider.round {
+  border-radius: 20px; }
+
+.slider.round:before {
+  border-radius: 50%; }
+
+.is-active {
+  border-left: 4px solid #00d76a; }
+
+.is-hide {
+  transform: translateX(150vw);
+  transition: all .2s;
+  height: 0;
+  opacity: 0; }
+
+.is-x100 {
+  transform: translateX(150vw);
+  transition: all .2s; }
+
+.is-x0 {
+  transform: translateX(0);
+  transition: all .3s; }
+
+.playlist-show {
+  transform: translateX(0);
+  transition: all .3s ease; }
+
+.is-plus {
+  transition: all .5s ease;
+  transform: rotate(1turn); }
+
+.is-minor {
+  transition: all .5s ease;
+  transform: rotate(-0.625turn); }
+
+</style>
+<body>
+    <main class="main" id="main">
+
+        <div class="bar" id="bar">
+            <div class="bar__container rotate-right" id="bar__container">
+                <div class="bar__line"></div>
+                <div class="bar__line"></div>
+            </div>
+        </div>
+     
+
+        <div class="song__item"><img class="song__like" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMiIgZD0ibTI3LjYxNSw1LjU5OGMtMy4yMDYsLTMuMjA4IC04%0D%0ALjQwNCwtMy4yMTEgLTExLjYxMiwtMC4wMDZjLTMuMjA1LC0zLjIwOCAtOC40MDUsLTMuMjEgLTEx%0D%0ALjYxMSwtMC4wMDVjLTMuMjA5LDMuMjA0IC0zLjIxMiw4LjQwMyAtMC4wMDcsMTEuNjExbDExLjYw%0D%0ANywxMS42MThsMTEuNjE2LC0xMS42MDZjMy4yMDksLTMuMjA1IDMuMjEyLC04LjQwNCAwLjAwNywt%0D%0AMTEuNjEyeiIvPgogIDxwYXRoIGZpbGw9IiNmZmZmZmYiIGlkPSJzdmdfMyIgZD0ibTE1Ljk5MSwz%0D%0AMC4yM2wtMTIuMzEzLC0xMi4zMjVjLTEuNzM5LC0xLjc0MSAtMi42OTYsLTQuMDU1IC0yLjY5NSwt%0D%0ANi41MTVjMC4wMDIsLTIuNDYgMC45NjIsLTQuNzcyIDIuNzAyLC02LjUxMWMxLjczOCwtMS43Mzcg%0D%0ANC4wNSwtMi42OTQgNi41MDksLTIuNjk0YzIuMTQzLDAgNC4xNzMsMC43MjYgNS44MTEsMi4wNjJj%0D%0AMS42MzYsLTEuMzMyIDMuNjYzLC0yLjA1NiA1LjgwMiwtMi4wNTZjMi40NjIsMCA0Ljc3NiwwLjk1%0D%0AOSA2LjUxNywyLjcwMWMxLjczOSwxLjc0MSAyLjY5Niw0LjA1NCAyLjY5NSw2LjUxNWMtMC4wMDIs%0D%0AMi40NiAtMC45NjIsNC43NzMgLTIuNzAyLDYuNTEybC0xMi4zMjYsMTIuMzExem0tNS43OTgsLTI2%0D%0ALjA0NWMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUuMDk1LDIuMTA5Yy0xLjM2MywxLjM2MiAtMi4x%0D%0AMTQsMy4xNzIgLTIuMTE2LDUuMDk4Yy0wLjAwMSwxLjkyNiAwLjc0OCwzLjczNyAyLjEwOSw1LjFs%0D%0AMTAuOTAxLDEwLjkxbDEwLjkwOCwtMTAuOWMxLjM2MywtMS4zNjEgMi4xMTQsLTMuMTcxIDIuMTE2%0D%0ALC01LjA5OGMwLjAwMSwtMS45MjYgLTAuNzQ4LC0zLjczNyAtMi4xMDksLTUuMWMtMS4zNjMsLTEu%0D%0AMzYzIC0zLjE3NSwtMi4xMTQgLTUuMTAzLC0yLjExNGMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUu%0D%0AMDk2LDIuMTA5bC0wLjcwOCwwLjcwN2wtMC43MDYsLTAuNzA3Yy0xLjM2LC0xLjM2MyAtMy4xNzMs%0D%0ALTIuMTE0IC01LjEwMSwtMi4xMTR6Ii8+CiA8L2c+Cjwvc3ZnPg=="
+                alt="Ícono de like">
+            <div class="song__title">La Flaca</div>
+            <div class="song__artist">Jarabe De Palo</div>
+            <div class="song__album">La Flaca</div>
+            <div class="song__date">hace 12 días</div>
+            <div class="song__duration">4:21</div>
+        </div>
+        <div class="song__item"><img class="song__like" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMiIgZD0ibTI3LjYxNSw1LjU5OGMtMy4yMDYsLTMuMjA4IC04%0D%0ALjQwNCwtMy4yMTEgLTExLjYxMiwtMC4wMDZjLTMuMjA1LC0zLjIwOCAtOC40MDUsLTMuMjEgLTEx%0D%0ALjYxMSwtMC4wMDVjLTMuMjA5LDMuMjA0IC0zLjIxMiw4LjQwMyAtMC4wMDcsMTEuNjExbDExLjYw%0D%0ANywxMS42MThsMTEuNjE2LC0xMS42MDZjMy4yMDksLTMuMjA1IDMuMjEyLC04LjQwNCAwLjAwNywt%0D%0AMTEuNjEyeiIvPgogIDxwYXRoIGZpbGw9IiNmZmZmZmYiIGlkPSJzdmdfMyIgZD0ibTE1Ljk5MSwz%0D%0AMC4yM2wtMTIuMzEzLC0xMi4zMjVjLTEuNzM5LC0xLjc0MSAtMi42OTYsLTQuMDU1IC0yLjY5NSwt%0D%0ANi41MTVjMC4wMDIsLTIuNDYgMC45NjIsLTQuNzcyIDIuNzAyLC02LjUxMWMxLjczOCwtMS43Mzcg%0D%0ANC4wNSwtMi42OTQgNi41MDksLTIuNjk0YzIuMTQzLDAgNC4xNzMsMC43MjYgNS44MTEsMi4wNjJj%0D%0AMS42MzYsLTEuMzMyIDMuNjYzLC0yLjA1NiA1LjgwMiwtMi4wNTZjMi40NjIsMCA0Ljc3NiwwLjk1%0D%0AOSA2LjUxNywyLjcwMWMxLjczOSwxLjc0MSAyLjY5Niw0LjA1NCAyLjY5NSw2LjUxNWMtMC4wMDIs%0D%0AMi40NiAtMC45NjIsNC43NzMgLTIuNzAyLDYuNTEybC0xMi4zMjYsMTIuMzExem0tNS43OTgsLTI2%0D%0ALjA0NWMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUuMDk1LDIuMTA5Yy0xLjM2MywxLjM2MiAtMi4x%0D%0AMTQsMy4xNzIgLTIuMTE2LDUuMDk4Yy0wLjAwMSwxLjkyNiAwLjc0OCwzLjczNyAyLjEwOSw1LjFs%0D%0AMTAuOTAxLDEwLjkxbDEwLjkwOCwtMTAuOWMxLjM2MywtMS4zNjEgMi4xMTQsLTMuMTcxIDIuMTE2%0D%0ALC01LjA5OGMwLjAwMSwtMS45MjYgLTAuNzQ4LC0zLjczNyAtMi4xMDksLTUuMWMtMS4zNjMsLTEu%0D%0AMzYzIC0zLjE3NSwtMi4xMTQgLTUuMTAzLC0yLjExNGMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUu%0D%0AMDk2LDIuMTA5bC0wLjcwOCwwLjcwN2wtMC43MDYsLTAuNzA3Yy0xLjM2LC0xLjM2MyAtMy4xNzMs%0D%0ALTIuMTE0IC01LjEwMSwtMi4xMTR6Ii8+CiA8L2c+Cjwvc3ZnPg=="
+                alt="Ícono de like">
+            <div class="song__title">Me Gustas Tú</div>
+            <div class="song__artist">Manu Chao</div>
+            <div class="song__album">Próxima Estación</div>
+            <div class="song__date">hace 12 días</div>
+            <div class="song__duration">4:00</div>
+        </div>
+        <div class="song__item"><img class="song__like" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMiIgZD0ibTI3LjYxNSw1LjU5OGMtMy4yMDYsLTMuMjA4IC04%0D%0ALjQwNCwtMy4yMTEgLTExLjYxMiwtMC4wMDZjLTMuMjA1LC0zLjIwOCAtOC40MDUsLTMuMjEgLTEx%0D%0ALjYxMSwtMC4wMDVjLTMuMjA5LDMuMjA0IC0zLjIxMiw4LjQwMyAtMC4wMDcsMTEuNjExbDExLjYw%0D%0ANywxMS42MThsMTEuNjE2LC0xMS42MDZjMy4yMDksLTMuMjA1IDMuMjEyLC04LjQwNCAwLjAwNywt%0D%0AMTEuNjEyeiIvPgogIDxwYXRoIGZpbGw9IiNmZmZmZmYiIGlkPSJzdmdfMyIgZD0ibTE1Ljk5MSwz%0D%0AMC4yM2wtMTIuMzEzLC0xMi4zMjVjLTEuNzM5LC0xLjc0MSAtMi42OTYsLTQuMDU1IC0yLjY5NSwt%0D%0ANi41MTVjMC4wMDIsLTIuNDYgMC45NjIsLTQuNzcyIDIuNzAyLC02LjUxMWMxLjczOCwtMS43Mzcg%0D%0ANC4wNSwtMi42OTQgNi41MDksLTIuNjk0YzIuMTQzLDAgNC4xNzMsMC43MjYgNS44MTEsMi4wNjJj%0D%0AMS42MzYsLTEuMzMyIDMuNjYzLC0yLjA1NiA1LjgwMiwtMi4wNTZjMi40NjIsMCA0Ljc3NiwwLjk1%0D%0AOSA2LjUxNywyLjcwMWMxLjczOSwxLjc0MSAyLjY5Niw0LjA1NCAyLjY5NSw2LjUxNWMtMC4wMDIs%0D%0AMi40NiAtMC45NjIsNC43NzMgLTIuNzAyLDYuNTEybC0xMi4zMjYsMTIuMzExem0tNS43OTgsLTI2%0D%0ALjA0NWMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUuMDk1LDIuMTA5Yy0xLjM2MywxLjM2MiAtMi4x%0D%0AMTQsMy4xNzIgLTIuMTE2LDUuMDk4Yy0wLjAwMSwxLjkyNiAwLjc0OCwzLjczNyAyLjEwOSw1LjFs%0D%0AMTAuOTAxLDEwLjkxbDEwLjkwOCwtMTAuOWMxLjM2MywtMS4zNjEgMi4xMTQsLTMuMTcxIDIuMTE2%0D%0ALC01LjA5OGMwLjAwMSwtMS45MjYgLTAuNzQ4LC0zLjczNyAtMi4xMDksLTUuMWMtMS4zNjMsLTEu%0D%0AMzYzIC0zLjE3NSwtMi4xMTQgLTUuMTAzLC0yLjExNGMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUu%0D%0AMDk2LDIuMTA5bC0wLjcwOCwwLjcwN2wtMC43MDYsLTAuNzA3Yy0xLjM2LC0xLjM2MyAtMy4xNzMs%0D%0ALTIuMTE0IC01LjEwMSwtMi4xMTR6Ii8+CiA8L2c+Cjwvc3ZnPg=="
+                alt="Ícono de like">
+            <div class="song__title">Bongo Bong</div>
+            <div class="song__artist">Manu Chao</div>
+            <div class="song__album">Clandestino</div>
+            <div class="song__date">hace 12 días</div>
+            <div class="song__duration">2:38</div>
+        </div>
+        <div class="song__item"><img class="song__like" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMiIgZD0ibTI3LjYxNSw1LjU5OGMtMy4yMDYsLTMuMjA4IC04%0D%0ALjQwNCwtMy4yMTEgLTExLjYxMiwtMC4wMDZjLTMuMjA1LC0zLjIwOCAtOC40MDUsLTMuMjEgLTEx%0D%0ALjYxMSwtMC4wMDVjLTMuMjA5LDMuMjA0IC0zLjIxMiw4LjQwMyAtMC4wMDcsMTEuNjExbDExLjYw%0D%0ANywxMS42MThsMTEuNjE2LC0xMS42MDZjMy4yMDksLTMuMjA1IDMuMjEyLC04LjQwNCAwLjAwNywt%0D%0AMTEuNjEyeiIvPgogIDxwYXRoIGZpbGw9IiNmZmZmZmYiIGlkPSJzdmdfMyIgZD0ibTE1Ljk5MSwz%0D%0AMC4yM2wtMTIuMzEzLC0xMi4zMjVjLTEuNzM5LC0xLjc0MSAtMi42OTYsLTQuMDU1IC0yLjY5NSwt%0D%0ANi41MTVjMC4wMDIsLTIuNDYgMC45NjIsLTQuNzcyIDIuNzAyLC02LjUxMWMxLjczOCwtMS43Mzcg%0D%0ANC4wNSwtMi42OTQgNi41MDksLTIuNjk0YzIuMTQzLDAgNC4xNzMsMC43MjYgNS44MTEsMi4wNjJj%0D%0AMS42MzYsLTEuMzMyIDMuNjYzLC0yLjA1NiA1LjgwMiwtMi4wNTZjMi40NjIsMCA0Ljc3NiwwLjk1%0D%0AOSA2LjUxNywyLjcwMWMxLjczOSwxLjc0MSAyLjY5Niw0LjA1NCAyLjY5NSw2LjUxNWMtMC4wMDIs%0D%0AMi40NiAtMC45NjIsNC43NzMgLTIuNzAyLDYuNTEybC0xMi4zMjYsMTIuMzExem0tNS43OTgsLTI2%0D%0ALjA0NWMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUuMDk1LDIuMTA5Yy0xLjM2MywxLjM2MiAtMi4x%0D%0AMTQsMy4xNzIgLTIuMTE2LDUuMDk4Yy0wLjAwMSwxLjkyNiAwLjc0OCwzLjczNyAyLjEwOSw1LjFs%0D%0AMTAuOTAxLDEwLjkxbDEwLjkwOCwtMTAuOWMxLjM2MywtMS4zNjEgMi4xMTQsLTMuMTcxIDIuMTE2%0D%0ALC01LjA5OGMwLjAwMSwtMS45MjYgLTAuNzQ4LC0zLjczNyAtMi4xMDksLTUuMWMtMS4zNjMsLTEu%0D%0AMzYzIC0zLjE3NSwtMi4xMTQgLTUuMTAzLC0yLjExNGMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUu%0D%0AMDk2LDIuMTA5bC0wLjcwOCwwLjcwN2wtMC43MDYsLTAuNzA3Yy0xLjM2LC0xLjM2MyAtMy4xNzMs%0D%0ALTIuMTE0IC01LjEwMSwtMi4xMTR6Ii8+CiA8L2c+Cjwvc3ZnPg=="
+                alt="Ícono de like">
+            <div class="song__title">Goin Thru Some Thangz</div>
+            <div class="song__artist">Jeremih, Ty Dolla $ign</div>
+            <div class="song__album">Goin Thru Some Thangz</div>
+            <div class="song__date">2018-12-31</div>
+            <div class="song__duration">3:06</div>
+        </div>
+        <div class="song__item"><img class="song__like" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMiIgZD0ibTI3LjYxNSw1LjU5OGMtMy4yMDYsLTMuMjA4IC04%0D%0ALjQwNCwtMy4yMTEgLTExLjYxMiwtMC4wMDZjLTMuMjA1LC0zLjIwOCAtOC40MDUsLTMuMjEgLTEx%0D%0ALjYxMSwtMC4wMDVjLTMuMjA5LDMuMjA0IC0zLjIxMiw4LjQwMyAtMC4wMDcsMTEuNjExbDExLjYw%0D%0ANywxMS42MThsMTEuNjE2LC0xMS42MDZjMy4yMDksLTMuMjA1IDMuMjEyLC04LjQwNCAwLjAwNywt%0D%0AMTEuNjEyeiIvPgogIDxwYXRoIGZpbGw9IiNmZmZmZmYiIGlkPSJzdmdfMyIgZD0ibTE1Ljk5MSwz%0D%0AMC4yM2wtMTIuMzEzLC0xMi4zMjVjLTEuNzM5LC0xLjc0MSAtMi42OTYsLTQuMDU1IC0yLjY5NSwt%0D%0ANi41MTVjMC4wMDIsLTIuNDYgMC45NjIsLTQuNzcyIDIuNzAyLC02LjUxMWMxLjczOCwtMS43Mzcg%0D%0ANC4wNSwtMi42OTQgNi41MDksLTIuNjk0YzIuMTQzLDAgNC4xNzMsMC43MjYgNS44MTEsMi4wNjJj%0D%0AMS42MzYsLTEuMzMyIDMuNjYzLC0yLjA1NiA1LjgwMiwtMi4wNTZjMi40NjIsMCA0Ljc3NiwwLjk1%0D%0AOSA2LjUxNywyLjcwMWMxLjczOSwxLjc0MSAyLjY5Niw0LjA1NCAyLjY5NSw2LjUxNWMtMC4wMDIs%0D%0AMi40NiAtMC45NjIsNC43NzMgLTIuNzAyLDYuNTEybC0xMi4zMjYsMTIuMzExem0tNS43OTgsLTI2%0D%0ALjA0NWMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUuMDk1LDIuMTA5Yy0xLjM2MywxLjM2MiAtMi4x%0D%0AMTQsMy4xNzIgLTIuMTE2LDUuMDk4Yy0wLjAwMSwxLjkyNiAwLjc0OCwzLjczNyAyLjEwOSw1LjFs%0D%0AMTAuOTAxLDEwLjkxbDEwLjkwOCwtMTAuOWMxLjM2MywtMS4zNjEgMi4xMTQsLTMuMTcxIDIuMTE2%0D%0ALC01LjA5OGMwLjAwMSwtMS45MjYgLTAuNzQ4LC0zLjczNyAtMi4xMDksLTUuMWMtMS4zNjMsLTEu%0D%0AMzYzIC0zLjE3NSwtMi4xMTQgLTUuMTAzLC0yLjExNGMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUu%0D%0AMDk2LDIuMTA5bC0wLjcwOCwwLjcwN2wtMC43MDYsLTAuNzA3Yy0xLjM2LC0xLjM2MyAtMy4xNzMs%0D%0ALTIuMTE0IC01LjEwMSwtMi4xMTR6Ii8+CiA8L2c+Cjwvc3ZnPg=="
+                alt="Ícono de like">
+            <div class="song__title">The Gift</div>
+            <div class="song__artist">Joep Beving</div>
+            <div class="song__album">Prehension</div>
+            <div class="song__date">2018-12-22</div>
+            <div class="song__duration">3:46</div>
+        </div>
+        <div class="song__item"><img class="song__like" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMiIgZD0ibTI3LjYxNSw1LjU5OGMtMy4yMDYsLTMuMjA4IC04%0D%0ALjQwNCwtMy4yMTEgLTExLjYxMiwtMC4wMDZjLTMuMjA1LC0zLjIwOCAtOC40MDUsLTMuMjEgLTEx%0D%0ALjYxMSwtMC4wMDVjLTMuMjA5LDMuMjA0IC0zLjIxMiw4LjQwMyAtMC4wMDcsMTEuNjExbDExLjYw%0D%0ANywxMS42MThsMTEuNjE2LC0xMS42MDZjMy4yMDksLTMuMjA1IDMuMjEyLC04LjQwNCAwLjAwNywt%0D%0AMTEuNjEyeiIvPgogIDxwYXRoIGZpbGw9IiNmZmZmZmYiIGlkPSJzdmdfMyIgZD0ibTE1Ljk5MSwz%0D%0AMC4yM2wtMTIuMzEzLC0xMi4zMjVjLTEuNzM5LC0xLjc0MSAtMi42OTYsLTQuMDU1IC0yLjY5NSwt%0D%0ANi41MTVjMC4wMDIsLTIuNDYgMC45NjIsLTQuNzcyIDIuNzAyLC02LjUxMWMxLjczOCwtMS43Mzcg%0D%0ANC4wNSwtMi42OTQgNi41MDksLTIuNjk0YzIuMTQzLDAgNC4xNzMsMC43MjYgNS44MTEsMi4wNjJj%0D%0AMS42MzYsLTEuMzMyIDMuNjYzLC0yLjA1NiA1LjgwMiwtMi4wNTZjMi40NjIsMCA0Ljc3NiwwLjk1%0D%0AOSA2LjUxNywyLjcwMWMxLjczOSwxLjc0MSAyLjY5Niw0LjA1NCAyLjY5NSw2LjUxNWMtMC4wMDIs%0D%0AMi40NiAtMC45NjIsNC43NzMgLTIuNzAyLDYuNTEybC0xMi4zMjYsMTIuMzExem0tNS43OTgsLTI2%0D%0ALjA0NWMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUuMDk1LDIuMTA5Yy0xLjM2MywxLjM2MiAtMi4x%0D%0AMTQsMy4xNzIgLTIuMTE2LDUuMDk4Yy0wLjAwMSwxLjkyNiAwLjc0OCwzLjczNyAyLjEwOSw1LjFs%0D%0AMTAuOTAxLDEwLjkxbDEwLjkwOCwtMTAuOWMxLjM2MywtMS4zNjEgMi4xMTQsLTMuMTcxIDIuMTE2%0D%0ALC01LjA5OGMwLjAwMSwtMS45MjYgLTAuNzQ4LC0zLjczNyAtMi4xMDksLTUuMWMtMS4zNjMsLTEu%0D%0AMzYzIC0zLjE3NSwtMi4xMTQgLTUuMTAzLC0yLjExNGMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUu%0D%0AMDk2LDIuMTA5bC0wLjcwOCwwLjcwN2wtMC43MDYsLTAuNzA3Yy0xLjM2LC0xLjM2MyAtMy4xNzMs%0D%0ALTIuMTE0IC01LjEwMSwtMi4xMTR6Ii8+CiA8L2c+Cjwvc3ZnPg=="
+                alt="Ícono de like">
+            <div class="song__title">bellyache</div>
+            <div class="song__artist">Billie Eilish</div>
+            <div class="song__album">Bellyache</div>
+            <div class="song__date">2018-12-15</div>
+            <div class="song__duration">2:59</div>
+        </div>
+        <div class="song__item"><img class="song__like" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMiIgZD0ibTI3LjYxNSw1LjU5OGMtMy4yMDYsLTMuMjA4IC04%0D%0ALjQwNCwtMy4yMTEgLTExLjYxMiwtMC4wMDZjLTMuMjA1LC0zLjIwOCAtOC40MDUsLTMuMjEgLTEx%0D%0ALjYxMSwtMC4wMDVjLTMuMjA5LDMuMjA0IC0zLjIxMiw4LjQwMyAtMC4wMDcsMTEuNjExbDExLjYw%0D%0ANywxMS42MThsMTEuNjE2LC0xMS42MDZjMy4yMDksLTMuMjA1IDMuMjEyLC04LjQwNCAwLjAwNywt%0D%0AMTEuNjEyeiIvPgogIDxwYXRoIGZpbGw9IiNmZmZmZmYiIGlkPSJzdmdfMyIgZD0ibTE1Ljk5MSwz%0D%0AMC4yM2wtMTIuMzEzLC0xMi4zMjVjLTEuNzM5LC0xLjc0MSAtMi42OTYsLTQuMDU1IC0yLjY5NSwt%0D%0ANi41MTVjMC4wMDIsLTIuNDYgMC45NjIsLTQuNzcyIDIuNzAyLC02LjUxMWMxLjczOCwtMS43Mzcg%0D%0ANC4wNSwtMi42OTQgNi41MDksLTIuNjk0YzIuMTQzLDAgNC4xNzMsMC43MjYgNS44MTEsMi4wNjJj%0D%0AMS42MzYsLTEuMzMyIDMuNjYzLC0yLjA1NiA1LjgwMiwtMi4wNTZjMi40NjIsMCA0Ljc3NiwwLjk1%0D%0AOSA2LjUxNywyLjcwMWMxLjczOSwxLjc0MSAyLjY5Niw0LjA1NCAyLjY5NSw2LjUxNWMtMC4wMDIs%0D%0AMi40NiAtMC45NjIsNC43NzMgLTIuNzAyLDYuNTEybC0xMi4zMjYsMTIuMzExem0tNS43OTgsLTI2%0D%0ALjA0NWMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUuMDk1LDIuMTA5Yy0xLjM2MywxLjM2MiAtMi4x%0D%0AMTQsMy4xNzIgLTIuMTE2LDUuMDk4Yy0wLjAwMSwxLjkyNiAwLjc0OCwzLjczNyAyLjEwOSw1LjFs%0D%0AMTAuOTAxLDEwLjkxbDEwLjkwOCwtMTAuOWMxLjM2MywtMS4zNjEgMi4xMTQsLTMuMTcxIDIuMTE2%0D%0ALC01LjA5OGMwLjAwMSwtMS45MjYgLTAuNzQ4LC0zLjczNyAtMi4xMDksLTUuMWMtMS4zNjMsLTEu%0D%0AMzYzIC0zLjE3NSwtMi4xMTQgLTUuMTAzLC0yLjExNGMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUu%0D%0AMDk2LDIuMTA5bC0wLjcwOCwwLjcwN2wtMC43MDYsLTAuNzA3Yy0xLjM2LC0xLjM2MyAtMy4xNzMs%0D%0ALTIuMTE0IC01LjEwMSwtMi4xMTR6Ii8+CiA8L2c+Cjwvc3ZnPg=="
+                alt="Ícono de like">
+            <div class="song__title">when the party´s over</div>
+            <div class="song__artist">Billie Eilish</div>
+            <div class="song__album">when the party's over</div>
+            <div class="song__date">2018-12-06</div>
+            <div class="song__duration">3:20</div>
+        </div>
+        <div class="song__item"><img class="song__like" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMiIgZD0ibTI3LjYxNSw1LjU5OGMtMy4yMDYsLTMuMjA4IC04%0D%0ALjQwNCwtMy4yMTEgLTExLjYxMiwtMC4wMDZjLTMuMjA1LC0zLjIwOCAtOC40MDUsLTMuMjEgLTEx%0D%0ALjYxMSwtMC4wMDVjLTMuMjA5LDMuMjA0IC0zLjIxMiw4LjQwMyAtMC4wMDcsMTEuNjExbDExLjYw%0D%0ANywxMS42MThsMTEuNjE2LC0xMS42MDZjMy4yMDksLTMuMjA1IDMuMjEyLC04LjQwNCAwLjAwNywt%0D%0AMTEuNjEyeiIvPgogIDxwYXRoIGZpbGw9IiNmZmZmZmYiIGlkPSJzdmdfMyIgZD0ibTE1Ljk5MSwz%0D%0AMC4yM2wtMTIuMzEzLC0xMi4zMjVjLTEuNzM5LC0xLjc0MSAtMi42OTYsLTQuMDU1IC0yLjY5NSwt%0D%0ANi41MTVjMC4wMDIsLTIuNDYgMC45NjIsLTQuNzcyIDIuNzAyLC02LjUxMWMxLjczOCwtMS43Mzcg%0D%0ANC4wNSwtMi42OTQgNi41MDksLTIuNjk0YzIuMTQzLDAgNC4xNzMsMC43MjYgNS44MTEsMi4wNjJj%0D%0AMS42MzYsLTEuMzMyIDMuNjYzLC0yLjA1NiA1LjgwMiwtMi4wNTZjMi40NjIsMCA0Ljc3NiwwLjk1%0D%0AOSA2LjUxNywyLjcwMWMxLjczOSwxLjc0MSAyLjY5Niw0LjA1NCAyLjY5NSw2LjUxNWMtMC4wMDIs%0D%0AMi40NiAtMC45NjIsNC43NzMgLTIuNzAyLDYuNTEybC0xMi4zMjYsMTIuMzExem0tNS43OTgsLTI2%0D%0ALjA0NWMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUuMDk1LDIuMTA5Yy0xLjM2MywxLjM2MiAtMi4x%0D%0AMTQsMy4xNzIgLTIuMTE2LDUuMDk4Yy0wLjAwMSwxLjkyNiAwLjc0OCwzLjczNyAyLjEwOSw1LjFs%0D%0AMTAuOTAxLDEwLjkxbDEwLjkwOCwtMTAuOWMxLjM2MywtMS4zNjEgMi4xMTQsLTMuMTcxIDIuMTE2%0D%0ALC01LjA5OGMwLjAwMSwtMS45MjYgLTAuNzQ4LC0zLjczNyAtMi4xMDksLTUuMWMtMS4zNjMsLTEu%0D%0AMzYzIC0zLjE3NSwtMi4xMTQgLTUuMTAzLC0yLjExNGMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUu%0D%0AMDk2LDIuMTA5bC0wLjcwOCwwLjcwN2wtMC43MDYsLTAuNzA3Yy0xLjM2LC0xLjM2MyAtMy4xNzMs%0D%0ALTIuMTE0IC01LjEwMSwtMi4xMTR6Ii8+CiA8L2c+Cjwvc3ZnPg=="
+                alt="Ícono de like">
+            <div class="song__title">Moonlight</div>
+            <div class="song__artist">XXXTENTACION</div>
+            <div class="song__album">?</div>
+            <div class="song__date">2018-11-24</div>
+            <div class="song__duration">2:15</div>
+        </div>
+        <div class="song__item"><img class="song__like" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMiIgZD0ibTI3LjYxNSw1LjU5OGMtMy4yMDYsLTMuMjA4IC04%0D%0ALjQwNCwtMy4yMTEgLTExLjYxMiwtMC4wMDZjLTMuMjA1LC0zLjIwOCAtOC40MDUsLTMuMjEgLTEx%0D%0ALjYxMSwtMC4wMDVjLTMuMjA5LDMuMjA0IC0zLjIxMiw4LjQwMyAtMC4wMDcsMTEuNjExbDExLjYw%0D%0ANywxMS42MThsMTEuNjE2LC0xMS42MDZjMy4yMDksLTMuMjA1IDMuMjEyLC04LjQwNCAwLjAwNywt%0D%0AMTEuNjEyeiIvPgogIDxwYXRoIGZpbGw9IiNmZmZmZmYiIGlkPSJzdmdfMyIgZD0ibTE1Ljk5MSwz%0D%0AMC4yM2wtMTIuMzEzLC0xMi4zMjVjLTEuNzM5LC0xLjc0MSAtMi42OTYsLTQuMDU1IC0yLjY5NSwt%0D%0ANi41MTVjMC4wMDIsLTIuNDYgMC45NjIsLTQuNzcyIDIuNzAyLC02LjUxMWMxLjczOCwtMS43Mzcg%0D%0ANC4wNSwtMi42OTQgNi41MDksLTIuNjk0YzIuMTQzLDAgNC4xNzMsMC43MjYgNS44MTEsMi4wNjJj%0D%0AMS42MzYsLTEuMzMyIDMuNjYzLC0yLjA1NiA1LjgwMiwtMi4wNTZjMi40NjIsMCA0Ljc3NiwwLjk1%0D%0AOSA2LjUxNywyLjcwMWMxLjczOSwxLjc0MSAyLjY5Niw0LjA1NCAyLjY5NSw2LjUxNWMtMC4wMDIs%0D%0AMi40NiAtMC45NjIsNC43NzMgLTIuNzAyLDYuNTEybC0xMi4zMjYsMTIuMzExem0tNS43OTgsLTI2%0D%0ALjA0NWMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUuMDk1LDIuMTA5Yy0xLjM2MywxLjM2MiAtMi4x%0D%0AMTQsMy4xNzIgLTIuMTE2LDUuMDk4Yy0wLjAwMSwxLjkyNiAwLjc0OCwzLjczNyAyLjEwOSw1LjFs%0D%0AMTAuOTAxLDEwLjkxbDEwLjkwOCwtMTAuOWMxLjM2MywtMS4zNjEgMi4xMTQsLTMuMTcxIDIuMTE2%0D%0ALC01LjA5OGMwLjAwMSwtMS45MjYgLTAuNzQ4LC0zLjczNyAtMi4xMDksLTUuMWMtMS4zNjMsLTEu%0D%0AMzYzIC0zLjE3NSwtMi4xMTQgLTUuMTAzLC0yLjExNGMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUu%0D%0AMDk2LDIuMTA5bC0wLjcwOCwwLjcwN2wtMC43MDYsLTAuNzA3Yy0xLjM2LC0xLjM2MyAtMy4xNzMs%0D%0ALTIuMTE0IC01LjEwMSwtMi4xMTR6Ii8+CiA8L2c+Cjwvc3ZnPg=="
+                alt="Ícono de like">
+            <div class="song__title">To Say Good Bye</div>
+            <div class="song__artist">Luca Balboni</div>
+            <div class="song__album">Remothered: Tormented Fathers</div>
+            <div class="song__date">2018-11-14</div>
+            <div class="song__duration">1:24</div>
+        </div>
+        <div class="song__item"><img class="song__like" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMiIgZD0ibTI3LjYxNSw1LjU5OGMtMy4yMDYsLTMuMjA4IC04%0D%0ALjQwNCwtMy4yMTEgLTExLjYxMiwtMC4wMDZjLTMuMjA1LC0zLjIwOCAtOC40MDUsLTMuMjEgLTEx%0D%0ALjYxMSwtMC4wMDVjLTMuMjA5LDMuMjA0IC0zLjIxMiw4LjQwMyAtMC4wMDcsMTEuNjExbDExLjYw%0D%0ANywxMS42MThsMTEuNjE2LC0xMS42MDZjMy4yMDksLTMuMjA1IDMuMjEyLC04LjQwNCAwLjAwNywt%0D%0AMTEuNjEyeiIvPgogIDxwYXRoIGZpbGw9IiNmZmZmZmYiIGlkPSJzdmdfMyIgZD0ibTE1Ljk5MSwz%0D%0AMC4yM2wtMTIuMzEzLC0xMi4zMjVjLTEuNzM5LC0xLjc0MSAtMi42OTYsLTQuMDU1IC0yLjY5NSwt%0D%0ANi41MTVjMC4wMDIsLTIuNDYgMC45NjIsLTQuNzcyIDIuNzAyLC02LjUxMWMxLjczOCwtMS43Mzcg%0D%0ANC4wNSwtMi42OTQgNi41MDksLTIuNjk0YzIuMTQzLDAgNC4xNzMsMC43MjYgNS44MTEsMi4wNjJj%0D%0AMS42MzYsLTEuMzMyIDMuNjYzLC0yLjA1NiA1LjgwMiwtMi4wNTZjMi40NjIsMCA0Ljc3NiwwLjk1%0D%0AOSA2LjUxNywyLjcwMWMxLjczOSwxLjc0MSAyLjY5Niw0LjA1NCAyLjY5NSw2LjUxNWMtMC4wMDIs%0D%0AMi40NiAtMC45NjIsNC43NzMgLTIuNzAyLDYuNTEybC0xMi4zMjYsMTIuMzExem0tNS43OTgsLTI2%0D%0ALjA0NWMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUuMDk1LDIuMTA5Yy0xLjM2MywxLjM2MiAtMi4x%0D%0AMTQsMy4xNzIgLTIuMTE2LDUuMDk4Yy0wLjAwMSwxLjkyNiAwLjc0OCwzLjczNyAyLjEwOSw1LjFs%0D%0AMTAuOTAxLDEwLjkxbDEwLjkwOCwtMTAuOWMxLjM2MywtMS4zNjEgMi4xMTQsLTMuMTcxIDIuMTE2%0D%0ALC01LjA5OGMwLjAwMSwtMS45MjYgLTAuNzQ4LC0zLjczNyAtMi4xMDksLTUuMWMtMS4zNjMsLTEu%0D%0AMzYzIC0zLjE3NSwtMi4xMTQgLTUuMTAzLC0yLjExNGMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUu%0D%0AMDk2LDIuMTA5bC0wLjcwOCwwLjcwN2wtMC43MDYsLTAuNzA3Yy0xLjM2LC0xLjM2MyAtMy4xNzMs%0D%0ALTIuMTE0IC01LjEwMSwtMi4xMTR6Ii8+CiA8L2c+Cjwvc3ZnPg=="
+                alt="Ícono de like">
+            <div class="song__title">Turn Blue</div>
+            <div class="song__artist">The Black Keys</div>
+            <div class="song__album">Turn Blue</div>
+            <div class="song__date">2018-11-14</div>
+            <div class="song__duration">3:43</div>
+        </div>
+        <div class="song__item"><img class="song__like" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMiIgZD0ibTI3LjYxNSw1LjU5OGMtMy4yMDYsLTMuMjA4IC04%0D%0ALjQwNCwtMy4yMTEgLTExLjYxMiwtMC4wMDZjLTMuMjA1LC0zLjIwOCAtOC40MDUsLTMuMjEgLTEx%0D%0ALjYxMSwtMC4wMDVjLTMuMjA5LDMuMjA0IC0zLjIxMiw4LjQwMyAtMC4wMDcsMTEuNjExbDExLjYw%0D%0ANywxMS42MThsMTEuNjE2LC0xMS42MDZjMy4yMDksLTMuMjA1IDMuMjEyLC04LjQwNCAwLjAwNywt%0D%0AMTEuNjEyeiIvPgogIDxwYXRoIGZpbGw9IiNmZmZmZmYiIGlkPSJzdmdfMyIgZD0ibTE1Ljk5MSwz%0D%0AMC4yM2wtMTIuMzEzLC0xMi4zMjVjLTEuNzM5LC0xLjc0MSAtMi42OTYsLTQuMDU1IC0yLjY5NSwt%0D%0ANi41MTVjMC4wMDIsLTIuNDYgMC45NjIsLTQuNzcyIDIuNzAyLC02LjUxMWMxLjczOCwtMS43Mzcg%0D%0ANC4wNSwtMi42OTQgNi41MDksLTIuNjk0YzIuMTQzLDAgNC4xNzMsMC43MjYgNS44MTEsMi4wNjJj%0D%0AMS42MzYsLTEuMzMyIDMuNjYzLC0yLjA1NiA1LjgwMiwtMi4wNTZjMi40NjIsMCA0Ljc3NiwwLjk1%0D%0AOSA2LjUxNywyLjcwMWMxLjczOSwxLjc0MSAyLjY5Niw0LjA1NCAyLjY5NSw2LjUxNWMtMC4wMDIs%0D%0AMi40NiAtMC45NjIsNC43NzMgLTIuNzAyLDYuNTEybC0xMi4zMjYsMTIuMzExem0tNS43OTgsLTI2%0D%0ALjA0NWMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUuMDk1LDIuMTA5Yy0xLjM2MywxLjM2MiAtMi4x%0D%0AMTQsMy4xNzIgLTIuMTE2LDUuMDk4Yy0wLjAwMSwxLjkyNiAwLjc0OCwzLjczNyAyLjEwOSw1LjFs%0D%0AMTAuOTAxLDEwLjkxbDEwLjkwOCwtMTAuOWMxLjM2MywtMS4zNjEgMi4xMTQsLTMuMTcxIDIuMTE2%0D%0ALC01LjA5OGMwLjAwMSwtMS45MjYgLTAuNzQ4LC0zLjczNyAtMi4xMDksLTUuMWMtMS4zNjMsLTEu%0D%0AMzYzIC0zLjE3NSwtMi4xMTQgLTUuMTAzLC0yLjExNGMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUu%0D%0AMDk2LDIuMTA5bC0wLjcwOCwwLjcwN2wtMC43MDYsLTAuNzA3Yy0xLjM2LC0xLjM2MyAtMy4xNzMs%0D%0ALTIuMTE0IC01LjEwMSwtMi4xMTR6Ii8+CiA8L2c+Cjwvc3ZnPg=="
+                alt="Ícono de like">
+            <div class="song__title">T.N.T</div>
+            <div class="song__artist">AC/DC</div>
+            <div class="song__album">High Voltage</div>
+            <div class="song__date">2018-11-05</div>
+            <div class="song__duration">3:36</div>
+        </div>
+        <div class="song__item"><img class="song__like" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMiIgZD0ibTI3LjYxNSw1LjU5OGMtMy4yMDYsLTMuMjA4IC04%0D%0ALjQwNCwtMy4yMTEgLTExLjYxMiwtMC4wMDZjLTMuMjA1LC0zLjIwOCAtOC40MDUsLTMuMjEgLTEx%0D%0ALjYxMSwtMC4wMDVjLTMuMjA5LDMuMjA0IC0zLjIxMiw4LjQwMyAtMC4wMDcsMTEuNjExbDExLjYw%0D%0ANywxMS42MThsMTEuNjE2LC0xMS42MDZjMy4yMDksLTMuMjA1IDMuMjEyLC04LjQwNCAwLjAwNywt%0D%0AMTEuNjEyeiIvPgogIDxwYXRoIGZpbGw9IiNmZmZmZmYiIGlkPSJzdmdfMyIgZD0ibTE1Ljk5MSwz%0D%0AMC4yM2wtMTIuMzEzLC0xMi4zMjVjLTEuNzM5LC0xLjc0MSAtMi42OTYsLTQuMDU1IC0yLjY5NSwt%0D%0ANi41MTVjMC4wMDIsLTIuNDYgMC45NjIsLTQuNzcyIDIuNzAyLC02LjUxMWMxLjczOCwtMS43Mzcg%0D%0ANC4wNSwtMi42OTQgNi41MDksLTIuNjk0YzIuMTQzLDAgNC4xNzMsMC43MjYgNS44MTEsMi4wNjJj%0D%0AMS42MzYsLTEuMzMyIDMuNjYzLC0yLjA1NiA1LjgwMiwtMi4wNTZjMi40NjIsMCA0Ljc3NiwwLjk1%0D%0AOSA2LjUxNywyLjcwMWMxLjczOSwxLjc0MSAyLjY5Niw0LjA1NCAyLjY5NSw2LjUxNWMtMC4wMDIs%0D%0AMi40NiAtMC45NjIsNC43NzMgLTIuNzAyLDYuNTEybC0xMi4zMjYsMTIuMzExem0tNS43OTgsLTI2%0D%0ALjA0NWMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUuMDk1LDIuMTA5Yy0xLjM2MywxLjM2MiAtMi4x%0D%0AMTQsMy4xNzIgLTIuMTE2LDUuMDk4Yy0wLjAwMSwxLjkyNiAwLjc0OCwzLjczNyAyLjEwOSw1LjFs%0D%0AMTAuOTAxLDEwLjkxbDEwLjkwOCwtMTAuOWMxLjM2MywtMS4zNjEgMi4xMTQsLTMuMTcxIDIuMTE2%0D%0ALC01LjA5OGMwLjAwMSwtMS45MjYgLTAuNzQ4LC0zLjczNyAtMi4xMDksLTUuMWMtMS4zNjMsLTEu%0D%0AMzYzIC0zLjE3NSwtMi4xMTQgLTUuMTAzLC0yLjExNGMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUu%0D%0AMDk2LDIuMTA5bC0wLjcwOCwwLjcwN2wtMC43MDYsLTAuNzA3Yy0xLjM2LC0xLjM2MyAtMy4xNzMs%0D%0ALTIuMTE0IC01LjEwMSwtMi4xMTR6Ii8+CiA8L2c+Cjwvc3ZnPg=="
+                alt="Ícono de like">
+            <div class="song__title">The Less I Know The Better</div>
+            <div class="song__artist">Tame Impala</div>
+            <div class="song__album">Currents</div>
+            <div class="song__date">2018-10-29</div>
+            <div class="song__duration">3:36</div>
+        </div>
+        <div class="song__item"><img class="song__like" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMiIgZD0ibTI3LjYxNSw1LjU5OGMtMy4yMDYsLTMuMjA4IC04%0D%0ALjQwNCwtMy4yMTEgLTExLjYxMiwtMC4wMDZjLTMuMjA1LC0zLjIwOCAtOC40MDUsLTMuMjEgLTEx%0D%0ALjYxMSwtMC4wMDVjLTMuMjA5LDMuMjA0IC0zLjIxMiw4LjQwMyAtMC4wMDcsMTEuNjExbDExLjYw%0D%0ANywxMS42MThsMTEuNjE2LC0xMS42MDZjMy4yMDksLTMuMjA1IDMuMjEyLC04LjQwNCAwLjAwNywt%0D%0AMTEuNjEyeiIvPgogIDxwYXRoIGZpbGw9IiNmZmZmZmYiIGlkPSJzdmdfMyIgZD0ibTE1Ljk5MSwz%0D%0AMC4yM2wtMTIuMzEzLC0xMi4zMjVjLTEuNzM5LC0xLjc0MSAtMi42OTYsLTQuMDU1IC0yLjY5NSwt%0D%0ANi41MTVjMC4wMDIsLTIuNDYgMC45NjIsLTQuNzcyIDIuNzAyLC02LjUxMWMxLjczOCwtMS43Mzcg%0D%0ANC4wNSwtMi42OTQgNi41MDksLTIuNjk0YzIuMTQzLDAgNC4xNzMsMC43MjYgNS44MTEsMi4wNjJj%0D%0AMS42MzYsLTEuMzMyIDMuNjYzLC0yLjA1NiA1LjgwMiwtMi4wNTZjMi40NjIsMCA0Ljc3NiwwLjk1%0D%0AOSA2LjUxNywyLjcwMWMxLjczOSwxLjc0MSAyLjY5Niw0LjA1NCAyLjY5NSw2LjUxNWMtMC4wMDIs%0D%0AMi40NiAtMC45NjIsNC43NzMgLTIuNzAyLDYuNTEybC0xMi4zMjYsMTIuMzExem0tNS43OTgsLTI2%0D%0ALjA0NWMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUuMDk1LDIuMTA5Yy0xLjM2MywxLjM2MiAtMi4x%0D%0AMTQsMy4xNzIgLTIuMTE2LDUuMDk4Yy0wLjAwMSwxLjkyNiAwLjc0OCwzLjczNyAyLjEwOSw1LjFs%0D%0AMTAuOTAxLDEwLjkxbDEwLjkwOCwtMTAuOWMxLjM2MywtMS4zNjEgMi4xMTQsLTMuMTcxIDIuMTE2%0D%0ALC01LjA5OGMwLjAwMSwtMS45MjYgLTAuNzQ4LC0zLjczNyAtMi4xMDksLTUuMWMtMS4zNjMsLTEu%0D%0AMzYzIC0zLjE3NSwtMi4xMTQgLTUuMTAzLC0yLjExNGMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUu%0D%0AMDk2LDIuMTA5bC0wLjcwOCwwLjcwN2wtMC43MDYsLTAuNzA3Yy0xLjM2LC0xLjM2MyAtMy4xNzMs%0D%0ALTIuMTE0IC01LjEwMSwtMi4xMTR6Ii8+CiA8L2c+Cjwvc3ZnPg=="
+                alt="Ícono de like">
+            <div class="song__title">Little Black Submarine</div>
+            <div class="song__artist">The Black Keys</div>
+            <div class="song__album">El Camino</div>
+            <div class="song__date">2018-10-27</div>
+            <div class="song__duration">4:11</div>
+        </div>
+        <div class="song__item"><img class="song__like" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMiIgZD0ibTI3LjYxNSw1LjU5OGMtMy4yMDYsLTMuMjA4IC04%0D%0ALjQwNCwtMy4yMTEgLTExLjYxMiwtMC4wMDZjLTMuMjA1LC0zLjIwOCAtOC40MDUsLTMuMjEgLTEx%0D%0ALjYxMSwtMC4wMDVjLTMuMjA5LDMuMjA0IC0zLjIxMiw4LjQwMyAtMC4wMDcsMTEuNjExbDExLjYw%0D%0ANywxMS42MThsMTEuNjE2LC0xMS42MDZjMy4yMDksLTMuMjA1IDMuMjEyLC04LjQwNCAwLjAwNywt%0D%0AMTEuNjEyeiIvPgogIDxwYXRoIGZpbGw9IiNmZmZmZmYiIGlkPSJzdmdfMyIgZD0ibTE1Ljk5MSwz%0D%0AMC4yM2wtMTIuMzEzLC0xMi4zMjVjLTEuNzM5LC0xLjc0MSAtMi42OTYsLTQuMDU1IC0yLjY5NSwt%0D%0ANi41MTVjMC4wMDIsLTIuNDYgMC45NjIsLTQuNzcyIDIuNzAyLC02LjUxMWMxLjczOCwtMS43Mzcg%0D%0ANC4wNSwtMi42OTQgNi41MDksLTIuNjk0YzIuMTQzLDAgNC4xNzMsMC43MjYgNS44MTEsMi4wNjJj%0D%0AMS42MzYsLTEuMzMyIDMuNjYzLC0yLjA1NiA1LjgwMiwtMi4wNTZjMi40NjIsMCA0Ljc3NiwwLjk1%0D%0AOSA2LjUxNywyLjcwMWMxLjczOSwxLjc0MSAyLjY5Niw0LjA1NCAyLjY5NSw2LjUxNWMtMC4wMDIs%0D%0AMi40NiAtMC45NjIsNC43NzMgLTIuNzAyLDYuNTEybC0xMi4zMjYsMTIuMzExem0tNS43OTgsLTI2%0D%0ALjA0NWMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUuMDk1LDIuMTA5Yy0xLjM2MywxLjM2MiAtMi4x%0D%0AMTQsMy4xNzIgLTIuMTE2LDUuMDk4Yy0wLjAwMSwxLjkyNiAwLjc0OCwzLjczNyAyLjEwOSw1LjFs%0D%0AMTAuOTAxLDEwLjkxbDEwLjkwOCwtMTAuOWMxLjM2MywtMS4zNjEgMi4xMTQsLTMuMTcxIDIuMTE2%0D%0ALC01LjA5OGMwLjAwMSwtMS45MjYgLTAuNzQ4LC0zLjczNyAtMi4xMDksLTUuMWMtMS4zNjMsLTEu%0D%0AMzYzIC0zLjE3NSwtMi4xMTQgLTUuMTAzLC0yLjExNGMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUu%0D%0AMDk2LDIuMTA5bC0wLjcwOCwwLjcwN2wtMC43MDYsLTAuNzA3Yy0xLjM2LC0xLjM2MyAtMy4xNzMs%0D%0ALTIuMTE0IC01LjEwMSwtMi4xMTR6Ii8+CiA8L2c+Cjwvc3ZnPg=="
+                alt="Ícono de like">
+            <div class="song__title">Highway To Hell</div>
+            <div class="song__artist">AC/DC</div>
+            <div class="song__album">Highway To Hell</div>
+            <div class="song__date">2018-10-19</div>
+            <div class="song__duration">3:28</div>
+        </div>
+        <div class="song__item"><img class="song__like" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMiIgZD0ibTI3LjYxNSw1LjU5OGMtMy4yMDYsLTMuMjA4IC04%0D%0ALjQwNCwtMy4yMTEgLTExLjYxMiwtMC4wMDZjLTMuMjA1LC0zLjIwOCAtOC40MDUsLTMuMjEgLTEx%0D%0ALjYxMSwtMC4wMDVjLTMuMjA5LDMuMjA0IC0zLjIxMiw4LjQwMyAtMC4wMDcsMTEuNjExbDExLjYw%0D%0ANywxMS42MThsMTEuNjE2LC0xMS42MDZjMy4yMDksLTMuMjA1IDMuMjEyLC04LjQwNCAwLjAwNywt%0D%0AMTEuNjEyeiIvPgogIDxwYXRoIGZpbGw9IiNmZmZmZmYiIGlkPSJzdmdfMyIgZD0ibTE1Ljk5MSwz%0D%0AMC4yM2wtMTIuMzEzLC0xMi4zMjVjLTEuNzM5LC0xLjc0MSAtMi42OTYsLTQuMDU1IC0yLjY5NSwt%0D%0ANi41MTVjMC4wMDIsLTIuNDYgMC45NjIsLTQuNzcyIDIuNzAyLC02LjUxMWMxLjczOCwtMS43Mzcg%0D%0ANC4wNSwtMi42OTQgNi41MDksLTIuNjk0YzIuMTQzLDAgNC4xNzMsMC43MjYgNS44MTEsMi4wNjJj%0D%0AMS42MzYsLTEuMzMyIDMuNjYzLC0yLjA1NiA1LjgwMiwtMi4wNTZjMi40NjIsMCA0Ljc3NiwwLjk1%0D%0AOSA2LjUxNywyLjcwMWMxLjczOSwxLjc0MSAyLjY5Niw0LjA1NCAyLjY5NSw2LjUxNWMtMC4wMDIs%0D%0AMi40NiAtMC45NjIsNC43NzMgLTIuNzAyLDYuNTEybC0xMi4zMjYsMTIuMzExem0tNS43OTgsLTI2%0D%0ALjA0NWMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUuMDk1LDIuMTA5Yy0xLjM2MywxLjM2MiAtMi4x%0D%0AMTQsMy4xNzIgLTIuMTE2LDUuMDk4Yy0wLjAwMSwxLjkyNiAwLjc0OCwzLjczNyAyLjEwOSw1LjFs%0D%0AMTAuOTAxLDEwLjkxbDEwLjkwOCwtMTAuOWMxLjM2MywtMS4zNjEgMi4xMTQsLTMuMTcxIDIuMTE2%0D%0ALC01LjA5OGMwLjAwMSwtMS45MjYgLTAuNzQ4LC0zLjczNyAtMi4xMDksLTUuMWMtMS4zNjMsLTEu%0D%0AMzYzIC0zLjE3NSwtMi4xMTQgLTUuMTAzLC0yLjExNGMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUu%0D%0AMDk2LDIuMTA5bC0wLjcwOCwwLjcwN2wtMC43MDYsLTAuNzA3Yy0xLjM2LC0xLjM2MyAtMy4xNzMs%0D%0ALTIuMTE0IC01LjEwMSwtMi4xMTR6Ii8+CiA8L2c+Cjwvc3ZnPg=="
+                alt="Ícono de like">
+            <div class="song__title">Blood Under My Belt</div>
+            <div class="song__artist">The Drums</div>
+            <div class="song__album">Abysmal Thoughts</div>
+            <div class="song__date">2018-10-19</div>
+            <div class="song__duration">3:48</div>
+        </div>
+        <div class="song__item"><img class="song__like" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMiIgZD0ibTI3LjYxNSw1LjU5OGMtMy4yMDYsLTMuMjA4IC04%0D%0ALjQwNCwtMy4yMTEgLTExLjYxMiwtMC4wMDZjLTMuMjA1LC0zLjIwOCAtOC40MDUsLTMuMjEgLTEx%0D%0ALjYxMSwtMC4wMDVjLTMuMjA5LDMuMjA0IC0zLjIxMiw4LjQwMyAtMC4wMDcsMTEuNjExbDExLjYw%0D%0ANywxMS42MThsMTEuNjE2LC0xMS42MDZjMy4yMDksLTMuMjA1IDMuMjEyLC04LjQwNCAwLjAwNywt%0D%0AMTEuNjEyeiIvPgogIDxwYXRoIGZpbGw9IiNmZmZmZmYiIGlkPSJzdmdfMyIgZD0ibTE1Ljk5MSwz%0D%0AMC4yM2wtMTIuMzEzLC0xMi4zMjVjLTEuNzM5LC0xLjc0MSAtMi42OTYsLTQuMDU1IC0yLjY5NSwt%0D%0ANi41MTVjMC4wMDIsLTIuNDYgMC45NjIsLTQuNzcyIDIuNzAyLC02LjUxMWMxLjczOCwtMS43Mzcg%0D%0ANC4wNSwtMi42OTQgNi41MDksLTIuNjk0YzIuMTQzLDAgNC4xNzMsMC43MjYgNS44MTEsMi4wNjJj%0D%0AMS42MzYsLTEuMzMyIDMuNjYzLC0yLjA1NiA1LjgwMiwtMi4wNTZjMi40NjIsMCA0Ljc3NiwwLjk1%0D%0AOSA2LjUxNywyLjcwMWMxLjczOSwxLjc0MSAyLjY5Niw0LjA1NCAyLjY5NSw2LjUxNWMtMC4wMDIs%0D%0AMi40NiAtMC45NjIsNC43NzMgLTIuNzAyLDYuNTEybC0xMi4zMjYsMTIuMzExem0tNS43OTgsLTI2%0D%0ALjA0NWMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUuMDk1LDIuMTA5Yy0xLjM2MywxLjM2MiAtMi4x%0D%0AMTQsMy4xNzIgLTIuMTE2LDUuMDk4Yy0wLjAwMSwxLjkyNiAwLjc0OCwzLjczNyAyLjEwOSw1LjFs%0D%0AMTAuOTAxLDEwLjkxbDEwLjkwOCwtMTAuOWMxLjM2MywtMS4zNjEgMi4xMTQsLTMuMTcxIDIuMTE2%0D%0ALC01LjA5OGMwLjAwMSwtMS45MjYgLTAuNzQ4LC0zLjczNyAtMi4xMDksLTUuMWMtMS4zNjMsLTEu%0D%0AMzYzIC0zLjE3NSwtMi4xMTQgLTUuMTAzLC0yLjExNGMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUu%0D%0AMDk2LDIuMTA5bC0wLjcwOCwwLjcwN2wtMC43MDYsLTAuNzA3Yy0xLjM2LC0xLjM2MyAtMy4xNzMs%0D%0ALTIuMTE0IC01LjEwMSwtMi4xMTR6Ii8+CiA8L2c+Cjwvc3ZnPg=="
+                alt="Ícono de like">
+            <div class="song__title">Dogs of War</div>
+            <div class="song__artist">Blues Sacareno</div>
+            <div class="song__album">Dark Country 3</div>
+            <div class="song__date">2018-09-18</div>
+            <div class="song__duration">2:57</div>
+        </div>
+        <div class="song__item"><img class="song__like" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAw%0D%0AL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5v%0D%0AbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSI0MDIiIHdpZHRoPSI1ODIiIHk9Ii0x%0D%0AIiB4PSItMSIvPgogPC9nPgogPGc+CiAgPHRpdGxlPkxheWVyIDE8L3RpdGxlPgogIDxwYXRoIGZp%0D%0AbGw9IiNmZmZmZmYiIGlkPSJzdmdfMiIgZD0ibTI3LjYxNSw1LjU5OGMtMy4yMDYsLTMuMjA4IC04%0D%0ALjQwNCwtMy4yMTEgLTExLjYxMiwtMC4wMDZjLTMuMjA1LC0zLjIwOCAtOC40MDUsLTMuMjEgLTEx%0D%0ALjYxMSwtMC4wMDVjLTMuMjA5LDMuMjA0IC0zLjIxMiw4LjQwMyAtMC4wMDcsMTEuNjExbDExLjYw%0D%0ANywxMS42MThsMTEuNjE2LC0xMS42MDZjMy4yMDksLTMuMjA1IDMuMjEyLC04LjQwNCAwLjAwNywt%0D%0AMTEuNjEyeiIvPgogIDxwYXRoIGZpbGw9IiNmZmZmZmYiIGlkPSJzdmdfMyIgZD0ibTE1Ljk5MSwz%0D%0AMC4yM2wtMTIuMzEzLC0xMi4zMjVjLTEuNzM5LC0xLjc0MSAtMi42OTYsLTQuMDU1IC0yLjY5NSwt%0D%0ANi41MTVjMC4wMDIsLTIuNDYgMC45NjIsLTQuNzcyIDIuNzAyLC02LjUxMWMxLjczOCwtMS43Mzcg%0D%0ANC4wNSwtMi42OTQgNi41MDksLTIuNjk0YzIuMTQzLDAgNC4xNzMsMC43MjYgNS44MTEsMi4wNjJj%0D%0AMS42MzYsLTEuMzMyIDMuNjYzLC0yLjA1NiA1LjgwMiwtMi4wNTZjMi40NjIsMCA0Ljc3NiwwLjk1%0D%0AOSA2LjUxNywyLjcwMWMxLjczOSwxLjc0MSAyLjY5Niw0LjA1NCAyLjY5NSw2LjUxNWMtMC4wMDIs%0D%0AMi40NiAtMC45NjIsNC43NzMgLTIuNzAyLDYuNTEybC0xMi4zMjYsMTIuMzExem0tNS43OTgsLTI2%0D%0ALjA0NWMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUuMDk1LDIuMTA5Yy0xLjM2MywxLjM2MiAtMi4x%0D%0AMTQsMy4xNzIgLTIuMTE2LDUuMDk4Yy0wLjAwMSwxLjkyNiAwLjc0OCwzLjczNyAyLjEwOSw1LjFs%0D%0AMTAuOTAxLDEwLjkxbDEwLjkwOCwtMTAuOWMxLjM2MywtMS4zNjEgMi4xMTQsLTMuMTcxIDIuMTE2%0D%0ALC01LjA5OGMwLjAwMSwtMS45MjYgLTAuNzQ4LC0zLjczNyAtMi4xMDksLTUuMWMtMS4zNjMsLTEu%0D%0AMzYzIC0zLjE3NSwtMi4xMTQgLTUuMTAzLC0yLjExNGMtMS45MjUsMCAtMy43MzQsMC43NDkgLTUu%0D%0AMDk2LDIuMTA5bC0wLjcwOCwwLjcwN2wtMC43MDYsLTAuNzA3Yy0xLjM2LC0xLjM2MyAtMy4xNzMs%0D%0ALTIuMTE0IC01LjEwMSwtMi4xMTR6Ii8+CiA8L2c+Cjwvc3ZnPg=="
+                alt="Ícono de like">
+            <div class="song__title">Watching Over</div>
+            <div class="song__artist">Greta Van Fleet</div>
+            <div class="song__album">Watching Over</div>
+            <div class="song__date">2018-09-10</div>
+            <div class="song__duration">4:27</div>
+        </div>
+        </div>
+   
+    </main>
+    <script>
+//         item = document.querySelectorAll(".playlist__item");
+// like = document.querySelectorAll(".song__like");
+// settings = document.querySelectorAll(".account__menu");
+// menu = document.querySelector("#account__settings");
+// search = document.querySelector("#song__input");
+// song = document.querySelectorAll(".song__title");
+// artist = document.querySelectorAll(".song__artist");
+
+// bar = document.querySelector("#bar");
+// barLine = document.querySelector("#bar__container");
+
+// function active(event){
+//     for (var i = 0; i < item.length; i++){
+//         item[i].classList.remove("is-active");
+//     }
+//     this.classList.add("is-active");
+// }
+// function hideLike(event){
+//     this.parentElement.classList.add("is-hide");
+// }
+// function sett(event){
+//     menu.classList.toggle("is-x100");
+//     menu.classList.toggle("is-x0");
+// }
+// function filterSearch(event){
+//     var content = search.value.toLowerCase();
+//     for (var i = 1; i < song.length; i++) {
+//         var title = song[i].innerHTML.toLowerCase();
+//         var art = artist[i].innerHTML.toLowerCase();
+//         if (title.match(content) || art.match(content)) {
+//             song[i].parentElement.style.display = "flex";
+//         }
+//         else {
+//             song[i].parentElement.style.display = "none";
+//         }
+//     }
+// }
+
+// function showHide(event){
+//     var playlist = document.querySelector("#playlist");
+//     playlist.classList.toggle("playlist-show");
+//     barLine.classList.toggle("is-plus");
+//     barLine.classList.toggle("is-minor");
+// }
+
+// function main(){
+//     for (var i = 0; i < item.length; i++) {
+//         item[i].addEventListener("click", active);
+//     }
+//     for (var i = 0; i < song.length; i++) {
+//         like[i].addEventListener("click", hideLike);
+//     }
+//     settings[0].addEventListener("click", sett);
+//     search.addEventListener("keyup", filterSearch);
+//     bar.addEventListener('click',showHide);
+
+
+// }
+
+// window.addEventListener("load", main);
+
+
+    </script>
+
+</html>
