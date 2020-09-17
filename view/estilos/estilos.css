@@ -1,123 +1,23 @@
-/* .thumb{
-    height: 200px;
-    border: 1px solid #000;
-    margin: 10px 5px 0 0;
-} */
-
-.inputFile{
-    margin-left: 20px;
+.navbar.navbar-light .breadcrumb .nav-item.active>.nav-link, .navbar.navbar-light .navbar-nav .nav-item.active>.nav-link {
+    background-color: rgba(0,0,0,0.0); 
+    margin-top: -8px;
+    color: #007bff;
 }
-.porcentaje_h4{
-    margin-left: 20px;
+.special-color {
+    background-color: #252222 !important;
 }
 
-#labelFileFormularioProducto{
-    font-size: 20px;
-    padding-top: 20px;
-}
-#labelFileFormularioProducto i{
-    color: #2196f3;
+
+.navbar .mega-dropdown .dropdown-menu.mega-menu .sub-menu ul li a:hover {
+    background-color: #007bff !important;
+
 }
 
-.fileColumna{
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-.reproducirContenedor {
-   
+/* =============== TABLA ANIMACION A LAS MEMBRESIAS =============== */
+.tabla:hover {
+    background: #35619e;
+    color: #f1f1f2;
+    transition: .5s all;
+    transform: scale(1.1);
     cursor: pointer;
 }
-
-.reproducirContenedor i {
-   
-   font-size: 20px;
-}
-
-
-.thumb {
-   
-    color: #b9b9b9;
-    /* height: 50%; */
-    border: 3px dashed #e8e8e8;
-    padding: 5%;
-    line-height: 3;
-    margin: 5px 1%;
-    width: 50%;
-    border-radius: 10px;
-    text-shadow: 1px 1px 1px #fff;
-    background-color: rgba(234,234,234,.35);
-    font-family: sans-serif;
-    
-}
-
-.barra_azul{
-    background-color: red;
-    width: 100%;
-}
-
-span.producto-detalle {
-    color: red;
-    font-weight: bold;
-    
-
-}
-
-.product-content h4 {
-    font-size: 12px;
-    font-weight: 600;
-    border-bottom: 1px solid #444444;
-    margin-bottom: 8px;
-}
-
-.acciones{
-    font-weight: 600;
-    border-bottom: 1px solid #444444;
-    margin-bottom: 8px;
-}
-.product-label{
-    top: 0;
-    left: 0;
-    position: absolute;
-}
-
-.product-label span {
-    width: 50px;
-    height: 50px;
-    font-size: 20px;
-    color: #ffffff;
-    font-weight: 600;
-    text-align: center;
-    line-height: 50px;
-    display: block;
-    margin-left: 13px;
-    cursor: pointer;
-    color: #3d9970 ; 
-    /* -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%; */
-    text-transform: uppercase;
-}
-
-/* ================ICONO DE LA TABLA PRODUCTOS========== */
-
-table td i{
-    font-size: 25px;
-    cursor: pointer;
-}
-table td a {
-    font-size: 25px;
-    cursor: pointer;
-}
-/* ====================Reproductor de Musica=========== */
-#container{
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-/* ========================Tabla productos========================== */
-/* td{
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-} */

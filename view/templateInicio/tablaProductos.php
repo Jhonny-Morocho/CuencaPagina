@@ -165,7 +165,7 @@
     </div>
 
     <div class="row black">
-            <div class="col-lg-9">
+            <div class="col-lg-10">
               <main class="main" id="main">
            
                       <!-- <input class="song__input" type="text" placeholder="Buscar..." id="song__input"> -->
@@ -317,20 +317,9 @@
                   
                   </main>
             </div>
-            <div class="col-lg-3 topViral "  >
+            <div class="col-lg-2 topViral "  >
 
-        
-            
-    
-      
 
-            <div class="contentTop">
-    <div class="descripcionNav card">
-     Top 15 
-    </div>
-    <nav class="nav flex-column blue lighten-5 py-4 ">
-        <!-- Rotating card -->
-            <!-- Rotating card -->
             <?php 
                  $top=ModeloClienteProducto::sqlListarTop(); 
                
@@ -341,8 +330,9 @@
 
 
                         <!--Card Regular-->
-                        <div class="card card-cascade">
+                        <div class="card card-cascade black">
                           <!--Card image-->
+                        
                           <div class="view view-cascade overlay">
                             <img src="../../img/proveedores/'.$value['img'].'" class="card-img-top" alt="normal">
                             <a>
@@ -353,40 +343,25 @@
                           <!--Card content-->
                           <div class="card-body card-body-cascade text-center">
                             <!--Title-->
-                            <h4 class="card-title"><strong>Billy Cullen</strong></h4>
+                            <h4 class="card-title"><strong>$'.$value['precio'].'</strong></h4>
                             <h5>Web developer</h5>
                             <!--Facebook-->
-                            <a type="button" class="btn-floating btn-small btn-fb"><i class="fab fa-facebook-f"></i></a>
+                            <a type="button" class="btn-floating btn-small btn-fb"><i class="fas fa-play-circle"></i></a>
+                            <a type="button" class="btn-floating btn-small btn-fb"><i class="fas fa-cart-plus"></i></a>
+                            <a type="button" class="btn-floating btn-small btn-fb"><i class="fas fa-share-alt"></i></a>
                           </div>
                           <!--/.Card content-->
                         </div>
                         
-                        <!--Section: Author Box-->
-                        <a href=""><div class="media mt-4 px-1 itemTop15">
-                                <img class="card-img-100 d-flex z-depth-1 mr-3" src="../../img/proveedores/'.$value['img'].'"
-                                alt="Generic placeholder image">
-                                <div class="media-body">
-                                <h5 class="font-weight-bold mt-0">
-                                    <span style="color:#fff">$'.$value['precio'].'</span>
-                                </h5>
-                                    <span class="topSonf article__content">'.($value['nombrePista']).'</span>
-                                </div>
-                            </div></a>
-                        <!--Section: Author Box-->';
+            ';
                     }
                     $cont_2++; 
                 }
             ?>
-    </nav>
 
 </div>
-            </div>
-    </div>
 
-  </div>
 </div>
-
-
 
         <div class="d-flex justify-content-center">
           <?php if( $banderaError==false){  // si no exite resultado osea marcar erro entonces no presentra paginacion?>

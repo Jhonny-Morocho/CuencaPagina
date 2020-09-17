@@ -19,7 +19,7 @@
   <!-- Your custom styles (optional) -->
   <!-- <link rel="stylesheet" href="css/style.css?v=1.0.0"> -->
   <!-- =================== APP==================== -->
-  <!-- <link rel="stylesheet" href="../css/estilos.css?v=1.0.1"> -->
+   <link rel="stylesheet" href="../../view/estilos/estilos.css?v=1.0.1"> 
 
   <meta property="og:title" content="LatinEdit.com"/>
   <meta property="og:description" content="The best of the record pool of djs" /> 
@@ -30,42 +30,18 @@
    <link rel="stylesheet" href="../../view/estilos/tablaSpotify.css">
 </head>
 <body>
-
-
-
 <header>
-<style>
-    .navbar.navbar-light .breadcrumb .nav-item.active>.nav-link, .navbar.navbar-light .navbar-nav .nav-item.active>.nav-link {
-    background-color: rgba(0,0,0,0.0); 
-    margin-top: -8px;
-    color: #007bff;
-}
-.special-color {
-    background-color: #252222 !important;
-}
-
-
-.navbar .mega-dropdown .dropdown-menu.mega-menu .sub-menu ul li a:hover {
-    background-color: #007bff !important;
-
-}
-</style>
-
-
-<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
             <div class="container">
-
             <!-- Brand -->
             <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
                 <strong class="blue-text">MDB</strong>
             </a>
-
             <!-- Collapse -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <!-- Links -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -74,8 +50,6 @@
                     <li class="nav-item active">
                         <span class="underline-closing"><a href=""><i class="fas fa-home"></i> HOME</a></span>
                     </li>
-
-                  
                     	<!-- Features -->
                     <li class="nav-item dropdown mega-dropdown  active">
                             
@@ -84,7 +58,6 @@
                               <span class="underline-closing"><i class="fa fa-headphones" aria-hidden="true"></i> REMIXERS</span> 
                               <span class="sr-only">(current)</span> 
                           </a>
-                              
                           <div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-5 px-3 "
                             aria-labelledby="navbarDropdownMenuLink2">
                             <div class="row">
@@ -118,39 +91,32 @@
                             </div>
                           </div>
                     </li>
-	
                     <li class="nav-item">
                         <!-- <span class="underline-closing"><a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank"><i class="fas fa-folder"></i> MEMBRESIAS </a></span> -->
                     </li>
-                    
                     <li class="nav-item">
                         <span class="underline-closing"><a href=""><i class="fa fa-plus" aria-hidden="true"></i> LATIN EDIT PLUS</a></span>
                     </li>
                     <li class="nav-item active">
-                        <span class="underline-closing"><a href=""><i class="fa fa-folder" aria-hidden="true"></i> MEMBRRESIAS</a></span>
+                        <span class="underline-closing"><a href="../../membresias.php"><i class="fa fa-folder" aria-hidden="true"></i> MEMBRRESIAS</a></span>
                     </li>
                     <li class="nav-item">
                         <span class="underline-closing"><a href=""><i class="fas fa-user-check"></i> LOGIN/REGISTER</a></span>
                     </li>
     
                 </ul>
-
                 <!-- Right -->
                 <ul class="navbar-nav nav-flex-icons">
-    
                     <li class="nav-item">
                         <span class="underline-closing">
                             <span class="badge red z-depth-1 mr-1"> 1 </span>
                             <i class="fas fa-shopping-cart"></i>
-                            <!-- <span class="clearfix d-none d-sm-inline-block"> Car </span> -->
                         </span>
                     </li>
-
                     <li class="nav-item tabla">
 
                         <span class="underline-closing"><a href=""><i class="fas fa-question-circle"></i> Support</a></span>
                     </li>
-         
                 </ul>
 
             </div>
@@ -158,22 +124,8 @@
             </div>
         </nav>
         <!-- Navbar -->
-      
-        <!-- Navbar -->
 </header>
 
-
-<style>
-
-/* =============== TABLA ANIMACION A LAS MEMBRESIAS =============== */
-.tabla:hover {
-    background: #35619e;
-    color: #f1f1f2;
-    transition: .5s all;
-    transform: scale(1.1);
-    cursor: pointer;
-}
-</style>
 
 
 
