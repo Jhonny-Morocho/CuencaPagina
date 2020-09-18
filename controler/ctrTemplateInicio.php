@@ -71,6 +71,9 @@ class ControladorPlantillaInicio{
         public function formLoginCliente(){
             require'view/cliente/formularioCliente.php';
         }
+        public function formRegistroCliente(){
+            require'view/cliente/formularioRegistro.php';
+        }
         public function formLoginProveedor(){
             require'view/templateInicio/formularioLoginAdmin.php';
         }
@@ -120,11 +123,11 @@ class ControladorPlantillaInicio{
 
 
         
-        // public static function url_producto(){
-            
-        //         return "../demo.php?id_producto=";
+        public static function listaMembresia(){
+          
+            require "view/templateInicio/listaMembresias.php";
            
-        // }
+        }
 
         // public static function url_update(){
         //     return "../update_demos.php?id_update=";

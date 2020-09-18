@@ -2,9 +2,9 @@
     $membresias=ModeloMembresia::sqlListarMembresias();
 
 ?>
-<div class="container my-5">
+<div class="container my-5 membresias">
   <!--Section: Content-->
-  <section class="text-center dark-grey-text">
+  <section class="text-center dark-grey-text ">
 
     <!-- Section heading -->
     <h3 class="font-weight-bold pb-2 mb-4">Our pricing plans</h3>
@@ -12,10 +12,10 @@
     <div class="row">
 
       <!-- Grid column -->
-      <div class="col-lg-4 col-md-12 mb-4 animated pulse">
+      <div class="col-lg-4 col-md-12 mb-4 animated pulse ">
 
         <!-- Pricing card -->
-        <div class="card pricing-card">
+        <div class="card pricing-card tablaMembresias">
 
           <!-- Price -->
           <div class="price header white-text blue rounded-top">
@@ -26,20 +26,26 @@
           </div>
 
           <!-- Features -->
-          <div class="card-body striped mb-1">
+          <div class="card-body striped mb-1 ">
 
             <ul>
               <li>
                 <p class="mt-2"><i class="fas fa-check green-text pr-2"></i><?php echo $membresias[0]['numDescargas']?> Download</p>
               </li>
               <li>
-                <p><i class="fas fa-check green-text pr-2"></i>30 days</p>
+                <p><i class="fas fa-check green-text pr-2"></i>30 Days</p>
               </li>
               <li>
-                <p><i class="fas fa-check green-text pr-2"></i>Free access stock </p>
+                <p><i class="fas fa-check green-text pr-2"></i>Update every day </p>
               </li>
               <li>
-                <p><i class="fas fa-check green-text pr-2"></i> Free access  Genero </p>
+                <p><i class="fas fa-check green-text pr-2"></i> Buy Unlimited Membership </p>
+              </li>
+              <li>
+                <p><i class="fas fa-check green-text pr-2"></i> High Quality Edits </p>
+              </li>
+              <li>
+                <p><i class="fas fa-check green-text pr-2"></i> One click downloads </p>
               </li>
             </ul>
             <button class="btn btn-blue pricing-action" data-toggle="modal" 
@@ -61,7 +67,7 @@
       <div class="col-lg-4 col-md-6 mb-4 animated pulse">
 
         <!-- Pricing card -->
-        <div class="card pricing-card">
+        <div class="card pricing-card tablaMembresias">
 
           <!-- Price -->
           <div class="price header white-text indigo rounded-top">
@@ -79,13 +85,19 @@
                 <p class="mt-2"><i class="fas fa-check green-text pr-2"></i><?php echo $membresias[1]['numDescargas']?> Download</p>
               </li>
               <li>
-                <p><i class="fas fa-check green-text pr-2"></i>30 days</p>
+                <p><i class="fas fa-check green-text pr-2"></i>30 Days</p>
               </li>
               <li>
-                <p><i class="fas fa-check green-text pr-2"></i>Free access stock</p>
+                <p><i class="fas fa-check green-text pr-2"></i>Update every day</p>
               </li>
               <li>
-                <p><i class="fas fa-check green-text pr-2"></i> Free access  Genero </p>
+                <p><i class="fas fa-check green-text pr-2"></i> Buy Unlimited Membership </p>
+              </li>
+              <li>
+                <p><i class="fas fa-check green-text pr-2"></i> High Quality Edits </p>
+              </li>
+              <li>
+                <p><i class="fas fa-check green-text pr-2"></i> One click downloads </p>
               </li>
             </ul>
             <button class="btn btn-indigo pricing-action" 
@@ -107,7 +119,7 @@
       <div class="col-lg-4 col-md-6 mb-4 animated pulse">
 
         <!-- Pricing card -->
-        <div class="card pricing-card">
+        <div class="card pricing-card tablaMembresias">
 
           <!-- Price -->
           <div class="price header white-text deep-purple rounded-top">
@@ -125,13 +137,19 @@
                 <p class="mt-2"><i class="fas fa-check green-text pr-2"></i><?php echo $membresias[2]['numDescargas']?> Download</p>
               </li>
               <li>
-                <p><i class="fas fa-check green-text pr-2"></i>30 days</p>
+                <p><i class="fas fa-check green-text pr-2"></i>30 Days</p>
               </li>
               <li>
-                <p><i class="fas fa-check green-text pr-2"></i>Free access stock</p>
+                <p><i class="fas fa-check green-text pr-2"></i>Update every day</p>
               </li>
               <li>
-                <p><i class="fas fa-check green-text pr-2"></i> Free access  Genero </p>
+                <p><i class="fas fa-check green-text pr-2"></i> Buy Unlimited Membership </p>
+              </li>
+              <li>
+                <p><i class="fas fa-check green-text pr-2"></i> High Quality Edits </p>
+              </li>
+              <li>
+                <p><i class="fas fa-check green-text pr-2"></i> One click downloads </p>
               </li>
             </ul>
             <button class="btn btn-deep-purple pricing-action" data-toggle="modal" data-target="#modalAbandonedCart" 

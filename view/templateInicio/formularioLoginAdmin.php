@@ -1,43 +1,103 @@
+<style>
+
+  .view {
+    height: 100%;
+  }
+
+  @media (max-width: 740px) {
+
+    .view {
+      height: 1000px;
+    }
+  }
+  @media (min-width: 800px) and (max-width: 850px) {
+
+    .view {
+      height: 600px;
+    }
+  }
+
+  
+  
+  .card {
+    background-color: rgba(126, 123, 215, 0.2);
+  }
+
+  .md-form label {
+    color: #ffffff;
+  }
+
+  h6 {
+    line-height: 1.7;
+  }
+
+</style>
 
 
-<div class="row d-flex justify-content-center">
-    <div class="col-lg-4 contenedorLogin">
-            <!-- Material form login -->
-            <div class="card ">
-
-                    <h5 class="card-header info-color white-text text-center py-4">
-                        <strong>Sign in</strong>
-                    </h5>
-                    <!--Card content-->
-                    <div class="card-body px-lg-5 pt-4">
-
-                        <!-- Form -->
-                        <form class="text-center" style="color: #757575;"  method="post" action="../../controler/ctrProveedor.php" id="login-admin">
-                                <!-- Email -->
-                                <div class="md-form">
-                                    <input type="email" id="materialLoginFormEmail" class="form-control" required="" name="inputEmail">
-                                    <label for="materialLoginFormEmail" >E-mail</label>
+  <!-- Navbar -->
+  <!-- Full Page Intro -->
+  <div class="view" style="background-image: url('http://mdbootstrap.com/img/Photos/Others/images/91.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+    <!-- Mask & flexbox options-->
+    <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
+      <!-- Content -->
+      <div class="container">
+        <!--Grid row-->
+        <div class="row mt-5">
+          <!--Grid column-->
+          <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left">
+            <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">FOMR LOGIN ADMIN</h1>
+            <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+            <h6 class="mb-3 wow fadeInLeft" data-wow-delay="0.3s">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet explicabo saepe dolorem aliquam modi atque officiis odio, nostrum exercitationem alias sapiente nihil. Nulla repudiandae voluptatem perspiciatis laboriosam. Facilis, libero quasi!</h6>
+            <a class="btn btn-outline-white btn-rounded wow fadeInLeft" data-wow-delay="0.3s" href="../../">HOME</a>
+          </div>
+          <!--Grid column-->
+          <!--Grid column-->
+          <div class="col-md-6 col-xl-5 mb-4">
+            <!--Form-->
+            <form action="../../controler/ctrProveedor.php" method="post" id="login-admin">     
+                <div class="card wow fadeInRight" data-wow-delay="0.3s">
+                    <div class="card-body">
+                        <!--Header-->
+                        <div class="text-center">
+                            <h3 class="white-text font-weight-bold">
+                                <i class="fa fa-user white-text"></i> LOGIN ADMIN:</h3>
+                            <hr class="hr-light">
+                        </div>
+                        <!--Body-->
+                        <div class="md-form">
+                            <i class="fa fa-envelope prefix white-text active"></i>
+                            <input type="email" id="form2" class="white-text form-control" name="inputEmail" id="materialLoginFormEmail" required>
+                            <label for="materialLoginFormEmail" class="active">Your email</label>
+                        </div>
+                        <div class="md-form">
+                            <i class="fa fa-lock prefix white-text active"></i>
+                            <input type="password" id="form4" class="white-text form-control"  name="inputPassword" required="" maxlength="20">
+                            <label for="materialLoginFormPassword">Your password</label>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button class="btn btn-indigo btn-rounded">Sign up</button>
+                            <hr class="hr-light mb-3 mt-4">
+                        </div>
+                        <div class="d-flex justify-content-around">
+                            <div>
+                                <!-- Remember me -->
+                                <div class="form-check">
+                                    <input type="hidden" name="Proveedor" value="loginAdmin">
+                                    <div class="alertConfirmacion"></div>
                                 </div>
-
-                                <!-- Password -->
-                                <div class="md-form">
-                                    <input type="password" id="id_password_login" class="form-control" name="inputPassword" required="" maxlength="20">
-                                    <label for="materialLoginFormPassword">Password</label>
-                                </div>
-
-                                <div class="d-flex justify-content-around">
-                                    <div>
-                                    <!-- Remember me -->
-                                    <div class="form-check">
-                                        <div class="alertConfirmacion"></div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <input type="hidden" name="Proveedor" value="loginAdmin">
-                                <!-- Sign in button -->
-                                <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign in</button>
-                        </form>
-                    </div> <!--end card body-->
-            </div><!-- end card main -->
-    </div> <!-- endl-col-lg -->
-</div> <!-- end row -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!--/.Form-->
+          </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Content -->
+    </div>
+    <!-- Mask & flexbox options-->
+  </div>
+  <!-- Full Page Intro -->

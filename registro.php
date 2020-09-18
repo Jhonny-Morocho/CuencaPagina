@@ -15,7 +15,9 @@ require'model/mdlProveedor.php';
 require_once 'controler/ctrTemplateInicio.php';
 $plantilla= new ControladorPlantillaInicio();
 $plantilla->ctr_header();
-$plantilla->formLoginProveedor();
+$plantilla->formRegistroCliente();
 $plantilla->ctr_footer();
 
 ?>
+
+

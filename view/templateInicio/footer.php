@@ -51,18 +51,22 @@
 </body>
         <!-- jQuery -->
            <!-- UNDER LINE  -->
-           <script type="text/javascript" src="js/jquery.min.js?v=1.0.0"></script> 
-            <script src="../../underline/underline.js"></script>
+        <script type="text/javascript" src="js/jquery.min.js?v=1.0.0"></script> 
+        <script src="../../underline/underline.js"></script>
       
         <!-- Bootstrap tooltips -->
         <script type="text/javascript" src="js/popper.min.js?v=1.0.0"></script>
         <!-- Bootstrap core JavaScript -->
         <script type="text/javascript" src="js/bootstrap.min.js?v=1.0.0"></script>
+        <!-- Encoder.js -->
+        <script type="text/javascript" src="../js/encoder.js"></script>
+        <!-- sprintf-js -->
+        <script type="text/javascript" src="../js/sprintf.min.js"></script>
         <!-- MDB core JavaScript -->
         <script type="text/javascript" src="js/mdb.min.js?v=1.0.0"></script>
         <!-- Your custom scripts (optional) -->
-        <script type="text/javascript"></script>
-
+        <!-- MDB Component Initialization -->
+        <script type="text/javascript" src="../js/appIndex.js"></script>
         <!-- APP -->
         <script type="text/javascript" src="../js/appLatinEdits.js?v=1.0.0"></script>
         <!-- ======================AJAX================================== -->

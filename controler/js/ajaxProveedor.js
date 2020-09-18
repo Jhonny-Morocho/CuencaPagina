@@ -132,7 +132,6 @@ $('#idAgregarProveedor').on('submit',function(e){
 
 $('#login-admin').on('submit',function(e){
     e.preventDefault();
-
     animacion();
     // obtnemos los datos del formulario
     var datos=$(this).serializeArray();
@@ -152,6 +151,7 @@ $('#login-admin').on('submit',function(e){
             success:function(data){
                 console.log(data);//el usuario si existe
                 if(data.respuesta=='true_password'){
+                    toastr.success('Bienvenido');
                     $(".alertConfirmacion").html( 
                         '<div class="alert  alert-success alert-dismissible fade show" role="alert">  <strong> Bienvenido  </strong>'+
                         data.usuario+

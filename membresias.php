@@ -15,22 +15,11 @@ require'model/mdlMembresias.php';
 require_once 'controler/ctrTemplateInicio.php';
 $plantilla= new ControladorPlantillaInicio();
 $plantilla->ctr_header();
-// $plantilla->listaMembresia();
-// $plantilla->redesSociales();
+$plantilla->listaMembresia();
 $plantilla->ctr_footer();
 $plantilla->toTop();
 
 
 ?>
 
-<style>
 
-
-.tabla:hover {
-    background: #35619e;
-    color: #f1f1f2;
-    transition: .5s all;
-    transform: scale(1.1);
-    cursor: pointer;
-}
-</style>

@@ -15,7 +15,6 @@ $plantilla= new ControladorPlantillaInicio();
 $plantilla->usuario_autentificado();;
 $plantilla->cerrar_session(@$_GET['cerrar_session']);//aqui cierro la session
 $plantilla->ctr_header();
-$plantilla->formLoginCliente();
 $plantilla->ctr_slider();
 $plantilla->panelCliente();
 $plantilla->ctr_footer();

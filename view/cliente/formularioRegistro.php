@@ -48,14 +48,11 @@
         <div class="row mt-5">
           <!--Grid column-->
           <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left">
-            <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">LOGIN </h1>
+            <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">REGISTER </h1>
             <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
-            <h6 class="mb-3 wow fadeInLeft" data-wow-delay="0.3s">Con tu cuenta podrás acceder a todos nuestros productos, beneficios y ofertas exclusivas.
-            Espero que lo que encuentres aquí te ayude a construir el camino que tú quieres en el mundo del deejay.  <br>
-            Nosotros nos seguiremos esforzando al máximo para poder ofrecerte siempre lo mejor <br>
-            ¡!!!Un Abrazo!!! 
-            #TEAMLATINEDIT</h6>
-            <a class="btn btn-indigo btn-rounded wow fadeInLeft" data-wow-delay="0.3s" href="../../registro.php">CREATE ACCOUNT</a>
+            <h6 class="mb-3 wow fadeInLeft" data-wow-delay="0.3s">Estaremos muy contento de que formes parte de nuestra plataforma y sobre todo de nuestra comunidad y selecta lista de clientes. 
+Latinedit.com, es una plataforma para djs y productores, con un extenso catálogo de edits, remixes y herramientas para ayudar a el dj en el desempeño de su performance o siguiente fiesta.</h6>
+            <a class="btn btn-indigo btn-rounded wow fadeInLeft" data-wow-delay="0.3s" href="../../login.php">LOGIN</a>
           </div>
           <!--Grid column-->
           <!--Grid column-->
@@ -67,7 +64,7 @@
                         <!--Header-->
                         <div class="text-center">
                             <h3 class="white-text font-weight-bold">
-                                <i class="fa fa-user white-text"></i> LOGIN:</h3>
+                                <i class="fa fa-user white-text"></i> REGISTER:</h3>
                             <hr class="hr-light">
                         </div>
                         <!--Body-->

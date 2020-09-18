@@ -17,7 +17,7 @@
   <!-- Material Design Bootstrap -->
   <link rel="stylesheet" href="css/mdb.min.css?v=1.0.0">
   <!-- Your custom styles (optional) -->
-  <!-- <link rel="stylesheet" href="css/style.css?v=1.0.0"> -->
+   <link rel="stylesheet" href="css/style.css?v=1.0.0">
   <!-- =================== APP==================== -->
    <link rel="stylesheet" href="../../view/estilos/estilos.css?v=1.0.1"> 
 
@@ -48,7 +48,7 @@
                 <!-- Left -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <span class="underline-closing"><a href=""><i class="fas fa-home"></i> HOME</a></span>
+                        <span class="underline-closing"><a href="../../"><i class="fas fa-home"></i> HOME</a></span>
                     </li>
                     	<!-- Features -->
                     <li class="nav-item dropdown mega-dropdown  active">
@@ -95,13 +95,13 @@
                         <!-- <span class="underline-closing"><a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank"><i class="fas fa-folder"></i> MEMBRESIAS </a></span> -->
                     </li>
                     <li class="nav-item">
-                        <span class="underline-closing"><a href=""><i class="fa fa-plus" aria-hidden="true"></i> LATIN EDIT PLUS</a></span>
+                        <span class="underline-closing"><a href="../../"><i class="fa fa-plus" aria-hidden="true"></i> LATIN EDIT PLUS</a></span>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item ">
                         <span class="underline-closing"><a href="../../membresias.php"><i class="fa fa-folder" aria-hidden="true"></i> MEMBRRESIAS</a></span>
                     </li>
-                    <li class="nav-item">
-                        <span class="underline-closing"><a href=""><i class="fas fa-user-check"></i> LOGIN/REGISTER</a></span>
+                    <li class="nav-item ">
+                        <span class="underline-closing"><a href="../../login.php"><i class="fas fa-user-check"></i> LOGIN/REGISTER </a></span>
                     </li>
     
                 </ul>
@@ -125,7 +125,6 @@
         </nav>
         <!-- Navbar -->
 </header>
-
 
 
 
