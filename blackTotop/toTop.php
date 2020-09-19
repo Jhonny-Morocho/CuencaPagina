@@ -30,7 +30,7 @@
 }
 
 .back-to-top:hover {
-  background-color: #FD0002;
+  background-color: #007bff;
   color: #fff;
   opacity: 1;
 }

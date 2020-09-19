@@ -58,7 +58,7 @@ Latinedit.com, es una plataforma para djs y productores, con un extenso catálog
           <!--Grid column-->
           <div class="col-md-6 col-xl-5 mb-4">
             <!--Form-->
-            <form action="../../controler/ctrCliente.php" method="post" id="login-cliente">     
+            <form action="../../controler/ctrCliente.php" method="post" id="registro-cliente">     
                 <div class="card wow fadeInRight" data-wow-delay="0.3s">
                     <div class="card-body">
                         <!--Header-->
@@ -69,8 +69,18 @@ Latinedit.com, es una plataforma para djs y productores, con un extenso catálog
                         </div>
                         <!--Body-->
                         <div class="md-form">
+                            <i class="fa fa-user prefix white-text"></i>
+                            <input type="textx" id="form1" class="white-text form-control" name="inpuNameCliente" id="materialLoginFormnNombre" required>
+                            <label for="materialLoginName" class="active">Your Name</label>
+                        </div>
+                        <div class="md-form">
+                            <i class="fa fa-user prefix white-text"></i>
+                            <input type="textx" id="form2" class="white-text form-control" name="inputApellidoCliente" id="materialLoginFormApellido" required>
+                            <label for="materialLoginFormApellido" class="active">Your Last Name</label>
+                        </div>
+                        <div class="md-form">
                             <i class="fa fa-envelope prefix white-text active"></i>
-                            <input type="email" id="form2" class="white-text form-control" name="inputEmailCliente" id="materialLoginFormEmail" required>
+                            <input type="email" id="form3" class="white-text form-control" name="inputEmailCliente" id="materialLoginFormEmail" required>
                             <label for="materialLoginFormEmail" class="active">Your email</label>
                         </div>
                         <div class="md-form">
@@ -80,14 +90,14 @@ Latinedit.com, es una plataforma para djs y productores, con un extenso catálog
                         </div>
 
                         <div class="md-form form-sm mb-4">
-                          <div class="smsEsperaLogin"></div>
+                          <div class="smsEspera"></div>
                         </div>
 
                         <div class="text-center mt-4">
                             <button class="btn btn-indigo btn-rounded">Sign up</button>
                             <hr class="hr-light mb-3 mt-4">
                         </div>
-                        <input type="hidden" name="Cliente" value="loginCliente">
+                        <input type="hidden" name="Cliente" value="addCliente">
                     </div>
                 </div>
             </form>

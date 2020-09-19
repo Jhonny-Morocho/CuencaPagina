@@ -28,6 +28,11 @@
   <!-- =====================UNDER LINE ===================== -->
    <link rel="stylesheet" href="../../underline/underline.css">
    <link rel="stylesheet" href="../../view/estilos/tablaSpotify.css">
+
+  <!-- ===================================SILIDER CON IMAGNES ============================== -->
+  <link rel="stylesheet" href="../../Logo-carousel/css/style.css">
+
+
 </head>
 <body>
 <header>
@@ -95,7 +100,7 @@
                         <!-- <span class="underline-closing"><a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank"><i class="fas fa-folder"></i> MEMBRESIAS </a></span> -->
                     </li>
                     <li class="nav-item">
-                        <span class="underline-closing"><a href="../../"><i class="fa fa-plus" aria-hidden="true"></i> LATIN EDIT PLUS</a></span>
+                        <span class="underline-closing"><a href="../../latinPlus.php"><i class="fa fa-plus" aria-hidden="true"></i> LATIN EDIT PLUS</a></span>
                     </li>
                     <li class="nav-item ">
                         <span class="underline-closing"><a href="../../membresias.php"><i class="fa fa-folder" aria-hidden="true"></i> MEMBRRESIAS</a></span>

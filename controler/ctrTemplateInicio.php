@@ -74,6 +74,9 @@ class ControladorPlantillaInicio{
         public function formRegistroCliente(){
             require'view/cliente/formularioRegistro.php';
         }
+        public function plantillaPluss(){
+            require'view/cliente/plantillaConstruccion.php';
+        }
         public function formLoginProveedor(){
             require'view/templateInicio/formularioLoginAdmin.php';
         }

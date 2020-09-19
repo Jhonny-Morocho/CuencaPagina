@@ -118,3 +118,171 @@
     text-decoration: none;
     background-color: #0247b1;
 }
+/* ========================== TOP 15 ========================
+========================== TOP 15 ========================
+========================== TOP 15 ======================== */
+.topPrecio{
+    background-color: white;
+    text-align: center;
+}
+.topNombreTema{
+    color: white !important;
+    text-align: center !important;
+}
+
+.listsaIconosTop li a i{
+    color: #000 !important;
+    margin-top: -8px !important;
+
+   
+}
+.listsaIconosTop li a {
+    background-color: white !important;
+    
+   
+}
+.listsaIconosTop  .btn-floating.btn-lg {
+    width: 40.1px;
+    height: 40.1px;
+ 
+    
+}
+
+
+
+/* ================================= TITLE DE LA TABLA DE PRODUCTOS =========================== */
+/* ================================= TITLE DE LA TABLA DE PRODUCTOS =========================== */
+/* ================================= TITLE DE LA TABLA DE PRODUCTOS =========================== */
+.song__title.cabezeraTitle {
+    margin-left: -70px !important;
+}
+.song__buy {
+    min-width: 115px;
+    overflow: hidden;
+    display: flex;
+}
+
+.song__like {
+
+    width: -4px !important;
+ 
+}
+
+  /* ============================= RESPONSIBE DISEÑO ==================================== */
+/* ============================= RESPONSIBE DISEÑO ==================================== */
+/* ============================= RESPONSIBE DISEÑO ==================================== */
+@media only screen and (max-width: 1920px) {
+    /* .song__buy {
+        width: auto;
+        flex-grow: 1;
+        min-width: 200px;
+        padding: 0 20px;
+        overflow: hidden;
+    } */
+  
+  }
+  @media only screen and (max-width: 1366px) {
+      /* .song__buy {
+        width: auto;
+        flex-grow: 1;
+        min-width: 200px;
+        padding: 0 20px;
+        overflow: hidden;
+    } */
+  }
+  @media only screen and (max-width: 1024px) {
+   
+    
+  }
+  @media only screen and (max-width: 990px) {
+   
+  
+  }
+  
+  @media only screen and (max-width: 768px) {
+  
+  }
+  @media only screen and (max-width: 480px) {
+  
+  }
+
+  
+/* ========================================== boton de buscar ===========================
+========================================== boton de buscar ===========================
+========================================== boton de buscar =========================== */
+button.form-control.form-control-sm.ml-3.w-60.btnBuscar {
+    margin: 10px !important;
+    padding: 7.01px;
+}
+.md-form .form-control {
+
+    color: white !important;
+
+}
+
+option {
+  
+  color: black;
+}
+
+select.form-control.form-control-sm.ml-3.w-60.selectGeneroRemixer {
+   
+    padding: 10px;
+}
+
+
+/* ===================== REPRODUCTOR DE ONDA ========================= */
+/* ===================== REPRODUCTOR DE ONDA ========================= */
+/* ===================== REPRODUCTOR DE ONDA ========================= */
+
+/* // mostrar reproductor en el piso booton */
+.dzsap-sticktobottom.dzsap-sticktobottom-for-skin-wave {
+    bottom: 0;
+    opacity: 1;
+}
+
+.nav-main.zoomsounds-nav.skin-default.nav-type-mousemove {
+    height: 100% !important;
+}
+
+.audiogallery .slider-main .slider-clipper > .audioplayer.transitioning-in, .audiogallery .slider-main .slider-clipper > .audioplayer.transitioning-out, .audiogallery .slider-main .slider-clipper > .audioplayer-tobe.transitioning-out, .audiogallery .slider-main .slider-clipper > .audioplayer-tobe.transitioning-in, .audiogallery .slider-main .slider-clipper > .audioplayer.active {
+    display: block;
+    display: none !important;
+}
+
+/* ======================== FOOOTER ===============================
+======================== FOOOTER =============================== */
+
+footer.page-footer .footer-copyright {
+    overflow: hidden;
+    color: rgba(255,255,255,0.6);
+    background-color: rgba(0,0,0,0.2);
+    background: #111 !important;
+}
+
+.footerSms {
+    background: #007bff;
+    color: #ffffff;
+}
+
+ .footerLatinEdit {
+
+    background: rgba(0,0,0,.97) !important;
+    padding-top: 90px !important;
+   
+}
+
+#mc_embed_signup {
+ background: none !important;
+
+}
+
+#mc_embed_signup form {
+
+    padding: 22px 0px 10px 0px !important;
+}
+
+.footerSms span {
+    margin-left: 40px !important ;
+   
+}

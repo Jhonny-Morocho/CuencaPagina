@@ -5,11 +5,13 @@
     opacity: 1;
 }
   </style>
-<body>
+
   <link rel="stylesheet" href="https://arturia3.arturia.net/templates/arturia-bootstrap/assets/scripts/jquery-plugins/waveform-audio-player/audioplayer/audioplayer.css">
+<body>
+  
 <div id="audio-gallery-0" class="audiogallery" style="opacity:0">
     <div class="items">
-      <div id="audioplayer-0_0" class="audioplayer-tobe" data-scrubbg="waves/scrubbg.png" data-scrubprog="waves/scrubprog.png" data-type="normal" data-source="Armonia 10 - Amor de Estudiante.mp3" data-videoTitle="Audio Video"  data-fakeplayer="#stickyplayer">      
+      <div id="audioplayer-0_0" class="audioplayer-tobe" data-scrubbg="waves/scrubbg.png" data-scrubprog="waves/scrubprog.png" data-type="normal" data-source="https://downloads.arturia.com/products/kraft_tribute/preset/audio_examples/Autobahn__Paul_Schilling.mp3" data-videoTitle="Audio Video"  data-fakeplayer="#stickyplayer">      
         <div class="meta-artist">
           <span class="the-artist">tangerine</span>
           <br/>
@@ -38,91 +40,6 @@
           <span class="the-name">Computer_Love</span>
         </div>
       </div>
-       <div id="audioplayer-0_1" class="audioplayer-tobe" data-scrubbg="waves/scrubbg.png" data-scrubprog="waves/scrubprog.png" data-type="normal" data-source="https://downloads.arturia.com/products/kraft_tribute/preset/audio_examples/Computer_Love__Paul_Schilling.mp3" data-videoTitle="Audio Video"  data-fakeplayer="#stickyplayer">      
-        <div class="meta-artist">
-          <span class="the-artist">tangerine</span>
-          <br/>
-          <span class="the-name">title 1</span>
-        </div>
-        <div class="menu-description">
-          <div class="menu-item-thumb-con">
-            <div class="menu-item-thumb"></div>
-          </div>
-          <span class="the-artist"></span>
-          <span class="the-name">Computer_Love</span>
-        </div>
-      </div>
-       <div id="audioplayer-0_1" class="audioplayer-tobe" data-scrubbg="waves/scrubbg.png" data-scrubprog="waves/scrubprog.png" data-type="normal" data-source="https://downloads.arturia.com/products/kraft_tribute/preset/audio_examples/Computer_Love__Paul_Schilling.mp3" data-videoTitle="Audio Video"  data-fakeplayer="#stickyplayer">      
-        <div class="meta-artist">
-          <span class="the-artist">tangerine</span>
-          <br/>
-          <span class="the-name">title 1</span>
-        </div>
-        <div class="menu-description">
-          <div class="menu-item-thumb-con">
-            <div class="menu-item-thumb"></div>
-          </div>
-          <span class="the-artist"></span>
-          <span class="the-name">Computer_Love</span>
-        </div>
-      </div>
-       <div id="audioplayer-0_1" class="audioplayer-tobe" data-scrubbg="waves/scrubbg.png" data-scrubprog="waves/scrubprog.png" data-type="normal" data-source="https://downloads.arturia.com/products/kraft_tribute/preset/audio_examples/Computer_Love__Paul_Schilling.mp3" data-videoTitle="Audio Video"  data-fakeplayer="#stickyplayer">      
-        <div class="meta-artist">
-          <span class="the-artist">tangerine</span>
-          <br/>
-          <span class="the-name">title 1</span>
-        </div>
-        <div class="menu-description">
-          <div class="menu-item-thumb-con">
-            <div class="menu-item-thumb"></div>
-          </div>
-          <span class="the-artist"></span>
-          <span class="the-name">Computer_Love</span>
-        </div>
-      </div>
-       <div id="audioplayer-0_1" class="audioplayer-tobe" data-scrubbg="waves/scrubbg.png" data-scrubprog="waves/scrubprog.png" data-type="normal" data-source="https://downloads.arturia.com/products/kraft_tribute/preset/audio_examples/Computer_Love__Paul_Schilling.mp3" data-videoTitle="Audio Video"  data-fakeplayer="#stickyplayer">      
-        <div class="meta-artist">
-          <span class="the-artist">tangerine</span>
-          <br/>
-          <span class="the-name">title 1</span>
-        </div>
-        <div class="menu-description">
-          <div class="menu-item-thumb-con">
-            <div class="menu-item-thumb"></div>
-          </div>
-          <span class="the-artist"></span>
-          <span class="the-name">Computer_Love</span>
-        </div>
-      </div>
-       <div id="audioplayer-0_1" class="audioplayer-tobe" data-scrubbg="waves/scrubbg.png" data-scrubprog="waves/scrubprog.png" data-type="normal" data-source="https://downloads.arturia.com/products/kraft_tribute/preset/audio_examples/Computer_Love__Paul_Schilling.mp3" data-videoTitle="Audio Video"  data-fakeplayer="#stickyplayer">      
-        <div class="meta-artist">
-          <span class="the-artist">tangerine</span>
-          <br/>
-          <span class="the-name">title 1</span>
-        </div>
-        <div class="menu-description">
-          <div class="menu-item-thumb-con">
-            <div class="menu-item-thumb"></div>
-          </div>
-          <span class="the-artist"></span>
-          <span class="the-name">Computer_Love</span>
-        </div>
-      </div>
-       <div id="audioplayer-0_1" class="audioplayer-tobe" data-scrubbg="waves/scrubbg.png" data-scrubprog="waves/scrubprog.png" data-type="normal" data-source="https://downloads.arturia.com/products/kraft_tribute/preset/audio_examples/Computer_Love__Paul_Schilling.mp3" data-videoTitle="Audio Video"  data-fakeplayer="#stickyplayer">      
-        <div class="meta-artist">
-          <span class="the-artist">tangerine</span>
-          <br/>
-          <span class="the-name">title 1</span>
-        </div>
-        <div class="menu-description">
-          <div class="menu-item-thumb-con">
-            <div class="menu-item-thumb"></div>
-          </div>
-          <span class="the-artist"></span>
-          <span class="the-name">Computer_Love</span>
-        </div>
-      </div>
-      
     </div>
 </div>  
   
@@ -149,9 +66,12 @@
         </div>
     </div>
 </section>
+
+  
+</body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://arturia3.arturia.net/templates/arturia-bootstrap/build/js/all-plugins-min.js"></script>
-<script>
+<script >
 /*--- [ER] mod-preset ---*/
 
 jQuery(document).ready(function($){
@@ -295,7 +215,5 @@ function hideStickyPlayer(){
 
 });
 </script>
-  
-</body>
   
 </html>

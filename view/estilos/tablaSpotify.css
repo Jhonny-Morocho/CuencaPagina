@@ -23,13 +23,20 @@ main {
     form#song__input {
         margin-right: 20px;
     }
-  
+    .song {
+      width: calc(100% - 200px);
+      height: calc(100vh - 60px - 45px);
+      padding: 0 40px 20px;
+      scrollbar-width: auto;
+      background-color: red!important;
+      scrollbar-color: rgba(255, 255, 255, 0.3) #191919; }
   
   
   .song {
     width: 100%;
     height: 100vmax;
     margin-top: 45px;
+
     padding: 0 20px 80px;
     position: relative;
     overflow-y: scroll;

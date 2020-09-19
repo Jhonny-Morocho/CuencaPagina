@@ -57,7 +57,7 @@
                              proveedor.id=".intval(@$_GET['remixer'])." and   producto.demo LIKE '%".@$_GET['busqueda']."%'   ";
 
 
-        $numeroFilas=30;
+        $numeroFilas=40;
         
        
         
@@ -147,12 +147,6 @@
 
 
 <!--Main Layout-->
-
-
-
-
-
-
 
 
 
@@ -270,8 +264,8 @@
                     </div>
 
                   </form>
-
-                    <div class="song__item song__th">
+             
+                    <div class="song__item song__th ">
 
                         <div class="song__like"></div>
 
@@ -283,9 +277,11 @@
                         <div class="song__date">REMIXER</div>
                         <div class="song__duration">DATE</div>
                     </div>
+
+              
                     <?php foreach (Pagination::show_rows("id") as $row): ?>
                       <?php  $banderaError=false; if( $row['apodo']!== 'Error: vacío' ){ ?>
-                        <div class="song__item" >
+                        <div class="song__item"  data-demo="../../editDemos/<?php echo $row['demo']?>">
 
                             <div class="song__buy"><i class="fas fa-cart-plus song__like  mr-1 "></i><?php echo ' $ '.$row['precio'] ?></div>
                             <div class="song__title"><?php echo $row['nombrePista'] ?></div>
@@ -322,36 +318,28 @@
 
             <?php 
                  $top=ModeloClienteProducto::sqlListarTop(); 
-               
+    
                 $cont_2=0;
                 foreach($top as $key=>$value){
-                    if($cont_2<15){
+                    if($cont_2<6){
                         echo'
 
+                        <div class="col-md-12 mb-12">
 
-                        <!--Card Regular-->
-                        <div class="card card-cascade black">
-                          <!--Card image-->
-                        
-                          <div class="view view-cascade overlay">
-                            <img src="../../img/proveedores/'.$value['img'].'" class="card-img-top" alt="normal">
-                            <a>
-                              <div class="mask rgba-white-slight"></div>
-                            </a>
-                          </div>
-                          <!--/.Card image-->
-                          <!--Card content-->
-                          <div class="card-body card-body-cascade text-center">
-                            <!--Title-->
-                            <h4 class="card-title"><strong>$'.$value['precio'].'</strong></h4>
-                            <h5>Web developer</h5>
-                            <!--Facebook-->
-                            <a type="button" class="btn-floating btn-small btn-fb"><i class="fas fa-play-circle"></i></a>
-                            <a type="button" class="btn-floating btn-small btn-fb"><i class="fas fa-cart-plus"></i></a>
-                            <a type="button" class="btn-floating btn-small btn-fb"><i class="fas fa-share-alt"></i></a>
-                          </div>
-                          <!--/.Card content-->
+                        <div class="view z-depth-1  imgTop">
+                          <img src="../../img/proveedores/'.$value['img'].'" class="img-fluid mx-auto" alt="smaple image">
                         </div>
+                        <h6 class="font-weight-bold topPrecio">$'.$value['precio']. '</h6>
+                        <small class="text-muted topNombreTema">'.$value['nombrePista'].'</small>
+                        <ul class="list-unstyled d-flex justify-content-center mt-1 mb-0 text-muted listsaIconosTop">
+                          <li><a href="" class="btn-floating btn-lg btn-slack"><i class="fas fa-play"></i></a> </li>
+                          <li><a href="" class="btn-floating btn-lg btn-slack"><i class="fas fa-cart-plus"></i></a> </li>
+                          <li><a href="" class="btn-floating btn-lg btn-slack"><i class="fas fa-share-alt"></i></a> </li>
+                        </ul>
+                
+                      </div>
+
+                
                         
             ';
                     }
@@ -405,109 +393,7 @@
         
 
 
-  <style>
 
-}
-select.form-control.form-control-sm.ml-3.w-60.selectGeneroRemixer {
-   
-    padding: 10px;
-}
-
-
-  </style>
-
-
-<!-- ===================================SILIDER CON IMAGNES ============================== -->
-<!-- ===================================SILIDER CON IMAGNES ============================== -->
-<!-- ===================================SILIDER CON IMAGNES ============================== -->
-<link rel="stylesheet" href="../../Logo-carousel/css/style.css">
-<script src="../../Logo-carousel/js/jquery.rcbrand.js"></script>
-
-<style>
-  .rc-rcbrand-inner {
- 
-    background: #121314 !important;
-   border-color:  #121314 !important;
-}
-
-
-</style>
-
-
-
-<style>
-  /* ============================= RESPONSIBE DISEÑO ==================================== */
-/* ============================= RESPONSIBE DISEÑO ==================================== */
-/* ============================= RESPONSIBE DISEÑO ==================================== */
-@media only screen and (max-width: 1920px) {
-  /* .song__buy {
-      width: auto;
-      flex-grow: 1;
-      min-width: 200px;
-      padding: 0 20px;
-      overflow: hidden;
-  } */
-
-}
-@media only screen and (max-width: 1366px) {
-    /* .song__buy {
-      width: auto;
-      flex-grow: 1;
-      min-width: 200px;
-      padding: 0 20px;
-      overflow: hidden;
-  } */
-}
-@media only screen and (max-width: 1024px) {
- 
-  
-}
-@media only screen and (max-width: 990px) {
- 
-
-}
-
-@media only screen and (max-width: 768px) {
-
-}
-@media only screen and (max-width: 480px) {
-
-}
-/* ========================================== boton de buscar ===========================
-========================================== boton de buscar ===========================
-========================================== boton de buscar =========================== */
-button.form-control.form-control-sm.ml-3.w-60.btnBuscar {
-    margin: 10px !important;
-    padding: 7.01px;
-}
-.md-form .form-control {
-
-    color: white !important;
-
-}
-
-option {
-  
-  color: black;
-}
-/* ================================= TITLE DE LA TABLA DE PRODUCTOS =========================== */
-/* ================================= TITLE DE LA TABLA DE PRODUCTOS =========================== */
-/* ================================= TITLE DE LA TABLA DE PRODUCTOS =========================== */
-.song__title.cabezeraTitle {
-    margin-left: -70px !important;
-}
-.song__buy {
-    min-width: 115px;
-    overflow: hidden;
-    display: flex;
-}
-
-.song__like {
-
-    width: -4px !important;
- 
-}
-</style>
 
 
 

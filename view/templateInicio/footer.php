@@ -1,15 +1,46 @@
-<!-- Footer -->
-<footer class="page-footer font-small special-color-dark ">
 
+<div class="row footerSms">
+  <div class="col-lg-6 mt-4 ">
+    <span>Registrate para recibir novedades y descuentos exclusivos.</spnan>
+    </div>
+    <div class="col-lg-6">
+      <!-- Begin Mailchimp Signup Form -->
+      <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+       <style type="text/css">
+              #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+              /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+              We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+              </style>
+            <div id="mc_embed_signup">
+              <form action="https://latinedit.us17.list-manage.com/subscribe/post?u=43e7b358c17a50edbc12de074&amp;id=5723410d04" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+
+                <div id="mc_embed_signup_scroll">
+              <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_43e7b358c17a50edbc12de074_5723410d04" tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+                </div>
+            </form>
+            </div>
+            
+            <!--End mc_embed_signup-->
+    
+        </div>
+</div>
+
+
+
+<footer class="page-footer font-small special-color-dark footerLatinEdit">
+  
   <!-- Footer Elements -->
-  <div class="container">
-
+  <div class="container contenderRedeSociales">
+    
     <!-- Grid row-->
     <div class="row">
 
       <!-- Grid column -->
       <div class="col-md-12 py-5">
-        <div class="mb-5 flex-center">
+        <div class="mb-8 flex-center">
 
           <!-- Facebook -->
         
@@ -72,15 +103,11 @@
         <!-- ======================AJAX================================== -->
         <script type="text/javascript" src="../../controler/js/ajaxProveedor.js?v=1.0.0"></script>
         <script type="text/javascript" src="../../controler/js/ajaxCliente.js?v=1.0.0"></script>
-        <script src="https://unpkg.com/moment"></script>
-        <script type="text/javascript" src="../../controler/js/carritoCompras.js?v=1.0.1"></script>
+        <!-- <script type="text/javascript" src="../../controler/js/carritoCompras.js?v=1.0.1"></script> -->
         <script type="text/javascript" src="../../controler/js/ajaxPagar.js?v=1.0.1"></script>
-        
 
-        <!-- =============================REPRODUCTOR DE AUDIO=============================== -->
-        <link rel="stylesheet" type="text/css" href="../../jPlayer Flat Audio Theme/css/jplayer-flat-audio-theme.css" />
-        <script type="text/javascript" src="../../jPlayer Flat Audio Theme/js/jquery.jplayer.min.js?v=1.0.0"></script> 
-        <script type="text/javascript" src="../../controler/js/jPlayerPersonalizado.js?v=1.0.0"></script>
+       
+       
 
 
         <!--========================ANIMACION DE ESPERA==================================================== -->
@@ -94,6 +121,7 @@
         <!-- ===================================SILIDER CON IMAGNES ============================== -->
         <script src="../../Logo-carousel/js/jquery.rcbrand.js"></script>
         <script src="../../Logo-carousel/js/sliderConImagenes.js"></script>
+
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167467233-1"></script>
@@ -146,6 +174,7 @@
             <!-- End Facebook Pixel Code -->
 
             <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/43e7b358c17a50edbc12de074/271195d8d40a356a969dcfac7.js");</script>
+
 
 </html>        
 
