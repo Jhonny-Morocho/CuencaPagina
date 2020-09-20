@@ -151,6 +151,9 @@ class ControladorPlantillaInicio{
         public static function toTop(){
             require "blackTotop/toTop.php";
         }
+        public static function terminosCondiciones(){
+            require "view/templateInicio/textoTerminos.php";
+        }
 
         
 

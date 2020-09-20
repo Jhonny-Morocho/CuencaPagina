@@ -32,6 +32,12 @@
   <!-- ===================================SILIDER CON IMAGNES ============================== -->
   <link rel="stylesheet" href="../../Logo-carousel/css/style.css">
 
+  
+  <!-- ===================================HOVER CSS ============================== -->
+  <!-- <link rel="stylesheet" href="../../imagehoverCSS/css/demo-page.css"> -->
+  <link rel="stylesheet" href="../../imagehoverCSS/css/imagehover.css">
+  <link rel="stylesheet" href="../../imagehoverCSS/css/imagehover.min.css">
+
 
 </head>
 <body>

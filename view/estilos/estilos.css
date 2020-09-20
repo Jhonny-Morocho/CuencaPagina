@@ -130,25 +130,43 @@
     text-align: center !important;
 }
 
-.listsaIconosTop li a i{
-    color: #000 !important;
-    margin-top: -8px !important;
+ul.list-unstyled.d-flex.justify-content-center.mt-1.mb-0.text-muted.listsaIconosTop {
+    font-size: 25px;
+    margin-top: 30px !important;
+    color: white !important;
+    margin-right: 10px !important;
+}
+ul.list-unstyled.d-flex.justify-content-center.mt-1.mb-0.text-muted.listsaIconosTop li i{
+   margin-left: 10px !important;
+}
 
+.topViral small:hover{
+    color: #007bff !important;
+}
+.descripcion p:hover{
+    color: #007bff !important;
+    transition: .5s all;
+}
+
+
+
+.topViral h5 {
+    width: 100% ;
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+    background-color: #007bff;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+.topViral h5:hover {
+ font-size: 23px;
+ transition: .5s all;
    
 }
-.listsaIconosTop li a {
-    background-color: white !important;
-    
-   
-}
-.listsaIconosTop  .btn-floating.btn-lg {
-    width: 40.1px;
-    height: 40.1px;
- 
-    
-}
-
-
 
 /* ================================= TITLE DE LA TABLA DE PRODUCTOS =========================== */
 /* ================================= TITLE DE LA TABLA DE PRODUCTOS =========================== */
@@ -212,7 +230,7 @@
 ========================================== boton de buscar =========================== */
 button.form-control.form-control-sm.ml-3.w-60.btnBuscar {
     margin: 10px !important;
-    padding: 7.01px;
+    padding: 8.5px;
 }
 .md-form .form-control {
 
@@ -268,7 +286,7 @@ footer.page-footer .footer-copyright {
  .footerLatinEdit {
 
     background: rgba(0,0,0,.97) !important;
-    padding-top: 90px !important;
+    padding-bottom: 85px !important;
    
 }
 
@@ -286,3 +304,38 @@ footer.page-footer .footer-copyright {
     margin-left: 40px !important ;
    
 }
+
+.footerSms span:focus, span:hover {
+   
+    color: #212529 !important;
+    transition: .5s all;
+    
+}
+
+.iconosInformacionFooter p:hover{
+    color: #007bff;
+    transition: .5s all;
+}
+
+.terminosCondiciones  p a:hover{
+    color: #007bff !important;
+    transition: .5s all;
+}
+
+
+/* ====================== TERMINOS  Y CONDICIONES ==================== */
+/* ====================== TERMINOS  Y CONDICIONES ==================== */
+/* ====================== TERMINOS  Y CONDICIONES ==================== */
+
+.container.terminosCondiciones {
+    margin-top: 100px;
+}
+
+
+ol li {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+
+

@@ -17,7 +17,7 @@ $plantilla= new ControladorPlantillaInicio();
 $plantilla->ctr_header();
 $plantilla->formRegistroCliente();
 $plantilla->ctr_footer();
-
+$plantilla->toTop();
 ?>
 
 

@@ -5,12 +5,11 @@
 
 main {
     background-color: black;
-    /* display: flex; */
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
-    max-width: 1600px;
+    max-width: 100% !important;
     min-height: 100vh;
     margin: 0 auto;
     overflow-x: hidden;

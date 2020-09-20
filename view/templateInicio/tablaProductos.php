@@ -1,8 +1,5 @@
     <?php 
 
-
-// will output 2 days
-
           ini_set('display_errors', 'On');
           require'controler/ctrValidarCampos.php';
           require'controler/ctrPaginacion.php';
@@ -59,8 +56,6 @@
 
         $numeroFilas=40;
         
-       
-        
       function validarNumeros($numero){
 
           if (filter_var($numero, FILTER_VALIDATE_INT)) {
@@ -72,9 +67,7 @@
           }
 
       }
-     
-
-
+    
       //echo "VALIDACION : ".(validarNumeros(@$_GET['genero']));
       $validacionIdGenero=validarNumeros(@$_GET['genero']);
       $validacionIdRemixer=validarNumeros(@$_GET['remixer']);
@@ -148,22 +141,11 @@
 
 <!--Main Layout-->
 
-
-
-
-<div class="">
-  <div class="">
-    <div class="">
-
-
-    </div>
-
     <div class="row black">
             <div class="col-lg-10">
               <main class="main" id="main">
            
                       <!-- <input class="song__input" type="text" placeholder="Buscar..." id="song__input"> -->
-
 
                       <form class="text-center "  method="get" action="../../" id="song__input">
         
@@ -312,83 +294,151 @@
                     <?php endforeach; ?>
                   
                   </main>
-            </div>
+            </div> <!-- end colg-lg-10 --> 
+            
             <div class="col-lg-2 topViral "  >
+                                <h5>BEST SELLERS </h5>
+              <!-- <h5 ><span class="underline-closing "> BEST SELLERS </span></h5> -->         
+           
+              <?php 
+                  $top=ModeloClienteProducto::sqlListarTop(); 
+      
+                  $cont_2=0;
+                  foreach($top as $key=>$value){
+                      if($cont_2<6){
+                          echo'
 
+                          <div class="col-md-12 mb-12">
 
-            <?php 
-                 $top=ModeloClienteProducto::sqlListarTop(); 
-    
-                $cont_2=0;
-                foreach($top as $key=>$value){
-                    if($cont_2<6){
-                        echo'
+                          <div class="view z-depth-1  imgTop imghvr-zoom-out-left">
+                            <img src="../../img/proveedores/'.$value['img'].'" class="img-fluid mx-auto" alt="smaple image">
+                            <figcaption>
+                              <ul class="list-unstyled d-flex justify-content-center mt-1 mb-0 text-muted listsaIconosTop">
+                                <li><i class="fas fa-play"></i> </li>
+                                <li><i class="fas fa-cart-plus"></i> </li>
+                                <li><i class="fas fa-share-alt"></i> </li>
+                              </ul>
+                            </figcaption>
+                          </div>
+                          <h6 class="font-weight-bold topPrecio">$'.$value['precio']. '</h6>
+                          <small class="text-muted topNombreTema">'.$value['nombrePista'].'</small>
+                  
+                        </div>';
+                      }
+                      $cont_2++; 
+                  }
+              ?>
+            </div><!-- end colg-lg-2 -->
+    </div> <!-- end row -->
 
-                        <div class="col-md-12 mb-12">
+    <div class="d-flex justify-content-center mt-3">
+      <?php if( $banderaError==false){  // si no exite resultado osea marcar erro entonces no presentra paginacion?>
+              <nav aria-label="Page navigation example">
+                  <ul class="pagination pg-blue">
+                      <?php if ($data["actual-section"] != 1): ?> 		  			
+                          <li class="page-item" ><a class="page-link" href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&genero=<?php echo @$_GET['genero'] ?>&remixer=<?php echo @$_GET['remixer'] ?>&page=1">Inicio</a></li>
+                          <li class="page-item" ><a class="page-link"" href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&genero=<?php echo @$_GET['genero'] ?>&remixer=<?php echo @$_GET['remixer'] ?>&page=<?php echo $data['previous']; ?>">&laquo;</a></li>
+                      <?php endif; ?>
 
-                        <div class="view z-depth-1  imgTop">
-                          <img src="../../img/proveedores/'.$value['img'].'" class="img-fluid mx-auto" alt="smaple image">
-                        </div>
-                        <h6 class="font-weight-bold topPrecio">$'.$value['precio']. '</h6>
-                        <small class="text-muted topNombreTema">'.$value['nombrePista'].'</small>
-                        <ul class="list-unstyled d-flex justify-content-center mt-1 mb-0 text-muted listsaIconosTop">
-                          <li><a href="" class="btn-floating btn-lg btn-slack"><i class="fas fa-play"></i></a> </li>
-                          <li><a href="" class="btn-floating btn-lg btn-slack"><i class="fas fa-cart-plus"></i></a> </li>
-                          <li><a href="" class="btn-floating btn-lg btn-slack"><i class="fas fa-share-alt"></i></a> </li>
-                        </ul>
-                
-                      </div>
-
-                
-                        
-            ';
-                    }
-                    $cont_2++; 
-                }
-            ?>
-
-</div>
-
-</div>
-
-        <div class="d-flex justify-content-center">
-          <?php if( $banderaError==false){  // si no exite resultado osea marcar erro entonces no presentra paginacion?>
-                  <nav aria-label="Page navigation example">
-                      <ul class="pagination pg-blue">
-                          <?php if ($data["actual-section"] != 1): ?> 		  			
-                              <li class="page-item" ><a class="page-link" href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&genero=<?php echo @$_GET['genero'] ?>&remixer=<?php echo @$_GET['remixer'] ?>&page=1">Inicio</a></li>
-                              <li class="page-item" ><a class="page-link"" href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&genero=<?php echo @$_GET['genero'] ?>&remixer=<?php echo @$_GET['remixer'] ?>&page=<?php echo $data['previous']; ?>">&laquo;</a></li>
+                      <?php for ($i = $data["section-start"]; $i <= $data["section-end"]; $i++): ?>					
+                      <?php if ($i > $data["total-pages"]): break; endif; ?>
+                      <?php $active = ($i == $data["this-page"]) ? "active" : ""; ?>			    
+                          <li class="page-item <?php echo $active; ?>">
+                          <a class="page-link" href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&genero=<?php echo @$_GET['genero'] ?>&remixer=<?php echo @$_GET['remixer'] ?>&page=<?php echo $i; ?>">
+                              <?php echo $i; ?>			    		
+                          </a>
+                          </li>
+                          <?php endfor; ?>
+                      
+                      <?php if ($data["actual-section"] != $data["total-sections"]): ?>
+                          <li  class="page-item"  ><a lass="page-link"  href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&genero=<?php echo @$_GET['genero'] ?>&remixer=<?php echo @$_GET['remixer'] ?>&page=<?php echo $data['next']; ?>">&raquo;</a></li>
+                          <li  class="page-item"><a class="page-link"  href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&genero=<?php echo @$_GET['genero'] ?>&remixer=<?php echo @$_GET['remixer'] ?>&page=<?php echo $data['total-pages']; ?>">Final</a></li>
                           <?php endif; ?>
+                  </ul>
+              </nav>
+          <?php }  ?>
+    </div>
+    
+    <div class="row">
+      <ul id="rcbrand2">
+          <li><img src="../../Logo-carousel/images/wordpress.png" /></li>
+          <li><img src="../../Logo-carousel/images/html5.png" /></li>
+          <li><img src="../../Logo-carousel/images/css3.png" /></li>
+          <li><img src="../../Logo-carousel/images/windows.png" /></li>
+          <li><img src="../../Logo-carousel/images/jquery.png" /></li>
+          <li><img src="../../Logo-carousel/images/js.png" /></li>
+      </ul>
+    </div>
 
-                          <?php for ($i = $data["section-start"]; $i <= $data["section-end"]; $i++): ?>					
-                          <?php if ($i > $data["total-pages"]): break; endif; ?>
-                          <?php $active = ($i == $data["this-page"]) ? "active" : ""; ?>			    
-                              <li class="page-item <?php echo $active; ?>">
-                              <a class="page-link" href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&genero=<?php echo @$_GET['genero'] ?>&remixer=<?php echo @$_GET['remixer'] ?>&page=<?php echo $i; ?>">
-                                  <?php echo $i; ?>			    		
-                              </a>
-                              </li>
-                              <?php endfor; ?>
-                          
-                          <?php if ($data["actual-section"] != $data["total-sections"]): ?>
-                              <li  class="page-item"  ><a lass="page-link"  href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&genero=<?php echo @$_GET['genero'] ?>&remixer=<?php echo @$_GET['remixer'] ?>&page=<?php echo $data['next']; ?>">&raquo;</a></li>
-                              <li  class="page-item"><a class="page-link"  href="../../?busqueda=<?php echo @$_GET['busqueda'] ?>&genero=<?php echo @$_GET['genero'] ?>&remixer=<?php echo @$_GET['remixer'] ?>&page=<?php echo $data['total-pages']; ?>">Final</a></li>
-                              <?php endif; ?>
-                      </ul>
-                  </nav>
-              <?php }  ?>
-        </div>
-        <div class="row">
-          <ul id="rcbrand2">
-              <li><img src="../../Logo-carousel/images/wordpress.png" /></li>
-              <li><img src="../../Logo-carousel/images/html5.png" /></li>
-              <li><img src="../../Logo-carousel/images/css3.png" /></li>
-              <li><img src="../../Logo-carousel/images/windows.png" /></li>
-              <li><img src="../../Logo-carousel/images/jquery.png" /></li>
-              <li><img src="../../Logo-carousel/images/js.png" /></li>
-          </ul>
-        </div>
 
+
+    
+
+<!-- ======================================= REPRODUCTOR DE ONDA ================================= -->
+<!-- ======================================= REPRODUCTOR DE ONDA ================================= -->
+<!-- ======================================= REPRODUCTOR DE ONDA ================================= -->
+
+<link rel="stylesheet" href="../../view/estilos/audioPlayer.css">
+
+
+
+<div id="audio-gallery-0" class="audiogallery" style="opacity:0">
+    <div class="items">
+    <?php foreach (Pagination::show_rows("id") as $row): ?>
+    <?php  $banderaError=false; if( $row['apodo']!== 'Error: vacío' ){ ?>
+
+
+      <div id="audioplayer-0_0" class="audioplayer-tobe" data-scrubbg="waves/scrubbg.png" data-scrubprog="waves/scrubprog.png" data-type="normal" data-source="../../editDemos/<?php echo $row['demo'] ?>" data-videoTitle="Audio Video"  data-fakeplayer="#stickyplayer">      
+        <div class="meta-artist">
+          <span class="the-artist">tangerine</span>
+          <br/>
+          <span class="the-name">title</span>
+        </div>
+        <div class="menu-description">
+          <div class="menu-item-thumb-con">
+            <div class="menu-item-thumb"></div>
+          </div>
+          <span class="the-artist"></span>
+          <span class="the-name"><?php echo $row['nombrePista'] ?></span>
+        </div>
+      </div>
+
+
+      <?php }else{
+                                    echo '<div class="alert alert-primary" role="alert">
+                                            No existe resultado para la cadena de busqueda 
+                                        </div>';
+                                    $banderaError=true;
+                                } ?>	
+                    <?php endforeach; ?>
+
+    </div>
+</div>  
+  
+
+  <!------------------------>
+<!-- sticky audio player-->
+<div class="dzsap-sticktobottom-placeholder dzsap-sticktobottom-placeholder-for-skin-wave"></div>
+<section class="dzsap-sticktobottom dzsap-sticktobottom-for-skin-wave">
+    <div id="stickyplayer" class="audioplayer-tobe" style="width:100%;" data-type="fake" data-source="fake">
+        <div class="the-comments">
+        </div>
+        <div class="meta-artist">
+            <span class="the-artist"></span>
+            <span class="the-name">
+                <a href="http://codecanyon.net/item/zoomsounds-wordpress-audio-player/6181433?ref=ZoomIt" target="_blank"></a>
+            </span>
+            <div class="goto">
+                <div class="btn-prev player-but">
+                    <div class="the-icon-bg"></div>                 
+                </div>
+                <div class="btn-next player-but">
+                    <div class="the-icon-bg"></div>                
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
         
 

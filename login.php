@@ -17,6 +17,7 @@ $plantilla= new ControladorPlantillaInicio();
 $plantilla->ctr_header();
 $plantilla->formLoginCliente();
 $plantilla->ctr_footer();
+$plantilla->toTop();
 
 ?>
 

@@ -8809,6 +8809,9 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
  * @requires {@link http://greensock.com/gsap|GSAP ~1.14.x}
  * @mixin animation.GSAP
  */
+
+
+
 (function (root, factory) {
 	if (typeof define === 'function' && define.amd) {
 		// AMD. Register as an anonymous module.
@@ -8836,6 +8839,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 	if (!Tween) {
 		err("(" + NAMESPACE + ") -> ERROR: TweenLite or TweenMax could not be found. Please make sure GSAP is loaded before ScrollMagic or use an asynchronous loader like requirejs.");
 	}
+
 
 /*
 	 * ----------------------------------------------------------------
