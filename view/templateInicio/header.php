@@ -119,10 +119,14 @@
                 <!-- Right -->
                 <ul class="navbar-nav nav-flex-icons">
                     <li class="nav-item">
-                        <span class="underline-closing">
-                            <span class="badge red z-depth-1 mr-1"> 1 </span>
-                            <i class="fas fa-shopping-cart"></i>
-                        </span>
+                    <span class="underline-closing">
+                        <a href="../../car.php">
+                          
+                                <span class="badge red z-depth-1 mr-1 cart-notification"> 0 </span>
+                                <i class="fas fa-shopping-cart"></i>
+                           
+                        </a> 
+                    </span>
                     </li>
                     <li class="nav-item tabla">
 

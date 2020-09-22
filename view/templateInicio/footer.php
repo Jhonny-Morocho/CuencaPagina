@@ -84,10 +84,10 @@ With your account you can access all our products, benefits and exclusive offers
           <a class="dark-grey-text" href="../../login.php">Your Account</a>
         </p>
         <p>
-          <a class="dark-grey-text" href="#!">Term & Conditions</a>
+          <a class="dark-grey-text" href="../../terminosCondiciones.php">Term & Conditions</a>
         </p>
         <p>
-          <a class="dark-grey-text" href="#!">Abaut Us</a>
+          <a class="dark-grey-text" href="../../abaut.php">Abaut Us</a>
         </p>
         <p>
           <a class="dark-grey-text" href="#!">Remixer Application</a>
@@ -152,7 +152,8 @@ With your account you can access all our products, benefits and exclusive offers
         <!-- ======================AJAX================================== -->
         <script type="text/javascript" src="../../controler/js/ajaxProveedor.js?v=1.0.0"></script>
         <script type="text/javascript" src="../../controler/js/ajaxCliente.js?v=1.0.0"></script>
-        <!-- <script type="text/javascript" src="../../controler/js/carritoCompras.js?v=1.0.1"></script> -->
+        <script src="https://unpkg.com/moment"></script> 
+        <script type="text/javascript" src="../../controler/js/carritoCompras.js?v=1.0.1"></script>
         <script type="text/javascript" src="../../controler/js/ajaxPagar.js?v=1.0.1"></script>
 
 
@@ -168,13 +169,11 @@ With your account you can access all our products, benefits and exclusive offers
         <script src="../../Logo-carousel/js/jquery.rcbrand.js"></script>
         <script src="../../Logo-carousel/js/sliderConImagenes.js"></script>
 
-        <!-- ======================================= REPRODUCTOR DE ONDA ================================= -->
-        <!-- ======================================= REPRODUCTOR DE ONDA ================================= -->
-        <!-- ======================================= REPRODUCTOR DE ONDA ================================= -->
-          
-        <script src="../../stikerAudio/TweenMax.min.js"></script>
-        <script src="../../stikerAudio/all-plugins-min.js"></script>
-        <script src="../../stikerAudio/main.js"></script>
+   
+        <!-- =============================REPRODUCTOR DE AUDIO=============================== -->
+        <link rel="stylesheet" type="text/css" href="../../jPlayer Flat Audio Theme/css/jplayer-flat-audio-theme.css" />
+        <script type="text/javascript" src="../../jPlayer Flat Audio Theme/js/jquery.jplayer.min.js?v=1.0.1"></script> 
+        <script type="text/javascript" src="../../controler/js/jPlayerPersonalizado.js?v=1.0.0"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-167467233-1"></script>

@@ -339,3 +339,24 @@ ol li {
 
 
 
+
+
+
+/* ====================carrito de compras ============= */
+/* ====================carrito de compras =============
+====================carrito de compras ============= */
+
+.buy:hover{
+    cursor: pointer;
+ }
+ .deleItemCar:hover{
+   cursor: pointer;
+   color: red;
+ }
+ .deleItemCar{
+   font-size: 22px;
+ }
+ tr td{
+   text-align: center;
+ }
+ 

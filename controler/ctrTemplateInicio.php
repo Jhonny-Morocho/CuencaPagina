@@ -154,6 +154,13 @@ class ControladorPlantillaInicio{
         public static function terminosCondiciones(){
             require "view/templateInicio/textoTerminos.php";
         }
+        public static function abaut(){
+            require "view/templateInicio/textoAbaut.php";
+        }
+        public static function sliderLogosDj(){
+            require "view/templateInicio/sliderLogosDj.php";
+        }
+
 
         
 

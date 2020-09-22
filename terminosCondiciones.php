@@ -13,8 +13,6 @@ require'model/mdlClienteProducto.php';
 require_once 'controler/ctrTemplateInicio.php';
 $plantilla= new ControladorPlantillaInicio();
 $plantilla->ctr_header();
-
-
 $plantilla->terminosCondiciones();
 $plantilla->ctr_footer();
 $plantilla->toTop();

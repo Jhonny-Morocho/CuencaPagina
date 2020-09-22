@@ -2,16 +2,7 @@
 
 <!--Main Layout-->
 
-<div class="container">
-  
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="alert alert-success smsIniciarSession" role="alert">
-                    Note: You need to be logged in to checkout. If the wallet option doesn’t show and you have funds, that means you need to add more funds to cover the total
-                </div>
-            </div>
-        </div>
-
+<div class="container mt-3">
 
         <form action="" id="idFormCarrito">
             <div class="row d-flex justify-content-center">

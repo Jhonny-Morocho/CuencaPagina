@@ -1,7 +1,9 @@
 /*--- [ER] mod-preset ---*/
 
 jQuery(document).ready(function($){
-
+  // n.pause();
+  // n.currentTime = 0;
+  // n.play();
     var presetBrowser ={
           globals:{         
               currentAudioGallery: null,
@@ -69,7 +71,7 @@ jQuery(document).ready(function($){
   
      // var audioURL = $('.audioplayer-tobe',audioGal).attr("data-source");
        //$("#stickyplayer").attr("data-source",audioURL);
-  
+
       var settings_ap = {
         autoplayNext:true,
         swf_location: "/templates/arturia-bootstrap/assets/scripts/jquery-plugins/waveform-audio-player/ap.swf",

@@ -80,17 +80,17 @@
         var nombreProducto=$(this).attr("data-nombre");
         var precio=$(this).attr("data-precio");
        //notificacion se agrego producto
-        bootoast.toast({
-          message: 'Se agrego '+nombreProducto,
-          type: 'success'
-        });
+       	
+       $(this).after('<i class="fas fa-check  ml-1 mr-1" style="color:#39ff14"></i>');
+       $(this).removeClass('buy');
+      toastr.info('Se agrego '+nombreProducto);
        //si no tiene datos en local store , encones inicializo el array
        //console.log(localStorage.getItem("listProduct"));
        (localStorage.getItem("listProduct")==null)? listaCarrito=[]: listaCarrito.concat(localStorage.getItem("listProduct"));
         //console.log("listaCarrito",listaCarrito);
         listaCarrito.push({"idProducto"     :idProducto,
 							"nombreProducto":nombreProducto,
-							"precio"        :precio});
+              "precio"        :precio});
         //pinta items en el carrito de compras
         $(".cart-notification").html(listaCarrito.length);
         //guardo esos datos en el localstorage
@@ -181,7 +181,7 @@
         dataType: "json",
         data: { Cupon: "listar"},
         success:function(respuesta){
-          //console.log(respuesta[0].fechaExpiracion);
+          console.log(respuesta[0].fechaExpiracion);
           nombreCupon=respuesta[0].nombreCupon;
           consumo=respuesta[0].consumo;
           fechaExpiracion=respuesta[0].fechaExpiracion;
@@ -240,11 +240,8 @@
 
             if(inputCupon!=nombreCupon || ofertaActiva==false){
               //alert("Cupon no valido , el cupon actual es "+nombreCupon+ " y expira el "+fechaExpiracion);
-              bootoast.toast({
-                message:"Cupon no valido , el cupon actual es "+nombreCupon+ " y expira el "+fechaExpiracion,
-                type: 'warning',
-                animationDuration: 1000
-              });
+
+              toastr.warning("Cupon no valido , el cupon actual es "+nombreCupon+ " y expira el "+fechaExpiracion);
             }
             
             if(Number($(".total-amount span").text()) <=consumo){

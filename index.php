@@ -16,8 +16,8 @@ $plantilla->ctr_header();
 $plantilla->ctr_slider();
 $plantilla->reproductorAudio();
 $plantilla->ctr_tabla_productos();
+$plantilla->sliderLogosDj();
 $plantilla->ctr_footer();
 $plantilla->toTop();
 
 ?>
-

@@ -64,17 +64,15 @@ function enviarDatosPasarelaPago(datos){
         cache:false,
         contentType:false,
         processData:false,
-        dataType:'text',//json//data_type
+        dataType:'json',//json//data_type
         success:function(data){
             console.log(data);
 
             switch (data.respuesta) {
                 case 'noExiseLogin':
                     //no exites session
-                        bootoast.toast({
-                            message: '¡ Para realizar la compra debes iniciar sesion !',
-                            type: 'warning',
-                        });
+              
+                        toastr.warning('Para realizar la compra debes iniciar sesion.');
                     break;
 
                 case 'exito':

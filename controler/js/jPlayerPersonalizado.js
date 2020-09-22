@@ -23,3 +23,8 @@ $('.reproducirContenedor').on('click',function(e){// click en el elento a reprod
     jQuery("#jquery_jplayer_1").jPlayer("play");
 });
    
+// .song__item:hover {
+//   background: #2c2c2c;
+// }
+
+$(".song__item").css("color", "red");
