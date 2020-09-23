@@ -9,6 +9,9 @@
                 </div>
                 <div class="jp-progress">
                     <div class="jp-seek-bar">
+                        
+                        <!-- ============= conetendedor de la onda ============== -->
+                        <div id="waveform"></div>
                         <div class="jp-play-bar"></div>
                     </div>
                 </div>
@@ -26,3 +29,20 @@
             </div>
         </div>
     </div> 
+
+
+
+
+
+<style>
+    .reproducir{
+
+    clear: both;
+    width: 100%;
+    left: 1px;
+    position: fixed;
+    overflow: hidden;
+    bottom: -3px; 
+    z-index: 9999;
+}
+</style>

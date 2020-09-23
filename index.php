@@ -14,9 +14,9 @@ require_once 'controler/ctrTemplateInicio.php';
 $plantilla= new ControladorPlantillaInicio();
 $plantilla->ctr_header();
 $plantilla->ctr_slider();
-$plantilla->reproductorAudio();
 $plantilla->ctr_tabla_productos();
 $plantilla->sliderLogosDj();
+$plantilla->reproductorAudio();
 $plantilla->ctr_footer();
 $plantilla->toTop();
 
