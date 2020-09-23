@@ -208,6 +208,19 @@ With your account you can access all our products, benefits and exclusive offers
           //         }
           //     });
           </script>
+
+          <!-- ================== DIRECCIONAR AL DEMO ================== -->
+          <!-- ================== DIRECCIONAR AL DEMO ================== -->
+          <script>
+            $( document ).ready(function() {
+                $(".irDemo").click(function() {
+                  var idProducto=$(this).attr('data-id');
+                    window.location="../../demo.php?idProducto="+idProducto ;
+
+                });
+            });
+          </script>
+
           
             <!-- Facebook Pixel Code -->
             <script>
