@@ -45,3 +45,12 @@
     z-index: 9999;
 }
 </style>
+
+   
+<!-- =============================REPRODUCTOR DE AUDIO=============================== -->
+<link rel="stylesheet" type="text/css" href="../../jPlayer Flat Audio Theme/css/jplayer-flat-audio-theme.css" />
+<script type="text/javascript" src="../../jPlayer Flat Audio Theme/js/jquery.jplayer.min.js?v=1.0.1"></script> 
+<script type="text/javascript" src="../../controler/js/jPlayerPersonalizado.js?v=1.0.0"></script>
+
+<!-- =================== SCRIPT PARA DIBUJAR ONDA =============== -->
+<script src="https://unpkg.com/wavesurfer.js"></script>

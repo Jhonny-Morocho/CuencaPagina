@@ -238,11 +238,18 @@
           
         }else{
 
-            if(inputCupon!=nombreCupon || ofertaActiva==false){
+            if(inputCupon!=nombreCupon  && ofertaActiva==true){
               //alert("Cupon no valido , el cupon actual es "+nombreCupon+ " y expira el "+fechaExpiracion);
 
-              toastr.warning("Cupon no valido , el cupon actual es "+nombreCupon+ " y expira el "+fechaExpiracion);
+              toastr.warning("El cupon actual es "+nombreCupon+ " y expira el "+fechaExpiracion);
             }
+
+            if(ofertaActiva==false){
+              //alert("Cupon no valido , el cupon actual es "+nombreCupon+ " y expira el "+fechaExpiracion);
+              toastr.warning('Cupon no valido');
+            }
+
+            
             
             if(Number($(".total-amount span").text()) <=consumo){
               //alert("Tu compra debe ser mayor " +consumo + " para aplicar el cupon");

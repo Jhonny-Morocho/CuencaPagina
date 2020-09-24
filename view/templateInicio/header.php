@@ -45,8 +45,9 @@
         <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
             <div class="container">
             <!-- Brand -->
-            <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
-                <strong class="blue-text">MDB</strong>
+            <a class="navbar-brand waves-effect" href="../../" >
+                
+                <strong class="blue-text"><img src="../../img/logoLatinEdit.png" style="width: 100%;" alt="" class="animated flip "></strong>
             </a>
             <!-- Collapse -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -129,8 +130,7 @@
                     </span>
                     </li>
                     <li class="nav-item tabla">
-
-                        <span class="underline-closing"><a href=""><i class="fas fa-question-circle"></i> Support</a></span>
+                    <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Flatinedit&width=225&layout=button_count&action=like&size=large&share=true&height=46&appId" width="140" height="30" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
                     </li>
                 </ul>
 
