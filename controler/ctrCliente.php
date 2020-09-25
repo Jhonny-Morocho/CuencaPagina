@@ -1,11 +1,14 @@
-<?php 
+<?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+
 ini_set('display_errors', 'On');
 
 
 require'../model/conexion.php';
 require'../model/mdlCliente.php';
 require'../controler/ctrValidarCampos.php';
-
+require'../PHPMailer/vendor/autoload.php';
 
 $objValidacionCampos= new CtrValidarCampos();
 
@@ -130,6 +133,100 @@ switch (@$_POST['Cliente']) {
             die(json_encode($respuesta));
             break;
     
+        case 'recuperarContraseña':
+    
+            //validacion del correo
+            $boolean_validacion=true;
+            $ValidarCampos=array(
+                'validacion_correo'=>$objValidacionCampos->validaEmail(@$_POST['inputEmailCliente'])
+            );
+            foreach ($ValidarCampos as $key => $value) {// recorrer todas las respueta de los campos vacios
+                
+                if($value==false){//si llega vacio hacer imprimir
+                    
+                    //echo'<br>'.$key .' '.$value;
+                    $boolean_validacion=false;
+                }
+            }
+            //=====Verificar Validacion
+            if($boolean_validacion==true){
+                //1. Comprobar si el correo esta en la base de datos
+                $respuestaCorreoExistente=ModeloCliente::sqlLoginCliente(@$_POST['inputEmailCliente']);
+                if ($respuestaCorreoExistente) {//verificar si existe el correo del usuario
+                    //2. generar una contraseña aleatoria
+                    function generarPassword($longitud){
+                        $key="";
+                        $patron="1234567890abcdefghijklmnopqrstuvwxyz";
+                        $max=strlen($patron)-1;
+    
+                        for ($i=0; $i < $longitud; $i++) { 
+                            # code...
+                            $key.=$patron{mt_rand(0,$max)};
+                        }
+                        return $key;
+                    }
+                    $nuevoPassword=generarPassword(10);
+                    // Enviar los datos a la base de datos para actializarlos
+                    $respuestaClienteBD=ModeloCliente::sqlEditarPasswordCliente(array('datosBdCliente'=>$respuestaCorreoExistente,'passwordNuevo'=>$nuevoPassword));
+                    var_dump($respuestaClienteBD);
+                    if($respuestaClienteBD['respuesta']=='exito'){
+                        //enviamos al correo el nuevo password
+                        $mail=new PHPMailer();
+                        $mail->CharSet='UTF-8';
+                        $mail->isMail();
+                        $mail->setFrom('support@latinedit.com','LATINEDIT.COM');
+                        $mail->addReplyTo('support@latinedit.com','LatinEdit.com');
+                        $mail->Subject=('Solicitud de nueva contraseña LatinEdit.com');
+                        $mail->addAddress(@$_POST['inputEmailCliente']);
+                        $mail->msgHTML('<div style="width: 100%; height: 30%; position: relative;font-family:sans-serif ; padding-bottom: 40px;">
+                                            <center>
+                                                
+                                                    <img src="http://www.latinedit.com/img/logoLatinEdit.png" alt="" style="padding: 20px;" width="40%" height="20%">
+                                            </center>
+                                        </div>
+                                    
+                                        <div style="position: relative; width: 100%; background: white; padding: 20px; ">
+                                            <center>
+                                                <img src="http://latinedit.com/img/contraseña.png" alt="" width="10%" height="10%">
+                                                <h3 style="font-weight: 100px; background: whitesmoke;">
+                                                    Su nueva contraseña es : 
+                                                    <hr style="border: 1px solid #ccc; width: 80%;">
+                                                </h3>
+                                                <h4 style="font-weight: 100;color:#999 ; padding: 0 20px;">
+                                                    Acceda con esta contraseña temporal  y despues puede cambiar su contraseña en su panel de administracion.
+                                                </h4>
+                                    
+                                                <a href="http://latinedit.com/" style="color: white; text-decoration: none;" target="_blank">
+                                                
+                                                    <div style="line-height: 60px;background: #007bff; width: 60%; color: white; font-size: 20px;">Ir a latinedit.com
+                                                    </div>
+                                                </a>
+                                            </center>
+                                        </div>');
+                        $envio=$mail->Send();
+                        if (!$envio) {
+                            # code...
+                            echo "correo enviado";
+                        }else{
+                            echo "correo no enviado";
+                        }
+                    }else{
+                        echo "no se pudo actualizar el contraseña";
+                    }
+                    //echo "La nueva contraseña es igual a ".generarPassword(10); 
+               }else{
+                   echo "no exite correo el usuario ";
+                    // $respuesta=array(
+                    //     'respuesta'=>'correo no encontrado'
+                    // );
+                
+                }
+
+            }else{
+                echo "correo no valido";
+            }
+            break;
+    
     default:
         # code...
         break;
@@ -138,51 +235,11 @@ switch (@$_POST['Cliente']) {
 
 
 // recuperar contraseña
-
-// Import PHPMailer classes into the global namespace
-// These must be at the top of your script, not inside a function
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
-// Load Composer's autoloader
-require '../PHPMailer/vendor/autoload.php';
-
-// Instantiation and passing `true` enables exceptions
-$mail = new PHPMailer(true);
-
-try {
-    //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
-    $mail->isSMTP();                                            // Send using SMTP
-    $mail->Host       = 'jhonnymichaeldj2011@hotmail.com';                    // Set the SMTP server to send through
-    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-    $mail->Username   = 'user@example.com';                     // SMTP username
-    $mail->Password   = 'jhonnydj';                               // SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-    $mail->Port       = 587;                                    // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
-
-    //Recipients
-    $mail->setFrom('jhonnymichaeldj2011@hotmail.com', 'Mailer');
-    $mail->addAddress('jmmorochoa@unl.edu.ec', 'Joe User');     // Add a recipient
-    $mail->addReplyTo('info@example.com', 'Information');
-    $mail->addCC('cc@example.com');
-    $mail->addBCC('bcc@example.com');
-
-    // Attachments
-    $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-    $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-
-    // Content
-    $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-    $mail->send();
-    echo 'Message has been sent';
-} catch (Exception $e) {
-    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-}
+// $mail=new PHPMailer();
+// $mail->isMail();
+// $mail->setFrom('jhonnymichaeldj2011@hotmail.com','LATINEDIT.COM');
+// $mail->addReplyTo('jhonnymichaeldj2011@hotmail.com','LatinEdit.com');
+// $mail->Subject=('Recuperacion de mi contraseña en LatinEdit.com');
+//$mail->addAddress();
 
 ?>

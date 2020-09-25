@@ -175,6 +175,46 @@ ini_set('display_errors', 'On');
 				$stmt->close();
 		}
 
+		//============================EDITAR CONTRASEÑA DEL CLIENTE========================================//
+		public static function sqlEditarPasswordCliente($arrayDatos){
+			$db=new Conexion();
+			//========datos del formuarlio================
+			$idCliente=$arrayDatos['datosBdCliente']['id'];
+			$password=$arrayDatos['passwordNuevo'];
+			
+			try {
+			$opciones=array(
+				'cost'=>12
+			);
+
+			$hash_password=password_hash($password,
+							PASSWORD_BCRYPT,$opciones);
+			$stmt=$db->conectar()->prepare(" UPDATE cliente  SET 
+													password='$hash_password'
+											WHERE id='$idCliente' ");
+				
+			} catch (Exception $e) {
+				echo "Error".$e->getMessage();
+			}
+				$stmt->execute();
+				if($stmt){
+					//si se realizo la inserccion
+					$respuesta=array(
+						'respuesta'=>'exito'
+						);
+						return $respuesta;
+				}else{
+					$respuesta=array(
+						'respuesta'=>'false'
+						);
+						return $respuesta;
+				}
+
+				//si alguna fila se modifico entonces si se edito
+
+			$stmt->close();
+		}
+
 		//============================ELIMINAR LOGICAMENTE  AL PROVEEDOR PROVEEDOR========================================//
 	public static function sql_individual_eliminar($arrayProveedorImg){
 			$db=new Conexion();

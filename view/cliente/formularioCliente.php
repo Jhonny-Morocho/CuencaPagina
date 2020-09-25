@@ -90,6 +90,18 @@
                             <button class="btn btn-indigo btn-rounded">Sign up</button>
                             <hr class="hr-light mb-3 mt-4">
                         </div>
+                            <!-- Register -->
+
+                        <div class="md-form">
+                          <center>
+                            <a href="" style="color: white;" data-toggle="modal" data-target="#modalLoginAvatar">
+                              <p  style="color: white;">Not a member?
+                              </p>
+                            
+                            </a>
+                          </center>
+                        </div>
+
                         <input type="hidden" name="Cliente" value="loginCliente">
                     </div>
                 </div>
@@ -105,3 +117,39 @@
     <!-- Mask & flexbox options-->
   </div>
   <!-- Full Page Intro -->
+
+<!-- 
+  ======================= RECUPERAR MI CONTRASEÑA MODAL ================================= -->
+
+  <!--Modal: Login with Avatar Form-->
+<div class="modal fade" id="modalLoginAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="z-index: 9999;"
+  aria-hidden="true">
+  <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+
+      <!--Body-->
+      <form action="../../controler/ctrCliente.php" method="post" id="idFormularioRecuperarPassword">
+        <div class="modal-body text-center mb-1">
+  
+          <h5 class="mt-1 mb-4">Recover my password</h5>
+  
+          <div class="md-form ml-0 mr-0">
+            <input type="email" type="text"  class="form-control form-control-sm validate ml-0" style="color: black !important;"  name="inputEmailCliente" value="jhonnymichaeldj2011@hotmail.com">
+            <label data-error="wrong" data-success="right"  class="ml-0" style="color: black;">Enter email</label>
+          </div>
+          <input type="hidden" name="Cliente" value="recuperarContraseña">
+          <div class="text-center mt-4">
+            <button class="btn btn-cyan mt-1">Enviar <i class="fas fa-sign-in ml-1"></i></button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--Modal: Login with Avatar Form-->
+

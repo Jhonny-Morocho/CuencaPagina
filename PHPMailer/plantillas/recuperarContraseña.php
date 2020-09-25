@@ -6,10 +6,10 @@
     <title>Recuperar contraseña</title>
 </head>
 <body>
-    <div style="width: 100%;background-color: #007bff; height: 100px; position: relative;font-family:sans-serif ; padding-bottom: 40px;">
+    <div style="width: 100%; height: 30%; position: relative;font-family:sans-serif ; padding-bottom: 40px;">
         <center>
             
-                <img src="http://www.latinedit.com/img/logoLatinEdit.png" alt="" style="padding: 20px;" width="20%">
+                <img src="http://www.latinedit.com/img/logoLatinEdit.png" alt="" style="padding: 20px;" width="40%" height="20%">
         </center>
     </div>
 
