@@ -48,6 +48,20 @@
 
         <li class="treeview">
           <a href="#">
+            <i class="fa fa-picture-o" aria-hidden="true"></i> <span>Carrusel</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="../view/admin/formCarrusel.php"><i class="fa fa-plus" aria-hidden="true"></i> Agregar</a></li>
+            <li ><a href="../view/admin/listarImgCarrusel.php"><i class="fa fa-list-ul" aria-hidden="true"></i> Listar</a></li>
+          </ul>
+        </li>
+
+
+        <li class="treeview">
+          <a href="#">
             <i class="fa fa-fw fa-shopping-cart"></i><span>Informe Ventas</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>

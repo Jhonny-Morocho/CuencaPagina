@@ -139,9 +139,14 @@
             <input type="email" type="text"  class="form-control form-control-sm validate ml-0" style="color: black !important;"  name="inputEmailCliente" value="jhonnymichaeldj2011@hotmail.com">
             <label data-error="wrong" data-success="right"  class="ml-0" style="color: black;">Enter email</label>
           </div>
+          <div class="col-lg-12">
+            <div class="smsRecuperacionContraseña">
+
+            </div>
+          </div>
           <input type="hidden" name="Cliente" value="recuperarContraseña">
           <div class="text-center mt-4">
-            <button class="btn btn-cyan mt-1">Enviar <i class="fas fa-sign-in ml-1"></i></button>
+            <button class="btn btn-cyan mt-1 btnEnviar">Enviar <i class="fas fa-sign-in ml-1"></i></button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>

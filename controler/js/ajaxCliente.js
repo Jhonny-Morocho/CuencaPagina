@@ -186,18 +186,56 @@ $("#idEditarCliente").on('submit',function(e){
 
 $("#idFormularioRecuperarPassword").on('submit',function(e){
     e.preventDefault();
-    
+
     var datos=$(this).serializeArray();
-    console.log(datos);
+    //console.log(datos);
+    $('.smsRecuperacionContraseña').html('<div class="preloader-wrapper active">'+
+                                            '<div class="spinner-layer spinner-blue-only">'+
+                                                '<div class="circle-clipper left">'+
+                                                '<div class="circle"></div>'+
+                                                '</div>'+
+                                                '<div class="gap-patch">'+
+                                                '<div class="circle"></div>'+
+                                                '</div>'+
+                                                '<div class="circle-clipper right">'+
+                                                '<div class="circle"></div>'+
+                                                '</div>'+
+                                            '</div>'+
+                                            '</div>');
+
     $.ajax({
         type:$(this).attr('method'),
         data:datos,
         url:$(this).attr('action'),
-        dataType:'text',//json/text
+        dataType:'json',//json/text
         success:function(data){
             console.log(data);
+            switch (data.respuesta) {
+                case 'caracteresNoPermitidos':
+                    $('.smsRecuperacionContraseña').html('<div class="alert alert-danger" role="alert">Caracteres no permitidos</div>');
+                    break;
+                case 'correoNoExiste':
+                    $('.smsRecuperacionContraseña').html('<div class="alert alert-warning" role="alert">Este correo no se encuentra registrado</div>');
+                    break;
+                case 'noSeActualizoPasswordBD':
+                    $('.smsRecuperacionContraseña').html('<div class="alert alert-warning" role="alert">No se puede realizar su peticion , intente de nuevo</div>');
+                    break;
+                case 'noSeActualizoPasswordBD':
+                    $('.smsRecuperacionContraseña').html('<div class="alert alert-warning" role="alert">No se puede realizar su peticion , intente de nuevo</div>');
+                    break;
+                case 'correoNoEnviado':
+                    $('.smsRecuperacionContraseña').html('<div class="alert alert-warning" role="alert">No se puede enviar su nueva contraseña a su correo, intente nuevamente</div>');
+                    break;
+                case 'correoEnviado':
+                    $('.smsRecuperacionContraseña').html('<div class="alert alert-success" role="alert">¡ Éxito ! :Se ha enviado su nueva contraseña a su correo, revise su bandeja de entrada o su span</div>');
+                    break;
+
+                default:
+                    break;
+            }
           
         }
     });
+
 
 })

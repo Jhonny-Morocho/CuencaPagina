@@ -90,7 +90,7 @@ With your account you can access all our products, benefits and exclusive offers
           <a class="dark-grey-text" href="../../abaut.php">Abaut Us</a>
         </p>
         <p>
-          <a class="dark-grey-text" href="#!">Remixer Application</a>
+          <a class="dark-grey-text" href="../../remixerAplication.php">Remixer Application</a>
         </p>
 
       </div>

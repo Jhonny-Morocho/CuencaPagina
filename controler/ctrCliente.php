@@ -144,7 +144,6 @@ switch (@$_POST['Cliente']) {
                 
                 if($value==false){//si llega vacio hacer imprimir
                     
-                    //echo'<br>'.$key .' '.$value;
                     $boolean_validacion=false;
                 }
             }
@@ -168,7 +167,6 @@ switch (@$_POST['Cliente']) {
                     $nuevoPassword=generarPassword(10);
                     // Enviar los datos a la base de datos para actializarlos
                     $respuestaClienteBD=ModeloCliente::sqlEditarPasswordCliente(array('datosBdCliente'=>$respuestaCorreoExistente,'passwordNuevo'=>$nuevoPassword));
-                    var_dump($respuestaClienteBD);
                     if($respuestaClienteBD['respuesta']=='exito'){
                         //enviamos al correo el nuevo password
                         $mail=new PHPMailer();
@@ -189,7 +187,7 @@ switch (@$_POST['Cliente']) {
                                             <center>
                                                 <img src="http://latinedit.com/img/contraseña.png" alt="" width="10%" height="10%">
                                                 <h3 style="font-weight: 100px; background: whitesmoke;">
-                                                    Su nueva contraseña es : 
+                                                    Su nueva contraseña es : '.$nuevoPassword.'
                                                     <hr style="border: 1px solid #ccc; width: 80%;">
                                                 </h3>
                                                 <h4 style="font-weight: 100;color:#999 ; padding: 0 20px;">
@@ -204,26 +202,25 @@ switch (@$_POST['Cliente']) {
                                             </center>
                                         </div>');
                         $envio=$mail->Send();
-                        if (!$envio) {
+                        if ($envio==true) {
                             # code...
-                            echo "correo enviado";
+                            return die(json_encode(array('respuesta'=>'correoEnviado')));
+                           // echo "correo enviado";
                         }else{
-                            echo "correo no enviado";
+                            //echo "correo no enviado";
+                            return die(json_encode(array('respuesta'=>'correoNoEnviado')));
                         }
                     }else{
-                        echo "no se pudo actualizar el contraseña";
+                        //echo "no se pudo actualizar el contraseña";
+                        return die(json_encode(array('respuesta'=>'noSeActualizoPasswordBD')));
                     }
                     //echo "La nueva contraseña es igual a ".generarPassword(10); 
                }else{
-                   echo "no exite correo el usuario ";
-                    // $respuesta=array(
-                    //     'respuesta'=>'correo no encontrado'
-                    // );
-                
+                   return die(json_encode(array('respuesta'=>'correoNoExiste')));
                 }
 
             }else{
-                echo "correo no valido";
+                return die(json_encode(array('respuesta'=>'caracteresNoPermitidos')));
             }
             break;
     
@@ -231,15 +228,5 @@ switch (@$_POST['Cliente']) {
         # code...
         break;
 }
-
-
-
-// recuperar contraseña
-// $mail=new PHPMailer();
-// $mail->isMail();
-// $mail->setFrom('jhonnymichaeldj2011@hotmail.com','LATINEDIT.COM');
-// $mail->addReplyTo('jhonnymichaeldj2011@hotmail.com','LatinEdit.com');
-// $mail->Subject=('Recuperacion de mi contraseña en LatinEdit.com');
-//$mail->addAddress();
 
 ?>
