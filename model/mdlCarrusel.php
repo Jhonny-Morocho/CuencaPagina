@@ -14,14 +14,15 @@ ini_set('display_errors', 'On');
 			$nombreArchivo=$dataCarrusel['nombreArchivo'];
 			date_default_timezone_set('America/Guayaquil');
 			$fecha_actual=date("Y-m-d");
-				
+			$estado=1;
 			$stmt= $db->conectar()->prepare("INSERT INTO carrusel 
-													(img,fecha) 
+													(img,fecha,estado) 
 
-												VALUES(:imgUrl,:fechaRegistro) 
+												VALUES(:imgUrl,:fechaRegistro,:estado) 
 											");
 			$stmt->bindParam(':imgUrl',$nombreArchivo);
 			$stmt->bindParam(':fechaRegistro',$fecha_actual);
+			$stmt->bindParam(':estado',$estado);
 			$stmt->execute();
 			$id=$db->lastInsertId();
 			if ( $stmt->rowCount() > 0) {
@@ -43,7 +44,7 @@ ini_set('display_errors', 'On');
 
 		 public static  function sqlListarImgCarrusel(){
 			$db=new Conexion();
-			$stmt= $db->conectar()->prepare("SELECT  *FROM proveedor where estado ='1' ORDER by id desc ");
+			$stmt= $db->conectar()->prepare("SELECT  *FROM carrusel ");
 
 			$stmt->execute();
 			return $stmt->fetchAll();

@@ -5,11 +5,11 @@ ini_set('display_errors', 'On');
 require'../model/conexion.php';
 require'../model/mdlCarrusel.php';
 
-// $respuesta=array('post'=> $_POST , 
-//                              'file'=> $_FILES );
-//  print_r($respuesta);
+//  $respuesta=array('post'=> $_POST , 
+//                               'file'=> $_FILES );
+//   print_r($respuesta);
 
-
+// die(json_encode($_POST));
 
 switch (@$_POST['Carrsuel']) {
 
@@ -41,10 +41,10 @@ switch (@$_POST['Carrsuel']) {
         if ($imgCarrusel['respuesta']=='fileGuardado') {
          
            $respuestaBD=ModeloCarrusel::sqlAddCarruselImg($imgCarrusel);
-           return json_encode(array('respuesta'=>'exito','mensaje'=>'Se guardo con exito en BD','arrayRespuesta'=>$respuestaBD));
+           return die(json_encode(array('respuesta'=>'exito','mensaje'=>'Se guardo con exito en BD','arrayRespuesta'=>$respuestaBD)));
             
         } else {
-            return json_encode(array('respuesta'=>'fallido','mensaje'=>'no se puede subir el archivo','arrayRespuesta'=>$imgCarrusel));
+            return die(json_encode(array('respuesta'=>'fallido','mensaje'=>'no se puede subir el archivo','arrayRespuesta'=>$imgCarrusel)));
 
         }
 

@@ -7,6 +7,7 @@ require'model/conexion.php';
 require'model/mdlProveedor.php';
 require'model/mdlGenero.php';
 require'model/mdlClienteProducto.php';
+require'model/mdlCarrusel.php';
 //=============================creacion de objetos IMPOTATANTE SIEMPRE VA LA CABEZERA PARA QUE EL HEADER NO ME DE PROBLEMA CON DIRECCIONAMIENTO==========================
 //=============================creacion de objetos IMPOTATANTE SIEMPRE VA LA CABEZERA PARA QUE EL HEADER NO ME DE PROBLEMA CON DIRECCIONAMIENTO==========================
 

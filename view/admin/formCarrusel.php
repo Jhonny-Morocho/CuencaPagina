@@ -41,6 +41,24 @@ $plantilla->ctr_navegador_Izquierda();
                             
                             </div>
                           </div>
+                          <div class="col-lg-12">
+                              <div class="smsEspera">
+
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="form-group">
+                                  <div class="col-lg-12 ">
+                                      <!-- //==================================BARRA DE PROGRESO=============================== -->
+                                      <div class="progress">
+                                          <div class="progress-bar progress-bar-primary progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                                          
+                                          </div>
+                                      </div>
+                                      <h4 class="porcentaje_h4">0% Complete (success)</h4>
+                                  </div>
+                              </div>
+                            </div>
                           <!-- /.box-body -->
                           <div class="box-footer">
                             <input type="hidden" name="Carrsuel" value="AgregarImg">
