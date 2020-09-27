@@ -44,7 +44,7 @@ ini_set('display_errors', 'On');
 
 		 public static  function sqlListarImgCarrusel(){
 			$db=new Conexion();
-			$stmt= $db->conectar()->prepare("SELECT  *FROM carrusel ");
+			$stmt= $db->conectar()->prepare("SELECT  *FROM carrusel where estado=1");
 
 			$stmt->execute();
 			return $stmt->fetchAll();
@@ -55,50 +55,28 @@ ini_set('display_errors', 'On');
 
 
 
-		//============================ACTUALIZAR O EDITAR PROVEEDOR IMG========================================//
-		public static function sqlEditarImgCarruselIndividual($arrayProveedorImg){
+		//============================EDITAR IMG ========================================//
+		public static function sqlEditarImgCarruselIndividual($arrayDatos,$idImg){
 			$db=new Conexion();
-		
-			
-			//.1 SUbir la imganen
-			$directorio="../img/proveedores/";// la direecion donde quiero q se guarde
-		
-			if(move_uploaded_file($_FILES['fileLogoDj']['tmp_name'], $directorio.$_FILES['fileLogoDj']['name'])){
-				// para acceder al archiv q se alamceno con el siguiente comando
-				$respuesta=array(
-					'respuesta'=>'fileGuardado',
-					'urlLogoDj'=>$_FILES['fileLogoDj']['name']
-				);
-
-				$urLogoDj=$_FILES['fileLogoDj']['name'];
+			$nombreArchivo=$arrayDatos['nombreArchivo'];
+			try {
 				
-			
-			}else{
-				$respuesta=array('respuesta'=>'filFallo',
-									'error'=>error_get_last()
-					);// imprime el ultimo error que haya registrado al intentar subi este archivo
-			
-			}//end File
-			
-			//========datos del formuarlio================
-			$idProveedor=$arrayProveedorImg['idProveedor'];
-				try {
-					
-						$stmt= $db->conectar()->prepare("UPDATE proveedor SET 
-																	img='$urLogoDj'
-																WHERE id='$idProveedor' ");
-						
-				} catch (Exception $e) {
-					echo "Error".$e->getMessage();
-				}
-			
+				$stmt= $db->conectar()->prepare("UPDATE carrusel SET 
+															img=:nuevoImg
+														WHERE id=:idImg ");
+			$stmt->bindParam(':nuevoImg',$nombreArchivo);
+			$stmt->bindParam(':idImg',$idImg);
+			} catch (Exception $e) {
+				echo "Error".$e->getMessage();
+			}
+		
 				$stmt->execute();
 
 				if($stmt){
 					//si se realizo la inserccion
 					$respuesta=array(
 						'respuesta'=>'exito',
-						'img'=>$urLogoDj
+						'img'=>$nombreArchivo
 						);
 						return $respuesta;
 				}else{
@@ -113,49 +91,46 @@ ini_set('display_errors', 'On');
 
 				$stmt->close();
 		}
-
-
-		//============================ELIMINAR LOGICAMENTE  AL PROVEEDOR PROVEEDOR========================================//
-	public static function sql_individual_eliminar($arrayProveedorImg){
+		//============================elimnar imgen del carrusel ========================================//
+		public static function sqlEliminarImgCarrusel($idImg,$banderaBorrar){
 			$db=new Conexion();
-			//1. Debo borrar el archivo anterior antes de actulizar el nuevo
-			$dir='../img/proveedores/'.$arrayProveedorImg['img'];
-			$bandera_borrar=false;
-			if(file_exists($dir)){
-				if(unlink($dir)){
-					$bandera_borrar=true; 
-				}
-			}
-			 	
+			$estado=0;
 			try {
-			$idProveedor=$arrayProveedorImg['id'];
-			$stmt= $db->conectar()->prepare("UPDATE proveedor SET 
-													estado='0'
-												WHERE id='$idProveedor' ");
-
+				
+				$stmt= $db->conectar()->prepare("UPDATE carrusel SET 
+															estado=:estado
+														WHERE id=:idImg ");
+			$stmt->bindParam(':estado',$estado);
+			$stmt->bindParam(':idImg',$idImg);
 			} catch (Exception $e) {
 				echo "Error".$e->getMessage();
 			}
 		
-			
-			$stmt->execute();
+				$stmt->execute();
 
-			if($stmt){
-				//si se realizo la inserccion
-				$respuesta=array(
-					'respuesta'=>'exito'
-					);
-					return $respuesta;
-			}else{
-				$respuesta=array(
-					'respuesta'=>'false'
-					);
-					return $respuesta;
-			}
-		
-			//si alguna fila se modifico entonces si se edito
-			$stmt->close();
+				if($stmt){
+					//si se realizo la inserccion
+					$respuesta=array(
+						'respuesta'=>'exito',
+						'banderaBorrar'=>$banderaBorrar
+						);
+						return $respuesta;
+				}else{
+					$respuesta=array(
+						'respuesta'=>'false',
+						'banderaBorrar'=>$banderaBorrar
+						);
+						return $respuesta;
+				}
+			
+
+				//si alguna fila se modifico entonces si se edito
+
+				$stmt->close();
 		}
+
+
+	
 
 	}
 

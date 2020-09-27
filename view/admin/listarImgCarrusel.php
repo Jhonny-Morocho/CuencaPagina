@@ -5,7 +5,7 @@
  require'../../model/conexion.php';
  require'../../model/mdlCarrusel.php';
 
-//  require'modales/editarProveedor.php';
+
 //  require'modales/editarProveedorImg.php';
 
 
@@ -17,6 +17,7 @@ $plantilla->usuario_autentificado();
 $plantilla->ctr_header();
 $plantilla->ctr_navegador_Izquierda();
 $plantilla->ctr_tabla_tablaCarrusel();
+require'modales/editarImgCarrusel.php';
 $plantilla->ctr_footer();
 ?>
 

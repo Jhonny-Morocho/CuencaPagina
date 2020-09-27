@@ -112,8 +112,29 @@
                     <li class="nav-item ">
                         <span class="underline-closing"><a href="../../membresias.php"><i class="fa fa-folder" aria-hidden="true"></i> MEMBRRESIAS</a></span>
                     </li>
+
                     <li class="nav-item ">
-                        <span class="underline-closing"><a href="../../login.php"><i class="fas fa-user-check"></i> LOGIN/REGISTER </a></span>
+                        <?php 
+                            if(isset($_SESSION['usuario'])){// si no existe session presentar esto admin_cliente
+                                switch (@$_SESSION['tipo_usuario']) {
+                                    case 'cliente':
+
+                                            echo '<a  href="../../adminCliente.php"">Hola: '.$_SESSION['usuario'].'</a>';
+                                        break;
+                                    case 'proveedor':  
+                                            echo ' <a  href="../../view/admin/index_admin.php"> Bienvenido : '.$_SESSION['usuario'].'</a>';
+                                        break;
+                                    case 'admin':
+                                            echo ' <span class="underline-closing">
+                                                        <a  " href="../../view/admin/index_admin.php"> Hi  : '.$_SESSION['usuario'].'</a>
+                                                        
+                                                  </span>';
+                                        break;
+                                }
+                            }else{
+                                echo ' <span class="underline-closing"><a href="../../login.php"><i class="fas fa-user-check"></i> LOGIN/REGISTER </a></span>';
+                            }
+                        ?>
                     </li>
     
                 </ul>
