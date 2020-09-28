@@ -119,7 +119,9 @@
                                 switch (@$_SESSION['tipo_usuario']) {
                                     case 'cliente':
 
-                                            echo '<a  href="../../adminCliente.php"">Hola: '.$_SESSION['usuario'].'</a>';
+                                            echo ' <span class="underline-closing">
+                                                        <a  href="../../adminCliente.php"">Hola: '.$_SESSION['usuario'].'</a>
+                                                    </span>';
                                         break;
                                     case 'proveedor':  
                                             echo ' <a  href="../../view/admin/index_admin.php"> Bienvenido : '.$_SESSION['usuario'].'</a>';

@@ -19,4 +19,5 @@ $plantilla->ctr_header();
 $plantilla->ctr_navegador_Izquierda();
 require'tablas/tablaIndex.php';
 $plantilla->ctr_footer();
+$plantilla->toTop();
 ?>

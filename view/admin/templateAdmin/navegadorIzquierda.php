@@ -74,7 +74,7 @@
 
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-fw fa-columns"></i> <span>Membresias</span>
+            <i class="fa fa-fw fa-folder-o"></i><span>Membresias</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

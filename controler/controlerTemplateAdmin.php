@@ -78,6 +78,17 @@ ini_set('display_errors', 'On');
     public function ctr_tabla_tablaCarruselDjs(){
         require"../../view/admin/tablas/tablaLogosDjs.php";
     }
+    public function tablaMembresias(){
+        require"../../view/admin/tablas/tablaMembresia.php";
+    }
+
+    public static function toTop(){
+        require "../../blackTotop/toTop.php";
+    }
+    public static function tablaMembresiasCliente(){
+        require"../../view/admin/tablas/tablaMembresiaCliente.php";
+    }
+
     // ==================Funciones para session==================
     // ==================Funciones para session==================
     public function usuario_autentificado(){

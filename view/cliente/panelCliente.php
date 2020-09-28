@@ -15,7 +15,8 @@
 
         // obtenermos todas las facturas con el id del cliente, para luego realizar un filtro
         $facturas=ModeloFacura::sqlListarFacturas(@$_SESSION['id_cliente']);
-
+        $clienteProductos=ModeloClienteProducto::sqlListarProductosCliente(@$_SESSION['id_cliente'],$value['id']);
+        $mebresiasCliente=Modelo_Membresia::sqlListarMembresiasCliente(@$_SESSION['id_cliente']);
         
     ?>
 
@@ -26,8 +27,8 @@
             <div class="col-12">
                 <div class="breadcrumb-wrap">
                     <nav aria-label="breadcrumb">
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="../../adminCliente.php">Mi Cuenta</a></li>
+                        <ul class="breadcrumb" style="color: black;">
+                            <li class="breadcrumb-item"><a href="../../adminCliente.php" style="color: black;">Mi Cuenta</a></li>
                             <li class="breadcrumb-item active" aria-current="page"><?php echo $_SESSION['usuario']." ".$_SESSION['apellido']?></li>
                         </ul>
                     </nav>
@@ -47,9 +48,10 @@
                 <div class="myaccount-page-wrapper">
                     <!-- My Account Tab Menu Start -->
                     <div class="row">
-                        <div class="col-lg-3 col-md-4">
-                            <div class="myaccount-tab-menu nav" role="tablist">
+                        <div class="col-lg-3 col-md-4 ">
+                            <div class="myaccount-tab-menu nav " role="tablist">
                                 <a href="#dashboad"  data-toggle="tab"><i class="fas fa-table"></i> Tablero</a>
+                                <a href="#membresia"  data-toggle="tab"><i class="fa fa-folder" aria-hidden="true"></i>Membresias</a>
                                 <a href="#download" data-toggle="tab" class="active"><i class="fa fa-cart-arrow-down" ></i> Productos Adquiridos</a>
                                 <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Detalles de Mi cuenta</a>
                                 <a href="../../adminCliente.php?cerrar_session=true" ><i class="fas fa-sign-out-alt"></i> Cerrar Session</a>
@@ -62,7 +64,7 @@
                             <div class="tab-content" id="myaccountContent">
                                 <!-- Single Tab Content Start -->
                                 <div class="tab-pane fade " id="dashboad" role="tabpanel">
-                                    <div class="myaccount-content">
+                                    <div class="myaccount-content ">
                                         <h3>Tablero</h3>
                                         <div class="welcome">
                                              <p>Hello, <strong><?php echo $_SESSION['usuario']." ".$_SESSION['apellido']?></strong></p>
@@ -72,9 +74,59 @@
                                 </div>
 
 
+                                <div class="tab-pane fade " id="membresia" role="tabpanel">
+                                    <div class="myaccount-content ">
+                                        <h3>Membresias</h3>
+
+                                              <div class="row">
+                                                <?php
+                                                if (count($mebresiasCliente)>0) {
+                                                    foreach ($mebresiasCliente as $key => $value) {
+                                                        # code...
+                                                        echo'<!-- Grid column -->
+                                                        <div class="col-lg-4 col-md-6 mb-4">
+                                                        <!--Panel-->
+                                                            <div class="card text-center"">
+                                                                <div class=" card-header success-color white-text">
+                                                                    Membresia
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <h4 class="card-title">'.$value['tipo'].'</h4>
+                                                                    <p class="card-text">Fecha Adquisicion : '.$value['fecha_inicio'].'</p>
+                                                                    <p class="card-text">Fecha Expira : '.$value['fecha_culminacion'].'</p>
+                                                                </div>
+                                                                <div class="card-footer text-muted success-color white-text">
+                                                                    <p class="mb-0">Descargas : '.$value['rango'].'</p>
+                                                                </div>
+                                                            </div>
+                                                            <!--/.Panel-->
+                                                        </div>
+                                                        <!-- Grid column -->';
+                                                    }
+                                                    # code...
+                                                }else{
+                                                    echo '
+                                                        <div class="alert alert-warning" role="alert">
+                                                        Your membresias Is empty
+                                                        </div>';
+                                                }
+                                                ?>
+                                            </div>
+                                            <!-- Grid row -->
+                                    </div>
+                                </div>
+
                                 <!-- Single Tab Content Start -->
                                 <div class="tab-pane fade show active " id="download" role="tabpanel">
                                         <div class="myaccount-content ">
+                                            <h3>Productos</h3>
+                                            <?php 
+                                                if(count($clienteProductos)==0){
+                                                    echo '<div class="alert alert-warning " role="alert">
+                                                    Your producto Is empty
+                                                    </div>';
+                                                }
+                                            ?>
                                             <?php $cont=1; foreach($facturas as $key=>$value){?>
                                               
                                                 <table id="dtBasicExample" class="table  table-striped table-bordered table-sm table-hover table-dark"  width="100%">
@@ -95,8 +147,10 @@
                                                 
                                                     <?php 
                                                         $cont_2=1;  
+                                                        
                                                         // imprimir todos los productos que ha comprado el cliente
-                                                        $clienteProductos=ModeloClienteProducto::sqlListarProductosCliente(@$_SESSION['id_cliente'],$value['id']);
+                                                       
+                                             
                                                         //print_r($clienteProductos);
                                                         foreach($clienteProductos as $key=>$value){
                                                             echo'<tr>   
@@ -180,5 +234,25 @@
     </div>
 </div>
 <!-- my account wrapper end -->
+
+
+
+<style>
+    .myaccount-page-wrapper{
+        margin-bottom: 50px;
+    }
+   .myaccount-tab-menu a:hover{
+        background-color: black;
+        color: white;
+    }
+    .my-account-wrapper .active{
+        background-color: black;
+        color: white;
+    }
+    .breadcrumb-area{
+        margin-top: 150px;
+    }
+    
+</style>
 
 

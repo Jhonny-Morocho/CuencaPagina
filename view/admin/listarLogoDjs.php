@@ -19,6 +19,7 @@ $plantilla->ctr_navegador_Izquierda();
 $plantilla->ctr_tabla_tablaCarruselDjs();
 require'modales/editarLogoDjs.php';
 $plantilla->ctr_footer();
+$plantilla->toTop();
 ?>
 
 

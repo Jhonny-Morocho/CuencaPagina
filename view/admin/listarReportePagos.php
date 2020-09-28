@@ -21,5 +21,6 @@ $plantilla->ctr_header();
 $plantilla->ctr_navegador_Izquierda();
 $plantilla->ctrTablaProveedoresInformePagos();
 $plantilla->ctr_footer();
+$plantilla->toTop();
 ?>
 

@@ -19,6 +19,7 @@ $plantilla->ctr_navegador_Izquierda();
 $plantilla->ctr_tabla_tablaCarrusel();
 require'modales/editarImgCarrusel.php';
 $plantilla->ctr_footer();
+$plantilla->toTop();
 ?>
 
 

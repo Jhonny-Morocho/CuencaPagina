@@ -16,6 +16,7 @@ $plantilla->ctr_header();
 $plantilla->ctr_navegador_Izquierda();
 $plantilla->ctr_tabla_mis_ventas();
 $plantilla->ctr_footer();
+$plantilla->toTop();
 ?>
 
 

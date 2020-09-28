@@ -16,5 +16,6 @@ $plantilla->ctr_header();
 $plantilla->ctr_navegador_Izquierda();
 $plantilla->ctrTablaMisVentasNoPagadas();
 $plantilla->ctr_footer();
+$plantilla->toTop();
 ?>
 
