@@ -75,7 +75,9 @@ ini_set('display_errors', 'On');
     public function ctr_tabla_tablaCarrusel(){
         require"../../view/admin/tablas/tablaCarrusel.php";
     }
-
+    public function ctr_tabla_tablaCarruselDjs(){
+        require"../../view/admin/tablas/tablaLogosDjs.php";
+    }
     // ==================Funciones para session==================
     // ==================Funciones para session==================
     public function usuario_autentificado(){

@@ -5,7 +5,9 @@ require'../../controler/controlerTemplateAdmin.php';
 
 require'../../model/conexion.php';
 require'../../model/mdlGenero.php';
-//require'modales/editarGenero.php';
+require'../../model/mdlCliente.php';
+require'../../model/mdlFactura.php';
+
 
 
 
@@ -15,5 +17,6 @@ $plantilla->usuario_autentificado();
 $plantilla->cerrar_session(@$_GET['cerrar_session']);//aqui cieero la session
 $plantilla->ctr_header();
 $plantilla->ctr_navegador_Izquierda();
+require'tablas/tablaIndex.php';
 $plantilla->ctr_footer();
 ?>

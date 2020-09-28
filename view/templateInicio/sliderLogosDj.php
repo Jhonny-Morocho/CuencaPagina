@@ -1,10 +1,11 @@
 <div class="row">
       <ul id="rcbrand2">
-          <li><img src="../../Logo-carousel/images/wordpress.png" /></li>
-          <li><img src="../../Logo-carousel/images/html5.png" /></li>
-          <li><img src="../../Logo-carousel/images/css3.png" /></li>
-          <li><img src="../../Logo-carousel/images/windows.png" /></li>
-          <li><img src="../../Logo-carousel/images/jquery.png" /></li>
-          <li><img src="../../Logo-carousel/images/js.png" /></li>
+        <?php
+            $logosDjs=ModeloLogosDjs::sqlListarLogosDJs();
+            foreach ($logosDjs as $key => $value) {
+                # code...
+                echo  '<li><img src="../../img/logosDjs/'.$value['img'].'" /></li>';
+            }
+        ?>
       </ul>
 </div>

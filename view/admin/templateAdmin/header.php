@@ -24,6 +24,7 @@
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="dist/css/skins/all-md-skins.min.css">
+  <link rel="icon" type="image/png" href="../img/logoLatinEdit.png" />
 
   <!-- =============================ESTILOS PERSONALIZADOS============================== -->
   <link rel="stylesheet" href="../view/estilos/estilos.css">
