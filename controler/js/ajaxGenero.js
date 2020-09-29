@@ -103,7 +103,7 @@ $(document).ready(function(){
 		console.log("ID :"+ id);
 		console.log("genero: "+ genero);
 		//BOTON DE ALERTA
-			swal({
+			swal.fire({
 				title: 'Estás seguro en eliminar '+genero,
 				text: "No podrass revertir esto!",
 				type: 'warning',

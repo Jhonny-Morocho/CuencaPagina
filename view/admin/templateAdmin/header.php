@@ -27,7 +27,7 @@
   <link rel="icon" type="image/png" href="../img/logoLatinEdit.png" />
 
   <!-- =============================ESTILOS PERSONALIZADOS============================== -->
-  <link rel="stylesheet" href="../view/estilos/estilos.css">
+  <!-- <link rel="stylesheet" href="../view/estilos/estilos.css"> -->
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -86,7 +86,9 @@
     border-top: 2px solid rgba(50, 150, 176, 0);
     animation: rotarload 1s ease-out infinite;
     transform: rotate(0deg);
+
   }
+
 </style>
 
 <body class="hold-transition skin-blue sidebar-mini">

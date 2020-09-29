@@ -33,14 +33,15 @@
 
                echo"<tr>";
                     echo'<td>
-                          <div class="col-lg-12">
-                              <div class="product-thumb">
+                          
+               
                                 <div class="product-label">
                                     <span class="fa fa-pencil editProveedorImg " aria-hidden="true" data-toggle="modal" data-target="#modalEditarProveedorImg"  data-id="'.$value['id'].'"></span>
                                 </div>
-                                <img src="../img/proveedores/'.$value['img'].'?v='.$value['fechaRegistro'].'" class="img-thumbnail" alt="Cinque Terre" width="30%" >
-                              </div>
-                          </div>
+                          
+                                <img src="../img/proveedores/'.$value['img'].'" class="img-thumbnail imgProveedor" >
+                              
+                          
                     </td>';
 
                     echo'<td>'.$value['apodo'].'</td>';
@@ -48,7 +49,7 @@
                     echo'<td>'.$value['apellido'].'</td>';
                     echo'<td>'.$value['correo'].'</td>';
                     echo'<td>
-                          <div class="">
+                          
                                 <button type="button" class="btn btn-primary editProveedor" data-toggle="modal" data-target="#modalEditarProveedor" 
                                                                                                                 data-id="'.$value['id'].'" 
                                                                                                                 data-nombre="'.$value['nombre'].'" 
@@ -60,7 +61,7 @@
                                 <button type="button" class="btn btn-danger deletProveedor"  data-id="'.$value['id'].'" data-apodo="'.$value['apodo'].'" data-img="'.$value['img'].'">
                                                   <i class="fa fa-trash-o" aria-hidden="true"></i>
                                   </button>
-                              </div>
+                              
                     </td>';
                    
                echo"</tr>";
@@ -79,3 +80,23 @@
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+
+<style>
+  .product-label {
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+    color: white;
+    font-size: 20px;
+}
+.imgProveedor{
+  width: 30%;
+ 
+}
+.product-label:hover {
+    position: absolute;
+    color: greenyellow;
+    font-size: 25px;
+}
+</style>

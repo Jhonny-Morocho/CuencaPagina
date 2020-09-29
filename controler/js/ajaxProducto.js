@@ -260,7 +260,7 @@ $('.editProducto').on('click',function(e){
     console.log("Demo :"+ demo);
     console.log("RemixCompleto :"+ remixCompleto);
     //BOTON DE ALERTA
-        swal({
+        swal.fire({
             title: 'Estás seguro en eliminar a   '+demo,
             text: "No podrass revertir esto!",
             type: 'warning',

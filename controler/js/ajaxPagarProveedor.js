@@ -125,7 +125,7 @@ $(document).ready(function(){
       // comprobar si existen datos para enviar caso contrario monstramos mensaje
       if (arrayNodosConValorId.length>0) {
         animacion();
-        Swal({
+        Swal.fire({
             title: 'Esta seguro  ?',
             text: "Se cambiara el estado de pendiente a pagado , Antes de cambiar el estado asegurece de generar el reporte en pdf",
             icon: 'warning',
@@ -180,7 +180,7 @@ $(document).ready(function(){
     // comprobar si existen datos para enviar caso contrario monstramos mensaje
     if (arrayNodosConValorId.length>0) {
       animacion();
-      Swal({
+      Swal.fire({
           title: 'Esta seguro  ?',
           text: "Se cambiara el estado de pendiente a pagado , Antes de cambiar el estado asegurece de generar el reporte en pdf",
           icon: 'warning',
