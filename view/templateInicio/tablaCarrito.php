@@ -2,7 +2,7 @@
 
 <!--Main Layout-->
 
-<div class="container mt-3">
+<div class="container mt-5">
 
         <form action="" id="idFormCarrito">
             <div class="row d-flex justify-content-center">
@@ -41,9 +41,20 @@
                 <div class="opcionPago">
                     <h4>Option Payment</h4>
                     <div class="col-lg-4 form-group">
-                        <label for="">
                             <input type="radio" name="r1" class="minimal" checked value="paypal">
                             <img src="../../img/payment.png" alt="">
+                        </label>
+                    </div>
+                    <div class="col-lg-4 form-group">
+                      
+                            <input type="radio" name="r1" class="minimal"  value="paypal">
+                            <label class="form-check-label " for="materialGroupExample2">Membresia</label>
+                        </label>
+                    </div>
+                    <div class="col-lg-4 form-group">
+                 
+                            <input type="radio" name="r1" class="minimal"  value="paypal">
+                            <label class="form-check-label" for="materialGroupExample3">Monedero</label>
                         </label>
                     </div>
                 </div>
@@ -70,14 +81,7 @@
                     </div>
                 </div>
             </div>
-
-
-
         </form>
       
-        
-
-      
-        
 </div> <!-- end container fluid -->
 

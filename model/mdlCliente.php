@@ -25,6 +25,36 @@ ini_set('display_errors', 'On');
 			$stmt->close();
 		}
 
+		//1Login de cliente
+		public static function sqlEditarSaldoCliente($idCliente,$nuevoSaldo){
+
+			$db=new Conexion();
+			try {
+				//code...
+				$stmt= $db->conectar()->prepare("UPDATE cliente SET saldoActual='$nuevoSaldo' WHERE id='$idCliente'");
+			} catch (\Throwable $th) {
+				echo "Error".$e->getMessage();
+			}
+			
+			$stmt->execute();
+			if($stmt){
+				//si se realizo la inserccion
+				$respuesta=array(
+					'respuesta'=>'exito'
+					);
+					return $respuesta;
+			}else{
+				$respuesta=array(
+					'respuesta'=>'false'
+					);
+					return $respuesta;
+			}
+
+				//si alguna fila se modifico entonces si se edito
+
+			$stmt->close();
+		}
+
 		public static  function sqlAddCliente($arrayCliente){
 		$db=new Conexion();
 		//========datos del formuarlio================

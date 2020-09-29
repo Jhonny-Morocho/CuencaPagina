@@ -6,7 +6,7 @@ ini_set('display_errors', 'On');
 
 session_start();
 require'model/conexion.php';
-
+require'model/mdlCarrusel.php';
 require'model/mdlProveedor.php';
 
 //=============================creacion de objetos==========================

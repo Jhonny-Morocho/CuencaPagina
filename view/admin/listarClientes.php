@@ -17,6 +17,7 @@
  $plantilla->ctr_navegador_Izquierda();
  $plantilla->ctr_tabla_clientes();
  require'modales/editarCliente.php';
+ require'modales/editarMondero.php';
 $plantilla->ctr_footer();
 $plantilla->toTop();
 ?>

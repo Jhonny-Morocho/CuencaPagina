@@ -15,7 +15,12 @@ $objValidacionCampos= new CtrValidarCampos();
 
 switch (@$_POST['Cliente']) {
 
-
+    case 'monedero':
+        # code...
+        $respuesta=ModeloCliente::sqlEditarSaldoCliente(@$_POST['idCliente'],@$_POST['nuevoMonto']);
+        die(json_encode($respuesta));
+       
+        break;
     case 'addCliente':
             $boolean_validacion=true;
             $ValidarCampos=array(

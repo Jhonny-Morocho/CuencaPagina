@@ -141,6 +141,89 @@ $('.editCliente').on('click',function(e){
     })
 
 });
+
+
+// ============================EDITAR MONEDERO CLIENTE================================//
+// ============================EDITAR MONEDERO CLIENTE================================//
+// ============================EDITAR MONEDERO CLIENTE================================//
+
+$('.editClienteMonedero').on('click',function(e){
+    e.preventDefault();
+//     var table = $('#example2').DataTable();
+
+    // obtenemos los atrivutos de la etiqueta , en donde se encuentran alojados los datos solo para llenar el formulario
+    var id=$(this).attr('data-id');
+    var nombre=$(this).attr('data-nombre');
+    var correo=$(this).attr('data-correo');
+    var saldo=$(this).attr('data-saldo');
+    var apellido=$(this).attr('data-apellido');
+    console.log('id',id);
+    console.log('nombre',nombre);
+    console.log('correo',correo);
+    console.log('saldo',saldo);
+    console.log('apellido',apellido);
+ 
+    // asignamos los datos al formulario
+    $('#idInputNombreCliente').val(nombre);
+    $('#idInputApellidoCliente').val(apellido);
+    $('#idInputCorreoCliente').val(correo);
+    $('#idInputSaldoAntiguoCliente').val(saldo);
+
+    $("#idFormMonederoCliente").on('submit',function(e){
+        e.preventDefault();
+        var datos=$(this).serializeArray();
+        console.log(datos);
+        console.log(datos[0].value);
+        //enviamos los datos mediante el metodo Post
+        var nuevoMonto=(parseFloat( datos[0].value)+ parseFloat(saldo)).toFixed(2);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Se agregara $"+ datos[0].value+ ' al monto actual de $'+saldo+' en total sera $'+nuevoMonto,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type:$(this).attr('method'),
+                    data:{
+                        'nuevoMonto':nuevoMonto,
+                        'idCliente':id,
+                        'Cliente':'monedero'
+                    },
+                    url:$(this).attr('action'),
+                    dataType:'json',//json/text
+                    success:function(data){
+                        console.log(data);
+                        if(data.respuesta=='exito'){
+                          
+                            $(".smsConfirmacion").html('<div class="alert alert-success alert-dismissible">'+
+                            '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+                            '<h4><i class="icon fa fa-warning"></i> Aviso !</h4>'+
+                            'Datos guardos exitosamente'+
+                            '</div>');
+                            setTimeout(function(){ 
+                                location.reload();             
+                            },4000);
+                            
+                        }else{
+                            
+                            $(".smsConfirmacion").html('<div class="alert alert-danger alert-dismissible">'+
+                            '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+                            '<h4><i class="icon fa fa-warning"></i> Aviso !</h4>'+
+                            'No se puede realizar los Cambios'+
+                            '</div>');
+                        }
+                    }
+                });
+            }
+          })
+   
+    })
+
+});
 // ============================EDITAR CLIENTE SIN HACER CLICK DIRECTO DESDE EL PANEL DE CLIENTE===============================//
 // ============================EDITAR CLIENTE SIN HACER CLICK DIRECTO DESDE EL PANEL DE CLIENTE===============================//
 // ============================EDITAR CLIENTE SIN HACER CLICK DIRECTO DESDE EL PANEL DE CLIENTE===============================//

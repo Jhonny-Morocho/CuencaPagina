@@ -22,6 +22,7 @@
               <th>Correo</th>
               <th>Compras</th>
               <th>Membresias</th>
+              <th>Monedero</th>
               <th>Editar</th>
             </tr>
             </thead>
@@ -39,7 +40,16 @@
                        echo'<td>'.$value['correo'].'</td>';
                        echo'<td><a href="../view/admin/listarComprasProductosCliente.php?correo='.$value['correo'].'&idCliente='.$value['id'].'"><i class="fa fa-fw fa-list-alt"></i></a></td>';
                        echo'<td><a href="../view/admin/listarMembresiasCliente.php?corroCliente='.$value['correo'].'&idCliente='.$value['id'].'"><i class="fa fa-fw fa-folder-o"></i></i></a></td>';
-                        echo'<td>
+                      echo '<td><i class="fa fa-fw fa-money editClienteMonedero" aria-hidden="true"  
+                                                                                                    data-id="'.$value['id'].'"  
+                                                                                                    data-saldo="'.$value['saldoActual'].'"  
+                                                                                                    data-nombre="'.$value['nombre'].'" 
+                                                                                                    data-apellido="'.$value['apellido'].'" 
+                                                                                                    data-correo="'.$value['correo'].'" 
+                                                                                                    data-toggle="modal" 
+                                                                                                    data-target="#modalEditarMonederoCliente" ></i>
+                              </td>';
+                       echo'<td>
                                 <i class="fa fa-pencil editCliente" aria-hidden="true"  data-toggle="modal" data-target="#modalEditarCliente" 
                                                                                         data-id="'.$value['id'].'" 
                                                                                         data-nombre="'.$value['nombre'].'" 

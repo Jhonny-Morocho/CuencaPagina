@@ -1,5 +1,6 @@
 
 //$(document).ready(function(){
+
         //localStorage.clear();
         //inicia el sistema  en car.php se imprime los datoscargando los datos del local store y definiendo la variables listaCarrito
         var  listaCarrito,precioUnitarioProducto;
@@ -210,10 +211,7 @@
         if(inputCupon==nombreCupon && ofertaActiva==true && Number($(".total-amount span").text()) >=consumo ){
           $('.BtnaplicarCupon').hide();
           $('.cuponDescuento').hide();
-            bootoast.toast({
-              message: 'Descuento efectuado exitosamente ',
-              type: 'success'
-            });
+            toastr.success ('Descuento efectuado exitosamente .');
             //console.log(localStorage.getItem("listProduct"));
             var descuentoLocalSotorage=JSON.parse(localStorage.getItem("listProduct"));
             //console.log(descuentoLocalSotorage);
@@ -253,11 +251,7 @@
             
             if(Number($(".total-amount span").text()) <=consumo){
               //alert("Tu compra debe ser mayor " +consumo + " para aplicar el cupon");
-              bootoast.toast({
-                message:"Tu compra debe ser mayor $ " +consumo + " para aplicar el cupon",
-                type: 'warning',
-                animationDuration: 1000
-              });
+              toastr.info("Tu compra debe ser mayor $ " +consumo + " para aplicar el cupon");
             }
 
             
