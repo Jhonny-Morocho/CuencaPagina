@@ -28,7 +28,7 @@
                                 <select  required=""  class="form-control show-tick ms select2" data-placeholder="Select"  name="id_genero">
                                         <option value="">Seleciona un genero musical</option>
                                     <?
-                                        require'../../model/mdlGenero.php';
+                          
                                         $genero=ModeloGenero::sql_lisartar_genero();
                                         foreach($genero as $key=>$value){ ?>
                                             <option value=" <?php echo$value['id'] ?> " > <?php echo$value['genero'] ?> </option>

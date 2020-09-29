@@ -242,6 +242,7 @@
 <script src="../controler/js/ajaxLogosDjs.js"></script>
 <script src="../controler/js/ajaxMembresia.js"></script>
 
+
 <!-- //=======================TOSTADA=============================// -->
 <script src="../tostada/toast-alert-message-kk/jquery-kk-message/message.js"></script>
 
@@ -262,9 +263,20 @@
 <script type="text/javascript" src="../jPlayer Flat Audio Theme/js/jquery.jplayer.min.js"></script> 
 <script type="text/javascript" src="../controler/js/jPlayerPersonalizado.js"></script>
 
-
-
+<!-- ===================== cargando pagina efecto ====================== -->
+<div class="loader-page"></div>
 <script>
+  $(window).on('load', function () {
+      setTimeout(function () {
+    $(".loader-page").css({visibility:"hidden",opacity:"0"})
+  }, 2000);
+     
+});
+</script>
+
+
+
+ <script>
   
 function archivo(evt) {
 

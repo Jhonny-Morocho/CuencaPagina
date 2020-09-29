@@ -170,6 +170,7 @@
                       <?php if(@$_GET['genero']){?>                            
                             <!-- xxx<option value="1" selected>Feedback</option> -->
                         <select class=" form-control form-control-sm ml-3 w-60 selectGeneroRemixer" name="genero" >
+                         
                             <?php 
                                 $genero=ModeloGenero::sql_lisartar_genero();
 
@@ -188,6 +189,7 @@
                                 <?php }?>
                         </select>
                       <?php }else{?>
+                        
                         <select class="form-control form-control-sm ml-3 w-60 selectGeneroRemixer" name="genero" >
                             <option value="" >GENER</option>
                             <!--777 <option value="1" selected>Feedback</option> -->
@@ -331,3 +333,9 @@
     </div> <!-- end .col-12 -->
   </div>  <!-- end .row -->
 </section> <!-- end section -->
+
+<style>
+  select.form-control.form-control-sm.ml-3.w-60.selectGeneroRemixer {
+    color: black !important;
+}
+</style>

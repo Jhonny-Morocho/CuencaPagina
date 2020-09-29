@@ -1,7 +1,7 @@
 <?php 
           ini_set('display_errors', 'On');
           //validacion de campos
-          require'../../model/mdlGenero.php';
+       
           
           $respuestaValidacionBuscador=Pagination::validarCamposBuscador(@$_GET['busqueda']);
           
@@ -401,3 +401,9 @@
 </div>
 <!-- /.content-wrapper -->
 
+
+<style>
+  select.form-control.form-control-sm.ml-3.w-60.selectGeneroRemixer {
+    color: black !important;
+}
+</style>

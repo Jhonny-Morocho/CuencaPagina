@@ -25,6 +25,7 @@
                   <th>Editar</th>
                 </tr>
                <?php
+         
                 $cont=1;
                 foreach ($membresias as $key => $value) {
                 echo'<tr>

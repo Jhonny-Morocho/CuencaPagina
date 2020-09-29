@@ -22,20 +22,34 @@
               <th>Precio</th>
               <th>Numero Descargas</th>
               <th>Precio Unitario Tema</th>
+              <th>Estado Membresia</th>
             </tr>
             </thead>
             <tbody>
             <a href=""></a>
             <?php
+                 date_default_timezone_set('America/Guayaquil');
+                 $fecha_actual=date("Y-m-d");
                  $mebresiasCliente=Modelo_Membresia::sqlListarMembresiasCliente($_GET['idCliente']);
                foreach($mebresiasCliente as $key=>$value){
+                    $date1 = new DateTime($value['fechaCompra']);
+                    $date2 = new DateTime($fecha_actual);
+                    $diff = $date1->diff($date2);
+                    $spanEstad="";
+                    if ($diff->days<1) {
+                        # code...
+                        $spanEstad=' <span class="label pull-right bg-green">Activa</span>';
+                    }else{
+                        $spanEstad=' <span class="label pull-right bg-red">Caducada</span>';
+                    }
                    echo"<tr>";
                        echo'<td>'.$value['tipo'].'</td>';
-                       echo'<td>'.$value['fecha_inicio'].'</td>';
-                       echo'<td>'.$value['fecha_culminacion'].'</td>';
-                       echo'<td>'.$value['precio'].'</td>';
-                       echo'<td>'.$value['rango'].'</td>';
-                       echo'<td>'.$value['precio_unidad'].'</td>';
+                       echo'<td>'.$value['fechaCompra'].'</td>';
+                       echo'<td>'.$value['fechaExpiracion'].'</td>';
+                       echo'<td>'.$value['totalCancelar'].'</td>';
+                       echo'<td>'.$value['numDescargas'].'</td>';
+                       echo'<td>'.$value['precioUnitario'].'</td>';
+                       echo'<td>'.$spanEstad.'</td>';
                     echo"</tr>";
                }
             

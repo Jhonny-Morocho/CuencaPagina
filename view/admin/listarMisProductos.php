@@ -4,7 +4,7 @@
  require'../../controler/controlerTemplateAdmin.php';
  require'../../model/conexion.php';
  require'../../model/mdlProducto.php';
- 
+ require'../../model/mdlGenero.php';
  //require'../../controler/crtGenero.php';
  
  //===============Paginacion=========================//
