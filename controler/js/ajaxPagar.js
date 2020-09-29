@@ -45,10 +45,55 @@ $("#idFormCarrito").on('submit',function(e){
     datos.append("valueRadio",inputOptionPago[0].value);
     datos.append("totalCancelar",classTotalCancelar);
    
-    enviarDatosPasarelaPago(datos);//enviaar Data a la pasarela de pagos
-    //  for (var pair of datos.entries()) {
-    //      console.log(pair[0]+ ', ' + pair[1]); 
-    //  }
+    //enviarDatosPasarelaPago(datos);//enviaar Data a la pasarela de pagos
+      for (var pair of datos.entries()) {
+          console.log(pair[0]+ ', ' + pair[1]); 
+      }
+
+    switch (inputOptionPago[0].value) {
+
+        //aqui compran todo con paypal, productps y tambin el paquete de membresias
+           case 'paypal':
+               console.log("paypal");
+              // enviarDatosPasarelaPago(datos);//enviaar Data a la pasarela de pagos
+           break;
+
+           case 'productoCompradoMembresia':
+                
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        enviarDatosPasarelaPagoCarMembresia(datos);//enviaar Data a la pasarela de pagos
+                    }
+                })
+               break;
+            case 'monedero':
+                 
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                    enviarDatosPasarelaPagoMonedero(datos);//enviaar Data a la pasarela de pagos
+                    }
+                })
+                break;
+
+           default:
+               break;
+       }
 
 });
 
@@ -76,11 +121,8 @@ function enviarDatosPasarelaPago(datos){
                     break;
 
                 case 'exito':
-                        bootoast.toast({
-                            message: 'Tu solicitud ha sido  procesada ',
-                            type: 'success'
-                        });
-                      
+                        $('.btnPagar').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+                        toastr.success('Tu solicitud ha sido  procesada.')
                         setTimeout(function(){
                             window.location.href=data.urlPaypal;
                         },2000);//tiempo de espera

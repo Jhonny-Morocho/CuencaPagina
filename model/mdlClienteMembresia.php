@@ -22,13 +22,13 @@ ini_set('display_errors', 'On');
                     $stmt= $db->conectar()->prepare("INSERT INTO membresia_cliente
 
                                                     (tipo,
-                                                    fecha_inicio,
-                                                    fecha_culminacion,
-                                                    rango,
-                                                    id_cliente,
-                                                    precio,
-                                                    tipo_pago,
-                                                    precio_unidad
+                                                    fechaCompra,
+                                                    fechaExpiracion,
+                                                    numDescargas,
+                                                    idCliente,
+                                                    totalCancelar,
+                                                    tipoPago,
+                                                    precioUnitario
                                                     )
 
                                                     VALUES(:nameMembresia,

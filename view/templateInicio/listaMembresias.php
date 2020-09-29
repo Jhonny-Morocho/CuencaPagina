@@ -175,3 +175,11 @@
 
 
 </div>
+
+
+<style>
+  .swal2-container.swal2-center.swal2-backdrop-show {
+    z-index: 9999;
+}
+
+</style>

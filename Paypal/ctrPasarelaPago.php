@@ -26,7 +26,7 @@ $descripcionProducto="";
                 $descripcionProducto="Producto";
                 break;
             case 'membresia':
-                $descripcionProducto="Tipo Membresia";
+                $descripcionProducto="Membresia";
                 break;
             default:
                 # code...
@@ -84,12 +84,29 @@ $descripcionProducto="";
                     $ID_registro=$transaccion->getInvoiceNumber();
     
         //print_r($transaccion);
-    
         // =====================Redireccionar a la pagina de paypal o si cancelan no se ejcuta el pago===============
-        $idCliente=1;//solo temportal
-        $redireccionar=new RedirectUrls();
-        $redireccionar->setReturnUrl(URL_SITIO."/Paypal/pagoFinalizadoPaypal.php?idCliente=".$_SESSION['id_cliente'])//pago exitoso
-                      ->setCancelUrl(URL_SITIO."/Paypal/pagoFinalizadoPaypal.php?exito=false&idpago{$ID_registro}");
+        
+        //se crea diferentes archivos para la ejecucion del pago tanto por unidad y membresias
+        switch ($descripcionProducto) {
+            case 'Producto':
+                # code...
+                $redireccionar=new RedirectUrls();
+                $redireccionar->setReturnUrl(URL_SITIO."/Paypal/pagoFinalizadoPaypal.php?idCliente=".$_SESSION['id_cliente'])//pago exitoso
+                              ->setCancelUrl(URL_SITIO."/Paypal/pagoFinalizadoPaypal.php?exito=false&idpago{$ID_registro}");
+                break;
+
+    
+            case 'Membresia':
+                $redireccionar=new RedirectUrls();
+                $redireccionar->setReturnUrl(URL_SITIO."/Paypal/pagoFinalizadoPaypalMembresia.php?numDescargas=".$_POST['numDescargas']."&idCliente=".$_SESSION['id_cliente'])//pago exitoso
+                              ->setCancelUrl(URL_SITIO."/Paypal/pagoFinalizadoPaypalMembresia.php?exito=false&idpago{$ID_registro}");
+                break;
+            default:
+                # code...
+                break;
+        }
+        // =====================Redireccionar a la pagina de paypal o si cancelan no se ejcuta el pago===============
+      
     
         $pago=new Payment();
         $pago->setIntent("sale")

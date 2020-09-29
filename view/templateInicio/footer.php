@@ -152,9 +152,13 @@ With your account you can access all our products, benefits and exclusive offers
         <!-- ======================AJAX================================== -->
         <script type="text/javascript" src="../../controler/js/ajaxProveedor.js?v=1.0.0"></script>
         <script type="text/javascript" src="../../controler/js/ajaxCliente.js?v=1.0.0"></script>
+        <!-- wave player -->
         <script src="https://unpkg.com/moment"></script> 
+        <!-- swith alert -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script type="text/javascript" src="../../controler/js/carritoCompras.js?v=1.0.1"></script>
         <script type="text/javascript" src="../../controler/js/ajaxPagar.js?v=1.0.1"></script>
+        <script  type="text/javascript"  src="../../controler/js/pagarMembresia.js"></script>
 
 
         <!--========================ANIMACION DE ESPERA==================================================== -->

@@ -47,13 +47,13 @@
                     </div>
                     <div class="col-lg-4 form-group">
                       
-                            <input type="radio" name="r1" class="minimal"  value="paypal">
+                            <input type="radio" name="r1" class="minimal"  value="productoCompradoMembresia">
                             <label class="form-check-label " for="materialGroupExample2">Membresia</label>
                         </label>
                     </div>
                     <div class="col-lg-4 form-group">
                  
-                            <input type="radio" name="r1" class="minimal"  value="paypal">
+                            <input type="radio" name="r1" class="minimal"  value="monedero">
                             <label class="form-check-label" for="materialGroupExample3">Monedero</label>
                         </label>
                     </div>
@@ -77,7 +77,7 @@
                             </div>
                             
                         </div>
-                        <input type="submit" name="btnPagar" value="pagar" class="btn btn-success">
+                        <input type="submit" name="btnPagar" value="pagar" class="btn btn-success btnPagar">
                     </div>
                 </div>
             </div>
