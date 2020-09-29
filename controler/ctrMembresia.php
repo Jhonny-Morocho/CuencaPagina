@@ -7,41 +7,7 @@
 	class CtrMembresia{
 
 
-        //* listar todos los clientes
-        public static function ctr_agregar_membresia($tipo_membresia,$id_cliente,$precio,$tipo_pago){//listar cliente
-            $tabla="membresia_cliente";
-            $membresias=ModeloMembresia::sqlListarMembresias();
-    
-            //defino tipo de rango de descarga
-            switch (@$tipo_membresia) {
 
-                case 'Nombre Cancion: Basico':
-                $rango=$membresias[0]['numDescargas'];
-
-                $respuesta=Modelo_Membresia::sql_agregar_membresia($tabla,$tipo_membresia,$rango,$id_cliente,$precio,$tipo_pago);// el controlador le pide al modelo una respuesta
-
-                return $respuesta;
-                    break;
-
-                case 'Nombre Cancion: Premium':
-                
-                $rango=$membresias[1]['numDescargas'];
-               
-                $respuesta=Modelo_Membresia::sql_agregar_membresia($tabla,$tipo_membresia,$rango,$id_cliente,$precio,$tipo_pago);// el controlador le pide al modelo una respuesta
-                    return $respuesta;
-                    break;
-
-
-                case 'Nombre Cancion: Ultimate':
-                $rango=$membresias[2]['numDescargas'];
-                $respuesta=Modelo_Membresia::sql_agregar_membresia($tabla,$tipo_membresia,$rango,$id_cliente,$precio,$tipo_pago);// el controlador le pide al modelo una respuesta
-                    return $respuesta;
-                    break;
-
-
-            }
-
-        }
 
         public static function ctr_listar_membresia(){//listar cliente
             $tabla="membresia_cliente";

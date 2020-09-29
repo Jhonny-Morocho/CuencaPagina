@@ -25,7 +25,7 @@ ini_set('display_errors', 'On');
 			$stmt->close();
 		}
 
-		//1Login de cliente
+		//editar saldo del cliente
 		public static function sqlEditarSaldoCliente($idCliente,$nuevoSaldo){
 
 			$db=new Conexion();

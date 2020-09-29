@@ -228,10 +228,16 @@ class ModeloClienteProducto {
                                                         (idCliente,idProducto,fechaCompra,
                                                         metodoCompra,precioCompra,idFactura
                                                         )
-                                                VALUES('$idCliente','$idProducto','$fecha_actual',
-                                                        '$metodoPago','$precioUnidadProducto','$idFactura') 
+                                                VALUES(:idCliente,:idProducto,:fecha_actual,
+                                                        :metodoPago,:precioUnidadProducto,:idFactura) 
                                             ");
-
+                $stmt->bindParam(':idCliente',$idCliente);
+                $stmt->bindParam(':idProducto',$idProducto);
+                $stmt->bindParam(':fecha_actual',$fecha_actual);
+                $stmt->bindParam(':metodoPago',$metodoPago);
+                $stmt->bindParam(':precioUnidadProducto',$precioUnidadProducto);
+                $stmt->bindParam(':idFactura',$idFactura);
+                
 
                 $stmt->execute();
                 $id=$db->lastInsertId();

@@ -85,3 +85,12 @@
       
 </div> <!-- end container fluid -->
 
+<STYle>
+.colorDescuento{
+    color:#2196F3;
+    font-weight: bold;
+}
+.disabledItemCupon{
+    display: none;
+}
+</STYle>

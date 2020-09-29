@@ -96,10 +96,11 @@
                 // ===================Asignar productos al cliente=======================
                 @session_start();// simepre inicializo session par apoder hacr la compracion, si el cliente esta logado
                 require'ctrEntregarProductoCliente.php';
+                //print_r($_GET);
                 //se realiza el pago y se direcciona al cliente a visualizar sus productos
-                ClassEntregarProductoCliente::comproMusica($_GET['idCliente'],$total_paypal,$array_precio,$array_id_tema);
-                
-
+                ClassEntregarProductoCliente::comproMusica($_GET['idCliente'],$total_paypal,$array_precio,$array_id_tema,'PayPal');
+                echo '<script>localStorage.clear();</script>';
+                echo '<script>window.location ="../adminCliente.php"; </script>';//direcciono al penel de administracion del 
 
             }//end else
 

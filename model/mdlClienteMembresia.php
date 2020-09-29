@@ -106,7 +106,7 @@ ini_set('display_errors', 'On');
 
             try {
                     $stmt= $db->conectar()->prepare("UPDATE membresia_cliente SET
-                    rango='$numDescargas'
+                    numDescargas='$numDescargas'
                 WHERE id='$idMembresia' ");
 
             } catch (Exception $e) {

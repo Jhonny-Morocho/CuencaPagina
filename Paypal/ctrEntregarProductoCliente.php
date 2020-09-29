@@ -14,7 +14,6 @@ class ClassEntregarProductoCliente {
         require'../model/mdlFactura.php';
         //============Entregar los producots al cliente=============//
         require'../model/mdlClienteProducto.php';
-
         //1. Generar la factura , para ellos guardo el id de cliente,monto que canelo , en la tabla factura
         $respustaFactura=ModeloFacura::sqlGerarFactura($idCliente,$montoCancelar);
 
@@ -33,8 +32,11 @@ class ClassEntregarProductoCliente {
                                                                                         $arrayPrecio[$key] );
 
         }
+
       
     }
+
+
 
     // compra paquete de membresia
     public static function comproMembresia($arrayData){

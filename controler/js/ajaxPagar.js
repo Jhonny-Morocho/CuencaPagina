@@ -12,6 +12,8 @@ var arrayIdProducto=[];
 var datos=new FormData();
 var data_type="json";
 var urlPasarelaPago="../../Paypal/ctrPasarelaPago.php";
+var urlPasarelaPagoCarMembresia="../../Paypal/ctrPasarelaPagoMembresiaCar.php";
+var urlPasarelaPagoMonedero="../../Paypal/ctrPasarelaPagoMonedero.php";
 
 $("#idFormCarrito").on('submit',function(e){
     
@@ -54,12 +56,10 @@ $("#idFormCarrito").on('submit',function(e){
 
         //aqui compran todo con paypal, productps y tambin el paquete de membresias
            case 'paypal':
-               console.log("paypal");
-              // enviarDatosPasarelaPago(datos);//enviaar Data a la pasarela de pagos
+               enviarDatosPasarelaPago(datos);//enviaar Data a la pasarela de pagos
            break;
 
            case 'productoCompradoMembresia':
-                
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -70,12 +70,11 @@ $("#idFormCarrito").on('submit',function(e){
                     confirmButtonText: 'Yes'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        enviarDatosPasarelaPagoCarMembresia(datos);//enviaar Data a la pasarela de pagos
+                       enviarDatosPasarelaPagoCarMembresia(datos);//enviaar Data a la pasarela de pagos
                     }
                 })
                break;
             case 'monedero':
-                 
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -97,7 +96,9 @@ $("#idFormCarrito").on('submit',function(e){
 
 });
 
-
+// ==================== ENVIAR DATOS A PASARELA DE PAGO PAYPAL, COMPRAR MEDIANTE PAYPAL POR UNIDAD  ===========
+// ==================== ENVIAR DATOS A PASARELA DE PAGO PAYPAL, COMPRAR MEDIANTE PAYPAL POR UNIDAD  ===========
+// ==================== ENVIAR DATOS A PASARELA DE PAGO PAYPAL, COMPRAR MEDIANTE PAYPAL POR UNIDAD  ===========
 function enviarDatosPasarelaPago(datos){
     console.log(datos);
     animacion();
@@ -134,3 +135,105 @@ function enviarDatosPasarelaPago(datos){
     });
 }
 
+// ==================== ENVIAR DATOS A PASARELA DE PAGO PARA PAYPAL COMPRA MEMBRESIA Y PRODUCTOS POR UNIDAD ===========
+// ==================== ENVIAR DATOS A PASARELA DE PAGO PARA PAYPAL COMPRA MEMBRESIA Y PRODUCTOS POR UNIDAD ===========
+// ==================== ENVIAR DATOS A PASARELA DE PAGO PARA PAYPAL COMPRA MEMBRESIA Y PRODUCTOS POR UNIDAD ===========
+function enviarDatosPasarelaPagoCarMembresia(datos){
+    console.log(datos);
+    animacion();
+    $.ajax({
+
+        url:urlPasarelaPagoCarMembresia,
+        method:'post',
+        data:datos,
+        cache:false,
+        contentType:false,
+        processData:false,
+        dataType:'json',//json//data_type
+        success:function(data){
+            console.log(data);
+
+            switch (data.respuesta) {
+                case 'noExiseLogin':
+                    //no exites session
+                    toastr.warning('Debe iniciar session en la pagina');
+                    break;
+                case 'numInferiorDescargas':
+                    //no exites session
+                    toastr.warning('El numero de productos selecionados es inferior al numero de descargas disponibles o su membresia a caducado ');
+                    break;
+                case 'fall':
+                    //no exites session
+                    toastr.warning('Su limite de descargas es '+data.numDescargasActual);
+                    break;
+                    
+                case 'exito':
+                    
+                toastr.success('Solicitud Procesada con éxito');
+                $('.btnPagar').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+                setTimeout(function(){
+                      
+                    localStorage.clear();
+                    window.location.href=data.urlPanel;
+                },2000);//tiempo de espera
+                break;
+
+                default:
+                    toastr.error('No se puede realizar su petición');
+                break;
+            }
+        }
+    });
+}
+
+
+// ==================== ENVIAR DATOS A PASARELA DE PAGO PARA PAYPAL COMPRA MEDIANTE MONEDERO ===========
+// ==================== ENVIAR DATOS A PASARELA DE PAGO PARA PAYPAL COMPRA MEDIANTE MONEDERO ===========
+// ==================== ENVIAR DATOS A PASARELA DE PAGO PARA PAYPAL COMPRA MEDIANTE MONEDERO ===========
+function enviarDatosPasarelaPagoMonedero(datos){
+    console.log(datos);
+    animacion();
+    $.ajax({
+
+        url:urlPasarelaPagoMonedero,
+        method:'post',
+        data:datos,
+        cache:false,
+        contentType:false,
+        processData:false,
+        dataType:'json',//json//data_type
+        success:function(data){
+            console.log(data);
+
+            switch (data.respuesta) {
+                case 'noExiseLogin':
+                    //no exites session
+                    toastr.warning('Debe iniciar session en la pagina');
+                    break;
+                case 'saldoInsuficiente':
+                    //no exites session
+                    toastr.info('Saldo Insuficiente , su saldo actual es $ '+data.saldoModenero);
+                    break;
+                case 'fall':
+                    //no exites session
+                    toastr.warning('Su limite de descargas es '+data.numDescargasActual);
+                    break;
+                    
+                case 'exito':
+                    
+                toastr.success('Solicitud Procesada con éxito');
+                $('.btnPagar').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+                setTimeout(function(){
+                      
+                    localStorage.clear();
+                    window.location.href=data.urlPanel;
+                },2000);//tiempo de espera
+                break;
+
+                default:
+                    toastr.error('No se puede realizar su petición');
+                break;
+            }
+        }
+    });
+}
