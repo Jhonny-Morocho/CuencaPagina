@@ -81,16 +81,16 @@ With your account you can access all our products, benefits and exclusive offers
         <h6 class="text-uppercase font-weight-bold white-text ">INFORMATION</h6>
         <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
         <p>
-          <a class="dark-grey-text" href="../../login.php">Your Account</a>
+          <a class="white-text" href="../../login.php">Your Account</a>
         </p>
         <p>
-          <a class="dark-grey-text" href="../../terminosCondiciones.php">Term & Conditions</a>
+          <a class="white-text" href="../../terminosCondiciones.php">Term & Conditions</a>
         </p>
         <p>
-          <a class="dark-grey-text" href="../../abaut.php">Abaut Us</a>
+          <a class="white-text" href="../../abaut.php">Abaut Us</a>
         </p>
         <p>
-          <a class="dark-grey-text" href="../../remixerAplication.php">Remixer Application</a>
+          <a class="white-text" href="../../remixerAplication.php">Remixer Application</a>
         </p>
 
       </div>
@@ -102,13 +102,13 @@ With your account you can access all our products, benefits and exclusive offers
         <!-- Links -->
         <h6 class="text-uppercase font-weight-bold white-text">Contact</h6>
         <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-        <p >
-           <i class="fab fa-facebook-f"></i> LatinEdit</p>
-        <p>
-          <i class="fas fa-envelope mr-3"></i>support@latinedit.com</p>
-        <p>
-         <i class="fab fa-whatsapp"></i> + 593 99 322 2807</p>
-        <p>
+        <p class="white-text">
+           <i class="fab fa-facebook-f "></i> LatinEdit</p>
+        <p class="white-text">
+          <i class="fas fa-envelope mr-1 "></i>support@latinedit.com</p>
+        <p class="white-text">
+         <i class="fab fa-whatsapp "></i> + 593 99 322 2807</p>
+        <p class="white-text">
           <i class="fab fa-instagram"></i> @teamLatinEdit</p>
 
       </div>
@@ -131,47 +131,47 @@ With your account you can access all our products, benefits and exclusive offers
 </body>
         <!-- jQuery -->
            <!-- UNDER LINE  -->
-        <script type="text/javascript" src="js/jquery.min.js?v=1.0.0"></script> 
+        <script type="text/javascript" src="js/jquery.min.js?v=2.0.0"></script> 
         <script src="../../underline/underline.js"></script>
       
         <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="js/popper.min.js?v=1.0.0"></script>
+        <script type="text/javascript" src="js/popper.min.js?v=2.0.0"></script>
         <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="js/bootstrap.min.js?v=1.0.0"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js?v=2.0.0"></script>
         <!-- Encoder.js -->
-        <script type="text/javascript" src="../js/encoder.js"></script>
+        <script type="text/javascript" src="../js/encoder.js?v=2.0.0"></script>
         <!-- sprintf-js -->
-        <script type="text/javascript" src="../js/sprintf.min.js"></script>
+        <script type="text/javascript" src="../js/sprintf.min.js?v=2.0.0"></script>
         <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="js/mdb.min.js?v=1.0.0"></script>
+        <script type="text/javascript" src="js/mdb.min.js?v=1.0.0?v=2.0.0"></script>
         <!-- Your custom scripts (optional) -->
         <!-- MDB Component Initialization -->
-        <script type="text/javascript" src="../js/appIndex.js"></script>
+        <script type="text/javascript" src="../js/appIndex.js?v=2.0.0"></script>
         <!-- APP -->
-        <script type="text/javascript" src="../js/appLatinEdits.js?v=1.0.0"></script>
+        <script type="text/javascript" src="../js/appLatinEdits.js?v=2.0.0"></script>
         <!-- ======================AJAX================================== -->
-        <script type="text/javascript" src="../../controler/js/ajaxProveedor.js?v=1.0.0"></script>
-        <script type="text/javascript" src="../../controler/js/ajaxCliente.js?v=1.0.0"></script>
-        <!-- wave player -->
+        <script type="text/javascript" src="../../controler/js/ajaxProveedor.js?v=2.0.0"></script>
+        <script type="text/javascript" src="../../controler/js/ajaxCliente.js?v=2.0.0"></script>
+        <!-- libreria para fechas -->
         <script src="https://unpkg.com/moment"></script> 
         <!-- swith alert -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <script type="text/javascript" src="../../controler/js/carritoCompras.js?v=1.0.1"></script>
-        <script type="text/javascript" src="../../controler/js/ajaxPagar.js?v=1.0.1"></script>
-        <script  type="text/javascript"  src="../../controler/js/pagarMembresia.js"></script>
+        <script type="text/javascript" src="../../controler/js/carritoCompras.js?v=2.0.0"></script>
+        <script type="text/javascript" src="../../controler/js/ajaxPagar.js?v=2.0.0"></script>
+        <script  type="text/javascript"  src="../../controler/js/pagarMembresia.js?v=2.0.0"></script>
 
 
         <!--========================ANIMACION DE ESPERA==================================================== -->
-         <script type="text/javascript" src="../../controler/js/animacionEspera.js?v=1.0.0"></script> 
+         <script type="text/javascript" src="../../controler/js/animacionEspera.js?v=2.0.0"></script> 
          <!--========================ANIMACION DE ESPERA==================================================== -->
 
          <!-- =============================TOSTADAS BOOSTRAP====================================== -->
-         <script type="text/javascript" src="../../Toast-Notification/src/bootoast.js?v=1.0.0"></script> 
-         <link rel="stylesheet" href="../../Toast-Notification/src/bootoast.css?v=1.0.0">
+         <script type="text/javascript" src="../../Toast-Notification/src/bootoast.js?v=2.0.0"></script> 
+         <link rel="stylesheet" href="../../Toast-Notification/src/bootoast.css?v=2.0.0">
 
         <!-- ===================================SILIDER CON IMAGNES ============================== -->
-        <script src="../../Logo-carousel/js/jquery.rcbrand.js"></script>
-        <script src="../../Logo-carousel/js/sliderConImagenes.js"></script>
+        <script src="../../Logo-carousel/js/jquery.rcbrand.js?v=2.0.0"></script>
+        <script src="../../Logo-carousel/js/sliderConImagenes.js?v=2.0.0"></script>
 
 
  

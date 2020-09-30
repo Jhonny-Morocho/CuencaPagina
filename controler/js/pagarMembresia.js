@@ -23,8 +23,8 @@ $(".pricing-action").on('click',function(e){
     //1. Pregunta si la membresia q hizo clik es la q el desea
 
 	Swal.fire({
-		title:" Your choice is "+tipo ,
-		text: "confirm and pay",
+		title:" Tu has seleccionado  "+tipo ,
+		text: "Confirme para realizar el pago",
 		type: 'warning',
 		 	showCancelButton: true,
 		 	confirmButtonColor: '#3085d6',

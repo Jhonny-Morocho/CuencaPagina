@@ -47,3 +47,10 @@
     </div>
   </div>
 </div>
+
+<style>
+  .inputFile img{
+    width: 50%;
+    margin-bottom: 10px;
+  }
+</style>
