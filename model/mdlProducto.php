@@ -130,21 +130,19 @@ ini_set('display_errors', 'On');
 						$bpmProducto=$arrayDatosProducto['inputBpm'];
 						$precioProducto=$arrayDatosProducto['inputDolares'].".".$arrayDatosProducto['inputCentavos'];
 
-						date_default_timezone_set('America/Guayaquil');
-						$fecha_actual=date("Y-m-d");
-						
+
 						switch ($casoActulizar) {
 							case 'soloDatos':
 								$stmt= $db->conectar()->prepare("UPDATE producto SET 
 																	artista='$artistaProducto',
-																	nombrePista='$tituloProducto', fecha='$fecha_actual',
+																	nombrePista='$tituloProducto',
 																	bpm='$bpmProducto', idGenero='$generoProducto', precio='$precioProducto'
 																WHERE id='$idProducto' ");
 								break;
 							case 'achivoDemo':
 								$stmt= $db->conectar()->prepare("UPDATE producto SET 
 																	artista='$artistaProducto',demo='$ubicacionDemo',
-																	nombrePista='$tituloProducto', fecha='$fecha_actual',
+																	nombrePista='$tituloProducto',
 																	bpm='$bpmProducto', idGenero='$generoProducto', precio='$precioProducto'
 																WHERE id='$idProducto' ");
 								break;
@@ -152,7 +150,7 @@ ini_set('display_errors', 'On');
 							case 'achivoCompleto':
 								$stmt= $db->conectar()->prepare("UPDATE producto SET 
 																	artista='$artistaProducto',remixCompleto='$ubicacionCompleto',
-																	nombrePista='$tituloProducto', fecha='$fecha_actual',
+																	nombrePista='$tituloProducto',
 																	bpm='$bpmProducto', idGenero='$generoProducto', precio='$precioProducto'
 																WHERE id='$idProducto' ");
 								break;
@@ -160,7 +158,7 @@ ini_set('display_errors', 'On');
 							case 'todosLosArchivos':
 							$stmt= $db->conectar()->prepare("UPDATE producto SET 
 																artista='$artistaProducto',remixCompleto='$ubicacionCompleto',demo='$ubicacionDemo',
-																nombrePista='$tituloProducto', fecha='$fecha_actual',
+																nombrePista='$tituloProducto',
 																bpm='$bpmProducto', idGenero='$generoProducto', precio='$precioProducto'
 															WHERE id='$idProducto' ");
 							break;
