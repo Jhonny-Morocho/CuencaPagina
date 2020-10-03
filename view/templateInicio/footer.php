@@ -139,16 +139,16 @@ With your account you can access all our products, benefits and exclusive offers
         <!-- Bootstrap core JavaScript -->
         <script type="text/javascript" src="js/bootstrap.min.js?v=2.0.0"></script>
         <!-- Encoder.js -->
-        <script type="text/javascript" src="../js/encoder.js?v=2.0.0"></script>
+        <!-- <script type="text/javascript" src="../js/encoder.js?v=2.0.0"></script> -->
         <!-- sprintf-js -->
-        <script type="text/javascript" src="../js/sprintf.min.js?v=2.0.0"></script>
+        <!-- <script type="text/javascript" src="../js/sprintf.min.js?v=2.0.0"></script> -->
         <!-- MDB core JavaScript -->
         <script type="text/javascript" src="js/mdb.min.js?v=1.0.0?v=2.0.0"></script>
         <!-- Your custom scripts (optional) -->
         <!-- MDB Component Initialization -->
         <script type="text/javascript" src="../js/appIndex.js?v=2.0.0"></script>
         <!-- APP -->
-        <script type="text/javascript" src="../js/appLatinEdits.js?v=2.0.0"></script>
+        <!-- <script type="text/javascript" src="../js/appLatinEdits.js?v=2.0.0"></script> -->
         <!-- ======================AJAX================================== -->
         <script type="text/javascript" src="../../controler/js/ajaxProveedor.js?v=2.0.0"></script>
         <script type="text/javascript" src="../../controler/js/ajaxCliente.js?v=2.0.0"></script>

@@ -8,16 +8,17 @@
          <div class="box">
         <div class="box-header">
           <h3 class="box-title">Pagos no efecuados a Dj <?php echo $_GET['nombreProveedor'] ?> </h3>
-        <!-- form start -->
+            
+          <!-- FORMULARIO DE FILTRO DE FECHAS  -->
             <form role="form" class="" method="post" action="../controler/ctrPagosProveedor.php" id="idFiltrarFechaPago">
                 <div class="box-body ">
                     <div class="form-group col-md-4">
                         <label for="exampleInputEmail1">Fucha Inicio</label>
-                        <input type="date" class="form-control" id="exampleInputEmail1" required name="fechaInicio" value="2020-07-25">
+                        <input type="date" class="form-control"  id="idFechaInicio" required name="fechaInicio" value="2020-07-25">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="exampleInputPassword1">Fecha Fin</label>
-                        <input type="date" class="form-control" id="exampleInputPassword1" required name="fechaFin" value="2020-07-25">
+                        <input type="date" class="form-control"  id="idFechaFin" required  name="fechaFin" value="2020-07-25">
                     </div>
                     <div class="form-group col-md-4">
                         <input type="hidden" name="idProveedor" value="<?php echo $_GET['idProveedor'] ?>">
@@ -26,14 +27,16 @@
                     </div>
                 </div>
             </form>
+
+            <!-- FORMULARIO DE COMISION   -->
             <form role="form" class="col-md-3" method="post" action="../controler/ctrPagosProveedor.php" id="idGenerarPdf" target="alt">
                 <div class="box-body ">
-                 
                         <div class="form-group ">
                             <label for="exampleInputEmail1">Comision %</label>
                             <input type="number" class="form-control" id="exampleInputEmail1" required name="comision" value="60">
                             <input type="hidden" name="FiltroPagoProveedor" value="GenerarPdf">
                             <input type="hidden" name="nombreDj" value="<?php echo $_GET['nombreProveedor']?>">
+                            <input type="hidden" name="idProveedor" value="<?php echo $_GET['idProveedor'] ?>">
                         <button type="submit" class="btn bg-navy margin" title="Generar Reporte PDF"><i class="fa fa-fw fa-file-pdf-o"></i></button> 
                     </div>
                 </div>
@@ -41,24 +44,19 @@
             
             <form role="form" class="col-md-2" method="post" action="../controler/ctrPagosProveedor.php" id="idFormVerTodo">
                 <div class="box-body ">
-               
                     <div class="form-group ">
-
                         <button type="submit" class="btn bg-olive margin" title="Ver todos los resultados"><i class="fa fa-fw fa-th-list"></i></button> 
                     </div>
                 </div>
             </form>
+
             <form role="form" class="col-md-2" method="post" action="../controler/ctrPagosProveedor.php" id="idCambiarEstado">
                 <div class="box-body ">
                     <div class="form-group ">
-                    
-                     
                         <button type="submit" class="btn bg-maroon margin" title="Cambiar de estado pendiente a pagado"><i class="fa fa-fw fa-pencil"></i></i></button> 
-                
                     </div>
                 </div>
             </form>
-
         </div>
         <!-- /.box-header -->
         <div class="box-body ">

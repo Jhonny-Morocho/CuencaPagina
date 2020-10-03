@@ -2,8 +2,8 @@
     <!-- ============================================CARROSUEL================================= -->
             <!--Carousel Wrapper-->
 
-            <div class="row mt-4">
-                <div class="col-lg-12 mt-5">
+            <div class="row ">
+                <div class="col-lg-12 ">
                     <div id="carousel-example-2" class="carousel slide carousel-fade " data-ride="carousel">
                         <!--Indicators-->
                         <?php
@@ -63,3 +63,8 @@
                 </div>
 
 
+                <style>
+                    .carousel{
+                        margin-top: 120px;
+                    }
+                </style>

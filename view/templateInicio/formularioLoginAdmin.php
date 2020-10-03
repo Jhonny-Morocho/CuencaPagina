@@ -47,7 +47,7 @@
           <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left">
             <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">FOMR LOGIN ADMIN</h1>
             <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
-            <h6 class="mb-3 wow fadeInLeft" data-wow-delay="0.3s">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eveniet explicabo saepe dolorem aliquam modi atque officiis odio, nostrum exercitationem alias sapiente nihil. Nulla repudiandae voluptatem perspiciatis laboriosam. Facilis, libero quasi!</h6>
+            <h6 class="mb-3 wow fadeInLeft" data-wow-delay="0.3s">www.latinedit.com</h6>
             <a class="btn btn-outline-white btn-rounded wow fadeInLeft" data-wow-delay="0.3s" href="../../">HOME</a>
           </div>
           <!--Grid column-->

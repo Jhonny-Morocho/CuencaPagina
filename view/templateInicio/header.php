@@ -7,36 +7,36 @@
   <title>LatinEdit.com</title>
   <!-- MDB icon -->
   <base href="appMTD/AppMaterial/">
-  <link rel="icon" href="../../img/logo-png-pagina.png" type="image/x-icon">
+  <link rel="icon" href="../../img/Logo-Latin-Edit-2020.png" type="image/x-icon">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css?v=1.0.0">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css?v=2.0.0">
   <!-- Google Fonts Roboto -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css?v=1.0.0">
+  <link rel="stylesheet" href="css/bootstrap.min.css?v=2.0.0">
   <!-- Material Design Bootstrap -->
-  <link rel="stylesheet" href="css/mdb.min.css?v=1.0.0">
+  <link rel="stylesheet" href="css/mdb.min.css?v=2.0.0">
   <!-- Your custom styles (optional) -->
-   <link rel="stylesheet" href="css/style.css?v=1.0.0">
+   <link rel="stylesheet" href="css/style.css?v=2.0.0">
   <!-- =================== APP==================== -->
-   <link rel="stylesheet" href="../../view/estilos/estilos.css?v=1.0.1"> 
+   <link rel="stylesheet" href="../../view/estilos/estilos.css?v=2.0.0"> 
 
   <meta property="og:title" content="LatinEdit.com"/>
   <meta property="og:description" content="The best of the record pool of djs" /> 
   <meta property="og:image" content="../../img/perfil-facebook.png" />      
   <meta property="og:url" content="https://www.LatinEdit.com/" />
   <!-- =====================UNDER LINE ===================== -->
-   <link rel="stylesheet" href="../../underline/underline.css">
-   <link rel="stylesheet" href="../../view/estilos/tablaSpotify.css">
+   <link rel="stylesheet" href="../../underline/underline.css?v=2.0.0">
+   <link rel="stylesheet" href="../../view/estilos/tablaSpotify.css?v=2.0.0">
 
   <!-- ===================================SILIDER CON IMAGNES ============================== -->
-  <link rel="stylesheet" href="../../Logo-carousel/css/style.css">
+  <link rel="stylesheet" href="../../Logo-carousel/css/style.css?v=2.0.0">
 
   
   <!-- ===================================HOVER CSS ============================== -->
   <!-- <link rel="stylesheet" href="../../imagehoverCSS/css/demo-page.css"> -->
-  <link rel="stylesheet" href="../../imagehoverCSS/css/imagehover.css">
-  <link rel="stylesheet" href="../../imagehoverCSS/css/imagehover.min.css">
+  <link rel="stylesheet" href="../../imagehoverCSS/css/imagehover.css?v=2.0.0">
+  <link rel="stylesheet" href="../../imagehoverCSS/css/imagehover.min.css?v=2.0.0">
 
 
 </head>
@@ -47,7 +47,7 @@
             <!-- Brand -->
             <a class="navbar-brand waves-effect" href="../../" >
                 
-                <strong class="blue-text"><img src="../../img/logoLatinEdit.png" style="width: 100%;" alt="" class="animated flip "></strong>
+                <strong class="blue-text"><img src="../../img/Logo-Latin-Edit-2020.png" style="width: 100%;" alt="" class="animated flip "></strong>
             </a>
             <!-- Collapse -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -110,7 +110,7 @@
                         <span class="underline-closing"><a href="../../latinPlus.php"><i class="fa fa-plus" aria-hidden="true"></i> LATIN EDIT PLUS</a></span>
                     </li>
                     <li class="nav-item ">
-                        <span class="underline-closing"><a href="../../membresias.php"><i class="fa fa-folder" aria-hidden="true"></i> MEMBRRESIAS</a></span>
+                        <span class="underline-closing"><a href="../../membresias.php"><i class="fa fa-folder" aria-hidden="true"></i> MEMBRESIAS</a></span>
                     </li>
 
                     <li class="nav-item ">
