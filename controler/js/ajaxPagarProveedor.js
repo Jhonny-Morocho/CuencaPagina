@@ -224,48 +224,35 @@ $(document).ready(function(){
     var datos=$(this).serializeArray();
     var subTotal=$('.sumaTotal')[0].innerText;
     console.log(datos);
+    var fechaInicio=$('#idFechaInicio').val();
+    var fechaFin=$('#idFechaFin').val();
+    console.log(fechaFin);
+    console.log(fechaInicio);
 
     animacion();
-    var nodoIdClienteProducto=$('.idClienteProducto');
-    var nodoNombrePista=$('.nombrePista');
-    var nodoMetodoCompra=$('.metodoCompra');
-    var nodoPrecioCompra=$('.precioCompra');
-    var nodofechaCompra=$('.fechaCompra');
 
-    var arrayNodosConValorId=[];
-    var arrayNodosNombrePista=[];
-    var arrayNodosMetodoCompra=[];
-    var arrayNodosfechaCompra=[];
-    var arrayNodosPrecioCompra=[];
-   
-    var arrayNodosConValorId=[];
-    for (let index = 0; index < nodoIdClienteProducto.length; index++) {
-        arrayNodosConValorId[index]=nodoIdClienteProducto[index].innerText;
-        arrayNodosNombrePista[index]=nodoNombrePista[index].innerText;
-        arrayNodosMetodoCompra[index]=nodoMetodoCompra[index].innerText;
-        arrayNodosfechaCompra[index]=nodofechaCompra[index].innerText;
-        arrayNodosPrecioCompra[index]=nodoPrecioCompra[index].innerText;
-        
-    }
     // comprobar si existen datos para enviar caso contrario monstramos mensaje
 
       animacion();
-      $.ajax({
-        type:$(this).attr('method'),
-
-        data:{idProductos:arrayNodosConValorId, 
-          nombrePista:arrayNodosNombrePista,
-          metodoCompra:arrayNodosMetodoCompra,
-          fechaCompra:arrayNodosfechaCompra,
-          precioCompra:arrayNodosPrecioCompra,
-          FiltroPagoProveedor:'GenerarPdf',nombreDj:datos[2].value,subTotal:subTotal,comision:datos[0].value},
-        url:$(this).attr('action'),
-        dataType:'text',//json
-        success:function(data){
-          console.log(data);
- 
+      Swal.fire({
+        title: 'Se realizar el reporte de ventas de ' +datos[2].value+" con el "+datos[0].value + "% de comisión",
+        text: "Se tomara en cuenta la fecha de "+fechaInicio +" hasta "+fechaFin,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes'
+      }).then((result) => {
+        if (result.isConfirmed) {
+  
+          window.location=$(this).attr('action')+'?idProveedor='+datos[3].value+
+                                                                              '&fechaInicio='+fechaInicio+
+                                                                              '&FiltroPagoProveedor='+'GenerarPdf'+
+                                                                              '&nombreProveedor='+datos[2].value+
+                                                                              '&comision='+datos[0].value+
+                                                                              '&FechaFin='+fechaFin;
         }
-    });    
+      })  
 });
 
 

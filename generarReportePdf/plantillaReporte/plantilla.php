@@ -1,17 +1,22 @@
 <?php
 class ClassPlantilla{
   
-  public static function funcionPlantilla($nombreProducto,$fechaCompra,$precioVenta,$metodoPago,$nombreDj,$subTotal,$comision){
+  public static function funcionPlantilla($filtroFechaProductos,$nombreDj,$comision){
 
-    $nombreDueño="Sr. Marco Arias";
+    $nombreDueño="Ing. Marco Arias ";
     date_default_timezone_set('America/Guayaquil');
     $fecha_actual=date("Y-m-d");
     $empresa="WWW.LATINEDIT.COM";
-    
+     //print_r($filtroFechaProductos[0]['url_directorio']);
+    // echo $nombreDj;
+    // echo "--------------------------------------";
+    //print_r($filtroFechaProductos);
+     //die(json_encode($filtroFechaProductos));
+
     $htmlPlantilla1='<body id="content">
       <header class="clearfix">
         <div id="logo">
-          <img src="../generarReportePdf/plantillaReporte/logo-png-pagina.png" width="20%">
+          <img src="../generarReportePdf/plantillaReporte/logo-png-pagina.png" width="50%">
         </div>
         <h1>'.$empresa.'</h1>
         <div id="company" class="clearfix">
@@ -38,18 +43,20 @@ class ClassPlantilla{
           </thead>
           <tbody>';
           
-        $htmlPlantillaItem="";
+
         $tabla="";
-          for ($i=0; $i < count($nombreProducto); $i++) { 
-            $htmlPlantillaItem= '<tr>
-                        <td class="service">'.(count($nombreProducto)-$i).'</td>
-                        <td class="desc">'.$nombreProducto[$i].'</td>
-                        <td class="unit">'.$fechaCompra[$i].'</td>
-                        <td class="qty">'.$precioVenta[$i].'</td>
-                        <td class="total">'.$metodoPago[$i].'</td>
-                      </tr>';
-            $tabla=$htmlPlantillaItem.$tabla;
-          }
+        $subTotal=0;
+          for ($i=0; $i < count($filtroFechaProductos); $i++) { 
+             $tabla.= '<tr>
+                        <td class="service">'.(count($filtroFechaProductos)-$i).'</td>
+                        <td class="desc">'.$filtroFechaProductos[$i]['nombrePista'].'</td>
+                         <td class="unit">'.$filtroFechaProductos[$i]['fechaCompra'].'</td>
+                        <td class="qty">'.$filtroFechaProductos[$i]['precioCompra'].'</td>
+                        <td class="total">'.$filtroFechaProductos[$i]['metodoCompra'].'</td>
+                     </tr>';
+                     $subTotal+=$filtroFechaProductos[$i]['precioCompra'];
+              
+           }
   
 
 
@@ -76,7 +83,7 @@ $htmlPlantillaComision='<tr>
   
       </main>
       <footer>
-      © 2020 Copyright: latinedit.com.
+      © 2020 Copyright: Proeditsclub.com.
       </footer>
     </body>';
   
