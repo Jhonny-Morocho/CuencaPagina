@@ -89,5 +89,29 @@ class ModeloFacura {
         return $respuesta;
     }
 
+    //============================FILTRO PARA VER INFORME DE VENTAS=====================//
+    //============================FILTRO PARA VER INFORME DE VENTAS=====================//
+     public static function sqlFiltrarFacturas($fechaInicio,$fechaFin){
+        $db=new Conexion();
+        try {
+            $stmt= $db->conectar()->prepare("SELECT *FROM  detalle_factura  WHERE  	fechaFacturacion between  '$fechaInicio' and '$fechaFin' ");
+
+
+                $stmt->execute();
+
+            } catch (Exception $e) {
+                $error=$e->getMessage();
+                echo $error;
+
+              }
+
+        return $stmt->fetchAll();
+
+        $stmt->close();
+
+
+    }
+
+
 
 }

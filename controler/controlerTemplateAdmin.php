@@ -88,6 +88,10 @@ ini_set('display_errors', 'On');
     public static function tablaMembresiasCliente(){
         require"../../view/admin/tablas/tablaMembresiaCliente.php";
     }
+    public static function tablafiltrarVentasPorMes(){
+        require"../../view/admin/tablas/tablaFiltroVentas.php";
+    }
+
 
     // ==================Funciones para session==================
     // ==================Funciones para session==================

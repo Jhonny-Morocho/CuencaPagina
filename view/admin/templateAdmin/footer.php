@@ -194,8 +194,6 @@
       <!-- /.tab-pane -->
     </div>
   </aside>
-
-
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
@@ -243,6 +241,7 @@
 <script src="../controler/js/ajaxCarrusel.js"></script>
 <script src="../controler/js/ajaxLogosDjs.js"></script>
 <script src="../controler/js/ajaxMembresia.js"></script>
+<script src="../controler/js/ajaxFiltrarVentas.js"></script>
 
 
 <!-- //=======================TOSTADA=============================// -->

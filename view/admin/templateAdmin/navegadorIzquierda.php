@@ -94,6 +94,7 @@
           </a>
           <ul class="treeview-menu">
             <li ><a href="../view/admin/listarVentas.php"><i class="fa fa-list-ul" aria-hidden="true"></i> Listar</a></li>
+            <li ><a href="../view/admin/listarFiltroVentasFechas.php"><i class="fa fa-fw fa-filter"></i>Filtrar</a></li>
           </ul>
         </li>
         <li class="treeview">
