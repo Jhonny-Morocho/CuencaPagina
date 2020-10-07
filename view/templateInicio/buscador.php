@@ -60,18 +60,19 @@
                 <div class="md-form ">
                       <?php if(@$_GET['remixer']){?>
                           <select class=" form-control form-control-sm ml-3 w-60 selectGeneroRemixer " name="remixer">
-                                <option value="" >REMIXER</option>
                                 <?php 
                                     $remixer=ModeloProveedor::sql_lisartar_proveedor();
                                     foreach ($remixer as $key => $value) {
                                       if($_GET['remixer']==$value['id']){ 
                                         echo '<option value="'.$value['id'].'" >'.$value['apodo'].'</option>';
+                                       
                                       }
                                     }
                                     echo '<option value="" >REMIXER</option>';
                                     foreach($remixer as $key=>$value){ ?>
                                           <?php if($_GET['remixer']!=$value['id']){ ?>
                                               <option value="<?php echo$value['id'] ?>" > <?php echo$value['apodo'] ?> </option>
+                                             
                                           <?php } ?>
                                     
                                     <?php } ?>
@@ -83,6 +84,7 @@
                                     $remixer=ModeloProveedor::sql_lisartar_proveedor();
                                     foreach($remixer as $key=>$value){ ?>
                                         <option value=" <?php echo$value['id'] ?> " > <?php echo$value['apodo'] ?> </option>
+                                        
                                 <?php }?>
                           </select>
                         <?php } ?>

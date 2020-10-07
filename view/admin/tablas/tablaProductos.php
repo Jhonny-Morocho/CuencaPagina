@@ -406,4 +406,8 @@
   select.form-control.form-control-sm.ml-3.w-60.selectGeneroRemixer {
     color: black !important;
 }
+
+div#waveform {
+    display: none!important;
+}
 </style>

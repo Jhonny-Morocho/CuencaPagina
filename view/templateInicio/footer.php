@@ -128,7 +128,7 @@ With your account you can access all our products, benefits and exclusive offers
   <!-- Copyright -->
 </footer>
 <!-- Footer -->
-</body>
+
         <!-- jQuery -->
            <!-- UNDER LINE  -->
         <script type="text/javascript" src="js/jquery.min.js?v=2.0.0"></script> 
@@ -242,3 +242,4 @@ With your account you can access all our products, benefits and exclusive offers
 </body>
 
 </html>
+
