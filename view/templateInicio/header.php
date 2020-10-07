@@ -26,7 +26,7 @@
   <meta property="og:image" content="../../img/perfil-facebook.png" />      
   <meta property="og:url" content="https://www.LatinEdit.com/" />
   <!-- =====================UNDER LINE ===================== -->
-   <link rel="stylesheet" href="../../underline/underline.css?v=2.0.0">
+   <link rel="stylesheet" href="../../text_hover/css/text_hover.css?v=2.0.0">
    <link rel="stylesheet" href="../../view/estilos/tablaSpotify.css?v=2.0.0">
 
   <!-- ===================================SILIDER CON IMAGNES ============================== -->
@@ -42,14 +42,16 @@
 
 </head>
 <body>
+
     <header>
 
             <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
                 <div class="container">
                 <!-- Brand -->
+
                 <a class="navbar-brand waves-effect" href="../../" >
                     
-                    <strong class="blue-text"><img src="../../img/Logo-Latin-Edit-2020.png" style="width: 100%;" alt="" class="animated flip "></strong>
+                    <strong class="blue-text"><img src="../../img/Logo-Latin-Edit-2020.png" style="width: 70%;" alt="" class="animated flip "></strong>
                 </a>
                 <!-- Collapse -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -62,14 +64,14 @@
                     <!-- Left -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <span class="underline-closing"><a href="../../"><i class="fas fa-home"></i> HOME</a></span>
+                            <span class="text-hover text-hover-underline-opening"><a href="../../" style="  font-weight: 700 ;"><i class="fas fa-home"></i> HOME</a></span>
                         </li>
                             <!-- Features -->
                         <li class="nav-item dropdown mega-dropdown  active">
                                 
-                            <a class="nav-link dropdown-toggle text-uppercase" id="navbarDropdownMenuLink2" data-toggle="dropdown"
+                            <a class="nav-link dropdown-toggle text-uppercase" id="navbarDropdownMenuLink2" data-toggle="dropdown" style="  font-weight: 700 ;"
                                 aria-haspopup="true" aria-expanded="false">
-                                <span class="underline-closing"><i class="fa fa-headphones" aria-hidden="true"></i> REMIXERS</span> 
+                                <span class="text-hover text-hover-underline-opening"><i class="fa fa-headphones" aria-hidden="true"></i> REMIXERS</span> 
                                 <span class="sr-only">(current)</span> 
                             </a>
                             <div class="dropdown-menu mega-menu v-2 z-depth-1 special-color py-5 px-3 "
@@ -89,7 +91,7 @@
                                     if($contProveedor<$numTotalProveedor){
                                         
                                         echo'<li>
-                                                                        <span class="underline-closing">
+                                                                        <span class="text-hover text-hover-underline-opening">
                                                                             <a class="menu-item pl-0" href="../../?nameRemixer='.$proveedor[$contProveedor]['apodo'].'&remixer='.$proveedor[$contProveedor]['id'].'">
                                                 <i class="fas fa-caret-right pl-1 pr-3"></i>'.$proveedor[$contProveedor]['apodo'].'
                                                                             </a>
@@ -106,13 +108,13 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <!-- <span class="underline-closing"><a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank"><i class="fas fa-folder"></i> MEMBRESIAS </a></span> -->
+                            <!-- <span class="text-hover text-hover-underline-opening"><a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank"><i class="fas fa-folder"></i> MEMBRESIAS </a></span> -->
                         </li>
                         <li class="nav-item">
-                            <span class="underline-closing"><a href="../../latinPlus.php"><i class="fa fa-plus" aria-hidden="true"></i> LATIN EDIT PLUS</a></span>
+                            <span class="text-hover text-hover-underline-opening"><a href="../../latinPlus.php" style="  font-weight: 700 ;"><i class="fa fa-plus" aria-hidden="true"></i> LATIN EDIT PLUS</a></span>
                         </li>
                         <li class="nav-item ">
-                            <span class="underline-closing"><a href="../../membresias.php"><i class="fa fa-folder" aria-hidden="true"></i> MEMBRESIAS</a></span>
+                            <span class="text-hover text-hover-underline-opening"><a style="  font-weight: 700 ;" href="../../membresias.php" ><i class="fa fa-folder" aria-hidden="true"></i> MEMBRESIAS</a></span>
                         </li>
 
                         <li class="nav-item ">
@@ -121,22 +123,22 @@
                                     switch (@$_SESSION['tipo_usuario']) {
                                         case 'cliente':
 
-                                                echo ' <span class="underline-closing">
-                                                            <a  href="../../adminCliente.php"">Hola: '.$_SESSION['usuario'].'</a>
+                                                echo ' <span class="text-hover text-hover-underline-opening">
+                                                            <a style="  font-weight: 700 ;"  href="../../adminCliente.php"">Hola: '.$_SESSION['usuario'].'</a>
                                                         </span>';
                                             break;
                                         case 'proveedor':  
-                                                echo ' <a  href="../../view/admin/index_admin.php"> Bienvenido : '.$_SESSION['usuario'].'</a>';
+                                                echo ' <a style="  font-weight: 700 ;" href="../../view/admin/index_admin.php"> Bienvenido : '.$_SESSION['usuario'].'</a>';
                                             break;
                                         case 'admin':
-                                                echo ' <span class="underline-closing">
-                                                            <a  " href="../../view/admin/index_admin.php"> Hi  : '.$_SESSION['usuario'].'</a>
+                                                echo ' <span class="text-hover text-hover-underline-opening">
+                                                            <a  style="  font-weight: 700 ;"  href="../../view/admin/index_admin.php"> Hi  : '.$_SESSION['usuario'].'</a>
                                                             
                                                     </span>';
                                             break;
                                     }
                                 }else{
-                                    echo ' <span class="underline-closing"><a href="../../login.php"><i class="fas fa-user-check"></i> LOGIN/REGISTER </a></span>';
+                                    echo ' <span class="text-hover text-hover-underline-opening"><a href="../../login.php"><i class="fas fa-user-check"></i> LOGIN/REGISTER </a></span>';
                                 }
                             ?>
                         </li>
@@ -145,7 +147,7 @@
                     <!-- Right -->
                     <ul class="navbar-nav nav-flex-icons">
                         <li class="nav-item">
-                        <span class="underline-closing">
+                        <span class="text-hover text-hover-underline-opening">
                             <a href="../../car.php">
                             
                                     <span class="badge red z-depth-1 mr-1 cart-notification"> 0 </span>

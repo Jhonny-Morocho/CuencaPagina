@@ -45,12 +45,8 @@
     width: 30% !important;
 
   }
-  .back-to-top{
-    right: 341px !important;
-  }
-  .reproducir{
-    max-width: 480px !important;
-  }
+
+
   .song__item  {
     margin-bottom: 20px;
    }
@@ -64,9 +60,7 @@
   .song__artist {
     margin-left: 50px;
   }
-  nav.navbar.fixed-top.navbar-expand-lg.navbar-light.white.scrolling-navbar {
-    max-width: 480px;
-  }
+
 }
 
 @media only screen and (max-width: 320px) {
@@ -75,12 +69,8 @@
    
   }
 
-  .reproducir{
-    max-width: 320px !important;
-  }
-  .back-to-top{
-    right: 341px  !important;
-  }
+
+
   .song__item  {
    margin-bottom: 20px;
   }
@@ -93,9 +83,8 @@
   .song__artist {
     margin-left: 50px;
   }
-  nav.navbar.fixed-top.navbar-expand-lg.navbar-light.white.scrolling-navbar {
-    max-width: 320px;
-  }
-
+ 
 
 }
+
+
