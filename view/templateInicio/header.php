@@ -138,7 +138,7 @@
                                             break;
                                     }
                                 }else{
-                                    echo ' <span class="text-hover text-hover-underline-opening"><a href="../../login.php"><i class="fas fa-user-check"></i> LOGIN/REGISTER </a></span>';
+                                    echo ' <span class="text-hover text-hover-underline-opening"><a style="  font-weight: 700 ;"  href="../../login.php"><i class="fas fa-user-check"></i> LOGIN/REGISTER </a></span>';
                                 }
                             ?>
                         </li>
