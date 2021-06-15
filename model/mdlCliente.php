@@ -15,16 +15,37 @@ ini_set('display_errors', 'On');
 		public static function sqlLoginCliente($correo){
 
 			$db=new Conexion();
-			$stmt= $db->conectar()->prepare("SELECT *FROM cliente where correo ='$correo' ");
-
+			$stmt= $db->conectar()->prepare("SELECT *FROM cliente where correo ='$correo' and estado=1 ");
 			$stmt->execute();
-
-
 			return $stmt->fetch();
 
 			$stmt->close();
 		}
-
+		public static function buscarUsuario($correo){
+			$db=new Conexion();
+			$stmt= $db->conectar()->prepare("SELECT *FROM cliente where correo ='$correo'");
+			$stmt->execute();
+			return $stmt->fetch();
+			$stmt->close();
+		}
+		public static function estadoCuentaCliente($estado,$correo){
+			$db=new Conexion();
+			$stmt= $db->conectar()->prepare("UPDATE cliente set estado='$estado' where correo= '$correo'");
+			$stmt->execute();
+			if($stmt){
+				//si se realizo la inserccion
+				$respuesta=array(
+					'respuesta'=>true
+					);
+					return $respuesta;
+			}else{
+				$respuesta=array(
+					'respuesta'=>false
+					);
+					return $respuesta;
+			}
+			$stmt->close();
+		}
 		//editar saldo del cliente
 		public static function sqlEditarSaldoCliente($idCliente,$nuevoSaldo){
 
@@ -62,6 +83,8 @@ ini_set('display_errors', 'On');
 		$apellidoCliente=$arrayCliente['inputApellidoCliente'];
 		$correoCliente=$arrayCliente['inputEmailCliente'];
 		$passwordCliente=$arrayCliente['inputPasswordCliente'];
+		$estado=0;
+		$saldoActual=0;
 		//encriptar el password
 		$opciones=array('cost'=>12);
 		$password_hashed=password_hash($passwordCliente,PASSWORD_BCRYPT,$opciones);
@@ -83,13 +106,13 @@ ini_set('display_errors', 'On');
 			
 					$stmt= $db->conectar()->prepare("INSERT INTO cliente 
 															(nombre, apellido,
-															correo,	password, rol,fechaRegistro
+															correo,	password, rol,fechaRegistro,estado,saldoActual
 															) 
 		
 														VALUES(
 															'$nombreCliente','$apellidoCliente',
 															'$correoCliente','$password_hashed',
-												        	'cliente','$fecha_actual'
+												        	'cliente','$fecha_actual','$estado','$saldoActual'
 			
 															) 
 													");
@@ -104,11 +127,6 @@ ini_set('display_errors', 'On');
 								'idRegistro'=>$id,
 								'nombre'=>$nombreCliente
                                 );
-                                @session_start();//inicio la sesion
-                                $_SESSION['id_cliente']=$id;
-                                $_SESSION['usuario']=$nombreCliente;
-                                $_SESSION['tipo_usuario']='cliente';
-                                $_SESSION['apellido']=$apellidoCliente;
                                 return $respuesta;//regrso la respuesta 
 						
 						 }else{

@@ -45,8 +45,59 @@ switch (@$_POST['Cliente']) {
             }
             //=====Verificar Validacion
             ($boolean_validacion==true)? $respuesta=ModeloCliente::sqlAddCliente(@$_POST):$respuesta=array('mensaje'=>"Caracteres no permitidos ","arrayValidacion"=>$ValidarCampos);
-            die(json_encode($respuesta));
-            // die(json_encode($respuesta));
+            if($respuesta['respuesta']=='exito'){
+                //enviamos al correo el nuevo password
+                $mail=new PHPMailer();
+                $mail->CharSet='UTF-8';
+                $mail->isMail();
+                $mail->setFrom('support@latinedit.com','LATINEDIT.COM');
+                $mail->addReplyTo('support@latinedit.com','LatinEdit.com');
+                $mail->Subject=('Verificación de su registro en latinedit.com');
+                $mail->addAddress(@$_POST['inputEmailCliente']);
+                $mail->msgHTML('<div style="width: 100%; height: 30%; position: relative;font-family:sans-serif ; padding-bottom: 40px;">
+                                    <center>
+                                        
+                                            <img src="http://www.latinedit.com/img/LOGO-LATIN-EDIT2-recortado.png" alt="" style="padding: 20px;" width="40%" height="20%">
+                                    </center>
+                                </div>
+                            
+                                <div style="position: relative; width: 100%; background: white; padding: 20px; ">
+                                    <center>
+                                        <img src="http://latinedit.com/img/user-correcto.png" alt="" width="10%" height="10%">
+                                        <h4 style="font-weight: 100;color:#999 ; padding: 0 20px;">
+                                            Acceda al enlace para poder validar su cuenta
+                                        </h4>
+                            
+                                        <a href="http://latinedit.com/validarCorreo/validar-correo.php?correo='.$_POST['inputEmailCliente'].'" style="color: white; text-decoration: none;" target="_blank">
+                                        
+                                            <div style="line-height: 60px;background: #007bff; width: 60%; color: white; font-size: 20px;"> Para verificar su cuenta de clic aquí
+                                            </div>
+                                        </a>
+                                    </center>
+                                </div>');
+                $envio=$mail->Send();
+                if ($envio==true) {
+                    # code...
+                    die(json_encode(array('respuesta'=>'exito',
+                                                 'estadoRegistro'=>$respuesta['respuesta'],
+                                                 'mensaje'=>$respuesta['mensaje'],
+                                                 'estadoEnvioCorreo'=>true
+                                                 )
+                                          )
+                              );
+                }else{
+                    die(json_encode(array('respuesta'=>'false',
+                                                    'estadoRegistro'=>$respuesta['respuesta'],
+                                                    'mensaje'=>$respuesta['mensaje'],
+                                                    'estadoEnvioCorreo'=>true
+                                                )
+                                            )
+                               );
+                }
+            }else{
+                die(json_encode($respuesta));
+            }
+   
             break;
 
 
@@ -75,7 +126,6 @@ switch (@$_POST['Cliente']) {
                     //print_r($respuesta);
                     if ($respuesta) {//verificar si existe el correo del usuario
                         if( password_verify(@$_POST['inputPasswordCliente'],@$respuesta['password']) ){
-
                                 @session_start();
                                 @$_SESSION['id_cliente']=$respuesta['id'];
                                 @$_SESSION['usuario']=$respuesta['nombre'];
@@ -89,8 +139,6 @@ switch (@$_POST['Cliente']) {
                                      'rol'=>$respuesta['rol'],
                                      'apellido'=>$respuesta['apellido']
                                  );
-                        
-    
                             }
     
                             else{
@@ -101,7 +149,7 @@ switch (@$_POST['Cliente']) {
                             }
                     }else{
                             $respuesta=array(
-                                'respuesta'=>'Correo Incorrecto'
+                                'respuesta'=>'Su cuenta ahun no ha sido verificada, porfavor revise su bandeja de entrada'
                             );
                         
                         }
@@ -136,6 +184,7 @@ switch (@$_POST['Cliente']) {
             //=====Verificar Validacion
             ($boolean_validacion==true)? $respuesta=ModeloCliente::sqlEditarCliente(@$_POST):$respuesta=array('mensaje'=>"Caracteres no permitidos ","arrayValidacion"=>$ValidarCampos);
             die(json_encode($respuesta));
+
             break;
     
         case 'recuperarContraseña':

@@ -30,7 +30,9 @@
   h6 {
     line-height: 1.7;
   }
- 
+ .smsEsperaLogin{
+   text-align: center;
+ }
 
 </style>
 
@@ -97,6 +99,13 @@
                             </a>
                           </center>
                         </div>
+                        <div class="md-form">
+                          <center>
+                            <a href="https://api.whatsapp.com/send?phone=+593 99 322 2807&text=Yo%27%20Tengo%20una%20consulta%20" style="color: white!important;" target="alt">
+                             ¿Tienes problemas al acceder a tu cuenta? Contactanos haciendo clic en este enlace
+                            </a>
+                          </center>
+                        </div>
 
                         <input type="hidden" name="Cliente" value="loginCliente">
                     </div>
@@ -123,17 +132,22 @@
   <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
     <!--Content-->
     <div class="modal-content">
-
-
       <!--Body-->
-      <form action="../../controler/ctrCliente.php" method="post" id="idFormularioRecuperarPassword">
+      <form action="../../controler/ctrCliente.php" method="post" id="idFormularioRecuperarPassword" autocomplete="on">
         <div class="modal-body text-center mb-1">
   
           <h5 class="mt-1 mb-4">Recuperar mi contraseña</h5>
   
           <div class="md-form ml-0 mr-0">
-            <input type="email" type="text"  class="form-control form-control-sm validate ml-0" style="color: black !important;"  name="inputEmailCliente" required>
-            <label data-error="wrong" data-success="right"  class="ml-0" style="color: black;">Ingresa tu correo</label>
+            <input type="email" 
+                   class="form-control form-control-sm validate ml-0" 
+                   style="color: black !important;"  
+                   name="inputEmailCliente" 
+                   required 
+                   id="correoRecuperar">
+            <label data-error="wrong" data-success="right"
+                  for="correoRecuperar"  
+                  class="ml-0" style="color: black;">Ingresa tu correo</label>
           </div>
           <div class="col-lg-12">
             <div class="smsRecuperacionContraseña">

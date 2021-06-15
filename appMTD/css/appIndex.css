@@ -1,90 +1,234 @@
 /* ============================= RESPONSIBE DISEÑO ==================================== */
-/* ============================= RESPONSIBE DISEÑO ==================================== */
-/* ============================= RESPONSIBE DISEÑO ==================================== */
-@media only screen and (max-width: 1920px) {
 
-}
-@media only screen and (max-width: 1366px) {
- 
-}
-@media only screen and (max-width: 1024px) {
- 
-  
-}
+
+/* ============================= RESPONSIBE DISEÑO ==================================== */
+
+
+/* ============================= RESPONSIBE DISEÑO ==================================== */
+
+@media only screen and (max-width: 1920px) {}
+
+@media only screen and (max-width: 1366px) {}
+
+@media only screen and (max-width: 1024px) {}
+
 @media only screen and (max-width: 990px) {
-  img.animated.flip {
-    width: 20% !important;
-
-  }
-
+    img.animated.flip {
+        width: 20% !important;
+    }
+    .song__date {
+        margin-left: 15px;
+    }
+    .song__buy {
+        margin-left: 15px;
+    }
+    .song__item {
+        margin-bottom: 20px;
+    }
+    .song__title {
+        margin-left: 15px;
+    }
+    .song__artist {
+        margin-left: 50px;
+    }
 }
 
 @media only screen and (max-width: 768px) {
-
-  img.animated.flip {
-    width: 30% !important;
-
-  }
-  .song__item  {
-    margin-bottom: 20px;
-   }
-
-   i.fas.fa-cart-plus.song__like.mr-1.buy {
-    margin-left: 100px;
-  }
-  .song__title {
-    margin-left: 12px;
-  }
-  .song__artist {
-    margin-left: 50px;
-  }
-  
+    img.animated.flip {
+        width: 30% !important;
+    }
+    .song__date {
+        margin-left: 15px;
+    }
+    .song__buy {
+        margin-left: 15px;
+    }
+    .song__item {
+        margin-bottom: 20px;
+    }
+    .song__title {
+        margin-left: 15px;
+    }
+    .song__artist {
+        margin-left: 50px;
+    }
 }
+
 @media only screen and (max-width: 480px) {
-  img.animated.flip {
-    width: 30% !important;
+    img.animated.flip {
+        width: 30% !important;
+    }
+    .song__item.reproducirContenedor {
+        width: 320px!important;
+    }
+    span.nombrePista {
+        width: 100%;
+        height: 200px;
+        color: white;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    span.nombreArtista {
+        width: 100%;
+        height: 200px;
+        color: white;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    /* .song__date {
+    margin-left: 5vw;
 
   }
+  .song__buy {
+    margin-left: 5vw;
 
+  }
 
   .song__item  {
-    margin-bottom: 20px;
-   }
+   margin-bottom: 10vw;
 
-   i.fas.fa-cart-plus.song__like.mr-1.buy {
-    margin-left: 50px;
   }
+
   .song__title {
-    margin-left: 12px;
+    margin-left: 5vw;
+
   }
   .song__artist {
-    margin-left: 50px;
-  }
-
+    margin-left: 5vw;
+  } */
+    span.nombrePista {
+        width: 80%;
+        height: 200px;
+        color: white;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    span.nombreArtista {
+        width: 80%;
+        height: 200px;
+        color: white;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
 }
 
 @media only screen and (max-width: 320px) {
-  img.animated.flip {
-    width: 30% !important;
-   
-  }
+    img.animated.flip {
+        width: 30% !important;
+    }
+    .song__item.reproducirContenedor {
+        width: 100%!important;
+    }
+    span.nombrePista {
+        width: 80%;
+        height: 200px;
+        color: white;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    span.nombreArtista {
+        width: 80%;
+        height: 200px;
+        color: white;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .song__date {
+        margin-left: 5vw;
+    }
+    .song__buy {
+        margin-left: 5vw;
+    }
+    .song__item {
+        margin-bottom: 10vw;
+    }
+    .song__title {
+        margin-left: 5vw;
+    }
+    .song__artist {
+        margin-left: 5vw;
+    }
+    @media only screen and (max-width: 375px) {
+        img.animated.flip {
+            width: 30% !important;
+        }
+        .song__item.reproducirContenedor {
+            width: 100%!important;
+        }
+        .song__date {
+            margin-left: 5vw;
+        }
+        .song__buy {
+            margin-left: 5vw;
+        }
+        .song__item {
+            margin-bottom: 10vw;
+        }
+        .song__title {
+            margin-left: 5vw;
+        }
+        .song__artist {
+            margin-left: 5vw;
+        }
+    }
+    @media only screen and (max-width: 425px) {
+        img.animated.flip {
+            width: 30% !important;
+        }
+        .song__item.reproducirContenedor {
+            width: 100%!important;
+        }
+        span.nombrePista {
+            width: 100%;
+            height: 200px;
+            color: white;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        span.nombreArtista {
+            width: 100%;
+            height: 200px;
+            color: white;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        /* .song__date {
+      margin-left: 5vw;
+  
+    }
+    .song__buy {
+      margin-left: 5vw;
+  
+    }
+  
+    .song__item  {
+     margin-bottom: 10vw;
+  
+    }
+  
+    .song__title {
+      margin-left: 5vw;
+  
+    }
+    .song__artist {
+      margin-left: 5vw;
+    } */
+    }
+}
 
 
+/* ============= paginacion ============= */
 
-  .song__item  {
-   margin-bottom: 20px;
-  }
-  i.fas.fa-cart-plus.song__like.mr-1.buy {
-    margin-left: 80px;
-  }
-  .song__title {
-    margin-left: 15px;
-  }
-  .song__artist {
-    margin-left: 50px;
-  }
- 
-
+.pagination .page-item .page-link {
+    color: #ffff !important;
 }
 
 

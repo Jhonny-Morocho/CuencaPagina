@@ -31,9 +31,9 @@
     line-height: 1.7;
   }
  
-.contenedorFormularioLogin{
-
-}
+  .smsEspera{
+    text-align: center;
+  }
 </style>
 
 
