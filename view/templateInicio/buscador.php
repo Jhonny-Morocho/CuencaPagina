@@ -6,11 +6,13 @@
                 <!--=================== BUSCADOR ========================-->
                 <div class="md-form  ">
                     <?php if(@$_GET['busqueda']) {?>
-                        <input class="form-control form-control-sm ml-3 w-120"  name="busqueda"  type="text" placeholder="Search by track name"
-                        aria-label="Search" value="<?php echo $_GET['busqueda']  ?>">
+                        <input class="form-control form-control-sm ml-3 w-120"  name="busqueda"  type="text" 
+                        placeholder="Buscar por nombre de pista"
+                        aria-label="Buscar.." value="<?php echo $_GET['busqueda']  ?>">
                     <?php }else{ ?>
-                      <input class="form-control form-control-sm ml-3 w-120"  name="busqueda"  type="text" placeholder="Search by track name"
-                        aria-label="Search" maxlength="100">
+                      <input class="form-control form-control-sm ml-3 w-120"  
+                      name="busqueda"  type="text" placeholder="Buscar por nombre de pista"
+                        aria-label="Buscar.." maxlength="100">
                     <?php }?>
                 </div>
             </div>
@@ -31,7 +33,7 @@
                               }
                             }
                             //print_r($genero);
-                            echo '<option value="" >GENER</option>';
+                            echo '<option value="" >GENERO</option>';
                             foreach($genero as $key=>$value){ ?>
                               
                                <?php if($_GET['genero']!=$value['id']){ ?>
@@ -42,14 +44,14 @@
 
                   <?php }else{?>
                     <select class=" form-control form-control-sm ml-3 w-60 selectGeneroRemixer" name="genero" >
-                        <option value="" >GENER</option>
+                        <option value="" >GENERO</option>
                         
                         <!--777 <option value="1" selected>Feedback</option> -->
                         <?php 
                             $genero=ModeloGenero::sql_lisartar_genero();
                          
                             foreach($genero as $key=>$value){ ?>
-                                <option value="<?php echo$value['id'] ?>" > <?php echo$value['genero'] ?> </option>
+                                <option value="<?php echo$value['id'] ?>" > <?php echo $value['genero'] ?> </option>
                         <?php }?>
                     </select>
                     <?php }?>
@@ -68,7 +70,7 @@
                                        
                                       }
                                     }
-                                    echo '<option value="" >REMIXER</option>';
+                                    echo '<option value="" >EDITOR</option>';
                                     foreach($remixer as $key=>$value){ ?>
                                           <?php if($_GET['remixer']!=$value['id']){ ?>
                                               <option value="<?php echo$value['id'] ?>" > <?php echo$value['apodo'] ?> </option>
@@ -79,7 +81,7 @@
                           </select>
                         <?php }else{ ?>
                         <select class=" form-control form-control-sm ml-3 w-60 selectGeneroRemixer" name="remixer">
-                                <option value="" >REMIXER</option>
+                                <option value="" >EDITOR</option>
                                 <?php 
                                     $remixer=ModeloProveedor::sql_lisartar_proveedor();
                                     foreach($remixer as $key=>$value){ ?>

@@ -1,7 +1,7 @@
 <style>
 
   .view {
-    height: 100%;
+    height: 100% ;
   }
 
   @media (max-width: 740px) {
@@ -31,15 +31,13 @@
     line-height: 1.7;
   }
  
-.contenedorFormularioLogin{
 
-}
 </style>
 
 
   <!-- Navbar -->
   <!-- Full Page Intro -->
-  <div class="view " style="background-image: url('../../img/fondo.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+  <div class="mt-5 " style="background-image: url('../../img/FONDO-ABRIL.png'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
     <!-- Mask & flexbox options-->
     <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
       <!-- Content -->
@@ -55,7 +53,7 @@
             Nosotros nos seguiremos esforzando al máximo para poder ofrecerte siempre lo mejor <br>
             ¡!!!Un Abrazo!!! 
             #TEAMLATINEDIT</h6>
-            <a class="btn btn-indigo btn-rounded wow fadeInLeft" data-wow-delay="0.3s" href="../../registro.php">CREATE ACCOUNT</a>
+           
           </div>
           <!--Grid column-->
           <!--Grid column-->
@@ -74,12 +72,12 @@
                         <div class="md-form">
                             <i class="fa fa-envelope prefix white-text active"></i>
                             <input type="email" id="form2" class="white-text form-control" name="inputEmailCliente" id="materialLoginFormEmail" required>
-                            <label for="materialLoginFormEmail" class="active">Your email</label>
+                            <label for="materialLoginFormEmail" class="active">Tu correo</label>
                         </div>
                         <div class="md-form">
                             <i class="fa fa-lock prefix white-text active"></i>
                             <input type="password" id="form4" class="white-text form-control"  name="inputPasswordCliente" required="" maxlength="20">
-                            <label for="materialLoginFormPassword">Your password</label>
+                            <label for="materialLoginFormPassword">Tu contraseña</label>
                         </div>
 
                         <div class="md-form form-sm mb-4">
@@ -87,17 +85,15 @@
                         </div>
 
                         <div class="text-center mt-4">
-                            <button class="btn btn-indigo btn-rounded">Sign up</button>
+                            <button class="btn btn-indigo btn-rounded">Iniciar Sesión</button>
                             <hr class="hr-light mb-3 mt-4">
                         </div>
                             <!-- Register -->
 
                         <div class="md-form">
                           <center>
-                            <a href="" style="color: white;" data-toggle="modal" data-target="#modalLoginAvatar">
-                              <p  style="color: white;">Not a member?
-                              </p>
-                            
+                            <a href="" style="color: white!important;" data-toggle="modal" data-target="#modalLoginAvatar" class="btn btn-indigo btn-rounded">
+                             Recuperar mi contraseña  
                             </a>
                           </center>
                         </div>
@@ -133,11 +129,11 @@
       <form action="../../controler/ctrCliente.php" method="post" id="idFormularioRecuperarPassword">
         <div class="modal-body text-center mb-1">
   
-          <h5 class="mt-1 mb-4">Recover my password</h5>
+          <h5 class="mt-1 mb-4">Recuperar mi contraseña</h5>
   
           <div class="md-form ml-0 mr-0">
-            <input type="email" type="text"  class="form-control form-control-sm validate ml-0" style="color: black !important;"  name="inputEmailCliente" value="jhonnymichaeldj2011@hotmail.com">
-            <label data-error="wrong" data-success="right"  class="ml-0" style="color: black;">Enter email</label>
+            <input type="email" type="text"  class="form-control form-control-sm validate ml-0" style="color: black !important;"  name="inputEmailCliente" required>
+            <label data-error="wrong" data-success="right"  class="ml-0" style="color: black;">Ingresa tu correo</label>
           </div>
           <div class="col-lg-12">
             <div class="smsRecuperacionContraseña">

@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>LatinEdit.com</title>
+  <meta property="og:title" content="LatinEdit.com"/>
+  <meta property="og:description" content="Los Mejores Remixes para Djs" /> 
+  <meta property="og:image" content="../../img/perfil-facebook.png" />      
+  <meta property="og:url" content="https://www.LatinEdit.com/" />
   <!-- MDB icon -->
   <base href="appMTD/AppMaterial/">
-  <link rel="icon" href="../../img/Logo-Latin-Edit-2020.png" type="image/x-icon">
+  <title>LatinEdit.com &#8211 Los Mejores Remixes para Djs</title>
+  <link rel="icon" href="../../img/logo latinedit.png" type="image/x-icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css?v=2.0.0">
   <!-- Google Fonts Roboto -->
@@ -19,19 +23,17 @@
   <!-- Your custom styles (optional) -->
    <link rel="stylesheet" href="css/style.css?v=2.0.0">
   <!-- =================== APP==================== -->
-   <link rel="stylesheet" href="../../view/estilos/estilos.css?v=2.0.0"> 
+   <link rel="stylesheet" href="../../view/estilos/estilos.css?v=2.0.1"> 
 
-  <meta property="og:title" content="LatinEdit.com"/>
-  <meta property="og:description" content="The best of the record pool of djs" /> 
-  <meta property="og:image" content="../../img/perfil-facebook.png" />      
-  <meta property="og:url" content="https://www.LatinEdit.com/" />
   <!-- =====================UNDER LINE ===================== -->
    <link rel="stylesheet" href="../../text_hover/css/text_hover.css?v=2.0.0">
-   <link rel="stylesheet" href="../../view/estilos/tablaSpotify.css?v=2.0.0">
+   <link rel="stylesheet" href="../../view/estilos/tablaSpotify.css?v=2.0.2">
 
   <!-- ===================================SILIDER CON IMAGNES ============================== -->
-  <link rel="stylesheet" href="../../Logo-carousel/css/style.css?v=2.0.0">
-  <link rel="stylesheet" href="../css/appIndex.css">
+  <link rel="stylesheet" href="../../Logo-carousel/css/style.css?v=2.0.1">
+  <link rel="stylesheet" href="../css/appIndex.css?v=2.0.2">
+<!-- ===================================SILIDER CON IMAGNES ============================== -->
+  <link rel="stylesheet" href="../../Floating-WhatsApp/floating-wpp.css">
 
   
   <!-- ===================================HOVER CSS ============================== -->
@@ -45,13 +47,13 @@
 
     <header>
 
-            <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+            <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar d-flex justify-content-center">
                 <div class="container">
                 <!-- Brand -->
 
                 <a class="navbar-brand waves-effect" href="../../" >
                     
-                    <strong class="blue-text"><img src="../../img/Logo-Latin-Edit-2020.png" style="width: 70%;" alt="" class="animated flip "></strong>
+                    <strong class="blue-text"><img src="../../img/logo latinedit.png" style="width: 100%;" alt="" class="animated flip "></strong>
                 </a>
                 <!-- Collapse -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -59,10 +61,10 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <!-- Links -->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
 
                     <!-- Left -->
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav mr-auto ">
                         <li class="nav-item active">
                             <span class="text-hover text-hover-underline-opening"><a href="../../" style="  font-weight: 700 ;"><i class="fas fa-home"></i> HOME</a></span>
                         </li>
@@ -111,38 +113,48 @@
                             <!-- <span class="text-hover text-hover-underline-opening"><a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank"><i class="fas fa-folder"></i> MEMBRESIAS </a></span> -->
                         </li>
                         <li class="nav-item">
-                            <span class="text-hover text-hover-underline-opening"><a href="../../latinPlus.php" style="  font-weight: 700 ;"><i class="fa fa-plus" aria-hidden="true"></i> LATIN EDIT PLUS</a></span>
+                            <span class="text-hover text-hover-underline-opening">
+                                <a href="../../latinPlus.php" style="  font-weight: 700 ;">$ RECARGAR MONEDERO</a>
+                            </span>
                         </li>
-                        <li class="nav-item ">
-                            <span class="text-hover text-hover-underline-opening"><a style="  font-weight: 700 ;" href="../../membresias.php" ><i class="fa fa-folder" aria-hidden="true"></i> MEMBRESIAS</a></span>
-                        </li>
-
-                        <li class="nav-item ">
+                         <li class="nav-item">
+                            <span class="text-hover text-hover-underline-opening">
+                                <a style="  font-weight: 700 ;" href="../../membresias.php" ><i class="fa fa-folder" aria-hidden="true"></i> MEMBRESIAS</a>
+                            </span>
+                        </li> 
+                        <!-- Dropdown -->
+                        <li class="nav-item dropdown">
+                            <a style="font-weight: 700;"  class="nav-link dropdown-toggle text-uppercase " id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <span class="text-hover text-hover-underline-opening">
+                                    <i class="fas fa-user"></i> MI CUENTA 
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
                             <?php 
-                                if(isset($_SESSION['usuario'])){// si no existe session presentar esto admin_cliente
-                                    switch (@$_SESSION['tipo_usuario']) {
-                                        case 'cliente':
+                                    if(isset($_SESSION['usuario'])){// si no existe session presentar esto admin_cliente
+                                        switch (@$_SESSION['tipo_usuario']) {
+                                            case 'cliente':
 
-                                                echo ' <span class="text-hover text-hover-underline-opening">
-                                                            <a style="  font-weight: 700 ;"  href="../../adminCliente.php"">Hola: '.$_SESSION['usuario'].'</a>
-                                                        </span>';
-                                            break;
-                                        case 'proveedor':  
-                                                echo ' <a style="  font-weight: 700 ;" href="../../view/admin/index_admin.php"> Bienvenido : '.$_SESSION['usuario'].'</a>';
-                                            break;
-                                        case 'admin':
-                                                echo ' <span class="text-hover text-hover-underline-opening">
-                                                            <a  style="  font-weight: 700 ;"  href="../../view/admin/index_admin.php"> Hi  : '.$_SESSION['usuario'].'</a>
-                                                            
-                                                    </span>';
-                                            break;
+                                                    echo '<a class="dropdown-item" href="../../adminCliente.php"">Hola: '.$_SESSION['usuario'].'</a>';
+                                                break;
+                                            case 'proveedor':  
+                                                    echo ' <a class="dropdown-item " href="../../view/admin/index_admin.php"> Bienvenido : '.$_SESSION['usuario'].'</a>';
+                                                break;
+                                            case 'admin':
+                                                    echo ' <div class="dropdown header-top-dropdown">
+                                                                <a class="dropdown-item " href="../../view/admin/index_admin.php"> Hi  : '.$_SESSION['usuario'].'</a>
+                                                                
+                                                            </div> ';
+                                                break;
+                                        }
+                                    }else{
+                                        echo '<a class="dropdown-item" href="../../login.php">Login</a>
+                                        <a class="dropdown-item" href="../../registro.php">Registrarme</a>';
                                     }
-                                }else{
-                                    echo ' <span class="text-hover text-hover-underline-opening"><a style="  font-weight: 700 ;"  href="../../login.php"><i class="fas fa-user-check"></i> LOGIN/REGISTER </a></span>';
-                                }
-                            ?>
+                                ?>
+                            </div>
                         </li>
-        
                     </ul>
                     <!-- Right -->
                     <ul class="navbar-nav nav-flex-icons">

@@ -14,13 +14,18 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Api\Payment;
 
 include'ctrProductoItem.php';// para poder filtrar los datos
+
+//llamo a la factura para crear la factura para enviar al correo del cliente
+require'../model/conexion.php';
+require'../model/mdlFactura.php';
+
 @session_start();// simepre inicializo session par apoder hacr la compracion, si el cliente esta logado
 $descripcionProducto="";
 
 
     //==========comprobar si exite un session o el cliente esta logiando==================//
     if( isset($_SESSION['usuario']) and $_SESSION['tipo_usuario']=='cliente' and isset($_SESSION['id_cliente']) ){
-            //========OpcionPago
+        //========OpcionPago
         switch (@$_POST['valueRadio']) {
             case 'paypal':
                 $descripcionProducto="Producto";
@@ -87,9 +92,49 @@ $descripcionProducto="";
         // =====================Redireccionar a la pagina de paypal o si cancelan no se ejcuta el pago===============
         
         //se crea diferentes archivos para la ejecucion del pago tanto por unidad y membresias
+        
+        //Id de la orden interna de la tienda puede ser alfajumérico //0038
+        $ultimoRegistroFactura=ModeloFacura::sqlUltimoRegistro();
+        //el numero de la orde la tomo de la tabla factura
+        $order = (($ultimoRegistroFactura[0]['id'])+1)."-". time();
         switch ($descripcionProducto) {
             case 'Producto':
                 # code...
+                //llenamos el array de productos para entregar la factura
+                for ($i=0; $i < count($FiltroIdProducto) ; $i++) {
+                    //id del producto 
+                    $products[$i]['id'] = $FiltroIdProducto[$i];
+                    //Nombre del Producto
+                    $products[$i]['nombre'] = $FiltroNombreProducto[$i];
+                    //Valor sin TAX del producto
+                    $products[$i]['subtotal'] = 0;
+                    // Impuesto del producto
+                    $products[$i]['tax'] = 0;
+                    //Valor total del producto
+                    $products[$i]['total'] =$FiltroPrecioProducto[$i];
+                    // //Cantidad del producto
+                    $products[$i]['cantidad'] = 1;
+                }
+
+                $datos = array(
+                    'products' => json_encode($products),
+                    'total' => $sumaTotalCancelar,
+                    'email' => $_POST['correoFc'],
+                    'first_name' => $_POST['nombreFc'],
+                    'last_name' => $_POST['apellidoFc'],
+                    'document' => $_POST['documentoIdentidadFc'], //Cédulo o RUC del cliente
+                    'phone' => $_POST['telefonoFc'],//Teléfono del cliente
+                    'address' =>  $_POST['direccionFc'],
+                    'order_id' => $order,
+                    'date' => date('Y-m-d'),
+                    
+                );
+                //creamos una variable de sesion con la data 
+                @$_SESSION["datosOrden"]=null;
+                @$_SESSION["datosOrden"]=$datos;
+
+              
+
                 $redireccionar=new RedirectUrls();
                 $redireccionar->setReturnUrl(URL_SITIO."/Paypal/pagoFinalizadoPaypal.php?idCliente=".$_SESSION['id_cliente'])//pago exitoso
                               ->setCancelUrl(URL_SITIO."/Paypal/pagoFinalizadoPaypal.php?exito=false&idpago{$ID_registro}");
@@ -121,7 +166,7 @@ $descripcionProducto="";
                 print_r(json_decode($pce->getData()));
                 exit;
                 echo"</pre>";
-                
+            
             }
             
             $aprobado=$pago->getApprovalLink();

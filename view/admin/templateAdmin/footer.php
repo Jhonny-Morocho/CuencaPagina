@@ -198,7 +198,8 @@
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
-
+<!-- ===================== cargando pagina efecto ====================== -->
+<div class="loader-page"></div>
 </div>
 <!-- ./wrapper -->
 
@@ -234,7 +235,7 @@
 <!-- //=======================AJAX=============================// -->
 <script src="../controler/js/ajaxGenero.js"></script>
 <script src="../controler/js/ajaxProveedor.js"></script>
-<script src="../controler/js/ajaxProducto.js"></script>
+<script src="../controler/js/ajaxProducto.js?v=2.0.0"></script>
 <script src="../controler/js/ajaxCliente.js"></script>
 <script src="../controler/js/ajaxCupon.js"></script>
 <script src="../controler/js/ajaxPagarProveedor.js"></script>
@@ -252,6 +253,8 @@
 <script src="../adminLT/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <script src="../controler/js/dataTable.js"></script>
 
+
+
 <!-- //=======================SWIT ALERT=============================// -->
 <!-- <script src="../alert/sweetalert2.all.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -264,16 +267,8 @@
 <script type="text/javascript" src="../jPlayer Flat Audio Theme/js/jquery.jplayer.min.js"></script> 
 <script type="text/javascript" src="../controler/js/jPlayerPersonalizado.js"></script>
 
-<!-- ===================== cargando pagina efecto ====================== -->
-<div class="loader-page"></div>
-<script>
-  $(window).on('load', function () {
-      setTimeout(function () {
-    $(".loader-page").css({visibility:"hidden",opacity:"0"})
-  }, 2000);
-     
-});
-</script>
+
+
 
 
 
@@ -310,6 +305,34 @@ function archivo(evt) {
      
  
 </script>
+
+<!-- //=============== DATA TABLE PDF, CVS ====================================// -->
+<script>
+$(document).ready(function() {
+    $('#example5').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+</script>
+
+<script>
+  $(window).on('load', function () {
+      setTimeout(function () {
+    $(".loader-page").css({visibility:"hidden",opacity:"0"})
+  }, 2000);
+     
+});
+</script>
+<script src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js"></script>
 
 
 </body>

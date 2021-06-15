@@ -214,6 +214,7 @@
                 <thead>
                   <tr>
                     <th>Fecha</th>
+                    <th>Caratula</th>
                     <th>Titulo</th>
                     <th>Artista</th>
                     <th>Genero</th>
@@ -231,6 +232,32 @@
                     <?php  $banderaError=false; if( $row['apodo']!== 'Error: vacío' ){ ?>
                         <tr>
                           <th><?php echo $row['fecha']?></th>
+                          <th >
+                            <?php
+                              if ($row['caratula']=="") {
+                                echo'  
+                                <div class="attachment-block ">
+                                  <img class="attachment-img" src="../img/proveedores/'.$row["img"].'" alt="Image" style="width: 60px;height: 60px;">
+                                    <span class="editProductoImg" aria-hidden="true" data-toggle="modal" data-target="#modalEditarCaratulaProducto" data-name="'.$row["img"].'" data-id="'.$row["id"].'">
+                                      <i class="fa fa-fw fa-pencil-square-o"></i>
+                                    </span>
+                                </div>';
+
+                              }else{
+                                echo'  
+                                <div class="attachment-block ">
+                                  <img class="attachment-img" src="../img/caratulas/'.$row["caratula"].'" alt="Image" style="width: 60px;height: 60px;">
+                                    <span class="editProductoImg" aria-hidden="true" data-toggle="modal" data-target="#modalEditarCaratulaProducto" data-name="'.$row["img"].'" data-id="'.$row["id"].'">
+                                      <i class="fa fa-fw fa-pencil-square-o"></i>
+                                    </span>
+                                </div>';
+
+                              }
+                              # code...
+
+                  
+                            ?>
+                          </th>
                           <td><?php echo $row['nombrePista']?></td>
                           <td><?php echo $row['artista']?></td>
                           <td ><?php echo $row['genero']?></td>

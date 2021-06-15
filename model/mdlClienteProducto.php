@@ -16,6 +16,7 @@ class ModeloClienteProducto {
         cliente_producto.fechaCompra,
         producto.nombrePista,
         producto.demo,
+        producto.caratula,
         proveedor.apodo,
         proveedor.img,
         genero.id,

@@ -7,7 +7,7 @@
         Al continuar navegando por el sitio (registro en este sitio), confirma que:
         (i) Ha leído y comprendido el presente acuerdo en su totalidad.
         (ii) Está de acuerdo con todas las cláusulas del presente acuerdo.
-        (iii) Está de acuerdo con el hecho de que no puede usar o descargar materiales de audio de EuropaRemix.com si está en conflicto con la legislación de su país.
+        (iii) Está de acuerdo con el hecho de que no puede usar o descargar materiales de audio de Latinedit.com si está en conflicto con la legislación de su país.
          Latinedit.com / Latin Edit no puede controlar a todos los usuarios de latinedit.com, por lo tanto, usted es responsable del uso de los materiales representados en el sitio web latinedit.com.
 
          <OL class="mt-4">
@@ -237,7 +237,7 @@
 
                     <li>
                         <p class="sinEstilos">
-                            Terminación del Servicio. Latinedit.com se reserva el derecho de modificar, suspender o interrumpir el Servicio (o cualquier parte o contenido del mismo) en cualquier momento con o sin previo aviso, y Europa Remix no será responsable ante usted 
+                            Terminación del Servicio. Latinedit.com se reserva el derecho de modificar, suspender o interrumpir el Servicio (o cualquier parte o contenido del mismo) en cualquier momento con o sin previo aviso, y Latinedit Remix no será responsable ante usted 
                             ni ante ningún tercero si lo ejerce. derechos.
                         </p>
                     </li>
@@ -297,7 +297,7 @@
         <li class="mt-3" >
             Política de privacidad de Latin Edit
             <p class="sinEstilos">
-                La Política de privacidad de Europa Remix es parte de este Acuerdo y del Servicio. Si aún no ha leído la Política de privacidad de Europa Remix, debe hacerlo ahora. 
+                La Política de privacidad de Latinedit  es parte de este Acuerdo y del Servicio. Si aún no ha leído la Política de privacidad de Latinedit Remix, debe hacerlo ahora. 
             </p>
         </li>
          </OL>

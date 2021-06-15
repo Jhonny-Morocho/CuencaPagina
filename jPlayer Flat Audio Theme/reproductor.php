@@ -11,6 +11,7 @@
                     <div class="jp-seek-bar">
                         
                         <!-- ============= conetendedor de la onda ============== -->
+                        <span class="badge badge-primary p-3 pb-3" id="loading_flag">0%</span>
                         <div id="waveform"></div>
                         <div class="jp-play-bar"></div>
                     </div>
@@ -22,6 +23,7 @@
                         <div class="jp-volume-bar-value"></div>
                     </div>
                 </div>
+               
                 <div class="jp-time-holder">
                     <div class="jp-current-time" role="timer" aria-label="time">&nbsp;</div>
                     <div class="jp-duration" role="timer" aria-label="duration">&nbsp;</div>
@@ -49,8 +51,8 @@
    
 <!-- =============================REPRODUCTOR DE AUDIO=============================== -->
 <link rel="stylesheet" type="text/css" href="../../jPlayer Flat Audio Theme/css/jplayer-flat-audio-theme.css" />
-<script type="text/javascript" src="../../jPlayer Flat Audio Theme/js/jquery.jplayer.min.js?v=1.0.1"></script> 
-<script type="text/javascript" src="../../controler/js/jPlayerPersonalizado.js?v=1.0.0"></script>
+<script type="text/javascript" src="../../jPlayer Flat Audio Theme/js/jquery.jplayer.min.js?v=2.0.0"></script> 
+<script type="text/javascript" src="../../controler/js/jPlayerPersonalizado.js?v=2.0.1"></script>
 
 <!-- =================== SCRIPT PARA DIBUJAR ONDA =============== -->
 <script src="https://unpkg.com/wavesurfer.js"></script>

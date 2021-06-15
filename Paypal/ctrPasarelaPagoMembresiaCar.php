@@ -6,6 +6,8 @@ ini_set('display_errors', 'On');
 include'ctrProductoItem.php';// para poder filtrar los datos
 require'ctrEntregarProductoCliente.php';
 require'../model/mdlClienteMembresia.php';
+//Saco el numero de factura
+//require'../model/mdlFactura.php';
 @session_start();// simepre inicializo session par apoder hacr la compracion, si el cliente esta logado
 $descripcionProducto="";
 
@@ -63,7 +65,6 @@ $descripcionProducto="";
                     // cambiamos los precios a los productos, escojo cualqueir arya solo para iterar
                     $arrayAuxPrecio=array();
                     foreach ($FiltroPrecioProducto as $key => $value) {
-                        # code...
                        $arrayAuxPrecio[$key]=$precioUnitario;
                     }
                     // actualizo el numero de descargas
@@ -71,8 +72,48 @@ $descripcionProducto="";
                         //code...
                         Modelo_Membresia::sqlActualizarMembresiaCliente($idMembresia,($rangoDescargas-count($FiltroIdProducto)));
                         // entrego los prodictos
+
+
                         ClassEntregarProductoCliente::comproMusica($_SESSION['id_cliente'],$montoCancelar,$arrayAuxPrecio,$FiltroIdProducto,'Membresia');
-                        die(json_encode(array('respuesta'=>'exito','urlPanel'=>'../../adminCliente.php')));
+
+                        //llenamos el array de productos para entregar la factura
+                        for ($i=0; $i < count($FiltroIdProducto) ; $i++) {
+                            //id del producto 
+                            $products[$i]['id'] = $FiltroIdProducto[$i];
+                            //Nombre del Producto
+                            $products[$i]['nombre'] = $FiltroNombreProducto[$i];
+                            //Valor sin TAX del producto
+                            $products[$i]['subtotal'] = 0;
+                            // Impuesto del producto
+                            $products[$i]['tax'] = 0;
+                            //Valor total del producto
+                            $products[$i]['total'] =$arrayAuxPrecio[$i];
+                            // //Cantidad del producto
+                            $products[$i]['cantidad'] = 1;
+                        }
+                        //obtengo el numero de factura
+                        //Id de la orden interna de la tienda puede ser alfajumérico //0038
+                        $ultimoRegistroFactura=ModeloFacura::sqlUltimoRegistro();
+
+                        $order = (($ultimoRegistroFactura[0]['id'])+1)."-". time();
+                        $datos = array(
+                            'products' => json_encode($products),
+                            'total' => $sumaTotalCancelar,
+                            'email' => $_POST['correoFc'],
+                            'first_name' => $_POST['nombreFc'],
+                            'last_name' => $_POST['apellidoFc'],
+                            'document' => $_POST['documentoIdentidadFc'], //Cédulo o RUC del cliente
+                            'phone' => $_POST['telefonoFc'],//Teléfono del cliente
+                            'address' =>  $_POST['direccionFc'],
+                            'order_id' => $order,
+                            'date' => date('Y-m-d'),
+                            
+                        );
+                        //creamos una variable de sesion con la data 
+                        @$_SESSION["datosOrden"]=null;
+                        @$_SESSION["datosOrden"]=$datos;
+
+                        die(json_encode(array('respuesta'=>'exito','urlPanel'=>'../../Paypal/pagoFinalizadoMembresiaCar.php')));
                     } catch (\Throwable $th) {
                         //throw $th;
                         die(json_encode(array('respuesta'=>$th)));

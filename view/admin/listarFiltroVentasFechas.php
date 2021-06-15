@@ -9,6 +9,7 @@
 
 
 
+
 // //Creacion del objeto
 $plantilla= new controlerPlantillaAdmin();
 $plantilla->usuario_autentificado();

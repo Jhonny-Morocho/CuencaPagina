@@ -36,7 +36,7 @@
 
   <!-- Navbar -->
   <!-- Full Page Intro -->
-  <div class="view" style="background-image: url('../../img/fondo.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
+  <div class="mt-5" style="background-image: url('../../img/FONDO-ABRIL.png'); background-repeat: no-repeat; background-size: cover; background-position: center center;">
     <!-- Mask & flexbox options-->
     <div class="mask rgba-gradient d-flex justify-content-center align-items-center">
       <!-- Content -->

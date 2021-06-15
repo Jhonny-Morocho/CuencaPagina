@@ -127,7 +127,6 @@ class ControladorPlantillaInicio{
 
         
         public static function listaMembresia(){
-          
             require "view/templateInicio/listaMembresias.php";
            
         }

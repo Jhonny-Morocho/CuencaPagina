@@ -1,9 +1,9 @@
 
-<div class="row footerSms">
-    <div class="col-lg-6 mt-4 ">
+<div class="row footerSms no-padding">
+    <div class="col-lg-6 mt-4 no-padding">
       <span >Registrate para recibir novedades y descuentos exclusivos.</spnan>
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-6 no-padding">
       <!-- Begin Mailchimp Signup Form -->
       <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
        <style type="text/css">
@@ -24,6 +24,10 @@
             </div>
       </div>
 </div>
+
+<div id="myButton"></div>
+
+
 
 <footer class="page-footer font-small special-color-dark footerLatinEdit">
   <!-- Footer Elements -->
@@ -69,8 +73,8 @@
     <!-- Content -->
     <h6 class="text-uppercase font-weight-bold white-text  ">LATINEDITS</h6>
     <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
-    <p>Latinedit.com, is a platform for djs and producers, with an extensive catalog of edits, remixes and tools to help the dj in the performance of his performance or next party.
-With your account you can access all our products, benefits and exclusive offers..</p>
+    <p>Latinedit.com, es una plataforma para djs y productores, con un extenso catálogo de ediciones, remixes y herramientas para ayudar al dj en  su performance o próxima fiesta. 
+      Con tu cuenta podrás acceder a todos nuestros productos, beneficios y ofertas exclusivas.
 
   </div>
 
@@ -78,19 +82,19 @@ With your account you can access all our products, benefits and exclusive offers
       <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4 terminosCondiciones">
 
         <!-- Links -->
-        <h6 class="text-uppercase font-weight-bold white-text ">INFORMATION</h6>
+        <h6 class="text-uppercase font-weight-bold white-text ">INFORMACIÓN</h6>
         <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
         <p>
-          <a class="white-text" href="../../login.php">Your Account</a>
+          <a class="white-text" href="../../login.php">Tu Cuenta</a>
         </p>
         <p>
-          <a class="white-text" href="../../terminosCondiciones.php">Term & Conditions</a>
+          <a class="white-text" href="../../terminosCondiciones.php">Terminos & Condiciones</a>
         </p>
         <p>
-          <a class="white-text" href="../../abaut.php">Abaut Us</a>
+          <a class="white-text" href="../../abaut.php">Sobre Nosotros</a>
         </p>
         <p>
-          <a class="white-text" href="../../remixerAplication.php">Remixer Application</a>
+          <a class="white-text" href="../../remixerAplication.php">Trabaja con Nosotros</a>
         </p>
 
       </div>
@@ -100,7 +104,7 @@ With your account you can access all our products, benefits and exclusive offers
       <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 iconosInformacionFooter">
 
         <!-- Links -->
-        <h6 class="text-uppercase font-weight-bold white-text">Contact</h6>
+        <h6 class="text-uppercase font-weight-bold white-text">Contactos</h6>
         <hr class="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">
         <p class="white-text">
            <i class="fab fa-facebook-f "></i> LatinEdit</p>
@@ -123,7 +127,7 @@ With your account you can access all our products, benefits and exclusive offers
 
   <!-- Copyright -->
   <div class="footer-copyright text-center py-3">© 2020 Copyright:
-    <a href="../../">latinedit.com</a>
+    <a href="../../loginAdmin.php" style="color:white !important">latinedit.com</a>
   </div>
   <!-- Copyright -->
 </footer>
@@ -156,8 +160,8 @@ With your account you can access all our products, benefits and exclusive offers
         <script src="https://unpkg.com/moment"></script> 
         <!-- swith alert -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <script type="text/javascript" src="../../controler/js/carritoCompras.js?v=2.0.0"></script>
-        <script type="text/javascript" src="../../controler/js/ajaxPagar.js?v=2.0.0"></script>
+        <script type="text/javascript" src="../../controler/js/carritoCompras.js?v=3.0.1"></script>
+        <script type="text/javascript" src="../../controler/js/ajaxPagar.js?v=3.0.0"></script>
         <script  type="text/javascript"  src="../../controler/js/pagarMembresia.js?v=2.0.0"></script>
 
 
@@ -186,25 +190,25 @@ With your account you can access all our products, benefits and exclusive offers
         </script>
 
           <script type="text/javascript">
-            // $(document).ready(function () {
-            //     //Disable full page
-            //     $("body").on("contextmenu",function(e){
-            //         return false;
-            //     });
+      		$(document).ready(function () {
+                //Disable full page
+                $("body").on("contextmenu",function(e){
+                  return false;
+                });
               
-            //     //Disable part of page
-            //     $("#id").on("contextmenu",function(e){
-            //         return false;
-            //     });
-            // });
+                //Disable part of page
+                $("#id").on("contextmenu",function(e){
+                  return false;
+                });
+              });
 
-          // $(document).keydown(function (event) {
-          //         if (event.keyCode == 123) { // Prevent F12
-          //             return false;
-          //         } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
-          //             return false;
-          //         }
-          //     });
+            $(document).keydown(function (event) {
+                if (event.keyCode == 123) { // Prevent F12
+                  return false;
+                } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
+                  return false;
+                }
+              });
           </script>
 
           <!-- ================== DIRECCIONAR AL DEMO ================== -->
@@ -233,12 +237,39 @@ With your account you can access all our products, benefits and exclusive offers
               fbq('init', '287666872670128');
               fbq('track', 'PageView');
             </script>
+
             <noscript><img height="1" width="1" style="display:none"
               src="https://www.facebook.com/tr?id=287666872670128&ev=PageView&noscript=1"
             /></noscript>
             <!-- End Facebook Pixel Code -->
             <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/43e7b358c17a50edbc12de074/271195d8d40a356a969dcfac7.js");</script>
-
+            
+            <!-- ==================== NIEVE =========================== -->
+            <!-- <script type="text/javascript" src="../../nieve/snow.js"></script>
+            <script type="text/javascript">
+            $(function() {
+                $(document).snow({ SnowImage: "../../nieve/snow.gif" });
+            });
+            </script> -->
+            <!-- ========================= CODIGO CORREO ==================== -->
+            <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/43e7b358c17a50edbc12de074/271195d8d40a356a969dcfac7.js");</script>
+             <!-- ================== WASSAP  ================== -->
+            <script type="text/javascript" src="../../Floating-WhatsApp/floating-wpp.js"></script>
+            <script type="text/javascript">
+              // $(function () {
+              //     $('#myButton').floatingWhatsApp({
+              //         phone: '5491133359850',
+              //         popupMessage: 'Hello, how can we help you?',
+              //         message: "Tengo una consulta",
+              //         showPopup: true,
+              //         showOnIE: false,
+              //         headerTitle: 'Welcome!',
+              //         headerColor: 'crimson',
+              //         backgroundColor: 'crimson',
+              //         buttonImage: '<img src="burger.svg" />'
+              //     });
+              // });
+          </script>
 </body>
 
 </html>

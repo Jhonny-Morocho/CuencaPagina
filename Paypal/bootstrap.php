@@ -9,11 +9,11 @@
 
 
     
-    $modDev = true;//false para q este en modo real
+    $modDev = false;//false para q este en modo real
 
     if($modDev) {
 
-    	define('URL_SITIO','http://localhost/CuencaPagina');
+    	define('URL_SITIO','http://latinedit.com');
         
         $apiContext = new \PayPal\Rest\ApiContext(
             new \PayPal\Auth\OAuthTokenCredential(

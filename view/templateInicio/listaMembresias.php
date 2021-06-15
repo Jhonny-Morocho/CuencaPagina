@@ -4,7 +4,7 @@
 ?>
 <div class="container my-5 membresias">
   <!--Section: Content-->
-  <section class="text-center dark-grey-text ">
+  <section class="text-center dark-grey-text " >
 
     <!-- Section heading -->
     <h3 class="font-weight-bold pb-2 mb-4">Our pricing plans</h3>

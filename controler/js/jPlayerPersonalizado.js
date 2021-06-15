@@ -39,6 +39,23 @@ $('.reproducirContenedor').on('click',function(e){// click en el elento a reprod
 
 
       wavesurfer.load(url_destino);
+      wavesurfer.on('loading', function(X, evt) {
+     
+        UpdateLoadingFlag(X);
+      });
+  
+      function UpdateLoadingFlag(Percentage) {
+       
+        //hideStickyPlayer();
+        if (document.getElementById("loading_flag")) {
+          document.getElementById("loading_flag").innerText = "Loading " + Percentage + "%";
+          if (Percentage >= 100) {
+            document.getElementById("loading_flag").style.display = "none";
+          } else {
+            document.getElementById("loading_flag").style.display = "block";
+          }
+        }
+      }
 
     jQuery("#jquery_jplayer_1").jPlayer("play");
 });

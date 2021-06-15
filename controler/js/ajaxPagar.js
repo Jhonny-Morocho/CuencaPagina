@@ -12,6 +12,7 @@ var arrayIdProducto=[];
 var datos=new FormData();
 var data_type="json";
 var urlPasarelaPago="../../Paypal/ctrPasarelaPago.php";
+var urlPasarelaPagoTarjeta="../../PayAgile/ctrTarjetaPayme.php";
 var urlPasarelaPagoCarMembresia="../../Paypal/ctrPasarelaPagoMembresiaCar.php";
 var urlPasarelaPagoMonedero="../../Paypal/ctrPasarelaPagoMonedero.php";
 
@@ -21,15 +22,14 @@ $("#idFormCarrito").on('submit',function(e){
     //debo borrar el formulario del cupon para que me deje ejecutar el pago
     $('.BtnaplicarCupon').remove();
     $('.cuponDescuento').remove();
-    
     var inputOptionPago=$(this).serializeArray();//obtengo valores de radios
-    //console.log(inputOptionPago);
+    console.log(inputOptionPago);
     //selecionodo todos los datos de la tabla
     var classNombreProducto=$(".classNomProducto");
+   
     var classPrecioUnitarioProducto=$(".classPrecioCancion span");
     var classIdProducto=$(".btnCarrito");
     var classTotalCancelar=$(".total-amount span").text();//total q sale en la pagina de carrito color verde
-
 
     // filtrando datos de los nodos para guardos los valores en cada array
     for(var i=0;i< classNombreProducto.length;i++){
@@ -39,25 +39,37 @@ $("#idFormCarrito").on('submit',function(e){
     }
 
     // creamos y  guardamos en un array data , todos los datos de los 3 array
+
     datos.append("idProducto",arrayIdProducto);//adicionamo cada valor por q es un objeto
     datos.append("nombreProducto",arrayNombreProducto);
     datos.append("precioUnitarioProducto",arrayPrecioProducto);
     datos.append("optionPago",inputOptionPago);
-    datos.append("nameRadio",inputOptionPago[0].name);
-    datos.append("valueRadio",inputOptionPago[0].value);
+    datos.append("nameRadio",inputOptionPago[6].name);
+    datos.append("valueRadio",inputOptionPago[6].value);
     datos.append("totalCancelar",classTotalCancelar);
+    //datos del cliente//eso lo hice para hacer la factura
+    datos.append("nombreFc",inputOptionPago[0].value);
+    datos.append("apellidoFc",inputOptionPago[1].value);
+    datos.append("correoFc",inputOptionPago[2].value);
+    datos.append("direccionFc",inputOptionPago[3].value);
+    datos.append("telefonoFc",inputOptionPago[4].value);
+    datos.append("documentoIdentidadFc",inputOptionPago[5].value);
+
    
     //enviarDatosPasarelaPago(datos);//enviaar Data a la pasarela de pagos
-      for (var pair of datos.entries()) {
-          console.log(pair[0]+ ', ' + pair[1]); 
-      }
-
-    switch (inputOptionPago[0].value) {
+    // for (var pair of datos.entries()) {
+    //     console.log(pair[0]+ ' : ' + pair[1]); 
+    // }
+    //estan los radio buuton en el campo 6
+    switch (inputOptionPago[6].value) {
 
         //aqui compran todo con paypal, productps y tambin el paquete de membresias
            case 'paypal':
                enviarDatosPasarelaPago(datos);//enviaar Data a la pasarela de pagos
-           break;
+            break;
+           case 'tarjeta':
+                enviarDatosPasarelaPagoTarjeta(datos);//enviaar Data a la pasarela de pagos
+            break;
 
            case 'productoCompradoMembresia':
                 Swal.fire({
@@ -103,7 +115,6 @@ function enviarDatosPasarelaPago(datos){
     console.log(datos);
     animacion();
     $.ajax({
-
         url:urlPasarelaPago,
         method:'post',
         data:datos,
@@ -117,15 +128,51 @@ function enviarDatosPasarelaPago(datos){
             switch (data.respuesta) {
                 case 'noExiseLogin':
                     //no exites session
-              
                         toastr.warning('Para realizar la compra debes iniciar sesion.');
                     break;
 
                 case 'exito':
-                        $('.btnPagar').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+                        $('#btn-one').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Cargando...').addClass('disabled');
                         toastr.success('Tu solicitud ha sido  procesada.')
                         setTimeout(function(){
                             window.location.href=data.urlPaypal;
+                        },2000);//tiempo de espera
+                        break;
+                default:
+                    break;
+            }
+        }
+    });
+}
+//=====================  ENVIAR DATOS A LA PASARELA DE PAGOS CON TARJETA ========//
+//=====================  ENVIAR DATOS A LA PASARELA DE PAGOS CON TARJETA ========//
+//=====================  ENVIAR DATOS A LA PASARELA DE PAGOS CON TARJETA ========//
+function enviarDatosPasarelaPagoTarjeta(datos){
+    animacion();
+
+    $.ajax({
+        url:urlPasarelaPagoTarjeta,
+        method:'post',
+        data:datos,
+        cache:false,
+        contentType:false,
+        processData:false,
+        dataType:'json',//json//data_type
+        success:function(data){
+            console.log(data);
+            switch (data.respuesta) {
+                case 'noExiseLogin':
+                    //no exites session
+                        toastr.warning('Para realizar la compra debes iniciar sesion.');
+                    break;
+
+                case 'exito':
+                        $('#btn-one').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Cargando...').addClass('disabled');
+                        toastr.success('Tu solicitud ha sido  procesada.');
+            
+                        setTimeout(function(){
+                            console.log("todo bien");
+                            window.location.href=data.finalizarCompraTarjeta;
                         },2000);//tiempo de espera
                         break;
                 default:
@@ -170,7 +217,7 @@ function enviarDatosPasarelaPagoCarMembresia(datos){
                 case 'exito':
                     
                 toastr.success('Solicitud Procesada con éxito');
-                $('.btnPagar').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+                $('#btn-one').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Cargando...').addClass('disabled');
                 setTimeout(function(){
                       
                     localStorage.clear();
@@ -222,7 +269,7 @@ function enviarDatosPasarelaPagoMonedero(datos){
                 case 'exito':
                     
                 toastr.success('Solicitud Procesada con éxito');
-                $('.btnPagar').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+                $('#btn-one').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Cargando...').addClass('disabled');
                 setTimeout(function(){
                       
                     localStorage.clear();

@@ -84,49 +84,49 @@
         
         //1. Caso//  buscador= vacio; genero=vacio; remixer=vacio
         if(!@$_GET['busqueda'] && !@$_GET['genero'] && !@$_GET['remixer'] ){// primer caso// no necesita validaciion x q la data es vacia
-          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $where1, null , 30,'inicio');
+          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $where1, null , 15,'inicio');
           //echo "caso 1";
         }
 
         //2.Caso// buscador=data; genero=vacio; remixer=vacio
           if(@$_GET['busqueda'] && !@$_GET['genero'] && !@$_GET['remixer'] && $respuestaValidacionBuscador['respuesta_validacion']=="TRUE"){
             //echo "caso 2";
-          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $where2, null , 30,'todo');
+          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $where2, null , 15,'todo');
           }
 
         //3.Caso// buscador=data; genero=data; remixer=vacio;
         if(@$_GET['busqueda'] && @$_GET['genero'] && !@$_GET['remixer'] && $respuestaValidacionBuscador['respuesta_validacion']=="TRUE" && validarNumeros(@$_GET['genero'])=="TRUE" ){
           //echo "caso 3";
-          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereDemoGenero, null , 30,'todo');
+          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereDemoGenero, null , 15,'todo');
           }
 
         //4.Caso// buscador=data; genero=data; remixer=data;
         if(@$_GET['busqueda'] && @$_GET['genero'] && @$_GET['remixer'] && $respuestaValidacionBuscador['respuesta_validacion']=="TRUE" && validarNumeros(@$_GET['genero'])=="TRUE" && validarNumeros(@$_GET['remixer'])=="TRUE" ){
           //echo "caso 4";
-          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereDemoGeneroRemixer, null , 30,'todo');
+          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereDemoGeneroRemixer, null , 15,'todo');
           }
         //5.Caso// buscador=data;genero=vacio; remixer=data;
         if(@$_GET['busqueda'] && !@$_GET['genero'] && @$_GET['remixer'] && $respuestaValidacionBuscador['respuesta_validacion']=="TRUE"  && validarNumeros(@$_GET['remixer'])=="TRUE"){
           //echo "caso 5";
-          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereDemoRemixer, null , 30,'todo');
+          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereDemoRemixer, null , 15,'todo');
         }
 
         //6.Caso// buscador=vacio;genero=data; remixer=data;
         if(!@$_GET['busqueda'] && @$_GET['genero'] && @$_GET['remixer'] && validarNumeros(@$_GET['genero'])=="true" && validarNumeros(@$_GET['remixer'])=="true"){
           echo "caso 6";
-          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereRemixerGenero, null , 30,'todo');
+          Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereRemixerGenero, null , 15,'todo');
         }
 
         //7.Caso// buscador=vacio;genero=vacio; remixer=data;
           if(!@$_GET['busqueda'] && !@$_GET['genero'] && @$_GET['remixer']  && validarNumeros(@$_GET['remixer'])=="TRUE"){
             //echo "caso 7";
-            Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereRemixer, null , 30,'todo');
+            Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereRemixer, null , 15,'todo');
         }
 
         //8.Caso// buscador=vacio;genero=data; remixer=vacio;
           if(!@$_GET['busqueda'] && @$_GET['genero'] && !@$_GET['remixer'] && validarNumeros(@$_GET['genero'])=="TRUE"){
             //echo "caso 8";
-            Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereGenero, null , 30,'todo');
+            Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $whereGenero, null , 15,'todo');
         }
          //(@$_GET['busqueda'] && $respuestaValidacionBuscador['respuesta_validacion']=="TRUE" )?  Pagination::config($page, $numeroFilas, " producto , proveedor , genero  ", $where2, null , 10,'todo'): Pagination::config($page,$numeroFilas, " producto , proveedor , genero ", $where1, null , 10,'inicio'); 
           
@@ -267,6 +267,7 @@
             <thead>
             <tr>
               <th>Fecha</th>
+              <th>Caratula</th>
               <th>Titulo</th>
               <th>Artista</th>
               <th>Genero</th>
@@ -283,8 +284,35 @@
 
             <?php foreach (Pagination::show_rows("id") as $row): ?>
                     <?php  $banderaError=false; if( $row['apodo']!== 'Error: vacío' ){ ?>
-                        <tr>
+                        <tr style="font-weight: bold;">
                           <th><?php echo $row['fecha']?></th>
+                          <th >
+             
+                            <?php
+                             if ($row['caratula']=="") {
+                               echo'  
+                               <div class="attachment-block ">
+                                 <img class="attachment-img" src="../img/proveedores/'.$row["img"].'" alt="Image" style="width: 60px;height: 60px;">
+                                   <span class="editProductoImg" aria-hidden="true" data-toggle="modal" data-target="#modalEditarCaratulaProducto" data-name="'.$row["img"].'" data-id="'.$row["id"].'">
+                                     <i class="fa fa-fw fa-pencil-square-o"></i>
+                                   </span>
+                               </div>';
+
+                             }else{
+                                echo'  
+                                <div class="attachment-block ">
+                                  <img class="attachment-img" src="../img/caratulas/'.$row["caratula"].'" alt="Image" style="width: 60px;height: 60px;">
+                                    <span class="editProductoImg" aria-hidden="true" data-toggle="modal" data-target="#modalEditarCaratulaProducto" data-name="'.$row["img"].'" data-id="'.$row["id"].'">
+                                      <i class="fa fa-fw fa-pencil-square-o"></i>
+                                    </span>
+                                </div>';
+
+                             }
+                              # code...
+
+                  
+                            ?>
+                          </th>
                           <td><?php echo $row['nombrePista']?></td>
                           <td><?php echo $row['artista']?></td>
                           <td ><?php echo $row['genero']?></td>

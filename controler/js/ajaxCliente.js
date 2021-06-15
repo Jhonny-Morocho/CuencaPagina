@@ -321,4 +321,79 @@ $("#idFormularioRecuperarPassword").on('submit',function(e){
     });
 
 
-})
+});
+
+  // ============================EDITAR PRODUCTO IMG================================//
+    // ============================EDITAR PRODUCTO IMG================================//
+    // ============================EDITAR PRODUCTO IMG================================//
+    $('.editProductoImg').on('click',function(e){
+        e.preventDefault();
+
+        // obtener el id del proveedor
+        var id=$(this).attr('data-id');
+        var inputNameCaratula= $(this).attr('data-name');
+    
+        console.log(id);
+        console.log(inputNameCaratula);
+
+        //asignar el id del proveedor en el formulario de editar Img
+        $('.idProducto').val(id);
+        $('#idNombreArchivoViejo').val(inputNameCaratula);
+        //aqui llenar formulario con post para enviar los datos
+        $("#idEditarCaratulaProducto").on('submit',function(e){
+            e.preventDefault();
+            //es importate trabajar con FormData , es utilizado para archivos
+            var datos=new FormData(this);
+            for (var pair of datos.entries()) {
+                console.log(pair[0]+ ', ' + pair[1]); 
+            }
+            console.log(datos);
+            $.ajax({
+                xhr: function() {
+                    var xhr = new window.XMLHttpRequest();
+                    // Upload progress.
+                    xhr.upload.addEventListener("progress", function(evt){
+                        if (evt.lengthComputable) {
+                            var porcentaje = Math.floor(evt.loaded / evt.total * 100);
+
+                            $(".progress-bar").attr("aria-valuenow", porcentaje);
+                            $(".progress-bar").css("width", porcentaje + "%");
+                            $(".sr-only").html(porcentaje + "% Completado");
+                            $(".porcentaje_h4").html(porcentaje + "% Completado");
+                            console.log(porcentaje);
+                            console.log(porcentaje);
+                        }
+                    }, false);
+                    
+                    return xhr;
+                },
+                type:'post',
+                data:datos,
+                url:$(this).attr('action'),
+                dataType:'json',//json
+                // datos asicionales
+                contentType:false,
+                processData:false,
+                async:true,
+                cache:false,
+                success:function(data){
+                    console.log(data);
+                    if(data.respuesta=='exito'){
+                        Swal.fire(
+                            'Actualizado!',
+                            'Se actualizo el archivo.',
+                            'success'
+                        )
+                        setTimeout(function(){ 
+                            location.reload();             
+                        },4000);
+                    }else{
+                        
+                        kkMessgae.error('Error al actulizar');
+                    }
+                }
+            });
+
+        });
+            
+    });

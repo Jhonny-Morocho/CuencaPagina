@@ -22,7 +22,7 @@ class PaginationModel {
 			switch ($tipo) {
 				case 'inicio':
 					# code...
-					$this->query = "SELECT  
+				$this->query = "SELECT  
 		         producto.id,
 				producto.idProveedor,
 				producto.artista,
@@ -32,10 +32,13 @@ class PaginationModel {
 				producto.idGenero,
 				producto.precio,
 				producto.demo,
+				
 				producto.remixCompleto,
 				producto.precio,
+				producto.caratula,
 
 				proveedor.apodo,
+				proveedor.img,
 
 				genero.genero
 
@@ -58,9 +61,10 @@ class PaginationModel {
 				producto.demo,
 				producto.remixCompleto,
 				producto.precio,
+				producto.caratula,
 
 				proveedor.apodo,
-
+				proveedor.img,
 				genero.genero
 
 

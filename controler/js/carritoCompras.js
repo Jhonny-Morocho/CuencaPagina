@@ -1,10 +1,8 @@
 
 //$(document).ready(function(){
-
         //localStorage.clear();
         //inicia el sistema  en car.php se imprime los datoscargando los datos del local store y definiendo la variables listaCarrito
         var  listaCarrito,precioUnitarioProducto;
-
         iniciarTabla();// tabla del carrito de compras
         // produce un error por que cuando voy al index de productos no hay los span del total por lo tanto controlo ese erro
         try {
@@ -21,13 +19,24 @@
             listaCarrito.forEach(ForEachImprimirdProductoTableCar);
             
           }else{//si esta vacio el localSotarge mosntrar mensaje no exiten productos
-            $(".cart-table").after('<div class="alert alert-warning carritoVacio" role="alert">'+
-            'Your cart is empty</div>');
+            // $(".cart-table").after('<div class="alert alert-warning carritoVacio" role="alert">'+
+            // 'Your cart is empty</div>');
             //escondo el total casillero
             $(".cart-calculator-wrapper").hide();
             $(".opcionPago").hide();
+            $("#formularioFactura").hide();
+            $("#tablaProductos").hide();
             $('.BtnaplicarCupon').hide();
             $('.cuponDescuento').hide();
+            //poner mensaje que el carrito esta vacio
+            $('#contenedorCar').html(
+              '<div class="container d-flex justify-content-center ">'+
+                 
+                        '<i class="fas fa-exclamation-triangle text-warning" style="font-size: 100px;"></i>'+
+                        
+                  
+              '</div>'+
+              '<div class="container alert alert-warning mt-5 d-flex justify-content-center" role="alert">TU CARRITO ESTA VACIO</div>');
           }
         }
 
@@ -201,8 +210,7 @@
 
       $('.BtnaplicarCupon').on('click',function(e){
         e.preventDefault();
-        var inputCupon=$('.inputCupon').val();//obtengo valores de radios
-
+        var inputCupon=$('#inputCupon').val();//obtengo valores de radios
         //========Tipo de oferta mediante ajax preguntar q oferta esta activa
  
         //console.log(inputCupon);

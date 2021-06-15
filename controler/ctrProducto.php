@@ -44,6 +44,15 @@ switch (@$_POST['Producto']) {
         die(json_encode($respuesta));
         break;
 
+        
+        case 'editarCaratulaProducto':
+
+            $caratula=subirArchivoImgCaratula('../img/caratulas/','fileCaratula');
+            $respuesta=ModeloProducto::sqlEditarCaratulaProducto($caratula['nombreArchivo'],$_POST['idProducto']);
+            die(json_encode($respuesta));
+            break;
+
+
         case 'editarProducto':
 
                 function subirArchivoMusica($ubicacionCarpeta,$inputFile){
@@ -120,5 +129,24 @@ switch (@$_POST['Producto']) {
 
 //================================Buscador y paginacion =========================================//
 
+function subirArchivoImgCaratula($ubicacionCarpeta,$inputFile){
+    //echo "La ubicacion de la carpeta es :[".$ubicacionCarpeta."]";
+    $directorio=$ubicacionCarpeta;// la direecion donde quiero q se guarde
+    $nombreNuevoGuardado=(date("YmdHis")).$_FILES[$inputFile]['name'];
+    if(move_uploaded_file($_FILES[$inputFile]['tmp_name'], $directorio.$nombreNuevoGuardado)){
+        // para acceder al archiv q se alamceno con el siguiente comando
+        $respuesta=array(
+            'respuesta'=>'fileGuardado',
+            'nombreArchivo'=>$nombreNuevoGuardado
+        );
+        return $respuesta;
+        
+    }else{
+        $respuesta=array('respuesta'=>'filFallo',
+        'error'=>error_get_last()
+        );// imprime el ultimo error que haya registrado al intentar subi este archivo
+        return $respuesta;
+    }
+}
 
 ?>

@@ -195,7 +195,41 @@ ini_set('display_errors', 'On');
 				$stmt->close();
 		}
 
+		//============================ACTUALIZAR O EDITAR PRODUCTO IMG========================================//
+		public static function sqlEditarCaratulaProducto($urlCaratulaProducto,$idProducto){
+			$db=new Conexion();
+		
+				try {
+					
+						$stmt= $db->conectar()->prepare("UPDATE producto SET 
+																	caratula='$urlCaratulaProducto'
+																WHERE id='$idProducto' ");
+						
+				} catch (Exception $e) {
+					echo "Error".$e->getMessage();
+				}
+			
+				$stmt->execute();
 	
+				if($stmt){
+					//si se realizo la inserccion
+					$respuesta=array(
+						'respuesta'=>'exito',
+						'img'=>$urlCaratulaProducto
+						);
+						return $respuesta;
+				}else{
+					$respuesta=array(
+						'respuesta'=>'false'
+						);
+						return $respuesta;
+				}
+			
+	
+				//si alguna fila se modifico entonces si se edito
+	
+				$stmt->close();
+		}
 
 	//============================ELIMINAR LOGICAMENTE  AL PRDICTO========================================//
 	public static function sqlEliminarProducto($arrayProducto){

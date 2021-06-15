@@ -22,26 +22,26 @@ class ModeloFacura {
 
     }
 
-        //* listar compras de todos los cliente
-        public static  function sqlListarFacturasTodos(){//
-            $db=new Conexion();
-            $stmt= $db->conectar()->prepare("SELECT  detalle_factura.idCliente,
-                                                     detalle_factura.id,
-                                                     detalle_factura.totalCancelar,
-                                                     detalle_factura.fechaFacturacion,
-                                                     cliente.correo,
-                                                     cliente.apellido,
-                                                     cliente.nombre
-                                            FROM detalle_factura,cliente 
-                                            where  detalle_factura.idCliente=cliente.id
-                                            ORDER by detalle_factura.id DESC ");
-    
-            $stmt->execute();
-            return $stmt->fetchAll();
-    
-            $stmt->close();
-    
-        }
+    //* listar compras de todos los cliente
+    public static  function sqlListarFacturasTodos(){//
+        $db=new Conexion();
+        $stmt= $db->conectar()->prepare("SELECT  detalle_factura.idCliente,
+                                                    detalle_factura.id,
+                                                    detalle_factura.totalCancelar,
+                                                    detalle_factura.fechaFacturacion,
+                                                    cliente.correo,
+                                                    cliente.apellido,
+                                                    cliente.nombre
+                                        FROM detalle_factura,cliente 
+                                        where  detalle_factura.idCliente=cliente.id
+                                        ORDER by detalle_factura.id DESC ");
+
+        $stmt->execute();
+        return $stmt->fetchAll();
+
+        $stmt->close();
+
+    }
 
     public static function sqlGerarFactura($idCliente,$total){
         $db=new Conexion();
@@ -91,7 +91,7 @@ class ModeloFacura {
 
     //============================FILTRO PARA VER INFORME DE VENTAS=====================//
     //============================FILTRO PARA VER INFORME DE VENTAS=====================//
-     public static function sqlFiltrarFacturas($fechaInicio,$fechaFin){
+    public static function sqlFiltrarFacturas($fechaInicio,$fechaFin){
         $db=new Conexion();
         try {
             $stmt= $db->conectar()->prepare("SELECT *FROM  detalle_factura  WHERE  	fechaFacturacion between  '$fechaInicio' and '$fechaFin' ");
@@ -109,6 +109,24 @@ class ModeloFacura {
 
         $stmt->close();
 
+    }
+    public static function sqlUltimoRegistro(){
+        $db=new Conexion();
+        try {
+            $stmt= $db->conectar()->prepare("SELECT *FROM  detalle_factura order by id desc
+                                            limit 1 ");
+
+
+                $stmt->execute();
+
+            } catch (Exception $e) {
+                $error=$e->getMessage();
+                echo $error;
+
+              }
+
+        return $stmt->fetchAll();
+        $stmt->close();
 
     }
 
