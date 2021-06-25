@@ -132,6 +132,7 @@ switch (@$_POST['Cliente']) {
                                 @$_SESSION['tipo_usuario']=$respuesta['rol'];
                                 @$_SESSION['apellido']=$respuesta['apellido'];
                                 @$_SESSION['fechaRegistro']=$respuesta['fechaRegistro'];
+                                @$_SESSION['correo']=@$_POST['inputEmailCliente'];
     
                                  $respuesta=array(
                                      'respuesta'=>'true_password',
@@ -139,6 +140,8 @@ switch (@$_POST['Cliente']) {
                                      'rol'=>$respuesta['rol'],
                                      'apellido'=>$respuesta['apellido']
                                  );
+                        
+    
                             }
     
                             else{

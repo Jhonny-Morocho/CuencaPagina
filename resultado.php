@@ -1,6 +1,45 @@
 <?php
 //codigo del establecimiento
-session_start();
+//traigo a php mailes
+use PHPMailer\PHPMailer\PHPMailer;
+require'PHPMailer/vendor/autoload.php';
+//requiero el template de la factura 
+require'PayAgile/facturaPayAgile.php';
+@session_start();
+//correo api
+
+//generar factura por compra de productos 
+if(@$_SESSION['datosOrden']['products'] && @$_SESSION['estado']=='true'){
+  $factura=ClassPlantilla::templateFactura($_GET['metodoPago']);
+  function enviarCorreo($correo,$factura){
+      $mail=new PHPMailer();
+      $mail->CharSet='UTF-8';
+      $mail->isMail();
+      $mail->setFrom('support@latinedit.com','LATINEDIT.COM');
+      $mail->addReplyTo('support@latinedit.com','LatinEdit.com');
+      $mail->Subject=('Factura de Compra latinedit.com');
+      $mail->addAddress($correo);
+      $mail->msgHTML($factura);
+      $envio=$mail->Send();
+      if ($envio) {
+          # code...
+          echo "true";
+      }else{
+          echo "false";
+      }
+  }
+  //enviamos correo al cliente
+  enviarCorreo(@$_SESSION['datosOrden']['email'],$factura);
+  //enviar al correo con el q inicio session
+  enviarCorreo(@$_SESSION['correo'],$factura);
+  //enviamos correo al administrador
+  enviarCorreo('djmarkoarias@hotmail.com',$factura);
+  @$_SESSION['datosOrden']['products']=null;
+}else{
+
+}
+
+
 
 //template de la pagina 
 require'model/conexion.php';

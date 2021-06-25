@@ -2,6 +2,7 @@
 class ClassPlantilla{
   
   public static function templateFactura($tipoPago){
+
     $productos=json_decode(@$_SESSION['datosOrden']['products'], true);
     $tabla="";
     $total=0.0;
@@ -117,7 +118,7 @@ class ClassPlantilla{
                             width: 100%; 
                             margin: 0;" 
                             align="left"><b>Fecha:</b> 
-                            '.$_SESSION['datosOrden']['date'].'
+                            '.@$_SESSION['datosOrden']['date'].'
                         </p>
     
                         <p 
@@ -126,7 +127,7 @@ class ClassPlantilla{
                             width: 100%; 
                             margin: 0;" 
                             align="left"><b>Id Orden:</b> 
-                            '.$_SESSION['datosOrden']['order_id'].'
+                            '.@$_SESSION['datosOrden']['order_id'].'
                         </p>
     
                         <p 
@@ -168,7 +169,7 @@ class ClassPlantilla{
                              margin: 0;" 
                              align="left"><b>Factura #</b>
                              
-                             '.$_SESSION['datosOrden']['order_id'].' 
+                             '.@$_SESSION['datosOrden']['order_id'].' 
                              
                         </p>
                         <div class="hr " style="width: 100%; margin: 20px 0; border: 0;">
@@ -186,7 +187,7 @@ class ClassPlantilla{
                                 24px; font-size: 
                                 16px; width: 100%; 
                                 margin: 0;" 
-                                align="left"><b>Cliente:</b>'.$_SESSION['datosOrden']['first_name'].' '.$_SESSION['datosOrden']['last_name'].'
+                                align="left"><b>Cliente:</b>'.@$_SESSION['datosOrden']['first_name'].' '.@$_SESSION['datosOrden']['last_name'].'
                         </p>
     
                         <p 
@@ -195,7 +196,7 @@ class ClassPlantilla{
                                     width: 100%; 
                                     margin: 0;" 
                                     align="left"><b>Documento:</b>
-                            '.$_SESSION['datosOrden']['document'].'
+                            '.@$_SESSION['datosOrden']['document'].'
                         </p>
     
                         <p 
@@ -204,7 +205,7 @@ class ClassPlantilla{
                             width: 100%; 
                             margin: 0;" 
                             align="left"><b>Teléfono:</b>
-                            '.$_SESSION['datosOrden']['phone'].'
+                            '.@$_SESSION['datosOrden']['phone'].'
                         </p>
     
                         <p 
@@ -214,7 +215,7 @@ class ClassPlantilla{
                                    margin: 0;" 
                                    align="left"
                                    ><b>Email:</b>
-                            '.$_SESSION['datosOrden']['email'].'
+                            '.@$_SESSION['datosOrden']['email'].'
                         </p>
     
                         <p  
@@ -223,7 +224,7 @@ class ClassPlantilla{
                                     width: 100%; 
                                     margin: 0;" 
                                     align="left"><b>Dirección:</b>
-                            '.$_SESSION['datosOrden']['address'].'
+                            '.@$_SESSION['datosOrden']['address'].'
                         </p>
                     
                     

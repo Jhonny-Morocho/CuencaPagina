@@ -12,14 +12,14 @@ use PayPal\Api\Amount;
 use PayPal\Api\Transaction;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Payment;
-
+session_start();// simepre inicializo session par apoder hacer la compracion, si el cliente esta logado
 include'ctrProductoItem.php';// para poder filtrar los datos
 
 //llamo a la factura para crear la factura para enviar al correo del cliente
 require'../model/conexion.php';
 require'../model/mdlFactura.php';
 
-@session_start();// simepre inicializo session par apoder hacr la compracion, si el cliente esta logado
+
 $descripcionProducto="";
 
 
@@ -132,9 +132,7 @@ $descripcionProducto="";
                 //creamos una variable de sesion con la data 
                 @$_SESSION["datosOrden"]=null;
                 @$_SESSION["datosOrden"]=$datos;
-
-              
-
+            
                 $redireccionar=new RedirectUrls();
                 $redireccionar->setReturnUrl(URL_SITIO."/Paypal/pagoFinalizadoPaypal.php?idCliente=".$_SESSION['id_cliente'])//pago exitoso
                               ->setCancelUrl(URL_SITIO."/Paypal/pagoFinalizadoPaypal.php?exito=false&idpago{$ID_registro}");

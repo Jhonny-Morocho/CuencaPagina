@@ -1,14 +1,14 @@
 <?php
     ini_set('display_errors', 'On');
-    use PHPMailer\PHPMailer\PHPMailer;
+    //use PHPMailer\PHPMailer\PHPMailer;
 
     //entregar producto al cliente//esta clase se encuentra en paypal
     try {
-        @session_start(); 
+        
         require'../Paypal/ctrEntregarProductoCliente.php';
         //plantilla para generar factura
-        require'facturaPayAgile.php';
-        require'../PHPMailer/vendor/autoload.php';
+        //require'facturaPayAgile.php';
+        //require'../PHPMailer/vendor/autoload.php';
         //primero envaimos el correo al cliente con la factura
         //print_r($_SESSION);
         
@@ -36,6 +36,7 @@
 
         }else{
             //Se entrega el producto
+            @session_start(); 
             //aqui esta los productos y el total de la factura
             $datosOrden=@$_SESSION['datosOrden'];
             //los productos que compro el cliente
@@ -61,36 +62,34 @@
             //borro el carrito
 
             //Entregamos productos al cliente mediante el correo
-            $factura=ClassPlantilla::templateFactura('Tarjeta');
+            // $factura=ClassPlantilla::templateFactura('Tarjeta');
 
-            function enviarCorre($correo,$factura){
-                $mail=new PHPMailer();
-                $mail->CharSet='UTF-8';
-                $mail->isMail();
-                $mail->setFrom('support@latinedit.com','LATINEDIT.COM');
-                $mail->addReplyTo('support@latinedit.com','LatinEdit.com');
-                $mail->Subject=('Factura de Compra latinedit.com');
-                $mail->addAddress($correo);
-                $mail->msgHTML($factura);
-                $envio=$mail->Send();
-                if ($envio==true) {
-                    # code...
-                    return "true";
-                   // echo "correo enviado";
-                }else{
-                    //echo "correo no enviado";
-                    return "false";
-                }
+            // function enviarCorre($correo,$factura){
+            //     $mail=new PHPMailer();
+            //     $mail->CharSet='UTF-8';
+            //     $mail->isMail();
+            //     $mail->setFrom('support@latinedit.com','LATINEDIT.COM');
+            //     $mail->addReplyTo('support@latinedit.com','LatinEdit.com');
+            //     $mail->Subject=('Factura de Compra latinedit.com');
+            //     $mail->addAddress($correo);
+            //     $mail->msgHTML($factura);
+            //     $envio=$mail->Send();
+            //     if ($envio) {
+            //         echo  "true";
+            //     }else{
+            //         echo "false";
+            //     }
 
-            }
+            // }
             //enviamos correo al cliente
-            enviarCorre(@$_SESSION['datosOrden']['email'],$factura);
-            //enviamos correo al administrador
-            enviarCorre('djmarkoarias@hotmail.com',$factura);
+            // enviarCorre(@$_SESSION['datosOrden']['email'],$factura);
+            // //enviamos correo al administrador
+            // enviarCorre('djmarkoarias@hotmail.com',$factura);
 
-            echo '<script>localStorage.clear();</script>';
+            //echo '<script>localStorage.clear();</script>';
             //redireccionar
-            echo '<script>window.location ="../resultado.php?estado=true"; </script>';
+            //echo '<script>window.location ="../resultado.php?estado=true"; </script>';
+            echo '<script>window.location ="../resultado.php?estado=true&metodoPago=Tarjeta"; </script>';//direcciono al penel de administracion del 
             //header("Location:../resultado.php?estado=true");//
 
         }
