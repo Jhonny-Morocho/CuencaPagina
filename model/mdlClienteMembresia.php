@@ -12,7 +12,6 @@ ini_set('display_errors', 'On');
 		//satic cuando recibo algo siempre van como static
 		 public static  function sqlAgregarMembresiaCliente($arraDatosMembresia,$metodoPago,$precioUnidad){
             $db=new Conexion();
-
             //aplico los dias de promosion
             $fechaActual = date('Y-m-j');
             $fechaAddDays = strtotime ( '+30 day' , strtotime ( $fechaActual ) ) ;
@@ -46,10 +45,10 @@ ini_set('display_errors', 'On');
              $stmt->bindParam(':dateCompra',$fechaActual);
              $stmt->bindParam(':dateExperiracion',$fechaAddDays);
              $stmt->bindParam(':numDescargas',$arraDatosMembresia['get']['numDescargas']);
-             $stmt->bindParam(':idCliente',intval($arraDatosMembresia['get']['idCliente'])); 
-             $stmt->bindParam(':precio',floatval($arraDatosMembresia['precioProducto'][0])); 
+             $stmt->bindParam(':idCliente',($arraDatosMembresia['get']['idCliente'])); 
+             $stmt->bindParam(':precio',($arraDatosMembresia['precioProducto'][0])); 
              $stmt->bindParam(':metodoPago',$metodoPago);
-             $stmt->bindParam(':precioUnidad',floatval($precioUnidad));
+             $stmt->bindParam(':precioUnidad',($precioUnidad));
              //settype($arraDatosMembresia['precioProducto'][0], 'float'); 
             } catch (Exception $e) {
                 //echo "Error".$e->getMessage();

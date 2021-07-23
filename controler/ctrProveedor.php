@@ -1,6 +1,8 @@
 <?php 
 ini_set('display_errors', 'On');
-
+ini_set('session.cache_expire', 600);
+ini_set('session.gc_maxlifetime', 36000);
+ini_set('session.cookie_lifetime',36000);
 
 require'../model/conexion.php';
 require'../model/mdlProveedor.php';
@@ -83,8 +85,12 @@ switch (@$_POST['Proveedor']) {
                     //print_r($respuesta);
                     if ($respuesta) {//verificar si existe el correo del usuario
                         if( password_verify(@$_POST['inputPassword'],@$respuesta['password']) ){
-                    
-                                @session_start();
+                    //seteo la vida de la session en 7200 segundos    
+                                //inicio la session
+                                
+                                session_cache_expire(600);
+                                session_set_cookie_params(36000);
+                                session_start();
     
                                 @$_SESSION['id_proveedor']=$respuesta['id'];
                                 @$_SESSION['usuario']=$respuesta['nombre'];

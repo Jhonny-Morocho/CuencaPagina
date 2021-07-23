@@ -1,6 +1,5 @@
 <?php
 
-ini_set('display_errors', 'On');
 
 //============Conexion a la base datos=============//
 require'../model/conexion.php';
@@ -25,14 +24,11 @@ class ClassEntregarProductoCliente {
 
         //print_r($arrayPrecio);
         foreach ($arrayPrecio as $key => $value) {
-            //echo "[".$arrayIdProductos[$key]."]";
-            //echo "[".$arrayPrecio[$key]."]";
             $respuestaClienteProducto=ModeloClienteProducto::sqlAsignarProductoCliente($arrayInfoFactura,
                                                                                         $arrayIdProductos[$key],
                                                                                         $arrayPrecio[$key] );
 
         }
-
       
     }
 

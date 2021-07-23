@@ -1,10 +1,16 @@
 
     <?php
-        // ANTES DE CONTINUAR CON EL PROCESO DEBES
+
+        ini_set('session.cache_expire', 600);
+        ini_set('session.gc_maxlifetime', 36000);
+        ini_set('session.cookie_lifetime',36000);
+
+        session_cache_expire(600);
+        session_set_cookie_params(36000);
+        @session_start();// simepre
         // VERIFICAR EL PAGO
         require __DIR__ .'/bootstrap.php';
 
-        ini_set('display_errors', 'On');
 
         use \PayPal\Api\Amount;
         use \PayPal\Api\Details;
@@ -12,6 +18,8 @@
         use \PayPal\Api\Payment;
         use \PayPal\Api\PaymentExecution;
         use \PayPal\Api\Transaction;
+        // ANTES DE CONTINUAR CON EL PROCESO DEBES
+
 
 
 
@@ -87,18 +95,12 @@
 
                 }
            
-
-                //print_r($itemsClient);              
                 // ===================Asignar productos al cliente=======================
-                @session_start();// simepre inicializo session par apoder hacr la compracion, si el cliente esta logado
                 require'ctrEntregarProductoCliente.php';
                 //se realiza el pago y se direcciona al cliente a visualizar sus productos
                 $arrayDatosMembresia=array('get'=>@$_GET,'totalCancelado'=>$total_paypal,'precioProducto'=>$array_precio,'idMembresia'=>$array_id_tema,'nombreMembresia'=>$array_nombre_tema);
                 ClassEntregarProductoCliente::comproMembresia($arrayDatosMembresia);
                 
-                
-
-
             }//end else
 
             } catch (PayPal\Exception\PayPalConnectionException $ex) {

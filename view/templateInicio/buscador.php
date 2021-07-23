@@ -57,7 +57,6 @@
                           <select class=" form-control form-control-sm ml-3 w-60 selectGeneroRemixer " name="remixer">
                                 <?php 
                                     $remixer=ModeloProveedor::sql_lisartar_proveedor();
-                                    print_r($remixer);
                                     foreach ($remixer as $key => $value) {
                                       if(@$_GET['remixer']==$value['id']){ 
                                         echo '<option value="'.$value['id'].'" >'.$value['apodo'].'</option>';

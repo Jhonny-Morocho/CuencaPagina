@@ -18,6 +18,7 @@
         
         $mebresiasCliente=Modelo_Membresia::sqlListarMembresiasCliente(@$_SESSION['id_cliente']);
         
+
     ?>
 
 <!-- breadcrumb area start -->
@@ -254,7 +255,7 @@
                                                 <div class="md-form">
                                                     <input type="hidden" name="Cliente" value="editCliente">
                                                     <input type="hidden" name="idCliente" class="idCliente" value="<?php echo $_SESSION['id_cliente']?>">
-                                                    <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0">Guardar datos editados</button>
+                                                    <button class="btn btn-primary btn-lg">Guardar datos editados</button>
                                                 </div>
                                             </form>
                                         </div>

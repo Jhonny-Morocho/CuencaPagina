@@ -1,6 +1,13 @@
 <?php
 
 ini_set('display_errors', 'On');
+ini_set('session.cache_expire', 600);
+ini_set('session.gc_maxlifetime', 36000);
+ini_set('session.cookie_lifetime',36000);
+
+session_cache_expire(600);
+session_set_cookie_params(36000);
+@session_start();// simepre
 
 
 include'ctrProductoItem.php';// para poder filtrar los datos
@@ -8,7 +15,6 @@ require'ctrEntregarProductoCliente.php';
 require'../model/mdlClienteMembresia.php';
 //Saco el numero de factura
 //require'../model/mdlFactura.php';
-@session_start();// simepre inicializo session par apoder hacr la compracion, si el cliente esta logado
 $descripcionProducto="";
 
 //print_r($_POST);
@@ -112,8 +118,7 @@ $descripcionProducto="";
                         //creamos una variable de sesion con la data 
                         @$_SESSION["datosOrden"]=null;
                         @$_SESSION["datosOrden"]=$datos;
-
-                        die(json_encode(array('respuesta'=>'exito','urlPanel'=>'../../Paypal/pagoFinalizadoMembresiaCar.php')));
+                        die(json_encode(array('respuesta'=>'exito','urlPanel'=>'../../resultado.php?estado=true&metodoPago=Membresia')));
                     } catch (\Throwable $th) {
                         //throw $th;
                         die(json_encode(array('respuesta'=>$th)));

@@ -45,33 +45,32 @@ $('#login-cliente').on('submit',function(e){
     ///////////////////////////////REGISTRO CLIENTE/////////////////////////////////////////////////////////////////
     ///////////////////////////////REGISTRO CLIENTE/////////////////////////////////////////////////////////////////
 
-$("#registro-cliente").on('submit',function(e){
-    e.preventDefault();
-    var datosCliente=$(this).serializeArray();
-    animacion();
-    $(':input[type="submit"]').prop('disabled', true);
-    $.ajax({
-        type:$(this).attr('method'),
-        data:datosCliente,
-        url:$(this).attr('action'),
-        dataType:'json',//json
-        success:function(data){
-            console.log(data);
-            if(data.respuesta=='exito'){
-                $(".smsEspera").html('<div class="alert alert-success alert-dismissible">'+
-                '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
-                '<h4><i class="icon fa fa-warning"></i> Registro Exitoso </h4> Se ha enviado un correo de verificación para que pueda activar su cuenta, revise su bandeja de entrada '+data.nombre+
-                '</div>');
-            }else{
-                $(".smsEspera").html('<div class="alert alert-warning alert-dismissible">'+
-                '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
-                '<h4><i class="icon fa fa-warning"></i> Aviso! </h4>'+data.mensaje+
-                '</div>');
+    $("#registro-cliente").on('submit',function(e){
+        e.preventDefault();
+        var datosCliente=$(this).serializeArray();
+        $(':input[type="submit"]').prop('disabled', true);
+        $.ajax({
+            type:$(this).attr('method'),
+            data:datosCliente,
+            url:$(this).attr('action'),
+            dataType:'json',//json
+            success:function(data){
+                console.log(data);
+                if(data.respuesta=='exito'){
+                    $(".smsEspera").html('<div class="alert alert-success alert-dismissible">'+
+                    '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+                    '<h4><i class="icon fa fa-warning"></i> Registro Exitoso </h4> Se ha enviado un correo de verificación para que pueda activar su cuenta, revise su bandeja de entrada '+data.nombre+
+                    '</div>');
+                }else{
+                    $(".smsEspera").html('<div class="alert alert-warning alert-dismissible">'+
+                    '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
+                    '<h4><i class="icon fa fa-warning"></i> Aviso! </h4>'+data.mensaje+
+                    '</div>');
+                }
+                $(':input[type="submit"]').prop('disabled', false);
             }
-            $(':input[type="submit"]').prop('disabled', false);
-        }
+        });
     });
-});
 // ============================EDITAR CLIENTE DESDE EL PANEL DE ADMIN================================//
 // ============================EDITAR CLIENTE DESDE EL PANEL DE ADMIN================================//
 // ============================EDITAR CLIENTE DESDE EL PANEL DE ADMIN================================//

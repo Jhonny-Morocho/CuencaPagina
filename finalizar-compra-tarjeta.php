@@ -1,5 +1,11 @@
 <?php
 ini_set('display_errors', 'On');
+ini_set('session.cache_expire', 600);
+ini_set('session.gc_maxlifetime', 36000);
+ini_set('session.cookie_lifetime',36000);
+
+session_cache_expire(600);
+session_set_cookie_params(36000);
 
 session_start();
 //si no existe session no puede entrar
@@ -36,8 +42,6 @@ require'model/mdlProveedor.php';
  curl_close($ch);
  //Paso a array los datos obtenidos en Json
  $responseData = json_decode($responseData, true);
-
- print_r($responseData);
 
 ?>
     <div class="container " style="margin-top: 150px;">

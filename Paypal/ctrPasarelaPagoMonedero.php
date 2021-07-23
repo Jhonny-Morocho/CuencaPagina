@@ -1,6 +1,14 @@
 <?php
 
 ini_set('display_errors', 'On');
+ini_set('session.cache_expire', 600);
+ini_set('session.gc_maxlifetime', 36000);
+ini_set('session.cookie_lifetime',36000);
+
+session_cache_expire(600);
+session_set_cookie_params(36000);
+@session_start();// simepre
+
 
 
 require'ctrEntregarProductoCliente.php';
@@ -8,7 +16,7 @@ include'ctrProductoItem.php';// para poder filtrar los datos
 require'../model/mdlCliente.php';
 //Saco el numero de factura
 //require'../model/mdlFactura.php';
-@session_start();// simepre inicializo session par apoder hacr la compracion, si el cliente esta logado
+
 $descripcionProducto="";
 
 //print_r($_POST);
@@ -84,7 +92,7 @@ if( isset($_SESSION['usuario']) and $_SESSION['tipo_usuario']=='cliente' and iss
                 @$_SESSION["datosOrden"]=$datos;
 
                 die(json_encode(array('clienteEncotrado'=>$banderaEncontradoCliente,'respuesta'=>'exito',
-                                        'urlPanel'=>'../../Paypal/pagoFinalizadoMonedero.php','saldoActualizado'=>$respuestaSaldoActualizado['respuesta'],
+                                        'urlPanel'=>'../../resultado.php?estado=true&metodoPago=Monedero',    
                                         'saldoModeneroActualizafo'=>$saldoActualizar)));
             } catch (\Throwable $th) {
                 //throw $th;

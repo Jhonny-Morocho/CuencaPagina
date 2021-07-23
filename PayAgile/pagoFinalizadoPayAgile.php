@@ -1,28 +1,29 @@
 <?php
     ini_set('display_errors', 'On');
+    ini_set('session.cache_expire', 600);
+    ini_set('session.gc_maxlifetime', 36000);
+    ini_set('session.cookie_lifetime',36000);
+    //Se entrega el producto
+    session_cache_expire(600);
+    session_set_cookie_params(36000);
+    @session_start(); 
     //use PHPMailer\PHPMailer\PHPMailer;
 
     //entregar producto al cliente//esta clase se encuentra en paypal
     try {
         
         require'../Paypal/ctrEntregarProductoCliente.php';
-        //plantilla para generar factura
-        //require'facturaPayAgile.php';
-        //require'../PHPMailer/vendor/autoload.php';
-        //primero envaimos el correo al cliente con la factura
-        //print_r($_SESSION);
         
         $code='607ef3bf6edfe';
         $order=$_GET['order'];
 
         $url = "https://portal.botonpagos.com/api/datafast/tienda/getOrder/".$code."/".$order;
-
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $responseData = curl_exec($ch);
-
+        
         if(curl_error($ch)){
             echo curl_error($ch);
         }
@@ -30,17 +31,17 @@
         curl_close($ch);
         $responseData = json_decode($responseData, true);
 
+
         // si hay error entonces no se realiza la entrega del producto
         if($responseData["error_code"]){
             header("Location:../resultado.php?estado=".$responseData ["error_description"] );//
 
         }else{
-            //Se entrega el producto
-            @session_start(); 
+
             //aqui esta los productos y el total de la factura
             $datosOrden=@$_SESSION['datosOrden'];
             //los productos que compro el cliente
-            
+
             $productos=json_decode(@$_SESSION['datosOrden']['products'], true);
             // creamos un array para elimin ar el producots con el id CPUS, ya que este producto solo es 
             // para cobrar comisión
@@ -86,10 +87,10 @@
             // //enviamos correo al administrador
             // enviarCorre('djmarkoarias@hotmail.com',$factura);
 
-            //echo '<script>localStorage.clear();</script>';
+
             //redireccionar
             //echo '<script>window.location ="../resultado.php?estado=true"; </script>';
-            echo '<script>window.location ="../resultado.php?estado=true&metodoPago=Tarjeta"; </script>';//direcciono al penel de administracion del 
+           echo '<script>window.location ="../resultado.php?estado=true&metodoPago=Tarjeta"; </script>';//direcciono al penel de administracion del 
             //header("Location:../resultado.php?estado=true");//
 
         }

@@ -7,6 +7,14 @@
         
         ini_set('display_errors', 'On');
 
+        ini_set('session.cache_expire', 600);
+        ini_set('session.gc_maxlifetime', 36000);
+        ini_set('session.cookie_lifetime',36000);
+
+        session_cache_expire(600);
+        session_set_cookie_params(36000);
+        @session_start();// simepre
+
         use \PayPal\Api\Amount;
         use \PayPal\Api\Details;
         use \PayPal\Api\ExecutePayment;

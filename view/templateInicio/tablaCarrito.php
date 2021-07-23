@@ -23,7 +23,8 @@
                             maxlength="50"
                             required
                             id="firstName"
-                            class="form-control" 
+                            pattern="[a-zA-Z ]{2,254}"
+                            class="form-control"
                             name="nombreFc">
                     <label for="firstName" class="">Nombres: </label>
                   </div>
@@ -38,6 +39,7 @@
                           maxlength="50"
                           id="lastName"
                           required 
+                          pattern="[a-zA-Z ]{2,254}"
                           class="form-control" 
                           name="apellidoFc">
                     <label for="lastName" class="">Apellidos:</label>
@@ -57,7 +59,7 @@
                        name="correoFc"
                        id="email"
                        required>
-                <label for="email" class="">Correo de facturación y envio del producto:</label>
+                <label for="email" class="">Correo de facturación:</label>
               </div>
 
               <!--address-2-->
@@ -73,17 +75,17 @@
 
              <!--address-2-->
              <div class="md-form mb-5">
-                <input type="text" 
+                <input type="number" 
                        maxlength="15"
                        required
-                       id="phone" 
+                       id="phone"
                        class="form-control" 
                        name="telefonoFc">
                 <label for="phone" class="">Teléfono:</label>
               </div>
 
               <div class="md-form mb-5">
-                <input type="text" 
+                <input type="number" 
                         class="form-control"
                         id="document" 
                         required
@@ -104,7 +106,7 @@
                             Tarjeta de Crédito/Débito
                     </div>  
                     <div class="col-lg-3 form-group">
-                        <input type="radio" name="r1" class="minimal"  value="paypal" >
+                        <input type="radio" name="r1" class="minimal"  value="paypal"  >
                         <i class="fab fa-cc-paypal"></i> Paypal 
                     </div>
                     <div class="col-lg-3 form-group">
@@ -202,3 +204,27 @@ main{
   background-color: white!important;
 }
 </style>
+
+
+<!-- Frame Modal Bottom -->
+<div class="modal fade top " id="modalInfoTarjeta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+
+  <!-- Add class .modal-frame and then add class .modal-bottom (or other classes from list above) to set a position to the modal -->
+  <div class="modal-dialog modal-frame modal-top" role="document">
+
+
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row d-flex justify-content-center align-items-center">
+
+          <p class="pt-3 pr-2"style="font-size: 30px;"><i class="fas fa-info-circle"></i> <b>Si su método de pago es Tarjeta, por favor  los nombres apellidos, identificación y correo de la factura deben coincidir con la información de la tarjeta de crédito que se esta usando.</b>
+          </p>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Frame Modal Bottom -->
+

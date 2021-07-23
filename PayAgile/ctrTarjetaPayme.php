@@ -1,12 +1,19 @@
 <?php
 
 ini_set('display_errors', 'On');
+ini_set('session.cache_expire', 600);
+ini_set('session.gc_maxlifetime', 36000);
+ini_set('session.cookie_lifetime',36000);
+
 
 require'../Paypal/ctrEntregarProductoCliente.php';
 include'../Paypal/ctrProductoItem.php';// para poder filtrar los datos
 //llamo al modelo
 require'../model/mdlFactura.php';
 require'../model/mdlCliente.php';
+
+session_cache_expire(600);
+session_set_cookie_params(36000);
 @session_start();// simepre inicializo session par apoder hacr la compracion, si el cliente esta logado
 $descripcionProducto="";
 
@@ -50,9 +57,7 @@ if( isset($_SESSION['usuario']) and $_SESSION['tipo_usuario']=='cliente' and iss
             $products[$i]['total'] =$FiltroPrecioProducto[$i];
             // //Cantidad del producto
             $products[$i]['cantidad'] = 1;
-
             //Subtotal 0 es la suma de los subtototales de los productos que no gravan IVA
-
             $sumaTotal=$FiltroPrecioProducto[$i]+ $sumaTotal;
         }
         
@@ -135,7 +140,7 @@ if( isset($_SESSION['usuario']) and $_SESSION['tipo_usuario']=='cliente' and iss
             'gateway' => 'botonpagos',
             'status' => 'pending ',
             'date' => date('Y-m-d'),
-            'url_response' => 'https://www.latinedit.com/PayAgile/pagoFinalizadoPayAgile.php?order='.$order //Este campo es opcional en el caso de APPS Móviles
+            'url_response' => 'https://www.latinedit.com/PayAgile/pagoFinalizadoPayAgile.php?idCliente='.$_SESSION['id_cliente'].'&order='.$order //Este campo es opcional en el caso de APPS Móviles
         );
         //creamos una variable de sesion con la data 
         @$_SESSION["datosOrden"]=null;

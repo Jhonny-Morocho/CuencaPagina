@@ -83,7 +83,7 @@ $htmlPlantillaComision='<tr>
   
       </main>
       <footer>
-      © 2020 Copyright: Proeditsclub.com.
+      © 2020 Copyright: latinedit.com.
       </footer>
     </body>';
   

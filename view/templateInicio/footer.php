@@ -150,18 +150,18 @@
         <script type="text/javascript" src="js/mdb.min.js?v=1.0.0?v=2.0.0"></script>
         <!-- Your custom scripts (optional) -->
         <!-- MDB Component Initialization -->
-        <script type="text/javascript" src="../js/appIndex.js?v=2.0.0"></script>
+        <script type="text/javascript" src="../js/appIndex.js?v=3.0.0"></script>
         <!-- APP -->
         <!-- <script type="text/javascript" src="../js/appLatinEdits.js?v=2.0.0"></script> -->
         <!-- ======================AJAX================================== -->
         <script type="text/javascript" src="../../controler/js/ajaxProveedor.js?v=2.0.0"></script>
-        <script type="text/javascript" src="../../controler/js/ajaxCliente.js?v=2.0.0"></script>
+        <script type="text/javascript" src="../../controler/js/ajaxCliente.js?v=3.0.0"></script>
         <!-- libreria para fechas -->
         <script src="https://unpkg.com/moment"></script> 
         <!-- swith alert -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <script type="text/javascript" src="../../controler/js/carritoCompras.js?v=3.0.1"></script>
-        <script type="text/javascript" src="../../controler/js/ajaxPagar.js?v=3.0.0"></script>
+        <script type="text/javascript" src="../../controler/js/carritoCompras.js?v=4.0.1"></script>
+        <script type="text/javascript" src="../../controler/js/ajaxPagar.js?v=5.0.1"></script>
         <script  type="text/javascript"  src="../../controler/js/pagarMembresia.js?v=2.0.0"></script>
 
 
@@ -191,15 +191,17 @@
 
           <script type="text/javascript">
       		$(document).ready(function () {
+            //abrir el mensaje de alerta en el carrito de compras
+            $('#modalInfoTarjeta').modal('show');
                 //Disable full page
-                // $("body").on("contextmenu",function(e){
-                //   return false;
-                // });
+                $("body").on("contextmenu",function(e){
+                  return false;
+                });
               
-                //Disable part of page
-                // $("#id").on("contextmenu",function(e){
-                //   return false;
-                // });
+                ///Disable part of page
+                $("#id").on("contextmenu",function(e){
+                  return false;
+                });
               });
 
             $(document).keydown(function (event) {
@@ -269,6 +271,14 @@
               //         buttonImage: '<img src="burger.svg" />'
               //     });
               // });
+          </script>
+           <!-- CLARIDAD -->
+          <script type="text/javascript">
+              (function(c,l,a,r,i,t,y){
+                  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window, document, "clarity", "script", "7a62he8h28");
           </script>
 </body>
 

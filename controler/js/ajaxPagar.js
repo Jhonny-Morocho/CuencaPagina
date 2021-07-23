@@ -55,19 +55,25 @@ $("#idFormCarrito").on('submit',function(e){
     datos.append("telefonoFc",inputOptionPago[4].value);
     datos.append("documentoIdentidadFc",inputOptionPago[5].value);
 
-   
-    //enviarDatosPasarelaPago(datos);//enviaar Data a la pasarela de pagos
-    // for (var pair of datos.entries()) {
-    //     console.log(pair[0]+ ' : ' + pair[1]); 
-    // }
+    //===== DATOS PARA ENVIAR FACTURA Y NOTIFICACION == //
+    localStorage.setItem("nombre",inputOptionPago[0].value);
+
+    localStorage.setItem("apellido",inputOptionPago[1].value);
+    localStorage.setItem("correo",inputOptionPago[2].value);
+    localStorage.setItem("direccion",inputOptionPago[3].value);
+    localStorage.setItem("telefono",inputOptionPago[4].value);
+    localStorage.setItem("documentoIdentidad",inputOptionPago[5].value);
+
     //estan los radio buuton en el campo 6
     switch (inputOptionPago[6].value) {
 
         //aqui compran todo con paypal, productps y tambin el paquete de membresias
            case 'paypal':
+               localStorage.setItem("metodoPago",'PayPal');
                enviarDatosPasarelaPago(datos);//enviaar Data a la pasarela de pagos
             break;
            case 'tarjeta':
+               localStorage.setItem("metodoPago",'Tarjeta');
                 enviarDatosPasarelaPagoTarjeta(datos);//enviaar Data a la pasarela de pagos
             break;
 
@@ -82,6 +88,7 @@ $("#idFormCarrito").on('submit',function(e){
                     confirmButtonText: 'Yes'
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        localStorage.setItem("metodoPago",'Membresia');
                        enviarDatosPasarelaPagoCarMembresia(datos);//enviaar Data a la pasarela de pagos
                     }
                 })
@@ -97,6 +104,7 @@ $("#idFormCarrito").on('submit',function(e){
                     confirmButtonText: 'Yes'
                 }).then((result) => {
                     if (result.isConfirmed) {
+                    localStorage.setItem("metodoPago",'Monedero');
                     enviarDatosPasarelaPagoMonedero(datos);//enviaar Data a la pasarela de pagos
                     }
                 })
@@ -169,9 +177,7 @@ function enviarDatosPasarelaPagoTarjeta(datos){
                 case 'exito':
                         $('#btn-one').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Cargando...').addClass('disabled');
                         toastr.success('Tu solicitud ha sido  procesada.');
-            
                         setTimeout(function(){
-                            console.log("todo bien");
                             window.location.href=data.finalizarCompraTarjeta;
                         },2000);//tiempo de espera
                         break;
@@ -219,7 +225,6 @@ function enviarDatosPasarelaPagoCarMembresia(datos){
                 toastr.success('Solicitud Procesada con éxito');
                 $('#btn-one').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Cargando...').addClass('disabled');
                 setTimeout(function(){
-                      
                     localStorage.clear();
                     window.location.href=data.urlPanel;
                 },2000);//tiempo de espera

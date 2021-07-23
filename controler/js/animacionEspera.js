@@ -11,7 +11,7 @@
                     .ajaxStop(function () {
                         screen.fadeOut();
                     });
-                }
+       }
                 
                 function animacion(){
                     
