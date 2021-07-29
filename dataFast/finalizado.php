@@ -60,10 +60,9 @@ echo "</pre>";
       ['id'=>3,'product_name'=>'Farruko - Daddy Yanke.mp3','product_price'=>1,'quantity'=>1]]
   ;
 
-
   function request($datos,$productos) {
     $url = "https://test.oppwa.com/".$_GET['resourcePath'];
-    $url .= "?entityId=8a829418533cf31d01533d06f2ee06fa".
+    $data = "?entityId=8a829418533cf31d01533d06f2ee06fa".
     "&amount=".$datos['amount'].
     "&currency=".$datos['currency'].
     "&paymentType=".$datos['paymentType'].
@@ -90,7 +89,15 @@ echo "</pre>";
     "&custon.Parameters[SHOPPER_VAL_BASE0]=".$datos['custon.Parameters[SHOPPER_VAL_BASE0]'].
     "&custon.Parameters[SHOPPER_VAL_BASEIMP]=".$datos['custon.Parameters[SHOPPER_VAL_BASEIMP]'].
     "&custon.Parameters[SHOPPER_VAL_IVA]=".$datos['custon.Parameters[SHOPPER_VAL_IVA]'];
-    
+    foreach ($productos as $key => $value) {
+        $data.="&cart.items[".$key."].name=".$value['product_name'];
+        $data.="&cart.items[".$key."].description="."Descropcion".$value['product_name'];
+        $data.="&car.items[".$key."].price=".$value['product_price'];
+        $data.="&car.items[".$key."].quantity=".$value['quantity'];
+    }
+    $data.="&customParemeters[SHOPPER_VERSIONDF]=2";
+    $data.="&testMode=EXTERNAL";
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
