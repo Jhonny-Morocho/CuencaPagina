@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <script  src="https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=550AC0CE4B75C24D3FEEF317D064D363.uat01-vm-tx01"></script> 
+    <script  src="https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=3C863C5DA27AD36D0E059C7ED2606B98.uat01-vm-tx02"></script> 
     
     <form  action="http://localhost:81/CuencaPagina/dataFast/finalizado.php" class="paymentWidgets" data-brands="VISA MASTER AMEX" target="alt" >
 
