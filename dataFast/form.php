@@ -7,9 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <script  src="https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=3C863C5DA27AD36D0E059C7ED2606B98.uat01-vm-tx02"></script> 
+    <script  src="https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=DD3C1B768CEBA338FE3434B5EBDFCA08.uat01-vm-tx03"></script> 
     
-    <form  action="http://localhost:81/CuencaPagina/dataFast/finalizado.php" class="paymentWidgets" data-brands="VISA MASTER AMEX" target="alt" >
+    <form  action="http://localhost/CuencaPagina/dataFast/finalizado.php" class="paymentWidgets" data-brands="VISA MASTER AMEX" target="alt" >
 
     </form>
     <ul>
@@ -26,6 +26,18 @@
             CVV: 123
         </li>
     </ul>
+
+    <pre>
+    LATINEDIT
+        card numero : 4540 6300 9999 0031
+        experi: 0723
+        seguridad: 809
+    </pre>
+    <pre>
+        DISCOVER : 6557320000163713
+        experi: 2030-10
+        seguridad: 914
+    </pre>
 </body>
 </html>
 
