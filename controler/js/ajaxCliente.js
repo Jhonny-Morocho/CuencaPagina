@@ -8,7 +8,7 @@ $('#login-cliente').on('submit',function(e){
     animacion();
     // obtnemos los datos del formulario
     var datos=$(this).serializeArray();
-
+    console.log($(this).attr('method'));
     console.log(datos);//imprimr los valores
         $.ajax({
             type:$(this).attr('method'),

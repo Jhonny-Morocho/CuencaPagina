@@ -7,9 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <script  src="https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=DD3C1B768CEBA338FE3434B5EBDFCA08.uat01-vm-tx03"></script> 
+    <script  src="https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=5C29E95A9ED32ADF27CC3817194738ED.uat01-vm-tx04"></script> 
     
-    <form  action="http://localhost/CuencaPagina/dataFast/finalizado.php" class="paymentWidgets" data-brands="VISA MASTER AMEX" target="alt" >
+    <form  action="http://localhost/CuencaPagina/dataFast/finalizado.php" class="paymentWidgets" data-brands="VISA MASTER AMEX DINERS DISCOVER" target="alt" >
 
     </form>
     <ul>

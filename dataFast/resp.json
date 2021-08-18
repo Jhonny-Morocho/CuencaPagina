@@ -1,41 +1,45 @@
 {
-  "id": "8ac7a4a17b0983ea017b0a57c35a407d",
+  "id": "8ac7a4a17b1174f2017b132154d744ef",
   "paymentType": "DB",
-  "paymentBrand": "VISA",
+  "paymentBrand": "DISCOVER",
   "amount": "5.00",
   "currency": "USD",
-  "descriptor": "7323.3400.8040 LATINEDIT",
+  "descriptor": "7908.5298.7368 LATINEDIT",
   "merchantTransactionId": "trsaction_05111",
   "result": {
-    "code": "800.100.190",
-    "description": "transaction declined (invalid configuration data)"
+    "code": "000.100.112",
+    "description": "Request successfully processed in 'Merchant in Connector Test Mode'"
   },
   "resultDetails": {
-    "ConnectorTxID1": "8ac7a4a17b0983ea017b0a57c35a407d",
-    "RequestId": "350561412003",
+    "AuthCode": "001390",
+    "ConnectorTxID1": "8ac7a4a17b1174f2017b132154d744ef",
     "RiskFraudStatusCode": "ACCEPT",
-    "ReferenceNbr": "210802_000144",
-    "BatchNo": "210802",
-    "EXTERNAL_SYSTEM_LINK": "https://csi-stage.redworldwide.com/index.red#transactiondetail/000537210268XCX20210803004849578",
+    "RequestId": "350561438399",
+    "ReferenceNbr": "210804_000081",
+    "EXTERNAL_SYSTEM_LINK": "https://csi-stage.redworldwide.com/index.red#transactiondetail/000537210268XAG20210804174557332",
+    "BatchNo": "210804",
     "TotalAmount": "5.00",
-    "OrderId": "732334008040",
+    "OrderId": "790852987368",
+    "ExtendedDescription": "Transaccion aprobada",
     "RiskStatusCode": "PENDING",
-    "ExtendedDescription": "Metodo de pago no disponible",
-    "Response": "03",
+    "Interest": "0.00",
+    "Response": "00",
     "clearingInstituteName": "Datafast",
     "RiskResponseCode": "0100",
-    "AcquirerResponse": "03",
+    "AcquirerCode": "02",
+    "CardType": "DI",
     "action": "created",
-    "RiskOrderId": "000537210268XCX20210803004849578",
-    "ReferenceNo": "000144"
+    "AcquirerResponse": "00_02DI",
+    "RiskOrderId": "000537210268XAG20210804174557332",
+    "ReferenceNo": "000081"
   },
   "card": {
-    "bin": "454063",
+    "bin": "655732",
     "binCountry": "EC",
-    "last4Digits": "0031",
+    "last4Digits": "3713",
     "holder": "LATINEDIT",
-    "expiryMonth": "07",
-    "expiryYear": "2023"
+    "expiryMonth": "10",
+    "expiryYear": "2030"
   },
   "customer": {
     "givenName": "Jhonny",
@@ -49,7 +53,7 @@
     "ip": "192.10.10.10",
     "ipCountry": "US",
     "browserFingerprint": {
-      "value": "0400CIfeAe15Cx8Nf94lis1ztrPXIT7FCMrs0Hfp5ie720ykbjSH5PUZUMyxFvlj+YHshKpd9eXj2Z/iPdw0+wu0R4cbCd1TuBD45NXl7ju4BglH4FGbixNsQiYg2wn1WUxgZNfbcjbO4POzHP4ZdlpBanBk03k0BLae6Yf0/pTJUUwy0mh4IkTzVwydKgnOIDKXq4HnEqNOos1c6njJgQh/4vXJiqy0MXMQOThNipDmXv9I185O+yC2f3lLEO0Tay66NZEyiLNePemJKSIdwO9O5ZtntuUkG6NTIgQgyr8X6BvqYKV7/7ZfVmwgOAn2aBCn+KaePAdj0dDw9+3RMAUbo+0SMVmHPhkA6k9y2HePj0WRkJz+xEknggO2MaXE/n/p4OFdzvCwp5jtyU3UsPXizw/juYPGAMMIXtpv+ILTgLf+o3lZujoFm9RQOsPjsDU6f/JfDWpGHmj6eqP7kMlJAgE40HF60O5oi5x1rfFy6t0CgjKPJOEttUODKNAjxEyzQkjj/Bf3sgBpWZmpMPu3J3Rbz61iBMU+AFW/v8bu2FDqMH5mYxq87tK3Sga2t5uGlZ1YuuBt82JlB5dTIfaamdP5udijL+5ix7yacWI+PSLytBbsjINPNZBYJGQ0Yl/OmdLpVuXbUryixPMqjFULp9I8UWAJoym9T+HoQVdeZcQ5W+qwo+f83upgpXv/tl9WdArZwIoMuyhO44oNAQPdfLI+vS3zO1UWOjx45x9ZlwMJdmNWP4mnL9jeXlQIDC46yAfUMZ5LKFqFl81CC76WZKXakoCa7XCW4IhJrOz08Pzf+x4pw6W9esbGEpq7CoRYvFQ3SxgXyvTx/y4JwLTE4Nxv4KowoTq9+FuLE7rgWUx9d6ZZcsizG0zI+mPNi65XSGFq0WvDIDUVLMxm8UWxu6eI6jP0Vmg4C24eZzo97tw16kQoiglK7BJDLfM/X8TvaSyxlUFCiGEdsE8OdwolivehTqT3rw1rR9l0dEJHzndNg+95/NceoRDAstLN4US59PE4fRZTRwzCQai4/k8/K7TiL0aXxCOCSUpGCTU5RhCpnE1WK6cREVsd2NPe5bt8OgOhMKe3BucC4BpIdlwuawUpQ22jilnZNMoGvh7Is0tHAo8FA55gIMvIgD8wfEsiqSOCLc6eow8NBKhcDQ66JOc4iG4iRcy81yI9NBoVDOZvJvJHRLJtLmaUEcqinpri4eVYGLx8+dgOaEfyI1Pm2Yw9jt8VIAfmbQHh4nHyxhCjmkswulVPWBRQDekNcfNFqzj8ZFJeItC+RXQsRKZ98InUPcpWx610h9Ids3KVS15sfUnodIcDT5niPf6fRT0am/AXVZ/2DdwtTcelDvYYyK3COavwaGNDlU99UoH2xkljxvuUozsuGOdwlPoy8pJJWLGHKSNpZu/zPwYH0+G/GteEFKjppG/VMYBOqi0puRE="
+      "value": "0400CIfeAe15Cx8Nf94lis1ztrPXIT7FCMrs0Hfp5ie720ykbjSH5PUZUMyxFvlj+YHshKpd9eXj2Z/iPdw0+wu0R4cbCd1TuBD45NXl7ju4BglH4FGbixNsQiYg2wn1WUxgZNfbcjbO4POzHP4ZdlpBas3SX4nw9j0N6Yf0/pTJUUwy0mh4IkTzVwydKgnOIDKXq4HnEqNOos1c6njJgQh/4vXJiqy0MXMQOThNipDmXv9I185O+yC2f3lLEO0Tay66NZEyiLNePemJKSIdwO9O5ZtntuUkG6NTIgQgyr8X6BvqYKV7/7ZfVmwgOAn2aBCn+KaePAdj0dDw9+3RMAUbo+0SMVmHPhkA6k9y2HePj0U5GnpX/OFnA2OSLEDs9VWMLqByuPebTpRblEUXm8gp3s7petTwzGIoUnQ/DdmWjvQNSeE+kgTWZNRQOsPjsDU6f/JfDWpGHmj6eqP7kMlJAgE40HF60O5oi5x1rfFy6t0CgjKPJOEttUODKNAjxEyzQkjj/Bf3sgBpWZmpMPu3J3Rbz61iBMU+AFW/v8bu2FDqMH5mYxq87tK3Sga2t5uGlZ1YuuBt82L9/vsSVyuUQpn0lsdO2EW9x7yacWI+PSLytBbsjINPNfc3vlN6JaM3eGM1addw4YyixPMqjFULp9I8UWAJoym9T+HoQVdeZcQ5W+qwo+f83upgpXv/tl9WdArZwIoMuyhO44oNAQPdfLI+vS3zO1UWOjx45x9ZlwMJdmNWP4mnL9jeXlQIDC46yAfUMZ5LKFqFl81CC76WZKXakoCa7XCW4IhJrOz08Pzf+x4pw6W9esbGEpq7CoRYvFQ3SxgXyvTx/y4JwLTE4Nxv4KowoTq9+FuLE7rgWUx9d6ZZcsizG0zI+mPNi65XSGFq0WvDIDUVLMxm8UWxu6eI6jP0Vmg4C24eZzo97tw16kQoiglK7BJDLfM/X8TvaSyxlUFCiGEdsE8OdwolivehTqT3rw1rR9l0dEJHzndNg+95/NceoRDAstLN4US59PE4fRZTRwzCQai4/k8/K7TiL0aXxCOCSUpGCTU5RhAkFRM0qILdaln5+n0n2Om/vDrPzU6ewYgYvMF9VqhpCIlMUOowoNpuE4DIliO1Y7ZKM7V75TBFxu8MEDWxoXlPn8xfDXFdmdoNBKhcDQ66JG6Bti04ak8x1yI9NBoVDOZvJvJHRLJtLmaUEcqinpri4eVYGLx8+dgOaEfyI1Pm2Yw9jt8VIAfmbQHh4nHyxhCjmkswulVPWBRQDekNcfNFqzj8ZFJeItC+RXQsRKZ98InUPcpWx610h9Ids3KVS15sfUnodIcDT5niPf6fRT0am/AXVZ/2DdwtTcelDvYYyK3COavwaGNDlU99UoH2xkljxvuUozsuGOdwlPoy8pJJWLGHKSNpZu/zPwYH0+G/GteEFKjppG/VMYBOqi0puRE="
     }
   },
   "billing": {
@@ -60,10 +64,10 @@
   "shipping": { "street1": "EN peru es la entrega", "country": "PE" },
   "customParameters": {
     "SHOPPER_VAL_BASEIMP": "0",
-    "SHOPPER_EndToEndIdentity": "2d99a34112d13e43d34d8df9810ec1dded6b9a0e7c6bac5871baa6b7bb3144cd",
+    "SHOPPER_EndToEndIdentity": "87bdd41e01dbf05fb07576e2f781bc8ae58485a205f4ea75775ca815a264f2ca",
     "CTPE_DESCRIPTOR_TEMPLATE": "",
     "SHOPPER_ECI": "0103910",
-    "SHOPPER_MID": "100000505",
+    "SHOPPER_MID": "1000000505",
     "SHOPPER_PSERV": "17913101",
     "SHOPPER_VAL_IVA": "0",
     "SHOPPER_VAL_BASE0": "5",
@@ -94,6 +98,6 @@
     ]
   },
   "buildNumber": "acf3c14e80ca6864021f0d2a3fc396f7c32174db@2021-08-02 08:32:25 +0000",
-  "timestamp": "2021-08-03 04:48:50+0000",
-  "ndc": "1A3C80951ABA9DF8E2C996ABCD9B4E4B.uat01-vm-tx04"
+  "timestamp": "2021-08-04 21:45:58+0000",
+  "ndc": "5C29E95A9ED32ADF27CC3817194738ED.uat01-vm-tx04"
 }

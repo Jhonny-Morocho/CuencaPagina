@@ -54,6 +54,7 @@ class Pagination {
 				$result[0][$names[$j]] = "Error: vacío";
 			}
 		}
+	
 		return $result;
 	}
 

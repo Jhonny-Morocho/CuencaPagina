@@ -137,7 +137,9 @@
            <!-- UNDER LINE  -->
         <script type="text/javascript" src="js/jquery.min.js?v=2.0.0"></script> 
         <script src="../../underline/underline.js"></script>
-      
+        <!-- VUE -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <!-- Bootstrap tooltips -->
         <script type="text/javascript" src="js/popper.min.js?v=2.0.0"></script>
         <!-- Bootstrap core JavaScript -->
@@ -194,9 +196,9 @@
             //abrir el mensaje de alerta en el carrito de compras
             $('#modalInfoTarjeta').modal('show');
                 //Disable full page
-                $("body").on("contextmenu",function(e){
+        /*         $("body").on("contextmenu",function(e){
                   return false;
-                });
+                }); */
               
                 ///Disable part of page
                 $("#id").on("contextmenu",function(e){
@@ -204,13 +206,13 @@
                 });
               });
 
-            $(document).keydown(function (event) {
+     /*        $(document).keydown(function (event) {
                 if (event.keyCode == 123) { // Prevent F12
                   return false;
                 } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
                   return false;
                 }
-              });
+              }); */
           </script>
 
           <!-- ================== DIRECCIONAR AL DEMO ================== -->
@@ -246,32 +248,11 @@
             <!-- End Facebook Pixel Code -->
             <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/43e7b358c17a50edbc12de074/271195d8d40a356a969dcfac7.js");</script>
             
-            <!-- ==================== NIEVE =========================== -->
-            <!-- <script type="text/javascript" src="../../nieve/snow.js"></script>
-            <script type="text/javascript">
-            $(function() {
-                $(document).snow({ SnowImage: "../../nieve/snow.gif" });
-            });
-            </script> -->
             <!-- ========================= CODIGO CORREO ==================== -->
             <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/43e7b358c17a50edbc12de074/271195d8d40a356a969dcfac7.js");</script>
              <!-- ================== WASSAP  ================== -->
             <script type="text/javascript" src="../../Floating-WhatsApp/floating-wpp.js"></script>
-            <script type="text/javascript">
-              // $(function () {
-              //     $('#myButton').floatingWhatsApp({
-              //         phone: '5491133359850',
-              //         popupMessage: 'Hello, how can we help you?',
-              //         message: "Tengo una consulta",
-              //         showPopup: true,
-              //         showOnIE: false,
-              //         headerTitle: 'Welcome!',
-              //         headerColor: 'crimson',
-              //         backgroundColor: 'crimson',
-              //         buttonImage: '<img src="burger.svg" />'
-              //     });
-              // });
-          </script>
+
            <!-- CLARIDAD -->
           <script type="text/javascript">
               (function(c,l,a,r,i,t,y){
@@ -280,6 +261,7 @@
                   y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
               })(window, document, "clarity", "script", "7a62he8h28");
           </script>
+     
 </body>
 
 </html>

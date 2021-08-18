@@ -10,7 +10,11 @@ require'../model/mdlCliente.php';
 require'../controler/ctrValidarCampos.php';
 require'../PHPMailer/vendor/autoload.php';
 
+
+
+die(json_encode($_POST));
 $objValidacionCampos= new CtrValidarCampos();
+$respuesta=ModeloCliente::sqlEditarSaldoCliente(@$_POST['idCliente'],@$_POST['nuevoMonto']); 
 
 
 switch (@$_POST['Cliente']) {
@@ -22,6 +26,7 @@ switch (@$_POST['Cliente']) {
        
         break;
     case 'addCliente':
+            die('ENTRE');
             $boolean_validacion=true;
             $ValidarCampos=array(
                 'validacion_correo'=>$objValidacionCampos->validaEmail(@$_POST['inputEmailCliente']),

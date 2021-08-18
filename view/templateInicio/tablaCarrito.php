@@ -6,6 +6,11 @@
       <!-- Heading -->
       <h2 class="my-5 h2 text-center">Tu Carrito</h2>
       <!--Grid row-->
+      <div class="alert alert-primary" role="alert" id="app">
+          {{ message }}
+          <button type="button" class="btn btn-primary" @click="addd()">Primary</button>
+      </div>
+
       <div class="row" id="contenedorCar">
         <!--Grid column-->
         <div class="col-md-7 mb-4" id="formularioFactura">

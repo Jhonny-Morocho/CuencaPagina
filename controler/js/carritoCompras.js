@@ -1,3 +1,179 @@
+const  CarritoCompras = new Vue({
+  el: '#app',
+  //variables globals
+  data: {
+    arrayProductos:[],
+    producto:{}
+  },
+/*   data () {
+    return {
+      info: null
+    }
+  }, */
+  //logica
+  methods:{
+    addCarrito(event){
+      //obtengo el elemento
+      elemento=event.target;
+      //extraigo los datos de dicho elemento
+      var idProducto=elemento.getAttribute('data-id');
+      var nombreProducto=elemento.getAttribute('data-nombre');
+      var precio=elemento.getAttribute("data-precio");
+      
+      //guardamos en el localstorage
+      this.producto={
+        idProducto:idProducto,
+        nombreProducto:nombreProducto,
+        precio:precio
+      }
+      //obetener lo datos de localstorage
+      let productoLocalStorage=localStorage.getItem('productos');
+      if(productoLocalStorage==null){
+        this.arrayProductos.push(this.producto);
+        localStorage.setItem('productos',JSON.stringify(this.arrayProductos));
+        toastr.info('Se agrego '+nombreProducto);
+        return;
+      }
+      //obtenemos los productos del local storage
+      let auxLocalSotorage=JSON.parse(productoLocalStorage);
+
+      //recurremos el array auxiliar para verificar si existe productos repetidos
+      for (let index = 0; index < auxLocalSotorage.length; index++) {
+          const element=auxLocalSotorage[index];
+          if(Number(element['idProducto'])==Number(this.producto.idProducto)){
+            toastr.warning('El producto '+nombreProducto+" ya esta agregado a tu carrito");
+            return;
+          }
+      }
+      //si no existe prodcutos repetidos entonces se agregar al carrito
+      this.arrayProductos=auxLocalSotorage;
+      this.arrayProductos.push(this.producto);
+      localStorage.setItem('productos',JSON.stringify(this.arrayProductos));
+      toastr.info('Se agrego '+nombreProducto);
+      //end
+      return;
+      $(this).after('<i class="fas fa-check  ml-1 mr-1" style="color:#39ff14"></i>');
+
+     console.log(JSON.parse(productoLocalStorage));
+      console.log(this.arrayProductos[0]);
+      for(let index = 0; index < this.arrayProductos.length; index++) {
+        console.log((this.arrayProductos[index]));
+        if(Number(this.producto.id)==Number(this.arrayProductos[index]['idProducto'])){
+          //toastr.warning('El producto '+nombreProducto+" ya esta agregado a tu carrito");
+          console.log('PRODCUTO AGREGADO');
+        }else{
+         /*  this.arrayProductos.push(this.producto);
+          localStorage.setItem('productos',JSON.stringify(this.arrayProductos));
+          toastr.info('Se agrego '+nombreProducto); */
+          console.log('PRODCUTO REPETIDO');
+        }
+
+      }
+      return;
+      
+      //comprovar si el producto esta repetido
+
+
+
+
+      //agregar los productos al array temporal y verificamos si esta repetido o no
+      if(this.arrayProductos.length==0){
+        this.arrayProductos.push(this.producto);
+        localStorage.setItem('productos',JSON.stringify(this.arrayProductos));
+        return;
+      }
+      //revisar si ese dato existe
+      for(let index = 0; index < this.arrayProductos.length; index++) {
+          console.log( this.arrayProductos[index]);
+          //const element = array[index];
+      }
+        
+      
+      return;
+      this.arrayProductos.push(this.producto)
+      return;
+      //verificar si existe el producto repetido en el local storage
+      localStorage.setItem('productos',JSON.stringify(this.arrayProductos));
+
+      console.log(this.producto);
+      console.log(this.arrayProductos.push(this.producto));
+      console.log(localStorage.getItem('productos'));
+      //this.arrayProductos.push(this.producto);
+/*       console.log(this.producto);
+      console.log(this.arrayProductos); */
+      //creamos un objeto
+      return;
+      var nombreProducto=$(this).attr("data-nombre");
+      var precio=$(this).attr("data-id");
+      let formData=new FormData();
+      const user={
+        "inputEmailCliente": "jhonnymichaeldj2011@hotmail.com",
+        "inputPasswordCliente": "/jhonnydj2011@/",
+        "Cliente": "addCliente"
+      }
+      formData.append("inputEmailCliente","jhonnymichaeldj2011@hotmail.com");
+      formData.append("inputPasswordCliente","/jhonnydj2011@/");
+      formData.append("Cliente","addCliente");
+      //console.log(formData);
+      axios.post('http://localhost/CuencaPagina/controler/ctrCliente.php', formData)
+      .then(response =>{
+        //element.innerHTML = response.data.id;
+        console.log(response);
+      }  )
+      .catch(error => {
+          console.log(error);
+          element.parentElement.innerHTML = `Error: ${error.message}`;
+          console.error('There was an error!', error);
+      });
+      return;
+      /* var div1 = document.getElementsByClassName("addCarritoClass");
+      var align = div1.getAttribute("data-id"); */
+
+      //var idProducto=$(this).attr("data-id");
+      console.log(align);
+      return;
+      var nombreProducto=$(this).attr("data-nombre");
+      var precio=$(this).attr("data-precio");
+      console.log(nombreProducto);
+      let producto={
+        id:idProducto,
+        nombreProducto:nombreProducto
+      };
+      this.productos.push(producto);
+      console.log(this.productos);
+    },
+
+  },
+  //ciclo de vida de una app
+  created:function(){
+    //al cargar la pagina pregunto si existe el item producto
+   /*  let datosBd=localStorage.getItem('productos');
+    if(datosBd==null){
+      //si es nullo entonces lo crea el item
+      localStorage.getItem('productos');
+      return;
+    } */
+  }
+  //para retornar funciones
+  ,
+/*   computed:{
+    invertido(){
+      return this.nuevaProducto;
+    }
+  }, */
+  mounted () {
+   /*  axios
+      .get('http://localhost/CuencaPagina/controler/api.php')
+      .then(response => {
+        this.info = response;
+        console.log(this.info);
+      }) */
+ 
+
+  }
+})
+
+
 
 //$(document).ready(function(){
         //localStorage.clear();
@@ -93,7 +269,7 @@
        	
        $(this).after('<i class="fas fa-check  ml-1 mr-1" style="color:#39ff14"></i>');
        $(this).removeClass('buy');
-      toastr.info('Se agrego '+nombreProducto);
+       toastr.info('Se agrego '+nombreProducto);
        //si no tiene datos en local store , encones inicializo el array
        //console.log(localStorage.getItem("listProduct"));
        (localStorage.getItem("listProduct")==null)? listaCarrito=[]: listaCarrito.concat(localStorage.getItem("listProduct"));

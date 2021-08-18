@@ -61,7 +61,7 @@
           <!--Grid column-->
           <div class="col-md-6 col-xl-5 mb-4">
             <!--Form-->
-            <form action="../../controler/ctrCliente.php" method="post" id="login-cliente">     
+            <form action="../../controler/api.php" method="post" id="login-cliente">     
                 <div class="card wow fadeInRight" data-wow-delay="0.3s">
                     <div class="card-body">
                         <!--Header-->

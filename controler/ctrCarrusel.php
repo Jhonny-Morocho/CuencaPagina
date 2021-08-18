@@ -13,7 +13,6 @@ require'../model/mdlCarrusel.php';
 
 switch (@$_POST['Carrsuel']) {
 
-
     case 'AgregarImg':
         function subirArchivoImgCarrusel($ubicacionCarpeta,$inputFile){
             //echo "La ubicacion de la carpeta es :[".$ubicacionCarpeta."]";
