@@ -35,18 +35,18 @@ const  CarritoCompras = new Vue({
         return;
       }
       //obtenemos los productos del local storage
-      let auxLocalSotorage=JSON.parse(productoLocalStorage);
+      let auxArrayLocalSotorage=JSON.parse(productoLocalStorage);
 
       //recurremos el array auxiliar para verificar si existe productos repetidos
-      for (let index = 0; index < auxLocalSotorage.length; index++) {
-          const element=auxLocalSotorage[index];
+      for (let index = 0; index < auxArrayLocalSotorage.length; index++) {
+          const element=auxArrayLocalSotorage[index];
           if(Number(element['idProducto'])==Number(this.producto.idProducto)){
             toastr.warning('El producto '+nombreProducto+" ya esta agregado a tu carrito");
             return;
           }
       }
       //si no existe prodcutos repetidos entonces se agregar al carrito
-      this.arrayProductos=auxLocalSotorage;
+      this.arrayProductos=auxArrayLocalSotorage;
       this.arrayProductos.push(this.producto);
       localStorage.setItem('productos',JSON.stringify(this.arrayProductos));
       toastr.info('Se agrego '+nombreProducto);
