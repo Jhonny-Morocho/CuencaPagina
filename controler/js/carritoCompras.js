@@ -1,9 +1,9 @@
 const  CarritoCompras = new Vue({
-  el: '#app',
+  el: '#carritoCompras',
   //variables globals
   data: {
     arrayProductos:[],
-    producto:{}
+    producto:{},
   },
 /*   data () {
     return {
@@ -12,9 +12,12 @@ const  CarritoCompras = new Vue({
   }, */
   //logica
   methods:{
+
     addCarrito(event){
       //obtengo el elemento
       elemento=event.target;
+      
+
       //extraigo los datos de dicho elemento
       var idProducto=elemento.getAttribute('data-id');
       var nombreProducto=elemento.getAttribute('data-nombre');
@@ -32,6 +35,8 @@ const  CarritoCompras = new Vue({
         this.arrayProductos.push(this.producto);
         localStorage.setItem('productos',JSON.stringify(this.arrayProductos));
         toastr.info('Se agrego '+nombreProducto);
+        event.path[1].innerHTML='<i class="fas fa-check  ml-1 mr-1" style="color:#39ff14"></i>';
+        $('#numProductos').html(Number(this.arrayProductos.length));
         return;
       }
       //obtenemos los productos del local storage
@@ -40,8 +45,8 @@ const  CarritoCompras = new Vue({
       //recurremos el array auxiliar para verificar si existe productos repetidos
       for (let index = 0; index < auxArrayLocalSotorage.length; index++) {
           const element=auxArrayLocalSotorage[index];
-          if(Number(element['idProducto'])==Number(this.producto.idProducto)){
-            toastr.warning('El producto '+nombreProducto+" ya esta agregado a tu carrito");
+          if(element['idProducto']==this.producto.idProducto){
+            toastr.warning("Este producto ya esta agregado a tu carrito");
             return;
           }
       }
@@ -50,58 +55,11 @@ const  CarritoCompras = new Vue({
       this.arrayProductos.push(this.producto);
       localStorage.setItem('productos',JSON.stringify(this.arrayProductos));
       toastr.info('Se agrego '+nombreProducto);
+      event.path[1].innerHTML='<i class="fas fa-check  ml-1 mr-1" style="color:#39ff14"></i>';
+      //actulizar el numero del carrito
+      $('#numProductos').html(Number(this.arrayProductos.length));
       //end
-      return;
-      $(this).after('<i class="fas fa-check  ml-1 mr-1" style="color:#39ff14"></i>');
-
-     console.log(JSON.parse(productoLocalStorage));
-      console.log(this.arrayProductos[0]);
-      for(let index = 0; index < this.arrayProductos.length; index++) {
-        console.log((this.arrayProductos[index]));
-        if(Number(this.producto.id)==Number(this.arrayProductos[index]['idProducto'])){
-          //toastr.warning('El producto '+nombreProducto+" ya esta agregado a tu carrito");
-          console.log('PRODCUTO AGREGADO');
-        }else{
-         /*  this.arrayProductos.push(this.producto);
-          localStorage.setItem('productos',JSON.stringify(this.arrayProductos));
-          toastr.info('Se agrego '+nombreProducto); */
-          console.log('PRODCUTO REPETIDO');
-        }
-
-      }
-      return;
-      
-      //comprovar si el producto esta repetido
-
-
-
-
-      //agregar los productos al array temporal y verificamos si esta repetido o no
-      if(this.arrayProductos.length==0){
-        this.arrayProductos.push(this.producto);
-        localStorage.setItem('productos',JSON.stringify(this.arrayProductos));
-        return;
-      }
-      //revisar si ese dato existe
-      for(let index = 0; index < this.arrayProductos.length; index++) {
-          console.log( this.arrayProductos[index]);
-          //const element = array[index];
-      }
-        
-      
-      return;
-      this.arrayProductos.push(this.producto)
-      return;
-      //verificar si existe el producto repetido en el local storage
-      localStorage.setItem('productos',JSON.stringify(this.arrayProductos));
-
-      console.log(this.producto);
-      console.log(this.arrayProductos.push(this.producto));
-      console.log(localStorage.getItem('productos'));
-      //this.arrayProductos.push(this.producto);
-/*       console.log(this.producto);
-      console.log(this.arrayProductos); */
-      //creamos un objeto
+  
       return;
       var nombreProducto=$(this).attr("data-nombre");
       var precio=$(this).attr("data-id");
@@ -125,34 +83,53 @@ const  CarritoCompras = new Vue({
           element.parentElement.innerHTML = `Error: ${error.message}`;
           console.error('There was an error!', error);
       });
-      return;
-      /* var div1 = document.getElementsByClassName("addCarritoClass");
-      var align = div1.getAttribute("data-id"); */
 
-      //var idProducto=$(this).attr("data-id");
-      console.log(align);
-      return;
-      var nombreProducto=$(this).attr("data-nombre");
-      var precio=$(this).attr("data-precio");
-      console.log(nombreProducto);
-      let producto={
-        id:idProducto,
-        nombreProducto:nombreProducto
-      };
-      this.productos.push(producto);
-      console.log(this.productos);
     },
+    sumarTotal(){
+      //sumar total 
+      let total=0;
+      for (let index = 0; index < this.arrayProductos.length; index++) {
+        const precio=Number((this.arrayProductos[index]['precio']));
+        total=precio+total;
+      }
+      $('#total').html(total.toFixed(2));
+
+    },
+    eliminarProducto(idProducto){
+      //obter la data del local stroge
+      let arrayLocalStorage=JSON.parse(localStorage.getItem('productos'));
+      if(arrayLocalStorage.length==0){
+        alert("NO HAY PRODUCTOS EN TU CESTA");
+        return ;
+      }
+      for (let index = 0; index < arrayLocalStorage.length; index++) {
+        const element=arrayLocalStorage[index];
+        if(idProducto==element['idProducto']){
+          this.arrayProductos.splice(index,1);
+          localStorage.setItem('productos',JSON.stringify(this.arrayProductos));
+          $('#numProductos').html(Number(this.arrayProductos.length));
+          //sumar total 
+          this.sumarTotal();
+          return;
+        }
+      }
+      
+    } 
 
   },
   //ciclo de vida de una app
+  //cuando se cargue la pagina cargar los datos del local sotorage
   created:function(){
     //al cargar la pagina pregunto si existe el item producto
-   /*  let datosBd=localStorage.getItem('productos');
-    if(datosBd==null){
+    let arrayLocalStorage=JSON.parse(localStorage.getItem('productos'));
+    if(arrayLocalStorage.length>0){
       //si es nullo entonces lo crea el item
-      localStorage.getItem('productos');
-      return;
-    } */
+      $('#numProductos').html(Number(arrayLocalStorage.length));
+      //cargo los prodcutos en el pagina carrito
+      this.arrayProductos=arrayLocalStorage;
+      //sumar total 
+      this.sumarTotal();
+    }
   }
   //para retornar funciones
   ,
@@ -168,188 +145,12 @@ const  CarritoCompras = new Vue({
         this.info = response;
         console.log(this.info);
       }) */
- 
 
   }
 })
 
 
 
-//$(document).ready(function(){
-        //localStorage.clear();
-        //inicia el sistema  en car.php se imprime los datoscargando los datos del local store y definiendo la variables listaCarrito
-        var  listaCarrito,precioUnitarioProducto;
-        iniciarTabla();// tabla del carrito de compras
-        // produce un error por que cuando voy al index de productos no hay los span del total por lo tanto controlo ese erro
-        try {
-          sumarProducto();
-        } catch (error) {
-          //console.log(error);
-        }
-      
-        function iniciarTabla(){
-          if(localStorage.getItem("listProduct")!=null){
-            listaCarrito=JSON.parse(localStorage.getItem("listProduct"));// obtengo todos los items del local sotarage
-            //console.log(listaCarrito);
-            $(".cart-notification").html(listaCarrito.length);//
-            listaCarrito.forEach(ForEachImprimirdProductoTableCar);
-            
-          }else{//si esta vacio el localSotarge mosntrar mensaje no exiten productos
-            // $(".cart-table").after('<div class="alert alert-warning carritoVacio" role="alert">'+
-            // 'Your cart is empty</div>');
-            //escondo el total casillero
-            $(".cart-calculator-wrapper").hide();
-            $(".opcionPago").hide();
-            $("#formularioFactura").hide();
-            $("#tablaProductos").hide();
-            $('.BtnaplicarCupon').hide();
-            $('.cuponDescuento').hide();
-            //poner mensaje que el carrito esta vacio
-            $('#contenedorCar').html(
-              '<div class="container d-flex justify-content-center ">'+
-                 
-                        '<i class="fas fa-exclamation-triangle text-warning" style="font-size: 100px;"></i>'+
-                        
-                  
-              '</div>'+
-              '<div class="container alert alert-warning mt-5 d-flex justify-content-center" role="alert">TU CARRITO ESTA VACIO</div>');
-          }
-        }
-
-        function ForEachImprimirdProductoTableCar(item,index){// imprimir datos en la tabla de car.php
-        $(".dataProductos").append(
-    
-            '<tr>'+'<td>'+(index+1)+'</td>'+
-            
-            '<TD  class="classNomProducto" nombre_cancion='+item.nombreProducto+'><p>'+item.nombreProducto+'</p</TD>'+
-            '<TD class="classPrecioCancion"><p>$<span>'+item.precio+'</span></p></TD>'+
-            ' <TD>'+
-                '<i  class="fa fa-trash deleItemCar btnCarrito"  aria-hidden="true"  data-precioCancion='+item.precio+' data-id-Producto='
-                +item.idProducto+'></i>'
-            +'</TD>'+
-            '</tr>'
-          );
-
-          
-      }
-
-      
-      function sumarProducto(){
-        var nodosPrecio,arrayPrecioProduct=[],nodoPrecioProduc,sumaTotal;
-        nodosPrecio=$('.classPrecioCancion p span');
-       
-         for (let index = 0; index < nodosPrecio.length; index++) {
-           //console.log(Number(nodosPrecio[index].innerText));
-           nodoPrecioProduc=nodosPrecio[index].innerText;
-           arrayPrecioProduct.push(Number(nodoPrecioProduc));//guardo el valor de cada producto precio
-          
-         }
-        // obtengo la suma de los productos
-     
-        
-        function sumaArraySubtotal(total,numero){//recibe dos parametros por default
-          return total+numero;
-        } 
-        sumaTotal=arrayPrecioProduct.reduce(sumaArraySubtotal);//ete metodo sirve suma los valores entre sii
-        
-        $(".SpanTotalPagar").html(sumaTotal.toFixed(2));
-        // sumo los valores guardados en el array
-      }
-
-      // ========================añadir productos al carrito================================//
-      // ========================añadir productos al carrito================================//
-      $('.buy').on('click',function(e){// 
-        e.preventDefault();// 
-     
-        //1.//Añadir al carrito
-        var idProducto=$(this).attr("data-id");
-        var nombreProducto=$(this).attr("data-nombre");
-        var precio=$(this).attr("data-precio");
-       //notificacion se agrego producto
-       	
-       $(this).after('<i class="fas fa-check  ml-1 mr-1" style="color:#39ff14"></i>');
-       $(this).removeClass('buy');
-       toastr.info('Se agrego '+nombreProducto);
-       //si no tiene datos en local store , encones inicializo el array
-       //console.log(localStorage.getItem("listProduct"));
-       (localStorage.getItem("listProduct")==null)? listaCarrito=[]: listaCarrito.concat(localStorage.getItem("listProduct"));
-        //console.log("listaCarrito",listaCarrito);
-        listaCarrito.push({"idProducto"     :idProducto,
-							"nombreProducto":nombreProducto,
-              "precio"        :precio});
-        //pinta items en el carrito de compras
-        $(".cart-notification").html(listaCarrito.length);
-        //guardo esos datos en el localstorage
-        localStorage.setItem("listProduct",JSON.stringify(listaCarrito));//asignamos en el localSotre el itemn listarProductos con el dato q tiene el array
-        //console.log(localStorage.getItem);
-        //contar la cantidad de producots en la cesta
-        var cantidadCesta= Number($(".cart-notification").html());//traigo lo q tiene la cesta
-        //console.log(cantidadCesta);
-			  // agrego una nueva variable para saber cuantos productos tengo en el localstore y la suma=========//
-        var canridadCesta= Number($(".cart-notification").html());//traigo lo q tiene la cesta
-        //console.log(cantidadCesta);
-      });
-
-
-      //===================borrar producto carrito=====================
-      $(".deleItemCar").on('click',function(e){
-        e.preventDefault();
-        $(this).parent().parent().remove();//quitamos visualmente
-        funcionRecorrerItemBorrar();
-        //pintar cantidad de productos en el cesta
-        $(".cart-notification").html(localStorage.getItem("cantidadCesta"));//no se que es
-        //window.location.href = "../carrito_compras.php";
-      });
-
-//});
-
-      //
-      function funcionRecorrerItemBorrar(){
-        var idProducto=$(".btnCarrito");//caputuramos todos el botones
-        var classNombreProducto=$(".classNomProducto");//todos los nodos
-        listaCarrito=[];// si ahun quedan productos actualizo el array
-        var idProductoArray,nombreProductoArray,precioProductoArray,subTotalPagar;
-        //console.log(idProducto.length);
-        if(idProducto.length!=0){
-          for (let index = 0; index < idProducto.length; index++) {
-            //console.log(index);
-            idProductoArray=$(idProducto[index]).attr("data-id-Producto");
-            nombreProductoArray=$(classNombreProducto[index]).text();//obtengo nombre cancion
-            precioProductoArray=$(idProducto[index]).attr("data-precioCancion");
-            listaCarrito.push({"idProducto":idProductoArray,
-                                "nombreProducto":nombreProductoArray,
-                                "precio":precioProductoArray
-                                  });
-            
-          }
-          // desopues de guardas los datos en el aarray push, pasamos eso datos del array al local store
-          //console.log(listaCarrito);
-          localStorage.setItem("listProduct",JSON.stringify(listaCarrito));//actualizo el localstore
-          cestaCarrito(idProducto.length);// envio el longitud o tamaño de datos para que se visualice en la cesta
-          //impprimo precio
-         sumarProducto();
-          // subTotalPagar=$('.classPrecionCancion');
-          // console.log(subTotalPagar);
-          // console.log(localStorage.getItem("listProduct"));
-        }else{
-          localStorage.removeItem("listProduct");
-          localStorage.setItem("cantidadCesta","0");
-          iniciarTabla();
-        }
-      }
-
-      function cestaCarrito(cantidadProductos){
-        //////////////////preguntamoos si hay productos en el carrito/////////////
-        if(cantidadProductos!=0){
-          //console.log("cantidadProductos ",cantidadProductos);
-          localStorage.setItem("cantidadCesta",cantidadProductos);
-          //console.log(localStorage.getItem("cantidadCesta"));
-          $(".cart-notification").html(cantidadProductos);
-          
-        }else{
-          console.log("xxxxxx");
-        }
-      }	
 
 
       // ============================ CUPON DE DESCUENTO=======================

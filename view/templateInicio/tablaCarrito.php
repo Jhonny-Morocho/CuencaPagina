@@ -6,32 +6,38 @@
       <!-- Heading -->
       <h2 class="my-5 h2 text-center">Tu Carrito</h2>
       <!--Grid row-->
-      <div class="alert alert-primary" role="alert" id="app">
-          {{ message }}
-          <button type="button" class="btn btn-primary" @click="addd()">Primary</button>
-      </div>
 
-      <div class="row" id="contenedorCar">
+      <div class="row" >
         <!--Grid column-->
         <div class="col-md-7 mb-4" id="formularioFactura">
           <!--Card-->
           <div class="card">
             <!--Card content-->
-            <form class="card-body" id="idFormCarrito" autocomplete="on">
+
+            
+            <form class="card-body needs-validation" 
+                  id="idFormFinalizarCompra"
+                  novalidate 
+                  autocomplete="on"
+                  method="post"  
+                  @submit="formFinalizarCompra">
               <!--Grid row-->
               <div class="row">
                 <!--Grid column-->
+          
                 <div class="col-md-6 mb-2">
                   <!--firstName-->
                   <div class="md-form ">
                     <input type="text" 
                             maxlength="50"
-                            required
+                            v-model="nombre"
                             id="firstName"
+                            required
                             pattern="[a-zA-Z ]{2,254}"
                             class="form-control"
                             name="nombreFc">
                     <label for="firstName" class="">Nombres: </label>
+                    <span class="text-danger" >El campo nombre es requerido</span>
                   </div>
                 </div>
                 <!--Grid column-->
@@ -43,11 +49,13 @@
                     <input type="text" 
                           maxlength="50"
                           id="lastName"
-                          required 
+                          required
+                          v-model="apellido"
                           pattern="[a-zA-Z ]{2,254}"
                           class="form-control" 
                           name="apellidoFc">
                     <label for="lastName" class="">Apellidos:</label>
+                    <span class="text-danger">Please provide a valid zip.</span>
                   </div>
 
                 </div>
@@ -62,41 +70,49 @@
                 <input type="email" 
                        class="form-control" 
                        name="correoFc"
-                       id="email"
-                       required>
+                       required
+                       v-model="correo"
+                       id="email">
                 <label for="email" class="">Correo de facturación:</label>
+                <span class="text-danger">Please provide a valid zip.</span>
               </div>
 
               <!--address-2-->
               <div class="md-form mb-5">
                 <input type="text" 
                         class="form-control" 
-                        required
+                        v-model="direccion"
                         id="address-2"
                         maxlength="50"
+                        required
                         name="direccionFc">
                 <label for="address-2" class="">Dirección:</label>
+                <span class="text-danger">Please provide a valid zip.</span>
               </div>
 
              <!--address-2-->
              <div class="md-form mb-5">
                 <input type="number" 
                        maxlength="15"
-                       required
+                       v-model="telefono"
                        id="phone"
+                       required
                        class="form-control" 
                        name="telefonoFc">
                 <label for="phone" class="">Teléfono:</label>
+                <span class="text-danger">Please provide a valid zip.</span>
               </div>
 
               <div class="md-form mb-5">
                 <input type="number" 
                         class="form-control"
                         id="document" 
-                        required
+                        v-model="documentoIdentidad"
                         maxlength="15"
+                        required
                         name="documentoIdentidadFc" >
                 <label for="document" class="">Documento de identidad:</label>
+                <span class="text-danger" >Please provide a valid zip.</span>
               </div>
 
               <div class="opcionPago">
@@ -129,6 +145,8 @@
               <!-- <button class="btn btn-primary btn-lg btn-block" type="submit">Continuar con el compra</button> -->
             </form>
 
+            
+
           </div>
           <!--/.Card-->
 
@@ -136,7 +154,7 @@
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-md-5 mb-4 " id="tablaProductos">
+        <div class="col-md-5 mb-4 " id="carritoCompras">
 
           <!-- Heading -->
           <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -150,10 +168,21 @@
                             <th >#</th>
                             <th >Producto</th>
                             <th >Precio USD</th>
-                            <th >Eliminar</th>
+                            <th>Eliminar</th>
                         </tr>
                     </thead>
-                    <tbody class="dataProductos">
+                    <tbody v-for="(item,index) in arrayProductos">
+                      <tr>
+                        <td>{{index + 1}}</td>
+                        <td>{{ item.nombreProducto }}</td>
+                        <td>{{ item.precio }}</td>
+                        <td>
+                          <i  class="fa fa-trash deleItemCar" 
+                              v-on:click="eliminarProducto(item.idProducto)"
+                              aria-hidden="true" >
+                          </i>
+                        </td>
+                      </tr>
                     </tbody >
                 </table>
 
@@ -180,7 +209,7 @@
                                         <tr class="trTotalPagar">
                                             <td>Total </td>
                                             <h4>
-                                                <td class="total-amount"> <strong>$ <span class="SpanTotalPagar">0</span></strong></td>
+                                                <td class="total-amount"> <strong>$ <span id="total">0</span></strong></td>
                                             </h4>
                                         </tr>
                                     </table>
@@ -208,6 +237,10 @@
 main{
   background-color: white!important;
 }
+
+
+
+
 </style>
 
 
@@ -232,4 +265,5 @@ main{
   </div>
 </div>
 <!-- Frame Modal Bottom -->
+
 

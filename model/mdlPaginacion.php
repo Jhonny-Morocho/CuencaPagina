@@ -3,6 +3,7 @@
 * Clase para obtener todos los registros de una o varias tablas
 */
 
+
 class PaginationModel {
 	private $query;
 

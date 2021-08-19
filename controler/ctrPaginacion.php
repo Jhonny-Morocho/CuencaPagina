@@ -4,6 +4,7 @@
 * y ajustar la paginación dependiendo de la página actual
 */
 
+require'ctrEncriptar.php';
 
 class Pagination {
 	private static $page;
@@ -27,8 +28,7 @@ class Pagination {
 		}
 	}
 	
-	public static function show_rows($order_by, $sort = "DESC")
-	{
+	public static function show_rows($order_by, $sort = "DESC"){
 		$page = self::$page;
 		$range = self::$range;		
 		$pagination_model = self::$pagination_model;		
@@ -54,8 +54,25 @@ class Pagination {
 				$result[0][$names[$j]] = "Error: vacío";
 			}
 		}
-	
-		return $result;
+		//encriptar la data
+		$arrayAux=array();
+		$ObjEncriptar=new Encriptar();
+		foreach ($result as $key => $value) {
+			$idEncriptado=$ObjEncriptar->encriptarDatos($value['id']);
+			$arrayAux[$key]['id']=$idEncriptado;
+			$arrayAux[$key]['precio']=$value['precio'];
+			$arrayAux[$key]['nombrePista']=$value['nombrePista'];
+			$arrayAux[$key]['demo']=$value['demo'];
+			$arrayAux[$key]['img']=$value['img'];
+			$arrayAux[$key]['caratula']=$value['caratula'];
+			$arrayAux[$key]['nombrePista']=$value['nombrePista'];
+			$arrayAux[$key]['artista']=$value['artista'];
+			$arrayAux[$key]['genero']=$value['genero'];
+			$arrayAux[$key]['apodo']=$value['apodo'];
+			$arrayAux[$key]['fecha']=$value['fecha'];
+		}
+		
+		return $arrayAux;
 	}
 
 	public static function data()

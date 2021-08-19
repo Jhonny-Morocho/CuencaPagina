@@ -15,7 +15,6 @@ require'model/mdlProveedor.php';
 require_once 'controler/ctrTemplateInicio.php';
 $plantilla= new ControladorPlantillaInicio();
 $plantilla->ctr_header();
-
 $plantilla->ctr_tabla_carritoCompras();
 $plantilla->ctr_footer();
 

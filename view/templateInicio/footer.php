@@ -140,6 +140,7 @@
         <!-- VUE -->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://unpkg.com/vee-validate@latest"></script>
         <!-- Bootstrap tooltips -->
         <script type="text/javascript" src="js/popper.min.js?v=2.0.0"></script>
         <!-- Bootstrap core JavaScript -->
@@ -194,7 +195,7 @@
           <script type="text/javascript">
       		$(document).ready(function () {
             //abrir el mensaje de alerta en el carrito de compras
-            $('#modalInfoTarjeta').modal('show');
+            //$('#modalInfoTarjeta').modal('show');
                 //Disable full page
         /*         $("body").on("contextmenu",function(e){
                   return false;

@@ -162,7 +162,7 @@
                         <span class="text-hover text-hover-underline-opening">
                             <a href="../../car.php">
                             
-                                    <span class="badge red z-depth-1 mr-1 cart-notification"> 0 </span>
+                                    <span class="badge red z-depth-1 mr-1 cart-notification" id="numProductos"> 0 </span>
                                     <i class="fas fa-shopping-cart"></i>
                             
                             </a> 
