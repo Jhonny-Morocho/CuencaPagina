@@ -1,3 +1,96 @@
+
+var appx = new Vue({
+    el: '#formularioFactura',
+    data: {
+      nombre:"Jhonny",
+      apellido:"Morocho",
+      correo:"sdd",
+      direccion:"dssdsd",
+      telefono:"055",
+      documentoIdentidad:"sddsd",
+      metodoPago:""
+    },
+    methods:{
+        checkForm: function (e) {
+            e.preventDefault();
+            const formFactura=[
+                {
+                    name:'nombre',
+                    valid:this.validVacio(this.nombre),
+                    value:this.nombre
+               
+                },
+                {
+                    name:'apellido',
+                    valid:this.validVacio(this.nombre),
+                    value:this.apellido
+                },
+                {
+                    
+                    name:'correo',
+                    valid:this.validCorreo(this.correo),
+                    value:this.correo
+                },
+                {
+                    
+                    name:'direccion',
+                    valid:this.validVacio(this.nombre),
+                    value:this.direccion
+
+                },
+                {
+                    
+                    name:'metodoPago',
+                    valid:this.validVacio(this.metodoPago),
+                    value:this.metodoPago
+
+                }
+            ]
+
+            //validar que todos lo no este vacios
+             for (const i in formFactura) {
+                if(formFactura[i]['valid']==false){
+                    toastr.warning("Debe completar todos los campos correctamente");
+                    return;
+                }
+            } 
+
+
+       
+        },
+        validVacio(texto){
+            if(texto.length>0){
+                return true;
+            }
+            return false;
+        },
+        soloNumeros(numero){
+            if(numero!=""){
+                var re =/^[-]?[0-9]+[\.]?[0-9]+$/;
+                return !(re.test(numero));
+            }
+            return false;
+        },
+      
+        validCorreo: function (email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+        },
+        soloTexto(texto){
+            var re =/^[a-zA-Z\ áéíóúÁÉÍÓÚñÑ\s]*$/
+            return !(re.test(texto));
+        },
+        longitudCadena(texto,longitud){
+            if(texto.length>=longitud){
+                return true;
+            }
+            return false;
+        }
+    }
+  })
+
+// AQUI VAN LOS FORMULARIOS PARA LLENAR Y HACEREL PAGO
+
 //enviamos los datos al controlador de pagos para coprobar si existe una session 
 // $.ajax({
 // 	method: "POST",

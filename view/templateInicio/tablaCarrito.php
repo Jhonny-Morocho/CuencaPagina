@@ -9,18 +9,17 @@
 
       <div class="row" >
         <!--Grid column-->
-        <div class="col-md-7 mb-4" id="formularioFactura">
+        <div class="col-md-7 mb-4" >
           <!--Card-->
           <div class="card">
             <!--Card content-->
-
-            
+        
             <form class="card-body needs-validation" 
-                  id="idFormFinalizarCompra"
                   novalidate 
-                  autocomplete="on"
-                  method="post"  
-                  @submit="formFinalizarCompra">
+                  method="post"
+                  ref="formFactura"
+                  id="formularioFactura"
+                  @submit="checkForm">
               <!--Grid row-->
               <div class="row">
                 <!--Grid column-->
@@ -29,15 +28,15 @@
                   <!--firstName-->
                   <div class="md-form ">
                     <input type="text" 
-                            maxlength="50"
                             v-model="nombre"
                             id="firstName"
-                            required
-                            pattern="[a-zA-Z ]{2,254}"
-                            class="form-control"
-                            name="nombreFc">
-                    <label for="firstName" class="">Nombres: </label>
-                    <span class="text-danger" >El campo nombre es requerido</span>
+                            class="form-control">
+                    <label for="firstName" class="">nombre: </label>
+                    <span class="text-danger" v-if="!nombre">El campo nombre es requerido *</span>
+                    <br>
+                    <span class="text-danger" v-if="soloTexto(nombre)">El campo solo admite letras *</span>
+                    <br>
+                    <span class="text-danger" v-if="longitudCadena(nombre,20)">El campo no debe exeder de los 20 caracteres *</span>
                   </div>
                 </div>
                 <!--Grid column-->
@@ -49,13 +48,15 @@
                     <input type="text" 
                           maxlength="50"
                           id="lastName"
-                          required
-                          v-model="apellido"
                           pattern="[a-zA-Z ]{2,254}"
-                          class="form-control" 
-                          name="apellidoFc">
+                          v-model="apellido"
+                          class="form-control">
                     <label for="lastName" class="">Apellidos:</label>
-                    <span class="text-danger">Please provide a valid zip.</span>
+                    <span class="text-danger" v-if="!apellido">El campo Apellido es requerido *</span>
+                    <br>
+                    <span class="text-danger" v-if="soloTexto(apellido)">El campo solo admite letras *</span>
+                    <br>
+                    <span class="text-danger" v-if="longitudCadena(apellido,20)">El campo no debe exeder de los 20 caracteres *</span>
                   </div>
 
                 </div>
@@ -69,56 +70,56 @@
               <div class="md-form mb-5">
                 <input type="email" 
                        class="form-control" 
-                       name="correoFc"
-                       required
                        v-model="correo"
                        id="email">
                 <label for="email" class="">Correo de facturación:</label>
-                <span class="text-danger">Please provide a valid zip.</span>
+                <span class="text-danger" v-if="!correo">El campo correo es requerido *</span>
+                <br>
+                <span class="text-danger" v-if="!validCorreo(correo) && correo!=''">El correo no es valido *</span>
               </div>
 
               <!--address-2-->
               <div class="md-form mb-5">
                 <input type="text" 
                         class="form-control" 
-                        v-model="direccion"
                         id="address-2"
-                        maxlength="50"
-                        required
-                        name="direccionFc">
+                        v-model="direccion">
                 <label for="address-2" class="">Dirección:</label>
-                <span class="text-danger">Please provide a valid zip.</span>
+                <span class="text-danger" v-if="!direccion">El campo dirección es requerido *</span>
+                <br>
+                <span class="text-danger" v-if="longitudCadena(nombre,50)">El campo no debe exeder de los 50 caracteres *</span>
               </div>
 
              <!--address-2-->
              <div class="md-form mb-5">
-                <input type="number" 
-                       maxlength="15"
-                       v-model="telefono"
+                <input type="text" 
                        id="phone"
-                       required
                        class="form-control" 
-                       name="telefonoFc">
+                       v-model="telefono">
                 <label for="phone" class="">Teléfono:</label>
-                <span class="text-danger">Please provide a valid zip.</span>
+                <span class="text-danger" v-if="!telefono">El campo telefono es requerido *</span>
+                <br>
+                <span class="text-danger" v-if="soloNumeros(telefono)">El campo solo admite numeros *</span>
+                <br>
+                <span class="text-danger" v-if="longitudCadena(telefono,15)">El campo no debe exeder de los 15 números *</span>
               </div>
 
               <div class="md-form mb-5">
-                <input type="number" 
+                <input type="text" 
                         class="form-control"
                         id="document" 
-                        v-model="documentoIdentidad"
-                        maxlength="15"
-                        required
-                        name="documentoIdentidadFc" >
+                        v-model="documentoIdentidad">
                 <label for="document" class="">Documento de identidad:</label>
-                <span class="text-danger" >Please provide a valid zip.</span>
+                <span class="text-danger" v-if="!documentoIdentidad">El campo documento de indentidad es requerido *</span>
+                <br>
+                <span class="text-danger" v-if="longitudCadena(documentoIdentidad,20)">El campo no debe exeder de los 20 caracteres *</span>
               </div>
 
               <div class="opcionPago">
                     <h4>Método de pago</h4>
+                    <span class="text-danger" v-if="!metodoPago">El método de pago es requerido *</span>
                   <div class="col-lg-12 form-group">
-                        <input type="radio" name="r1" class="minimal"  value="tarjeta" checked>
+                        <input type="radio"  class="minimal"  value="tarjeta" v-model="metodoPago">
                             <i class="fab fa-cc-mastercard"></i>
                             <i class="fab fa-cc-visa"></i>
                             <i class="fab fa-cc-diners-club"></i>
@@ -127,15 +128,15 @@
                             Tarjeta de Crédito/Débito
                     </div>  
                     <div class="col-lg-3 form-group">
-                        <input type="radio" name="r1" class="minimal"  value="paypal"  >
+                        <input type="radio" class="minimal"  value="paypal" v-model="metodoPago" >
                         <i class="fab fa-cc-paypal"></i> Paypal 
                     </div>
                     <div class="col-lg-3 form-group">
-                      <input type="radio" name="r1" class="minimal"  value="productoCompradoMembresia">
+                      <input type="radio" class="minimal"  value="productoCompradoMembresia" v-model="metodoPago">
                         <i class="fas fa-folder"></i> Membresia
                     </div> 
                      <div class="col-lg-3 form-group">
-                        <input type="radio" name="r1" class="minimal"  value="monedero">
+                        <input type="radio"  class="minimal"  value="monedero" v-model="metodoPago">
                         <i class="fas fa-wallet"></i> Monedero
                     </div> 
                 </div>
