@@ -1,9 +1,20 @@
+
+
 const  CarritoCompras = new Vue({
   el: '#carritoCompras',
   //variables globals
   data: {
     arrayProductos:[],
     producto:{},
+    cuponDescuento:false,
+    cupon:"LATIN30",
+    nombre:"Jhonny",
+    apellido:"Morocho",
+    correo:"jhonnymichaeldj2011@hotmaial.com",
+    direccion:"Los rosales",
+    telefono:"0998202201",
+    documentoIdentidad:"11105116899",
+    metodoPago:""
   },
 /*   data () {
     return {
@@ -59,31 +70,6 @@ const  CarritoCompras = new Vue({
       //actulizar el numero del carrito
       $('#numProductos').html(Number(this.arrayProductos.length));
       //end
-  
-      return;
-      var nombreProducto=$(this).attr("data-nombre");
-      var precio=$(this).attr("data-id");
-      let formData=new FormData();
-      const user={
-        "inputEmailCliente": "jhonnymichaeldj2011@hotmail.com",
-        "inputPasswordCliente": "/jhonnydj2011@/",
-        "Cliente": "addCliente"
-      }
-      formData.append("inputEmailCliente","jhonnymichaeldj2011@hotmail.com");
-      formData.append("inputPasswordCliente","/jhonnydj2011@/");
-      formData.append("Cliente","addCliente");
-      //console.log(formData);
-      axios.post('http://localhost/CuencaPagina/controler/ctrCliente.php', formData)
-      .then(response =>{
-        //element.innerHTML = response.data.id;
-        console.log(response);
-      }  )
-      .catch(error => {
-          console.log(error);
-          element.parentElement.innerHTML = `Error: ${error.message}`;
-          console.error('There was an error!', error);
-      });
-
     },
     sumarTotal(){
       //sumar total 
@@ -93,7 +79,7 @@ const  CarritoCompras = new Vue({
         total=precio+total;
       }
       $('#total').html(total.toFixed(2));
-
+      return total;
     },
     eliminarProducto(idProducto){
       //obter la data del local stroge
@@ -110,14 +96,147 @@ const  CarritoCompras = new Vue({
           $('#numProductos').html(Number(this.arrayProductos.length));
           //sumar total 
           this.sumarTotal();
-          return;
         }
       }
       
+    },
+    checkForm: function (e) {
+      e.preventDefault();
+      const formFactura=[
+          {
+              name:'nombre',
+              valid:this.validVacio(this.nombre) && !this.longitudCadena(this.nombre,20),
+              value:this.nombre
+         
+          },
+          {
+              name:'apellido',
+              valid:this.validVacio(this.nombre) && !this.longitudCadena(this.apellido,20),
+              value:this.apellido
+          },
+          {
+              
+              name:'correo',
+              valid:this.validCorreo(this.correo),
+              value:this.correo
+          },
+          {
+              
+              name:'direccion',
+              valid:this.validVacio(this.nombre) && !this.longitudCadena(this.direccion,50),
+              value:this.direccion
+
+          },
+          {
+              
+              name:'telefono',
+              valid:this.validVacio(this.telefono) && !this.longitudCadena(this.telefono,15),
+              value:this.telefono
+
+          },
+          {
+              
+              name:'documentoIdentidad',
+              valid:this.validVacio(this.documentoIdentidad) && !this.longitudCadena(this.documentoIdentidad,20),
+              value:this.documentoIdentidad
+
+          },
+          {
+              
+              name:'metodoPago',
+              valid:this.validVacio(this.metodoPago),
+              value:this.metodoPago
+
+          }
+      ]
+      console.log(formFactura);
+      //validar que todos lo no este vacios
+      for (const i in formFactura) {
+          if(formFactura[i]['valid']==false){
+          toastr.warning("Debe completar todos los campos correctamente");
+          return;
+          }
+      } 
+ 
+    },
+    aplicarCupon(){
+      let formData=new FormData();
+      formData.append("Cupon","listar");
+      //console.log(formData);
+      axios.post('../../controler/ctrCupon.php', formData)
+      .then(response =>{
+          console.log(response);
+          let data=response.data;
+          nombreCupon=data[0]['nombreCupon'];
+          consumo=data[0]['consumo'];
+          fechaExpiracion=data[0]['fechaExpiracion'];
+          porcentajeDescuento=Number((data[0].descuento)/100); 
+          //cupon activo
+          if(!(moment(fechaExpiracion)>moment.now())){
+            toastr.warning ('Cupon caducado valido');
+           return;
+          }
+          if(!(this.cupon==nombreCupon)){
+            toastr.warning ('Cupon no valido .');
+            return;
+          }
+          if((this.sumarTotal()<=consumo)){
+            //alert("Tu compra debe ser mayor " +consumo + " para aplicar el cupon");
+            toastr.warning("Tu compra debe ser mayor $" +consumo + " para aplicar el cupon");
+            return;
+          }
+          this.cuponDescuento=true;
+          //actuaizar el precio de los productos en el array en memoria
+          arrayAux=this.arrayProductos;
+          this.arrayProductos=[];
+          for (let index = 0; index < arrayAux.length; index++) {
+            let precioActual=Number(arrayAux[index]['precio']);
+            let nuevoPrecio=precioActual-(precioActual*porcentajeDescuento);
+            const producto={
+              idProducto:arrayAux[index]['idProducto'],
+              nombreProducto:arrayAux[index]['nombreProducto'],
+              precio:nuevoPrecio.toFixed(2)
+            }
+            this.arrayProductos.push(producto);
+          }
+          this.sumarTotal();
+          toastr.success('Descuento efectuado exitosamente .');
+      } )
+      .catch(error => {
+          console.log(error);
+          element.parentElement.innerHTML = `Error: ${error.message}`;
+          alert('There was an error!', error);
+      });
+    },
+    validVacio(texto){
+        if(texto.length>0){
+            return true;
+        }
+        return false;
+    },
+    soloNumeros(numero){
+        if(numero!=""){
+            var re =/^[-]?[0-9]+[\.]?[0-9]+$/;
+            return !(re.test(numero));
+        }
+        return false;
+    },
+    validCorreo: function (email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    },
+    soloTexto(texto){
+        var re =/^[a-zA-Z\ áéíóúÁÉÍÓÚñÑ\s]*$/
+        return !(re.test(texto));
+    },
+    longitudCadena(texto,longitud){
+        if(texto.length>=longitud){
+            return true;
+        }
+        return false;
     } 
 
   },
-  //ciclo de vida de una app
   //cuando se cargue la pagina cargar los datos del local sotorage
   created:function(){
     //al cargar la pagina pregunto si existe el item producto
@@ -129,7 +248,9 @@ const  CarritoCompras = new Vue({
       this.arrayProductos=arrayLocalStorage;
       //sumar total 
       this.sumarTotal();
+      return;
     }
+
   }
   //para retornar funciones
   ,
@@ -148,118 +269,3 @@ const  CarritoCompras = new Vue({
 
   }
 })
-
-
-
-
-
-      // ============================ CUPON DE DESCUENTO=======================
-      var cuponDescuento=false;
-      var nombreCupon="";
-      var nuevoTotal=[];// suma de los valores
-      var consumo=0;//consumo para aplicar cupon
-      var ofertaActiva=false;
-      var fechaExpiracion="";
-      var porcentajeDescuento=0;
-      //==desde la base de datos traemos los datos del cupon de descuento
-      $.ajax({
-        method: "POST",
-        url: "../../controler/ctrCupon.php",
-        dataType: "json",
-        data: { Cupon: "listar"},
-        success:function(respuesta){
-          console.log(respuesta[0].fechaExpiracion);
-          nombreCupon=respuesta[0].nombreCupon;
-          consumo=respuesta[0].consumo;
-          fechaExpiracion=respuesta[0].fechaExpiracion;
-          porcentajeDescuento=Number((respuesta[0].descuento)/100);
-          console.log(porcentajeDescuento);
-          if(moment(fechaExpiracion)> moment.now()){
-            ofertaActiva=true;
-          }else{
-            ofertaActiva=false;
-          }
-          
-        }
-      });
-   
-     //console.log( moment(fechaExpiracion)> moment.now() ); //Regresa un boolean
-
-      $('.BtnaplicarCupon').on('click',function(e){
-        e.preventDefault();
-        var inputCupon=$('#inputCupon').val();//obtengo valores de radios
-        //========Tipo de oferta mediante ajax preguntar q oferta esta activa
- 
-        //console.log(inputCupon);
-        //console.log(nombreCupon);
-
-        if(inputCupon==nombreCupon && ofertaActiva==true && Number($(".total-amount span").text()) >=consumo ){
-          $('.BtnaplicarCupon').hide();
-          $('.cuponDescuento').hide();
-            toastr.success ('Descuento efectuado exitosamente .');
-            //console.log(localStorage.getItem("listProduct"));
-            var descuentoLocalSotorage=JSON.parse(localStorage.getItem("listProduct"));
-            //console.log(descuentoLocalSotorage);
-            //
-
-            $(".dataProductos TR").remove();//remover los datos atenriroes
-          
-            descuentoLocalSotorage.forEach(functionDescuento);
-        
-            //$(".SpanTotalPagar").html(nuevaSumaDescuento);
-              
-          function nuevaSumaDescuento(total,numero){//recibe dos parametros por default
-            return total+numero;
-          } 
-          var sumaDescuentoTotal=nuevoTotal.reduce(nuevaSumaDescuento);//ete metodo sirve suma los valores entre sii
-          console.log(sumaDescuentoTotal.toFixed(2));
-
-          $(".SpanTotalPagar").html(sumaDescuentoTotal.toFixed(2));
-          //vacio el array
-          sumaDescuentoTotal=0;
-          nuevoTotal=[];
-          
-        }else{
-
-            if(inputCupon!=nombreCupon  && ofertaActiva==true){
-              //alert("Cupon no valido , el cupon actual es "+nombreCupon+ " y expira el "+fechaExpiracion);
-
-              toastr.warning("El cupon actual es "+nombreCupon+ " y expira el "+fechaExpiracion);
-            }
-
-            if(ofertaActiva==false){
-              //alert("Cupon no valido , el cupon actual es "+nombreCupon+ " y expira el "+fechaExpiracion);
-              toastr.warning('Cupon no valido');
-            }
-
-            
-            
-            if(Number($(".total-amount span").text()) <=consumo){
-              //alert("Tu compra debe ser mayor " +consumo + " para aplicar el cupon");
-              toastr.info("Tu compra debe ser mayor $ " +consumo + " para aplicar el cupon");
-            }
-
-            
-        }
-      })
-
-
-      function functionDescuento(item,index){
-        
-        $(".dataProductos").append(
-    
-          '<tr>'+'<td>'+(index+1)+'</td>'+
-          
-          '<TD  class="classNomProducto" nombre_cancion='+item.nombreProducto+'><p>'+item.nombreProducto+'</p</TD>'+
-          '<TD class="classPrecioCancion colorDescuento"><p>$<span>'+(item.precio-((item.precio)*porcentajeDescuento)).toFixed(2)+'</span></p></TD>'+
-          ' <TD>'+
-              '<i  class="fa fa-trash deleItemCar btnCarrito disabledItemCupon"  aria-hidden="true"  data-precioCancion='+(item.precio-((item.precio)*porcentajeDescuento)).toFixed(2)+' data-id-Producto='
-              +item.idProducto+'></i>'
-          +'</TD>'+
-          '</tr>'
-        );
-        //nuevaSumaDescuento(Number(item.precio*0.50).toFixed(2));
-         nuevoTotal.push(item.precio-((item.precio)*porcentajeDescuento)).toFixed(2);
-       // nuevoTotal=(item.precio*0.50).toFixed(2)+nuevoTotal;
-      }
-

@@ -5,8 +5,7 @@ ini_set('display_errors', 'On');
 require'../model/conexion.php';
 require'../model/mdlCupon.php';
 
-//die(json_encode($_POST));
-//die(json_encode($_POST));
+
 switch (@$_POST['Cupon']) {
 
 

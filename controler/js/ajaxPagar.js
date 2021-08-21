@@ -4,10 +4,10 @@ var appx = new Vue({
     data: {
       nombre:"Jhonny",
       apellido:"Morocho",
-      correo:"sdd",
-      direccion:"dssdsd",
-      telefono:"055",
-      documentoIdentidad:"sddsd",
+      correo:"jhonnymichaeldj2011@hotmaial.com",
+      direccion:"Los rosales",
+      telefono:"0998202201",
+      documentoIdentidad:"11105116899",
       metodoPago:""
     },
     methods:{
@@ -16,13 +16,13 @@ var appx = new Vue({
             const formFactura=[
                 {
                     name:'nombre',
-                    valid:this.validVacio(this.nombre),
+                    valid:this.validVacio(this.nombre) && !this.longitudCadena(this.nombre,20),
                     value:this.nombre
                
                 },
                 {
                     name:'apellido',
-                    valid:this.validVacio(this.nombre),
+                    valid:this.validVacio(this.nombre) && !this.longitudCadena(this.apellido,20),
                     value:this.apellido
                 },
                 {
@@ -34,8 +34,22 @@ var appx = new Vue({
                 {
                     
                     name:'direccion',
-                    valid:this.validVacio(this.nombre),
+                    valid:this.validVacio(this.nombre) && !this.longitudCadena(this.direccion,50),
                     value:this.direccion
+
+                },
+                {
+                    
+                    name:'telefono',
+                    valid:this.validVacio(this.telefono) && !this.longitudCadena(this.telefono,15),
+                    value:this.telefono
+
+                },
+                {
+                    
+                    name:'documentoIdentidad',
+                    valid:this.validVacio(this.documentoIdentidad) && !this.longitudCadena(this.documentoIdentidad,20),
+                    value:this.documentoIdentidad
 
                 },
                 {
@@ -46,16 +60,14 @@ var appx = new Vue({
 
                 }
             ]
-
+            console.log(formFactura);
             //validar que todos lo no este vacios
-             for (const i in formFactura) {
+            for (const i in formFactura) {
                 if(formFactura[i]['valid']==false){
-                    toastr.warning("Debe completar todos los campos correctamente");
-                    return;
+                toastr.warning("Debe completar todos los campos correctamente");
+                return;
                 }
             } 
-
-
        
         },
         validVacio(texto){

@@ -2,23 +2,28 @@
 
   <!--Main layout-->
   <main class="mt-5 pt-4">
-    <div class="container wow fadeIn" style="margin-top: 50px;">
+    <div class="container wow fadeIn" style="margin-top: 50px;" >
       <!-- Heading -->
       <h2 class="my-5 h2 text-center">Tu Carrito</h2>
       <!--Grid row-->
 
-      <div class="row" >
+      <div class="row" id="carritoCompras">
         <!--Grid column-->
-        <div class="col-md-7 mb-4" >
+        <div class="col-12" v-if="arrayProductos.length==0">
+          <div class="alert alert-warning text-center" role="alert">
+            <i class="fas fa-exclamation-triangle"></i>
+            TU CARRITO ESTA VACIO
+            <p class="mt-3"><a href="../../"><i class="fas fa-arrow-left"></i> Ir a la tienda</a></p>
+          </div>
+        </div>
+
+        <div class="col-md-7 mb-4" v-if="arrayProductos.length>0"  >
           <!--Card-->
           <div class="card">
             <!--Card content-->
-        
             <form class="card-body needs-validation" 
                   novalidate 
                   method="post"
-                  ref="formFactura"
-                  id="formularioFactura"
                   @submit="checkForm">
               <!--Grid row-->
               <div class="row">
@@ -145,25 +150,18 @@
               
               <!-- <button class="btn btn-primary btn-lg btn-block" type="submit">Continuar con el compra</button> -->
             </form>
-
-            
-
           </div>
           <!--/.Card-->
-
         </div>
         <!--Grid column-->
-
         <!--Grid column-->
-        <div class="col-md-5 mb-4 " id="carritoCompras">
-
+        <div class="col-md-5 mb-4" v-if="arrayProductos.length>0">
           <!-- Heading -->
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Tu pedido</span>
           </h4>
-
           <div class="cart-table card">
-                <table id="dtBasicExample" class="table  ttable table-hover " cellspacing="0" width="100%">
+                <table  class="table  ttable table-hover " cellspacing="0" width="100%">
                     <thead class="black white-text">
                         <tr >
                             <th >#</th>
@@ -177,7 +175,7 @@
                         <td>{{index + 1}}</td>
                         <td>{{ item.nombreProducto }}</td>
                         <td>{{ item.precio }}</td>
-                        <td>
+                        <td v-if="!cuponDescuento">
                           <i  class="fa fa-trash deleItemCar" 
                               v-on:click="eliminarProducto(item.idProducto)"
                               aria-hidden="true" >
@@ -186,7 +184,6 @@
                       </tr>
                     </tbody >
                 </table>
-
                 <!-- ==============cupon de descuento=========== -->
                     <!-- Promo code -->
                         <div class="card p-2 ">
@@ -197,12 +194,13 @@
                                     placeholder="Tienes cupon de descuento" 
                                     aria-label="Recipient's username" 
                                     name="inputCupon"
+                                    v-model="cupon"
+                                    v-if="!cuponDescuento"
                                     aria-describedby="basic-addon2">
                                 <div class="input-group-append">
-                                    <button class="btn btn-secondary btn-md waves-effect m-0 BtnaplicarCupon" type="button">Aplicar Cupon</button>
+                                    <button class="btn btn-secondary btn-md waves-effect m-0" type="button" v-on:click="aplicarCupon()" v-if="!cuponDescuento">Aplicar Cupon</button>
                             </div>
                         </div>
-
                         <div class="cart-calculator-wrapper">
                             <div class="cart-calculate-items " >
                                 <div class="table-responsive">
