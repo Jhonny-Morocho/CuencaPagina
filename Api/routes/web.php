@@ -22,7 +22,7 @@ try {
     //code...
     $router->get('/proveedor/listasProveedores','ProveedorController@listasProveedores');
     $router->post('/proveedor/login','ProveedorController@login');
-    $router->post('/proveedor/face','ProveedorController@face');
+    $router->post('/cupon/aplicarCupon','CuponController@aplicarCupon');
     $router->get('/productos/listasProductos','ProductoController@listasProductos');
     //$router->group(['middleware' => 'auth'], function () use ($router) {
         //envaimos a guardar datos (end pint,controladador/)

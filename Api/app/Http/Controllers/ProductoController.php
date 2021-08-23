@@ -13,8 +13,7 @@ use Illuminate\Support\Facades\Crypt;
 
 
 
-class ProductoController extends Controller
-{
+class ProductoController extends Controller{
     //Registrar Usuario
     //correo de le emplesa
 
@@ -26,7 +25,6 @@ class ProductoController extends Controller
                 return response()->json(["sms"=>'Operación no exitosa',"Siglas"=>"ONE",'res'=>null]);
             }
             // tengo q encriptar la data y tambien el url del prodcuto
-
             return response()->json(["sms"=>'Operación exitosa',"Siglas"=>"OE",'res'=>$productos]);
         } catch (\Throwable $th) {
             return response()->json(["sms"=>$th->getMessage(),"Siglas"=>"ONE",'res'=>null]);

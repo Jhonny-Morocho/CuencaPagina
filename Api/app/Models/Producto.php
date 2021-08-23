@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model{
     //nombre de la tabla
-    protected $table="productos";
+    protected $table="producto";
     //para saber si en la tabla usamos created_at y update_at
     public $timestamp=true;
     //lista blanca cmapos publicos
