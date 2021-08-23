@@ -14,7 +14,8 @@ const  CarritoCompras = new Vue({
     direccion:"Los rosales",
     telefono:"0998202201",
     documentoIdentidad:"11105116899",
-    metodoPago:""
+    metodoPago:"",
+    ruta:"http://localhost/CuencaPagina/"
   },
 /*   data () {
     return {
@@ -160,52 +161,29 @@ const  CarritoCompras = new Vue({
  
     },
     aplicarCupon(){
-      let formData=new FormData();
-      formData.append("Cupon","listar");
-      //console.log(formData);
-      axios.post('../../controler/ctrCupon.php', formData)
+      if(!this.cupon){
+        toastr.warning ("El cupon es requerido");
+        return;
+      }
+      axios.post(this.ruta+'Api/public/index.php/cupon/aplicarCupon/'+this.cupon, this.arrayProductos)
       .then(response =>{
           console.log(response);
-          let data=response.data;
-          nombreCupon=data[0]['nombreCupon'];
-          consumo=data[0]['consumo'];
-          fechaExpiracion=data[0]['fechaExpiracion'];
-          porcentajeDescuento=Number((data[0].descuento)/100); 
-          //cupon activo
-          if(!(moment(fechaExpiracion)>moment.now())){
-            toastr.warning ('Cupon caducado valido');
-           return;
-          }
-          if(!(this.cupon==nombreCupon)){
-            toastr.warning ('Cupon no valido .');
-            return;
-          }
-          if((this.sumarTotal()<=consumo)){
-            //alert("Tu compra debe ser mayor " +consumo + " para aplicar el cupon");
-            toastr.warning("Tu compra debe ser mayor $" +consumo + " para aplicar el cupon");
-            return;
+          $('#btn-aplicarOferta').html('<span class="spinner-border spinner-border-sm mr-2" id="spinerBtnAplicarOferta" role="status" aria-hidden="true"></span>Cargando..').addClass('disabled');
+          const data=response['data'];
+          if(!(data['Siglas']=='OE')){
+            $('#btn-aplicarOferta').html('Aplicar cupon').removeClass('disabled');
+            $('#btn-aplicarOferta span').html("").hide();
+            return toastr.warning (data['sms']);
           }
           this.cuponDescuento=true;
           //actuaizar el precio de los productos en el array en memoria
-          arrayAux=this.arrayProductos;
-          this.arrayProductos=[];
-          for (let index = 0; index < arrayAux.length; index++) {
-            let precioActual=Number(arrayAux[index]['precio']);
-            let nuevoPrecio=precioActual-(precioActual*porcentajeDescuento);
-            const producto={
-              idProducto:arrayAux[index]['idProducto'],
-              nombreProducto:arrayAux[index]['nombreProducto'],
-              precio:nuevoPrecio.toFixed(2)
-            }
-            this.arrayProductos.push(producto);
-          }
+          this.arrayProductos=data['res'];
           this.sumarTotal();
           toastr.success('Descuento efectuado exitosamente .');
       } )
       .catch(error => {
           console.log(error);
-          element.parentElement.innerHTML = `Error: ${error.message}`;
-          alert('There was an error!', error);
+          toastr.error (`Error: ${error.message}`);
       });
     },
     validVacio(texto){

@@ -198,7 +198,13 @@
                                     v-if="!cuponDescuento"
                                     aria-describedby="basic-addon2">
                                 <div class="input-group-append">
-                                    <button class="btn btn-secondary btn-md waves-effect m-0" type="button" v-on:click="aplicarCupon()" v-if="!cuponDescuento">Aplicar Cupon</button>
+                                    <button class="btn btn-secondary btn-md waves-effect m-0" 
+                                            type="button"
+                                            id="btn-aplicarOferta" 
+                                            v-on:click="aplicarCupon()" 
+                                            v-if="!cuponDescuento">
+                                            Aplicar Cupon
+                                    </button>
                             </div>
                         </div>
                         <div class="cart-calculator-wrapper">
