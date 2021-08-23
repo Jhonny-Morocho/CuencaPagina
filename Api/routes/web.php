@@ -24,6 +24,7 @@ try {
     $router->post('/proveedor/login','ProveedorController@login');
     $router->post('/cupon/aplicarCupon/{nombreCupon}','CuponController@aplicarCupon');
     $router->get('/productos/listasProductos','ProductoController@listasProductos');
+    $router->post('/paypal/productosPaypal','Paypal@productosPaypal');
     //$router->group(['middleware' => 'auth'], function () use ($router) {
         //envaimos a guardar datos (end pint,controladador/)
        /*  $router->post('/usuario/registro','UsuarioController@RegistrarUsuario');

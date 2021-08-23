@@ -75,6 +75,7 @@ final class Versions
   'nikic/fast-route' => 'v1.3.0@181d480e08d9476e61381e04a71b34dc0432e812',
   'nikic/php-parser' => 'v4.10.4@c6d052fc58cb876152f89f532b95a8d7907e7f0e',
   'opis/closure' => '3.6.1@943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5',
+  'paypal/rest-api-sdk-php' => '1.14.0@72e2f2466975bf128a31e02b15110180f059fc04',
   'phpmailer/phpmailer' => 'v6.3.0@4a08cf4cdd2c38d12ee2b9fa69e5d235f37a6dcb',
   'phpoption/phpoption' => '1.7.5@994ecccd8f3283ecf5ac33254543eb0ac946d525',
   'psr/container' => '1.1.1@8622567409010282b7aeebe4bb841fe98b58dcaf',
@@ -161,7 +162,7 @@ final class Versions
   'seld/phar-utils' => '1.1.1@8674b1d84ffb47cc59a101f5d5a3b61e87d23796',
   'symfony/filesystem' => 'v5.2.4@710d364200997a5afde34d9fe57bd52f3cc1e108',
   'theseer/tokenizer' => '1.2.0@75a63c33a8577608444246075ea0af0d052e452a',
-  'laravel/lumen' => '1.0.0+no-version-set@',
+  'laravel/lumen' => 'dev-master@dd3fb4ee7563ed982a8c02a63b836b50de25dfca',
 );
 
     private function __construct()

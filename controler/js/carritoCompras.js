@@ -46,7 +46,7 @@ const  CarritoCompras = new Vue({
       if(productoLocalStorage==null){
         this.arrayProductos.push(this.producto);
         localStorage.setItem('productos',JSON.stringify(this.arrayProductos));
-        toastr.info('Se agrego '+nombreProducto);
+        toastr.success('Se agrego '+nombreProducto);
         event.path[1].innerHTML='<i class="fas fa-check  ml-1 mr-1" style="color:#39ff14"></i>';
         $('#numProductos').html(Number(this.arrayProductos.length));
         return;
@@ -157,7 +157,8 @@ const  CarritoCompras = new Vue({
           toastr.warning("Debe completar todos los campos correctamente");
           return;
           }
-      } 
+      }
+      console.log("TODO BIEN"); 
  
     },
     aplicarCupon(){
