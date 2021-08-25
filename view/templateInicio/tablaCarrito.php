@@ -124,7 +124,7 @@
                     <h4>Método de pago</h4>
                     <span class="text-danger" v-if="!metodoPago">El método de pago es requerido *</span>
                   <div class="col-lg-12 form-group">
-                        <input type="radio"  class="minimal"  value="tarjeta" v-model="metodoPago">
+                        <input type="radio"  class="minimal" value="tarjeta" v-model="metodoPago">
                             <i class="fab fa-cc-mastercard"></i>
                             <i class="fab fa-cc-visa"></i>
                             <i class="fab fa-cc-diners-club"></i>
@@ -133,11 +133,13 @@
                             Tarjeta de Crédito/Débito
                     </div>  
                     <div class="col-lg-3 form-group">
-                        <input type="radio" class="minimal"  value="paypal" v-model="metodoPago" >
+             
+                        <input type="radio" class="minimal"   value="paypal" v-model="metodoPago" >
                         <i class="fab fa-cc-paypal"></i> Paypal 
                     </div>
+             
                     <div class="col-lg-3 form-group">
-                      <input type="radio" class="minimal"  value="productoCompradoMembresia" v-model="metodoPago">
+                      <input type="radio" class="minimal"  value="membresia" v-model="metodoPago">
                         <i class="fas fa-folder"></i> Membresia
                     </div> 
                      <div class="col-lg-3 form-group">
@@ -146,7 +148,7 @@
                     </div> 
                 </div>
               <hr class="mb-4">
-              <button type="submit" id="btn-one" class="btn btn-primary btn-lg btn-block">Continuar con la compra</button>
+              <button type="submit" id="btn-ContinuarCompra" class="btn btn-primary btn-lg btn-block">Continuar con la compra</button>
               
               <!-- <button class="btn btn-primary btn-lg btn-block" type="submit">Continuar con el compra</button> -->
             </form>
@@ -244,7 +246,19 @@ main{
 }
 
 
-
+      /* Media query for mobile viewport */
+      @media screen and (max-width: 400px) {
+            #paypal-button-container {
+                width: 100%;
+            }
+        }
+        
+        /* Media query for desktop viewport */
+        @media screen and (min-width: 400px) {
+            #paypal-button-container {
+                width: 250px;
+            }
+        }
 
 </style>
 
@@ -271,4 +285,5 @@ main{
 </div>
 <!-- Frame Modal Bottom -->
 
+<div id="paypal-button-container"></div>
 

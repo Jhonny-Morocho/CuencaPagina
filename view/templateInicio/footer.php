@@ -140,6 +140,11 @@
         <!-- VUE -->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" ></script>
+        <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+        <script>
+          // Render the PayPal button into #paypal-button-container
+          paypal.Buttons().render('#paypal-button-container');
+        </script>
         <!-- Bootstrap tooltips -->
         <script type="text/javascript" src="js/popper.min.js?v=2.0.0"></script>
         <!-- Bootstrap core JavaScript -->

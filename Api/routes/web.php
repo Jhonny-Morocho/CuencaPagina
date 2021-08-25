@@ -15,6 +15,7 @@
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
+
 });
 
 
@@ -25,8 +26,10 @@ try {
     $router->post('/cupon/aplicarCupon/{nombreCupon}','CuponController@aplicarCupon');
     $router->get('/productos/listasProductos','ProductoController@listasProductos');
     $router->post('/paypal/productosPaypal','Paypal@productosPaypal');
+    $router->post('/paypal/paypal','Paypal@paypal');
+    $router->get('/paypal/finalizarCompraProducto/{idCliente}','Paypal@finalizarCompraProducto');
     //$router->group(['middleware' => 'auth'], function () use ($router) {
-        //envaimos a guardar datos (end pint,controladador/)
+        //envaimos a guardar datos (end pint,controladador/)'Paypal@finalizarCompraProducto
        /*  $router->post('/usuario/registro','UsuarioController@RegistrarUsuario');
         $router->post('/usuario/recuperarPassword','UsuarioController@recuperarPassword');
         $router->post('/usuario/actualizarPassword','UsuarioController@actualizarPassword');
