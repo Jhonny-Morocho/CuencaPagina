@@ -27,7 +27,7 @@ try {
     $router->get('/productos/listasProductos','ProductoController@listasProductos');
     $router->post('/paypal/productosPaypal','Paypal@productosPaypal');
     $router->post('/paypal/paypal','Paypal@paypal');
-    $router->get('/paypal/finalizarCompraProducto/{idCliente}','Paypal@finalizarCompraProducto');
+    $router->get('/paypal/finalizarCompraProducto/','Paypal@finalizarCompraProducto');
     //$router->group(['middleware' => 'auth'], function () use ($router) {
         //envaimos a guardar datos (end pint,controladador/)'Paypal@finalizarCompraProducto
        /*  $router->post('/usuario/registro','UsuarioController@RegistrarUsuario');
@@ -105,5 +105,5 @@ try {
         $router->get('/ofertas-laborales/listarOfertasLaboralesExternal_us/{external_id}','OfertaLaboralController@listarOfertasLaboralesExternal_us'); */
    // });
 } catch (\Throwable $th) {
-    echo $th->getMessage();
+    die( $th->getMessage());
 }

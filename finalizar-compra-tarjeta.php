@@ -10,7 +10,7 @@ session_set_cookie_params(36000);
 session_start();
 //si no existe session no puede entrar
 if (!isset($_SESSION['datosOrden'])) {
-  header('location: index.php');
+  //header('location: index.php');
 }
 require'model/conexion.php';
 
