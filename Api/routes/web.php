@@ -23,6 +23,9 @@ try {
     //code...
     $router->get('/proveedor/listasProveedores','ProveedorController@listasProveedores');
     $router->post('/proveedor/login','ProveedorController@login');
+    $router->post('/cliente/login','ClienteController@login');
+    $router->post('/clienteProducto/listarProductoCliente','ClienteProductoController@listarProductoCliente');
+    $router->post('/membresiaCliente/verMembresia','MembresiaClienteController@verMembresia');
     $router->post('/cupon/aplicarCupon/{nombreCupon}','CuponController@aplicarCupon');
     $router->get('/productos/listasProductos','ProductoController@listasProductos');
     $router->post('/paypal/productosPaypal','Paypal@productosPaypal');

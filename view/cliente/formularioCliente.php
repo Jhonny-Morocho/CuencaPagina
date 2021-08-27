@@ -59,9 +59,10 @@
           </div>
           <!--Grid column-->
           <!--Grid column-->
-          <div class="col-md-6 col-xl-5 mb-4">
+          <div class="col-md-6 col-xl-5 mb-4" id="loginCliente">
             <!--Form-->
-            <form action="../../controler/api.php" method="post" id="login-cliente">     
+            <form  method="post"
+                  @submit="formLoginCliente">     
                 <div class="card wow fadeInRight" data-wow-delay="0.3s">
                     <div class="card-body">
                         <!--Header-->
@@ -73,13 +74,25 @@
                         <!--Body-->
                         <div class="md-form">
                             <i class="fa fa-envelope prefix white-text active"></i>
-                            <input type="email" id="form2" class="white-text form-control" name="inputEmailCliente" id="materialLoginFormEmail" required>
+                            <input type="email" 
+                                    class="white-text form-control" 
+                                    v-model="correo" 
+                                    id="materialLoginFormEmail">
                             <label for="materialLoginFormEmail" class="active">Tu correo</label>
+                            <span class="text-danger" v-if="!correo">El campo correo es requerido *</span>
+                            <br>
+                            <span class="text-danger" v-if="!validCorreo(correo) && correo!=''">El correo no es valido *</span>
                         </div>
                         <div class="md-form">
                             <i class="fa fa-lock prefix white-text active"></i>
-                            <input type="password" id="form4" class="white-text form-control"  name="inputPasswordCliente" required="" maxlength="20">
+                            <input type="password" 
+                                    id="materialLoginFormPassword" 
+                                    class="white-text form-control"  
+                                    v-model="password">
                             <label for="materialLoginFormPassword">Tu contraseña</label>
+                            <span class="text-danger" v-if="!password">El campo contraseña es requerido *</span>
+                            <br>
+                            <span class="text-danger" v-if="longitudCadena(password,20)">El campo no debe exceder de los 20 caracteres *</span>
                         </div>
 
                         <div class="md-form form-sm mb-4">
@@ -87,7 +100,7 @@
                         </div>
 
                         <div class="text-center mt-4">
-                            <button class="btn btn-indigo btn-rounded">Iniciar Sesión</button>
+                            <button class="btn btn-indigo btn-rounded" id="btn-LoginCliente">Iniciar Sesión</button>
                             <hr class="hr-light mb-3 mt-4">
                         </div>
                             <!-- Register -->

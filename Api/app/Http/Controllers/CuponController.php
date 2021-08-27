@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Traits\Encriptar;
 
-use function PHPUnit\Framework\isEmpty;
-
 class CuponController extends Controller{
     use Encriptar;
     public function aplicarCupon(Request $request,$nombreCupon){

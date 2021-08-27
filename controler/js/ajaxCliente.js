@@ -2,6 +2,111 @@
 // ===============================LOGIN CLIENTE============================
 // ===============================LOGIN CLIENTE============================
 
+
+const  loginCliente = new Vue({
+    el: '#loginCliente',
+    //variables globals
+    data: {
+      idCliente:"",
+      password:"",
+      correo:"",
+      nombre:"",
+      apellido:"",
+      dominio:"../../Api/public/index.php/cliente/login"
+    },
+
+    //logica
+    methods:{
+  
+      formLoginCliente: function (e) {
+        e.preventDefault();
+        const formLogin=[
+            {
+                
+                name:'correo',
+                valid:this.validCorreo(this.correo),
+                value:this.correo
+            },
+            {
+                
+                name:'password',
+                valid:this.validVacio(this.password) && !this.longitudCadena(this.password,20),
+                value:this.password
+  
+            }
+        ]
+        console.log(formLogin);
+        //validar que todos lo no este vacios
+        for (const i in formLogin) {
+            if(formLogin[i]['valid']==false){
+            toastr.warning("Debe completar todos los campos correctamente");
+            return;
+            }
+        }
+        let dataLogin=new FormData();
+        dataLogin.append('correo',this.correo);
+        dataLogin.append('password',this.password);
+        $('#btn-LoginCliente').html('<span class="spinner-border spinner-border-sm mr-2" id="spinerBtnLoginCliente" role="status" aria-hidden="true"></span>Cargando..').addClass('disabled');
+        axios.post(this.dominio, dataLogin)
+        .then(response =>{
+            console.log(response);
+            const data=response['data'];
+            if(!(data['Siglas']=='OE')){
+              $('#btn-LoginCliente').html('INICIAR SESIÓN').removeClass('disabled');
+              return toastr.warning (data['sms']);
+            }
+            //actuaizar el precio de los productos en el array en memoria
+            toastr.success('Bienvenido');
+            localStorage.setItem('usuario',JSON.stringify(data['res']));
+            return;
+            setTimeout(function(){
+              window.location.href='../../adminCliente.php';
+            },2000);//tiempo de espera
+        } )
+        .catch(error => {
+            console.log(error);
+            toastr.error (`Error: ${error.message}`);
+        });
+   
+      },
+
+      validVacio(texto){
+          try {
+            if(texto.length>0){
+                  return true;
+              }
+              return false;
+              
+          } catch (error) {
+              console.log(error);
+          }
+      },
+
+      validCorreo: function (email) {
+          var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return re.test(email);
+      },
+      soloTexto(texto){
+          var re =/^[a-zA-Z\ áéíóúÁÉÍÓÚñÑ\s]*$/
+          return !(re.test(texto));
+      },
+      longitudCadena(texto,longitud){
+          if(texto.length>=longitud){
+              return true;
+          }
+          return false;
+      },
+
+    },
+    //cuando se cargue la pagina cargar los datos del local sotorage
+    created:function(){
+      //al cargar la pagina pregunto si existe el item producto
+
+    }
+    ,
+
+  })
+   
 $('#login-cliente').on('submit',function(e){
     e.preventDefault();
 

@@ -21,8 +21,7 @@
           <!--Card-->
           <div class="card">
             <!--Card content-->
-            <form class="card-body needs-validation" 
-                  novalidate 
+            <form class="card-body needs-validation"  
                   method="post"
                   @submit="checkForm">
               <!--Grid row-->
@@ -246,20 +245,6 @@ main{
 }
 
 
-      /* Media query for mobile viewport */
-      @media screen and (max-width: 400px) {
-            #paypal-button-container {
-                width: 100%;
-            }
-        }
-        
-        /* Media query for desktop viewport */
-        @media screen and (min-width: 400px) {
-            #paypal-button-container {
-                width: 250px;
-            }
-        }
-
 </style>
 
 
@@ -285,5 +270,4 @@ main{
 </div>
 <!-- Frame Modal Bottom -->
 
-<div id="paypal-button-container"></div>
 

@@ -140,11 +140,7 @@
         <!-- VUE -->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" ></script>
-        <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
-        <script>
-          // Render the PayPal button into #paypal-button-container
-          paypal.Buttons().render('#paypal-button-container');
-        </script>
+
         <!-- Bootstrap tooltips -->
         <script type="text/javascript" src="js/popper.min.js?v=2.0.0"></script>
         <!-- Bootstrap core JavaScript -->
@@ -163,6 +159,7 @@
         <!-- ======================AJAX================================== -->
         <script type="text/javascript" src="../../controler/js/ajaxProveedor.js?v=2.0.0"></script>
         <script type="text/javascript" src="../../controler/js/ajaxCliente.js?v=3.0.0"></script>
+        <script src="../../controler/js/panelCliente.js"></script>
         <!-- libreria para fechas -->
         <script src="https://unpkg.com/moment"></script> 
         <!-- swith alert -->

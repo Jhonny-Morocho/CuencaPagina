@@ -74,11 +74,11 @@ class Paypal extends Controller{
                         ->setItemList($listaArticulos)
                         ->setDescription('LatinEdit.com')
                         ->setInvoiceNumber(uniqid()); //registro numero unico de esa trasaccion
-                        $ID_registro=$transaccion->getInvoiceNumber();
+            $ID_registro=$transaccion->getInvoiceNumber();
             //ruta para realizar el pago
             $rutaPago=new RedirectUrls();
             $rutaPago->setReturnUrl(getenv("DOMINIO_WEB")."/Api/public/index.php/paypal/finalizarCompraProducto/")//pago exitoso
-                                  ->setCancelUrl(getenv("DOMINIO_WEB")."/resultado.php?exito=false&idpago{$ID_registro}");
+                                  ->setCancelUrl(getenv("DOMINIO_WEB")."/resultado.php?estado=false&idpago{$ID_registro}");
             //redireccionar a la pagina de paypal
             $pago=new Payment();
             $pago->setIntent("sale")
@@ -88,6 +88,7 @@ class Paypal extends Controller{
             $pago->create($this->modoDev());
             $aprobado=$pago->getApprovalLink();
             $respuesta=array('urlPaypal'=>$aprobado,
+                                'idTrasanccion'=>$ID_registro,
                                 'total'=>$sumaTotalCancelar);
             return response()->json(["sms"=>"Operación exitosa","Siglas"=>"OE",'res'=>$respuesta]);
 
@@ -99,8 +100,8 @@ class Paypal extends Controller{
 
 
         if(!isset($request['paymentId']) && !isset($request['PayerID']) ){
-            //return redirect('http://localhost/CuencaPagina/resultado.php?estado=false&error');
-            die("todo mal ");
+            $res="No existe las variables paymentId & PayerID";
+            return redirect(getenv("DOMINIO_WEB").'/resultado.php?estado=FALSE&sms='.$res);
         }
         $paymentId = $request['paymentId'];
         $payment = Payment::get($paymentId, $this->modoDev());
@@ -121,19 +122,14 @@ class Paypal extends Controller{
             // haces un dump del objeto para que veras toda la
             // info que proporciona
              //var_dump($result);
-
+            //pago no aprobado
             if($result->state != "approved") {
-            // redirrecciona a una pagina de 'error'
-            //echo '<script>window.location ="../resultado.php?estado=false"; </script>';
-
-            die("PAGO NO APROBADO");
-
+                return redirect(getenv("DOMINIO_WEB").'/resultado.php?estado=FALSE&sms='.$result->state);
             }
             /////////////OBTENGO LOS DATOS DEL OBJETO Q ME REGRESA PAYPAL
             $transactionsClient = $result->transactions[0];
             $itemListClient     = $transactionsClient->item_list;
             $itemsClient        = $itemListClient->items;
-
             //////////precio de compra
             $detalleCompraPaypal=$result->transactions[0];
             $total_paypal=$detalleCompraPaypal->amount->total;
@@ -155,14 +151,12 @@ class Paypal extends Controller{
                 $array_precio[$key]=$value->price;
                 /* echo '----';*/
             }
-
-            //header("Location:../resultado.php?estado=false");
             die("TODO CON EXITO PRODUCTO ENTREGADO");
-            return redirect('http://localhost/CuencaPagina/resultado.php?estado=TRUE');
+            return redirect(getenv("DOMINIO_WEB").'/resultado.php?estado=TRUE');
 
 
         } catch (\Throwable $th) {
-            return response()->json(["sms"=>$th->getMessage(),"Siglas"=>"ONE",'res'=>null]);
+            return redirect(getenv("DOMINIO_WEB").'/resultado.php?estado=FALSE&sms='.$th->getMessage());
         }
 
     }

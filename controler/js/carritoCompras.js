@@ -225,10 +225,15 @@ const  CarritoCompras = new Vue({
       });
     },
     validVacio(texto){
+      try {
         if(texto.length>0){
             return true;
         }
         return false;
+        
+      } catch (error) {
+        console.log(error);
+      }
     },
     soloNumeros(numero){
         if(numero!=""){
@@ -246,10 +251,15 @@ const  CarritoCompras = new Vue({
         return !(re.test(texto));
     },
     longitudCadena(texto,longitud){
+      try {
         if(texto.length>=longitud){
             return true;
         }
         return false;
+        
+      } catch (error) {
+        console.log(error);
+      }
     },
     btnPago(){
         paypal.Buttons({
@@ -327,11 +337,6 @@ const  CarritoCompras = new Vue({
   }
   //para retornar funciones
   ,
-/*   computed:{
-    invertido(){
-      return this.nuevaProducto;
-    }
-  }, */
   mounted () {
    /*  axios
       .get('http://localhost/CuencaPagina/controler/api.php')
