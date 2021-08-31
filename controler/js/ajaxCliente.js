@@ -58,7 +58,6 @@ const  loginCliente = new Vue({
             //actuaizar el precio de los productos en el array en memoria
             toastr.success('Bienvenido');
             localStorage.setItem('usuario',JSON.stringify(data['res']));
-            return;
             setTimeout(function(){
               window.location.href='../../adminCliente.php';
             },2000);//tiempo de espera

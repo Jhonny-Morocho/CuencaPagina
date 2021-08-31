@@ -1,34 +1,36 @@
 <?php
 
 namespace App\Http\Controllers;
-use PayPal\Rest\ApiContex;
-use PayPal\Auth\OAuthTokenCredential;
+
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 use App\Traits\PaypalBootstrap;
 use App\Traits\Encriptar;
 use App\Models\Producto;
-use JsonSchema\Uri\Retrievers\Curl;
 use PayPal\Api\Payer;
 use PayPal\Api\Item;
 use PayPal\Api\ItemList;
-use PayPal\Api\Details;
 use PayPal\Api\Amount;
 use PayPal\Api\Transaction;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Payment;
-use \PayPal\Api\PaymentExecution;
 
 //require __DIR__ .'/bootstrap.php';
-class Paypal extends Controller{
+class PaypalController extends Controller{
     use Encriptar;
     use PaypalBootstrap;
 
-    public function productosPaypal(Request $request){
+    public function productosPaypal(Request $request,$idCliente){
         try {
             if(!($request->json())){
                 return response()->json(["sms"=>"La data no tiene el formato requerido","Siglas"=>"ONE",'res'=>null]);
             }
-            //descincrpatar los productos
+            //verificar si el id del usuario existe
+            $idDesencriptado=$this->desencriptarCliete($idCliente);
+            $existesUsuario=Cliente::where("id",$idDesencriptado)->first();
+            if(!$existesUsuario){
+                return response()->json(["sms"=>"El usuario ".$idCliente." no existe en la base de datos","Siglas"=>"ONE",'res'=>null]);
+            }
             $productos=$request->json()->all();
             $auxProductos=[];
             foreach ($productos as $key => $value) {
@@ -77,7 +79,7 @@ class Paypal extends Controller{
             $ID_registro=$transaccion->getInvoiceNumber();
             //ruta para realizar el pago
             $rutaPago=new RedirectUrls();
-            $rutaPago->setReturnUrl(getenv("DOMINIO_WEB")."/Api/public/index.php/paypal/finalizarCompraProducto/")//pago exitoso
+            $rutaPago->setReturnUrl(getenv("DOMINIO_WEB")."/Api/public/index.php/clienteProducto/compraPaypal/?idCliente=".$idCliente)//pago exitoso
                                   ->setCancelUrl(getenv("DOMINIO_WEB")."/resultado.php?estado=false&idpago{$ID_registro}");
             //redireccionar a la pagina de paypal
             $pago=new Payment();
@@ -96,70 +98,7 @@ class Paypal extends Controller{
             return response()->json(["sms"=>$th->getMessage(),"Siglas"=>"ONE",'res'=>null]);
         }
     }
-    public function finalizarCompraProducto(Request $request){
 
-
-        if(!isset($request['paymentId']) && !isset($request['PayerID']) ){
-            $res="No existe las variables paymentId & PayerID";
-            return redirect(getenv("DOMINIO_WEB").'/resultado.php?estado=FALSE&sms='.$res);
-        }
-        $paymentId = $request['paymentId'];
-        $payment = Payment::get($paymentId, $this->modoDev());
-        $payerId = $request['PayerID'];
-        $execution = new PaymentExecution();
-        $execution->setPayerId($payerId);
-        try {
-
-            // aqui completas la transaccion
-            // $payment->execute consulta en segundo plano si la transaccion fue exitosa
-            // Si fue exitosa retorna un HTTP 200 y devuelve un objeto
-            // que se almacena el $result
-            // Si el procedo no fue completado con exito retorna un HTTP 4XX y un objeto
-            // con los posibles motivos del error
-            // aqui tienes un ejemplo https://paypal.github.io/PayPal-PHP-SDK/sample/doc/payments/ExecutePayment.html
-            $result = $payment->execute($execution, $this->modoDev());
-
-            // haces un dump del objeto para que veras toda la
-            // info que proporciona
-             //var_dump($result);
-            //pago no aprobado
-            if($result->state != "approved") {
-                return redirect(getenv("DOMINIO_WEB").'/resultado.php?estado=FALSE&sms='.$result->state);
-            }
-            /////////////OBTENGO LOS DATOS DEL OBJETO Q ME REGRESA PAYPAL
-            $transactionsClient = $result->transactions[0];
-            $itemListClient     = $transactionsClient->item_list;
-            $itemsClient        = $itemListClient->items;
-            //////////precio de compra
-            $detalleCompraPaypal=$result->transactions[0];
-            $total_paypal=$detalleCompraPaypal->amount->total;
-            /* echo "<br> el detalle es ".$detalleCompraPaypal;
-            echo "<br>el precio ".$total_paypal."<br>";*/
-            $arrayNombreProducto=[];
-            $array_id_tema=[];
-            $array_precio=[];
-
-            //para agregar el modulo de membresia voy a usar una variable booleana
-            foreach ($itemsClient as $key => $value) {
-                /*echo $value->name.'<br>';*/
-                $arrayNombreProducto[$key]=$value->name;
-
-                /*echo $value->sku.'<br>';*/
-                $array_id_tema[$key]=$value->sku;
-
-                /*echo $value->price.'<br>';*/
-                $array_precio[$key]=$value->price;
-                /* echo '----';*/
-            }
-            die("TODO CON EXITO PRODUCTO ENTREGADO");
-            return redirect(getenv("DOMINIO_WEB").'/resultado.php?estado=TRUE');
-
-
-        } catch (\Throwable $th) {
-            return redirect(getenv("DOMINIO_WEB").'/resultado.php?estado=FALSE&sms='.$th->getMessage());
-        }
-
-    }
     public function paypal(){
         echo "2;xx";
 

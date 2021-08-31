@@ -2,7 +2,6 @@
 
 const  CarritoCompras = new Vue({
   el: '#carritoCompras',
-  //variables globals
   data: {
     arrayProductos:[],
     producto:{},
@@ -14,14 +13,8 @@ const  CarritoCompras = new Vue({
     direccion:"Los rosales",
     telefono:"0998202201",
     documentoIdentidad:"11105116899",
-    metodoPago:null,
-    dominio:"http://localhost/CuencaPagina/"
+    metodoPago:null
   },
-/*   data () {
-    return {
-      info: null
-    }
-  }, */
   //logica
   methods:{
 
@@ -103,99 +96,111 @@ const  CarritoCompras = new Vue({
     },
     checkForm: function (e) {
       e.preventDefault();
-      const formFactura=[
-          {
-              name:'nombre',
-              valid:this.validVacio(this.nombre) && !this.longitudCadena(this.nombre,20),
-              value:this.nombre
-         
-          },
-          {
-              name:'apellido',
-              valid:this.validVacio(this.nombre) && !this.longitudCadena(this.apellido,20),
-              value:this.apellido
-          },
-          {
-              
-              name:'correo',
-              valid:this.validCorreo(this.correo),
-              value:this.correo
-          },
-          {
-              
-              name:'direccion',
-              valid:this.validVacio(this.nombre) && !this.longitudCadena(this.direccion,50),
-              value:this.direccion
-
-          },
-          {
-              
-              name:'telefono',
-              valid:this.validVacio(this.telefono) && !this.longitudCadena(this.telefono,15),
-              value:this.telefono
-
-          },
-          {
-              
-              name:'documentoIdentidad',
-              valid:this.validVacio(this.documentoIdentidad) && !this.longitudCadena(this.documentoIdentidad,20),
-              value:this.documentoIdentidad
-
-          },
-          {
-              
-              name:'metodoPago',
-              valid:this.validVacio(this.metodoPago),
-              value:this.metodoPago
-
-          }
-      ]
-      console.log(formFactura);
-      //validar que todos lo no este vacios
-      for (const i in formFactura) {
-          if(formFactura[i]['valid']==false){
-          toastr.warning("Debe completar todos los campos correctamente");
+      try {
+        const formFactura=[
+            {
+                name:'nombre',
+                valid:this.validVacio(this.nombre) && !this.longitudCadena(this.nombre,20),
+                value:this.nombre
+           
+            },
+            {
+                name:'apellido',
+                valid:this.validVacio(this.nombre) && !this.longitudCadena(this.apellido,20),
+                value:this.apellido
+            },
+            {
+                
+                name:'correo',
+                valid:this.validCorreo(this.correo),
+                value:this.correo
+            },
+            {
+                
+                name:'direccion',
+                valid:this.validVacio(this.nombre) && !this.longitudCadena(this.direccion,50),
+                value:this.direccion
+  
+            },
+            {
+                
+                name:'telefono',
+                valid:this.validVacio(this.telefono) && !this.longitudCadena(this.telefono,15),
+                value:this.telefono
+  
+            },
+            {
+                
+                name:'documentoIdentidad',
+                valid:this.validVacio(this.documentoIdentidad) && !this.longitudCadena(this.documentoIdentidad,20),
+                value:this.documentoIdentidad
+  
+            },
+            {
+                
+                name:'metodoPago',
+                valid:this.validVacio(this.metodoPago),
+                value:this.metodoPago
+  
+            }
+        ]
+        //validar que todos lo no este vacios
+        for (const i in formFactura) {
+            if(formFactura[i]['valid']==false){
+            toastr.warning("Debe completar todos los campos correctamente");
+            return;
+            }
+        }
+        $('#btn-ContinuarCompra').html('<span class="spinner-border spinner-border-sm mr-2" id="spinerBtnAplicarOferta" role="status" aria-hidden="true"></span>Cargando..').addClass('disabled');
+        let endPoint="";
+        //comprobar si tiene session o no
+        if(!localStorage.getItem("usuario")){
+          toastr.warning ("DEBE INICIAR SESIÓN");
           return;
-          }
+        }
+        let usuario=JSON.parse(localStorage.getItem("usuario"));
+        // prepara boton para metodo de pago
+        switch (this.metodoPago) {
+          case "paypal":
+             endPoint="../../Api/public/index.php/paypal/productosPaypal/"+usuario.id;
+            break;
+          case "membresia":
+            //endPoint="Api/public/index.php/paypal/productosPaypal";
+            break;
+          case "monedero":
+            //endPoint="Api/public/index.php/paypal/productosPaypal";
+            break;
+          case "tarjeta":
+            //endPoint="Api/public/index.php/paypal/productosPaypal";
+            break;
+          default:
+            toastr.error ("No existe método de pago selecionado");
+            break;
+        }
+  
+        axios.post(endPoint, this.arrayProductos)
+        .then(response =>{
+            const data=response['data'];
+            if(!(data['Siglas']=='OE')){
+              $('#btn-ContinuarCompra').html('Continuar con la compra').removeClass('disabled');
+              $('#btn-ContinuarCompra').html("").hide();
+              return toastr.warning (data['sms']);
+            }
+            //actuaizar el precio de los productos en el array en memoria
+            toastr.success('Solicitud procesada con éxito');
+            this.metodoPago="";
+            setTimeout(function(){
+              window.location.href=data['res']['urlPaypal'];
+            },2000);//tiempo de espera
+        } )
+        .catch(error => {
+            console.log(error);
+            toastr.error (`Error: ${error.message}`);
+        });
+        
+      } catch (error) {
+        
       }
-      $('#btn-ContinuarCompra').html('<span class="spinner-border spinner-border-sm mr-2" id="spinerBtnAplicarOferta" role="status" aria-hidden="true"></span>Cargando..').addClass('disabled');
-      let endPoint="";
-      switch (this.metodoPago) {
-        case "paypal":
-           endPoint="Api/public/index.php/paypal/productosPaypal";
-          break;
-        case "membresia":
-          //endPoint="Api/public/index.php/paypal/productosPaypal";
-          break;
-        case "monedero":
-          //endPoint="Api/public/index.php/paypal/productosPaypal";
-          break;
-        case "tarjeta":
-          //endPoint="Api/public/index.php/paypal/productosPaypal";
-          break;
-        default:
-          toastr.error ("No existe método de pago selecionado");
-          break;
-      }
-      axios.post(this.dominio+endPoint, this.arrayProductos)
-      .then(response =>{
-          const data=response['data'];
-          if(!(data['Siglas']=='OE')){
-            $('#btn-ContinuarCompra').html('Continuar con la compra').removeClass('disabled');
-            $('#btn-ContinuarCompra').html("").hide();
-            return toastr.warning (data['sms']);
-          }
-          //actuaizar el precio de los productos en el array en memoria
-          toastr.success('Solicitud procesada con éxito');
-          this.metodoPago="";
-          setTimeout(function(){
-            window.location.href=data['res']['urlPaypal'];
-          },2000);//tiempo de espera
-      } )
-      .catch(error => {
-          console.log(error);
-          toastr.error (`Error: ${error.message}`);
-      });
  
     },
     aplicarCupon(){
@@ -203,7 +208,7 @@ const  CarritoCompras = new Vue({
         toastr.warning ("El cupon es requerido");
         return;
       }
-      axios.post(this.dominio+'Api/public/index.php/cupon/aplicarCupon/'+this.cupon, this.arrayProductos)
+      axios.post('../../Api/public/index.php/cupon/aplicarCupon/'+this.cupon, this.arrayProductos)
       .then(response =>{
           console.log(response);
           $('#btn-aplicarOferta').html('<span class="spinner-border spinner-border-sm mr-2" id="spinerBtnAplicarOferta" role="status" aria-hidden="true"></span>Cargando..').addClass('disabled');
@@ -324,14 +329,18 @@ const  CarritoCompras = new Vue({
   created:function(){
     //al cargar la pagina pregunto si existe el item producto
     let arrayLocalStorage=JSON.parse(localStorage.getItem('productos'));
-    if(arrayLocalStorage.length>0){
-      //si es nullo entonces lo crea el item
-      $('#numProductos').html(Number(arrayLocalStorage.length));
-      //cargo los prodcutos en el pagina carrito
-      this.arrayProductos=arrayLocalStorage;
-      //sumar total 
-      this.sumarTotal();
-      return;
+    try {
+      if(arrayLocalStorage.length>0){
+        //si es nullo entonces lo crea el item
+        $('#numProductos').html(Number(arrayLocalStorage.length));
+        //cargo los prodcutos en el pagina carrito
+        this.arrayProductos=arrayLocalStorage;
+        //sumar total 
+        this.sumarTotal();
+        return;
+      }
+    } catch (error) {
+      console.log(error);
     }
 
   }
