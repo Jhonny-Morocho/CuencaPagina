@@ -23,7 +23,7 @@
             <!--Card content-->
             <form class="card-body needs-validation"  
                   method="post"
-                  @submit="checkForm">
+                  @submit="formFactura">
               <!--Grid row-->
               <div class="row">
                 <!--Grid column-->

@@ -8,6 +8,7 @@ trait Encriptar {
     public function encriptarDatosCliente($valor){
         return openssl_encrypt($valor,$this->getMethod(), $this->getClaveCliete(), false, $this->setIv());
     }
+    //productos carrito de compras
     private function desencriptar($valor){
         $encrypted_data = base64_decode($valor);
         return openssl_decrypt($valor,$this->getMethod(), $this->getClave(), false, $this->setIv());
