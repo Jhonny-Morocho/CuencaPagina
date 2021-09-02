@@ -21,8 +21,6 @@ const  CarritoCompras = new Vue({
     addCarrito(event){
       //obtengo el elemento
       elemento=event.target;
-      
-
       //extraigo los datos de dicho elemento
       var idProducto=elemento.getAttribute('data-id');
       var nombreProducto=elemento.getAttribute('data-nombre');
@@ -144,6 +142,7 @@ const  CarritoCompras = new Vue({
   
             }
         ]
+      
         //validar que todos lo no este vacios
         for (const i in formFactura) {
             if(formFactura[i]['valid']==false){
@@ -151,6 +150,7 @@ const  CarritoCompras = new Vue({
             return;
             }
         }
+   
         $('#btn-ContinuarCompra').html('<span class="spinner-border spinner-border-sm mr-2" id="spinerBtnAplicarOferta" role="status" aria-hidden="true"></span>Cargando..').addClass('disabled');
         let endPoint="";
         //comprobar si tiene session o no
@@ -159,6 +159,7 @@ const  CarritoCompras = new Vue({
           return;
         }
         let usuario=JSON.parse(localStorage.getItem("usuario"));
+  
         // prepara boton para metodo de pago
         switch (this.metodoPago) {
           case "paypal":
@@ -177,13 +178,31 @@ const  CarritoCompras = new Vue({
             toastr.error ("No existe método de pago selecionado");
             break;
         }
-  
-        axios.post(endPoint, this.arrayProductos)
+        
+
+        let dataProducto={
+            productos:[this.arrayProductos],
+            formCliente:[
+                {
+                    "nombre":this.nombre,
+                    "apellido":this.apellido,
+                    "correoFacturacion":this.correo,
+                    "direccion":this.direccion,
+                    "telefono":this.telefono,
+                    "total":10,
+                    "documentoIdentidad":this.documentoIdentidad,
+                    "metodoPago":this.metodoPago
+                }
+            ]
+        };
+
+        axios.post(endPoint,  JSON.stringify(dataProducto))
         .then(response =>{
+          console.log(response);
             const data=response['data'];
+            $('#btn-ContinuarCompra').html('Continuar con la compra').removeClass('disabled');
+            //$('#btn-ContinuarCompra').html("").hide();
             if(!(data['Siglas']=='OE')){
-              $('#btn-ContinuarCompra').html('Continuar con la compra').removeClass('disabled');
-              $('#btn-ContinuarCompra').html("").hide();
               return toastr.warning (data['sms']);
             }
             //actuaizar el precio de los productos en el array en memoria
@@ -199,7 +218,7 @@ const  CarritoCompras = new Vue({
         });
         
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
  
     },
@@ -208,6 +227,7 @@ const  CarritoCompras = new Vue({
         toastr.warning ("El cupon es requerido");
         return;
       }
+
       axios.post('../../Api/public/index.php/cupon/aplicarCupon/'+this.cupon, this.arrayProductos)
       .then(response =>{
           console.log(response);

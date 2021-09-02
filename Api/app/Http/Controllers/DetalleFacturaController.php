@@ -34,18 +34,17 @@ class DetalleFacturaController extends Controller{
                 return response()->json(["sms"=>"El usuario ".$idCliente." no existe en la base de datos","Siglas"=>"ONE",'res'=>null]);
             }
             $productos=($request->json()->all())['productos'];
-
             $auxProductos=[];
             foreach ($productos as $key => $value) {
-                $desencriptado=$this->desencriptar($productos[$key]['idProducto']);
+                $desencriptado=$this->desencriptar($value[$key]['idProducto']);
                 $bdProducto=Producto::where('id', $desencriptado)->first();
                 if(!$bdProducto){
-                    return response()->json(["sms"=>"El producto ".$productos[$key]['nombreProducto']." con el identificador ".$productos[$key]['idProducto']." no ha sido encontrado","Siglas"=>"ONE",'res'=>null]);
+                    return response()->json(["sms"=>"El producto ".$value['nombreProducto']." con el identificador ".$productos[$key]['idProducto']." no ha sido encontrado","Siglas"=>"ONE",'res'=>null]);
                 }
                 //desencripto los productos
                 $auxProductos[$key]['idProducto']=$bdProducto->id;
-                $auxProductos[$key]['nombreProducto']=$productos[$key]['nombreProducto'];
-                $auxProductos[$key]['precio']=$productos[$key]['precio'];
+                $auxProductos[$key]['nombreProducto']=$value[$key]['nombreProducto'];
+                $auxProductos[$key]['precio']=$value[$key]['precio'];
             }
 
 
@@ -83,7 +82,7 @@ class DetalleFacturaController extends Controller{
                          ->setDescription('LatinEdit.com')
                          ->setInvoiceNumber(uniqid()); //registro numero unico de esa trasaccion
              $ID_registro=$transaccion->getInvoiceNumber();
-             
+
             //crear factura
             $formCliente=($request->json()->all())['formCliente'];
             $arrayFormCliente=array("productos"=>$auxProductos,
