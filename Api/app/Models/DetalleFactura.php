@@ -12,8 +12,11 @@ class DetalleFactura extends Model{
     protected $fillable=[
         "idCliente",
         "totalCancelar",
-        "idProducto",
-        "fechaFacturacion"
+        "estado",
+        "formFactura",
+        "metodoPago",
+        "created_at",
+        "updated_at"
     ];
     //lista negra campos que no queren que se encuentren facilmente
     public function cliente(){

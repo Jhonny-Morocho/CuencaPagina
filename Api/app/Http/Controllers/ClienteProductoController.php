@@ -36,7 +36,6 @@ class ClienteProductoController extends Controller{
         }
     }
     public function compraPaypal(Request $request){
-
         if(!isset($request['paymentId']) && !isset($request['PayerID']) ){
             $res="No existe las variables paymentId & PayerID";
             return redirect(getenv("DOMINIO_WEB").'/resultado.php?estado=FALSE&sms='.$res);
@@ -59,7 +58,6 @@ class ClienteProductoController extends Controller{
 
             // haces un dump del objeto para que veras toda la
             // info que proporciona
-            var_dump($result);
             //pago no aprobado
             if($result->state != "approved") {
                 return redirect(getenv("DOMINIO_WEB").'/resultado.php?estado=FALSE&sms='.$result->state);
@@ -71,53 +69,28 @@ class ClienteProductoController extends Controller{
             //////////precio de compra
             $detalleCompraPaypal=$result->transactions[0];
             $total_paypal=$detalleCompraPaypal->amount->total;
-            /* echo "<br> el detalle es ".$detalleCompraPaypal;
-            echo "<br>el precio ".$total_paypal."<br>";*/
-            $arrayNombreProducto=[];
-            $array_id_tema=[];
-            $array_precio=[];
+            var_dump( $itemsClient);
+            //enviar factura
+            
+            return;
+            //activamos el estado de la factura para que esten activos
+            $objDetalleFactura=DetalleFactura::where("id",$request['idFactura'])->
+                            update(array(
+                                    "estado"=>1
+                                ));
+            //enviar notificacion de compra exitosa al correo del cliente
 
-            //para agregar el modulo de membresia voy a usar una variable booleana
-            foreach ($itemsClient as $key => $value) {
-                /*echo $value->name.'<br>';*/
-                $arrayNombreProducto[$key]=$value->name;
-
-                /*echo $value->sku.'<br>';*/
-                $array_id_tema[$key]=$value->sku;
-
-                /*echo $value->price.'<br>';*/
-                $array_precio[$key]=$value->price;
-                /* echo '----';*/
+            if(!$objDetalleFactura==TRUE){
+                $sms="NO SE PUDO ACTULIZAR EL ESTADO DE SU FACTURA, PARA MAS INFORMACIÓN CONTACTESE CON LATINEDIT";
+                return redirect(getenv("DOMINIO_WEB").'/resultado.php?estado=FALSE&sms='.$sms);
             }
-            //crear la factura
-            return "TDO BIEN";
-            $DetalleFactura=new DetalleFactura();
-            $DetalleFactura->totalCancelar="";
-            $DetalleFactura->idCliente ="";
-            $DetalleFactura->totalCancelar="";
-            $DetalleFactura->fechaFacturacion="";
-            die($DetalleFactura);
+
             return;
-         /*    $objClienteProducto=new ClienteProducto();
-            $ObjEstudiante->fk_usuario=$ObjUsuario->id;
-            return;
-            $ObjEstudiante->fk_usuario=$ObjUsuario->id;
-            $ObjEstudiante->nombre=$datos["nombre"];
-            $ObjEstudiante->apellido=$datos["apellido"];
-            $ObjEstudiante->cedula=$datos["cedula"];
-            $ObjEstudiante->telefono=$datos["telefono"];
-            $ObjEstudiante->genero=$datos["genero"];
-            $ObjEstudiante->fecha_nacimiento=$datos["fecha_nacimiento"];
-            $ObjEstudiante->direccion_domicilio=$datos["direccion_domicilio"];
-            $ObjEstudiante->observaciones=$datos["observaciones"];
-            $ObjEstudiante->external_es="Es".Utilidades\UUID::v4();
-            $ObjEstudiante->estado=$datos["estado"];
-            $ObjEstudiante->save(); */
-            die("TODO CON EXITO PRODUCTO ENTREGADO");
             return redirect(getenv("DOMINIO_WEB").'/resultado.php?estado=TRUE');
 
 
         } catch (\Throwable $th) {
+            return $th->getMessage();
             return redirect(getenv("DOMINIO_WEB").'/resultado.php?estado=FALSE&sms='.$th->getMessage());
         }
 
