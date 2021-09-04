@@ -13,7 +13,7 @@ trait Encriptar {
         $encrypted_data = base64_decode($valor);
         return openssl_decrypt($valor,$this->getMethod(), $this->getClave(), false, $this->setIv());
     }
-    private function desencriptarCliete($valor){
+    private function desencriptarCliente($valor){
         $encrypted_data = base64_decode($valor);
         return openssl_decrypt($valor,$this->getMethod(), $this->getClaveCliete(), false, $this->setIv());
     }

@@ -25,4 +25,9 @@ class ClienteProducto extends Model{
     public function detallaFactura(){
         return $this->hasMany('App\Models\DetallaFactura','idFactura');
     }
+    public function cliente(){
+        return $this->hasMany('App\Models\Cliente','idCliente');
+    }
+
+
 }

@@ -30,9 +30,9 @@
                         <div class="row">
                             <div class="col-lg-3 col-md-4 ">
                                 <div class="myaccount-tab-menu nav " role="tablist">
-                                    <a href="#dashboad" class="active" data-toggle="tab"><i class="fas fa-table"></i> Tablero</a>
+                                    <a href="#dashboad"  data-toggle="tab"><i class="fas fa-table"></i> Tablero</a>
                                     <a href="#membresia" v-on:click="verMembresia"  data-toggle="tab"><i class="fa fa-folder" aria-hidden="true"></i>Membresias</a>
-                                    <a href="#download" data-toggle="tab" ><i class="fa fa-cart-arrow-down" ></i> Productos Adquiridos</a>
+                                    <a href="#productos" v-on:click="listarFacturasCliente()"  data-toggle="tab" ><i class="fa fa-cart-arrow-down" ></i> Productos Adquiridos</a>
                                     <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Detalles de Mi cuenta</a>
                                     <a href="../../adminCliente.php?cerrar_session=true" ><i class="fas fa-sign-out-alt"></i> Cerrar Session</a>
                                 </div>
@@ -105,56 +105,74 @@
     
                                     <!-- Single Tab Content Start -->
                                     <div class="tab-pane fade show active " id="download" role="tabpanel">
-                                            <div class="myaccount-content ">
-                                                <h3>Productos</h3>
-                                                <?php $cont=1; foreach($facturas as $key=>$value){?>
-                                                  
-                                                    <table id="dtBasicExample" class="table  table-striped table-bordered table-sm table-hover table-dark"  width="100%">
-                                                    <p> <br> Fecha de compra: <?php echo $value['fechaFacturacion'] ?> </p>
-                                                    <p>Total :$ <?php echo $value['totalCancelar'] ?></p>
-                                                        <thead class="tablaCabezera">
-                                                        <tr>
-                                                            <th>#</th>
-                                                            <th>Download</th>
-                                                            <th>REMIXER</th>
-                                                            <th>ARTIST</th>
-                                                            <th>TITLE</th>
-                                                            <th>PRICE</th>
-                                                            <th>METHOD PAYMENT</th>
-                                                        </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                    
-                                                        <?php 
-                                                            $cont_2=1;  
-                                                            
-                                                            // imprimir todos los productos que ha comprado el cliente
-                                                           
-                                                            $clienteProductos=ModeloClienteProducto::sqlListarProductosCliente(@$_SESSION['id_cliente'],$value['id']);
-                                                            if(count($clienteProductos)==0){
-                                                                echo '<div class="alert alert-warning " role="alert">
-                                                                Your producto Is empty
-                                                                </div>';
-                                                            }
-                                                            foreach($clienteProductos as $key=>$value){
-                                                                echo'<tr>   
-                                                                        <th scope="row">'.$cont_2.'</th>
-                                                                        <td><a download   href="../../editCompletos/'.$value['remixCompleto'].'?download_csv=../editCompletos/'.$value['remixCompleto'].'" class="bontIconosProducto"><i class="fas fa-cloud-download-alt"></i></a></td>      
-                                                                        <td>'.$value['apodo'].'</td>
-                                                                        <td>'.$value['artista'].'</td>
-                                                                        <td>'.$value['nombrePista'].'</td>
-                                                                        <td>$ '.$value['precioCompra'].'</td>
-                                                                        <td>'.$value['metodoCompra'].'</td>
-                                                                    </tr>';
-                                                                $cont_2++;
-                                                            } 
-                                                            ?>
-                                                        </tbody>
-                                                    </table>
-                                                <?php $cont++; } ?>
+                                        <div class="myaccount-content ">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="card" v-for="item in detalleFactura">
+                                                    <div class="card-header" id="headingOne">
+                                                        <h5 class="mb-0">
+                                                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                                <p style="font-size: 20px;">+</p>
+                                                            </button>
+                                                        </h5>
+                                                        <span class="text-dark  font-weight-bold"># Orden {{item.id}}</span>
+                                                        <hr>
+                                                        <p class="font-weight-normal text-dark">
+                                                            <span class="font-weight-light">Fecha: </span>{{item.created_at|fechaFormato}}
+                                                        </p>
+                                                        <hr>
+                                                        <p class="font-weight-normal text-dark">
+                                                            <span class="font-weight-light">Metodo compra: </span>{{item.metodoPago}}
+                                                        </p>
+                                                        <hr>
+                                                        <p class="font-weight-normal text-dark">
+                                                            <span class="font-weight-light">Total USD:</span> ${{item.totalCancelar}}
+                                                        </p>
+                                                        <hr>
+                                                        <p class="font-weight-normal text-dark"  v-if="item.estado==0">
+                                                            <span class="font-weight-light">Estado:</span> 
+                                                            <span class="badge badge-danger">No Activo</span>
+                                                        </p>
+                                                        <p class="font-weight-normal text-dark"  v-if="item.estado==1">
+                                                            <span class="font-weight-light">Estado:</span> 
+                                                            <span class="badge badge-success">Activo</span>
+                                                        </p>
+                                                    </div>
+
+                                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <div class="table-responsive">
+                                                                <table id="dtBasicExample" class="table  table-striped table-bordered table-sm table-hover table-dark"  width="100%">
+                                                                    <thead class="tablaCabezera">
+                                                                        <tr >
+                                                                            <th>#</th>
+                                                                            <th>Download</th>
+                                                                            <th>REMIXER</th>
+                                                                            <th>ARTIST</th>
+                                                                            <th>TITLE</th>
+                                                                            <th>PRICE</th>
+                                                                            <th>METHOD PAYMENT</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>   
+                                                                            <th scope="row">'.$cont_2.'</th>
+                                                                            <td><a download   href="../../editCompletos/'.$value['remixCompleto'].'?download_csv=../editCompletos/'.$value['remixCompleto'].'" class="bontIconosProducto"><i class="fas fa-cloud-download-alt"></i></a></td>      
+                                                                            <td>'.$value['apodo'].'</td>
+                                                                            <td>'.$value['artista'].'</td>
+                                                                            <td>'.$value['nombrePista'].'</td>
+                                                                            <td>$ '.$value['precioCompra'].'</td>
+                                                                            <td>'.$value['metodoCompra'].'</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                     </div>
-                                        <!-- Single Tab Content End -->
+                                        </div>
+                                    </div>
+                                    <!-- Single Tab Content End -->
     
     
                                     <!-- Single Tab Content Start Detalle de mi cuenta -->

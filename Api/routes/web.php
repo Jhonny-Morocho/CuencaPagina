@@ -24,11 +24,12 @@ try {
     $router->get('/proveedor/listasProveedores','ProveedorController@listasProveedores');
     $router->post('/proveedor/login','ProveedorController@login');
     $router->post('/cliente/login','ClienteController@login');
-    $router->post('/clienteProducto/listarProductoCliente','ClienteProductoController@listarProductoCliente');
+    $router->post('/clienteProducto/listarProductoCliente/{idFactura}/{idCliente}','ClienteProductoController@listarProductoCliente');
     $router->post('/membresiaCliente/verMembresia','MembresiaClienteController@verMembresia');
     $router->post('/cupon/aplicarCupon/{nombreCupon}','CuponController@aplicarCupon');
     $router->get('/productos/listasProductos','ProductoController@listasProductos');
     $router->post('/detalleFactura/crearFacturaProductosPaypal/{idCliente}','DetalleFacturaController@crearFacturaProductosPaypal');
+    $router->post('/detalleFactura/listarFacturaCliente/{idCliente}','DetalleFacturaController@listarFacturaCliente');
     $router->post('/paypal/paypal','PaypalController@paypal');
     $router->get('/clienteProducto/compraPaypal','ClienteProductoController@compraPaypal');
     //$router->group(['middleware' => 'auth'], function () use ($router) {

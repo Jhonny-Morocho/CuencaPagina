@@ -21,17 +21,7 @@ class Proveedor extends Model{
         "apodo",
         "estado"
     ];
-    //lista negra campos que no queren que se encuentren facilmente
-/*     public function docente(){
-        return $this->hasOne('App\Models\Docente','fk_usuario');
-    }
-    public function estudiante(){
-        return $this->hasOne('App\Models\Estudiante','fk_usuario');
-    }
-    public function empleador(){
-        return $this->hasOne('App\Models\Empleador','fk_usuario');
-    } */
-
+    //los que se relacionan
     public function producto(){
         return $this->hasMany('App\Models\Producto','idProveedor');
     }

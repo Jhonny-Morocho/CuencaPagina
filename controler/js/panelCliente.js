@@ -1,6 +1,9 @@
-// ===============================LOGIN CLIENTE============================
-// ===============================LOGIN CLIENTE============================
-// ===============================LOGIN CLIENTE============================
+
+Vue.filter('fechaFormato', function (value) {
+  let fecha=moment(value).format('MMMM Do YYYY, h:mm:ss a');
+  return fecha;
+})
+
 
 
 const  panelCliente = new Vue({
@@ -15,30 +18,56 @@ const  panelCliente = new Vue({
       saldo:"",
       apellido:"",
       membresiaCliente:[],
-      dominio:"../../Api/public/index.php/membresiaCliente/verMembresia"
+      detalleFactura:[],
+      clienteProducto:[]
     },
 
     //logica
     methods:{
   
-    verMembresia(){
-        let cliente= new FormData();
-        cliente.append('id',this.idCliente);
-        axios.post(this.dominio, cliente)
+      verMembresia(){
+          let cliente= new FormData();
+          cliente.append('id',this.idCliente);
+          axios.post(this.dominio, cliente)
+          .then(response =>{
+              const data=response['data'];
+              if(!(data['Siglas']=='OE')){
+                return toastr.warning (data['sms']);
+              }
+              //actuaizar el precio de los productos en el array en memori
+              this.membresiaCliente=data['res'];
+          } )
+          .catch(error => {
+              console.log(error);
+              toastr.error (`Error: ${error.message}`);
+          });
+
+      },
+      
+      listarFacturasCliente(){
+        let endPoint="../../Api/public/index.php/detalleFactura/listarFacturaCliente/";
+        axios.post(endPoint+this.idCliente)
         .then(response =>{
+            console.log(response);
             const data=response['data'];
             if(!(data['Siglas']=='OE')){
               return toastr.warning (data['sms']);
             }
-            //actuaizar el precio de los productos en el array en memori
-            this.membresiaCliente=data['res'];
-        } )
+            this.detalleFactura=data['res'];
+            console.log(this.detalleFactura);
+
+            this.detalleFactura.forEach(element => {
+              //console.log(element);
+            });
+        })
         .catch(error => {
             console.log(error);
             toastr.error (`Error: ${error.message}`);
         });
-
-    }
+      },
+      onChange(){
+        console.log("X");
+      }
 
 
     },

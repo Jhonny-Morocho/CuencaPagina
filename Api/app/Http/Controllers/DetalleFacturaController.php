@@ -16,7 +16,7 @@ use PayPal\Api\Amount;
 use PayPal\Api\Transaction;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Payment;
-
+use Illuminate\Support\Facades\Crypt;
 class DetalleFacturaController extends Controller{
     use Encriptar;
     use PaypalBootstrap;
@@ -28,7 +28,7 @@ class DetalleFacturaController extends Controller{
                 return response()->json(["sms"=>"La data no tiene el formato requerido","Siglas"=>"ONE",'res'=>null]);
             }
             //verificar si el id del usuario existe
-            $idDesencriptado=$this->desencriptarCliete($idCliente);
+            $idDesencriptado=$this->desencriptarCliente($idCliente);
             $existesUsuario=Cliente::where("id",$idDesencriptado)->first();
             if(!$existesUsuario){
                 return response()->json(["sms"=>"El usuario ".$idCliente." no existe en la base de datos","Siglas"=>"ONE",'res'=>null]);
@@ -36,18 +36,16 @@ class DetalleFacturaController extends Controller{
             $productos=($request->json()->all())['productos'];
             $auxProductos=[];
             foreach ($productos as $key => $value) {
-                $desencriptado=$this->desencriptar($value[$key]['idProducto']);
+                $desencriptado=$this->desencriptar($value['idProducto']);
                 $bdProducto=Producto::where('id', $desencriptado)->first();
                 if(!$bdProducto){
                     return response()->json(["sms"=>"El producto ".$value['nombreProducto']." con el identificador ".$productos[$key]['idProducto']." no ha sido encontrado","Siglas"=>"ONE",'res'=>null]);
                 }
                 //desencripto los productos
                 $auxProductos[$key]['idProducto']=$bdProducto->id;
-                $auxProductos[$key]['nombreProducto']=$value[$key]['nombreProducto'];
-                $auxProductos[$key]['precio']=$value[$key]['precio'];
+                $auxProductos[$key]['nombreProducto']=$value['nombreProducto'];
+                $auxProductos[$key]['precio']=$value['precio'];
             }
-
-
             //enviamos los datos a la api de paypal
             $ObjPayerCompra=new Payer();
             $ObjPayerCompra->setPaymentMethod('paypal');
@@ -130,5 +128,22 @@ class DetalleFacturaController extends Controller{
         } catch (\Throwable $th) {
             return response()->json(["sms"=>$th->getMessage(),"Siglas"=>"ONE",'res'=>null]);
         }
+    }
+    public function listarFacturaCliente($idCliente){
+        try {
+            $idClienteDesencriptado=$this->desencriptarCliente($idCliente);
+            //1.Preguntamos si existe el usuario
+            $existeUsuario=Cliente::where('id',$idClienteDesencriptado)->where('estado',1)->first();
+            if(!$existeUsuario){
+                return response()->json(["sms"=>"El usuario ".$idCliente." no ha sido encontrado","Siglas"=>"UNE"]);
+            }
+            //cliente factura
+            $detalleFactura=DetalleFactura::where("detalle_factura.idCliente",$idClienteDesencriptado)->get();
+            return response()->json(["sms"=>'Operación exitosa',"Siglas"=>"OE",'res'=>$detalleFactura]);
+
+        } catch (\Throwable $th) {
+            return response()->json(["sms"=>$th->getMessage(),"Siglas"=>"ERROR"]);
+        }
+
     }
 }

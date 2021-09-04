@@ -5,6 +5,7 @@ const  CarritoCompras = new Vue({
   data: {
     arrayProductos:[],
     producto:{},
+    total:0,
     cuponDescuento:false,
     cupon:"",
     nombre:"Jhonny",
@@ -71,6 +72,7 @@ const  CarritoCompras = new Vue({
         total=precio+total;
       }
       $('#total').html(total.toFixed(2));
+      this.total=total.toFixed(2);
       return total;
     },
     eliminarProducto(idProducto){
@@ -179,9 +181,8 @@ const  CarritoCompras = new Vue({
             break;
         }
         
-
         let dataProducto={
-            productos:[this.arrayProductos],
+            productos:this.arrayProductos,
             formCliente:[
                 {
                     "nombre":this.nombre,
@@ -189,13 +190,13 @@ const  CarritoCompras = new Vue({
                     "correoFacturacion":this.correo,
                     "direccion":this.direccion,
                     "telefono":this.telefono,
-                    "total":10,
+                    "total":this.total,
                     "documentoIdentidad":this.documentoIdentidad,
                     "metodoPago":this.metodoPago
                 }
             ]
         };
-
+ 
         axios.post(endPoint,  JSON.stringify(dataProducto))
         .then(response =>{
           console.log(response);
@@ -307,16 +308,6 @@ const  CarritoCompras = new Vue({
     }
 
   }
-  //para retornar funciones
-  ,
-  mounted () {
-   /*  axios
-      .get('http://localhost/CuencaPagina/controler/api.php')
-      .then(response => {
-        this.info = response;
-        console.log(this.info);
-      }) */
 
-  }
 })
  

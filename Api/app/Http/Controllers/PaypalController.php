@@ -26,7 +26,7 @@ class PaypalController extends Controller{
                 return response()->json(["sms"=>"La data no tiene el formato requerido","Siglas"=>"ONE",'res'=>null]);
             }
             //verificar si el id del usuario existe
-            $idDesencriptado=$this->desencriptarCliete($idCliente);
+            $idDesencriptado=$this->desencriptarCliente($idCliente);
             $existesUsuario=Cliente::where("id",$idDesencriptado)->first();
             if(!$existesUsuario){
                 return response()->json(["sms"=>"El usuario ".$idCliente." no existe en la base de datos","Siglas"=>"ONE",'res'=>null]);

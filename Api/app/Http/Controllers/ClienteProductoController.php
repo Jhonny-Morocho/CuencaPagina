@@ -17,23 +17,24 @@ class ClienteProductoController extends Controller{
     use Encriptar;
     use PaypalBootstrap;
     use TemplateCorreoNotificacion;
-    public function listarProductoCliente(Request $request){
-        try {
-            //verificar si existe ese usuario
-            $this->validate($request, [
-                'id' => 'required'
-            ]);
-            if(!($request->json())){
-                return response()->json(["sms"=>"Los datos no tienene el formato deseado","Siglas"=>"DNF"]);
-            }
 
-            $idCliente=$this->desencriptarCliete($request['id']);
+    public function listarProductoCliente($idFactura,$idCliente){
+        try {
+
+            $idClienteDesencriptado=$this->desencriptarCliente($idCliente);
             //1.Preguntamos si existe el usuario
-            $existeUsuario=Cliente::where('id',$idCliente)->where('estado',1)->first();
+            $existeUsuario=Cliente::where('id',$idClienteDesencriptado)->where('estado',1)->first();
             if(!$existeUsuario){
-                return response()->json(["sms"=>"El usuario ".$request['id']." no ha sido encontrado","Siglas"=>"UNE"]);
+                return response()->json(["sms"=>"El cliente  ".$idCliente." no tiene permisos","Siglas"=>"UNE"]);
             }
-            $clienteProducto=ClienteProducto::where("idCliente",22)->get();
+            //cliente factura
+            $clienteProducto=ClienteProducto::join("cliente","cliente.id","cliente_producto.idCliente")
+                                            ->join("detalle_factura","detalle_factura.id","cliente_producto.idFactura")
+                                            ->join("producto","producto.id","cliente_producto.idProducto")
+                                            ->select("metodoCompra","precioCompra","remixCompleto")
+                                            ->where("detalle_factura.id",$idFactura)
+                                            ->where("detalle_factura.estado",1)
+                                            ->get();
             return response()->json(["sms"=>'Operación exitosa',"Siglas"=>"OE",'res'=>$clienteProducto]);
 
         } catch (\Throwable $th) {
@@ -82,7 +83,7 @@ class ClienteProductoController extends Controller{
                 $sms="NO SE PUDO ACTULIZAR EL ESTADO DE SU FACTURA, PARA MAS INFORMACIÓN CONTACTESE CON LATINEDIT";
                 return redirect(getenv("DOMINIO_WEB").'/resultado.php?estado=FALSE&sms='.$sms);
             }
-            $idClienteDesencriptado=$this->desencriptarCliete($request['idCliente']);
+            $idClienteDesencriptado=$this->desencriptarCliente($request['idCliente']);
             $usuarioCliente=Cliente::where('id',$idClienteDesencriptado)->first();
             //prepara la factura
             $facturaCorreo=$this->templateFacturaPaypalProductos($request['idFactura']);
