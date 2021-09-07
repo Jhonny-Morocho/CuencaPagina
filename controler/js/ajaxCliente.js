@@ -17,7 +17,6 @@ const  loginCliente = new Vue({
 
     //logica
     methods:{
-  
       formLoginCliente: function (e) {
         e.preventDefault();
         const formLogin=[
@@ -99,52 +98,42 @@ const  loginCliente = new Vue({
     },
     //cuando se cargue la pagina cargar los datos del local sotorage
     created:function(){
-      //al cargar la pagina pregunto si existe el item producto
+
+      //pregunto si existe sesion inicada
+/*       let usuario=JSON.parse(localStorage.getItem("usuario"));
+      if(usuario){
+        return;
+      }
+      console.log("SI EXISTE SEESION"); */
 
     }
-    ,
 
-  })
+})
    
-$('#login-cliente').on('submit',function(e){
-    e.preventDefault();
+const  navlogin = new Vue({
+    el: '#nav-login',
+    //variables globals
+    data: {
+      loginUsuario:false,
+      nombreUsuario:""
+    },
 
-    animacion();
-    // obtnemos los datos del formulario
-    var datos=$(this).serializeArray();
-    console.log($(this).attr('method'));
-    console.log(datos);//imprimr los valores
-        $.ajax({
-            type:$(this).attr('method'),
-            data:datos,
-            url:$(this).attr('action'),
-            dataType:'json',//json
-            success:function(data){
-                console.log(data);//el usuario si existe
-                if(data.respuesta=='true_password'){
-                    $(".smsEsperaLogin").html('<div class="alert alert-success alert-dismissible">'+
-                    '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
-                    '<h4><i class="icon fa fa-warning"></i> Hola , Bienvenido </h4> Bienvenido '+data.usuario+
-                    '</div>');
-                  
-                    setTimeout(function(){
-                        window.location.href='../../adminCliente.php';
-                    },2000);//tiempo de espera
-                }else{
-                    $(".smsEsperaLogin").html('<div class="alert alert-warning alert-dismissible">'+
-                    '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>'+
-                    '<h4><i class="icon fa fa-warning"></i> Aviso !</h4>'+data.respuesta+
-                    '</div>');
-                   
-                }
-            }
-        });
+    //logica
+    methods:{
+    
+    },
+    //cuando se cargue la pagina cargar los datos del local sotorage
+    created:function(){
+      //pregunto si existe sesion inicada
+       let usuario=JSON.parse(localStorage.getItem("usuario"));
+      if(!usuario){
+        return;
+      }
+      this.loginUsuario=true;
+      this.nombreUsuario=usuario.nombre;
+    }
 
-   
-
-
-
-});
+})
     ///////////////////////////////REGISTRO CLIENTE/////////////////////////////////////////////////////////////////
     ///////////////////////////////REGISTRO CLIENTE/////////////////////////////////////////////////////////////////
     ///////////////////////////////REGISTRO CLIENTE/////////////////////////////////////////////////////////////////

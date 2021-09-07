@@ -130,41 +130,20 @@
                                     <i class="fas fa-user"></i> MI CUENTA 
                                 </span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-                            <?php 
-                                    if(isset($_SESSION['usuario'])){// si no existe session presentar esto admin_cliente
-                                        switch (@$_SESSION['tipo_usuario']) {
-                                            case 'cliente':
-
-                                                    echo '<a class="dropdown-item" href="../../adminCliente.php"">Hola: '.$_SESSION['usuario'].'</a>';
-                                                break;
-                                            case 'proveedor':  
-                                                    echo ' <a class="dropdown-item " href="../../view/admin/index_admin.php"> Bienvenido : '.$_SESSION['usuario'].'</a>';
-                                                break;
-                                            case 'admin':
-                                                    echo ' <div class="dropdown header-top-dropdown">
-                                                                <a class="dropdown-item " href="../../view/admin/index_admin.php"> Hi  : '.$_SESSION['usuario'].'</a>
-                                                                
-                                                            </div> ';
-                                                break;
-                                        }
-                                    }else{
-                                        echo '<a class="dropdown-item" href="../../login.php">Login</a>
-                                        <a class="dropdown-item" href="../../registro.php">Registrarme</a>';
-                                    }
-                                ?>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4" id="nav-login">
+                                <a class="dropdown-item" href="../../adminCliente.php" v-if="loginUsuario">{{nombreUsuario}}</a>
+                                <a class="dropdown-item" href="../../login.php" v-if="!loginUsuario">LOGIN</a>
+                                <a class="dropdown-item" href="../../registro.php" v-if="!loginUsuario">REGISTRO</a>
                             </div>
                         </li>
                     </ul>
                     <!-- Right -->
-                    <ul class="navbar-nav nav-flex-icons">
+                    <ul class="navbar-nav nav-flex-icons " >
                         <li class="nav-item">
                         <span class="text-hover text-hover-underline-opening">
                             <a href="../../car.php">
-                            
-                                    <span class="badge red z-depth-1 mr-1 cart-notification" id="numProductos"> 0 </span>
-                                    <i class="fas fa-shopping-cart"></i>
-                            
+                                <span class="badge red z-depth-1 mr-1 cart-notification" id="numProductos"> 0 </span>
+                                <i class="fas fa-shopping-cart"></i>
                             </a> 
                         </span>
                         </li>

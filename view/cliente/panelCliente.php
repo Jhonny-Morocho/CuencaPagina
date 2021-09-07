@@ -30,19 +30,33 @@
                         <div class="row">
                             <div class="col-lg-3 col-md-4 ">
                                 <div class="myaccount-tab-menu nav " role="tablist">
-                                    <a href="#dashboad"  data-toggle="tab"><i class="fas fa-table"></i> Tablero</a>
-                                    <a href="#membresia" v-on:click="verMembresia"  data-toggle="tab"><i class="fa fa-folder" aria-hidden="true"></i>Membresias</a>
-                                    <a href="#productos" v-on:click="listarFacturasCliente()"  data-toggle="tab" ><i class="fa fa-cart-arrow-down" ></i> Productos Adquiridos</a>
-                                    <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Detalles de Mi cuenta</a>
-                                    <a href="../../adminCliente.php?cerrar_session=true" ><i class="fas fa-sign-out-alt"></i> Cerrar Session</a>
+                                    <a href="#dashboad"  data-toggle="tab">
+                                        <i class="fas fa-table"></i> 
+                                        Tablero
+                                    </a>
+                                    <a href="#membresia" v-on:click="verMembresia()"  data-toggle="tab">
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        Membresias
+                                    </a>
+                                    <a href="#productos" v-on:click="listarFacturasCliente()"  data-toggle="tab" >
+                                        <i class="fa fa-cart-arrow-down" ></i> 
+                                        Productos Adquiridos
+                                    </a>
+                                    <a href="#account-info" data-toggle="tab">
+                                        <i class="fa fa-user"></i>
+                                         Detalles de Mi cuenta
+                                    </a>
+                                    <a href="#cerrar" v-on:click="cerrrarSession()" data-toggle="tab" >
+                                        <i class="fas fa-sign-out-alt"></i> 
+                                        Cerrar Session
+                                    </a>
                                 </div>
                             </div>
-                            <!-- My Account Tab Menu End -->
-    
-                            <!-- My Account Tab Content Start -->
                             <div class="col-lg-9 col-md-8">
+                                <div class="alert alert-warning" role="alert" v-if="!usuarioExiste">
+                                    DEBE INICIAR SU SESIÓN
+                                </div>
                                 <div class="tab-content" id="myaccountContent">
-                                    <!-- Single Tab Content Start -->
                                     <div class="tab-pane fade " id="dashboad" role="tabpanel">
                                         <div class="myaccount-content ">
                                             <div class="row">
@@ -66,45 +80,40 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                           
                                         </div>
                                     </div>
-    
     
                                     <div class="tab-pane fade " id="membresia" role="tabpanel">
                                         <div class="myaccount-content">
                                             <h3>Membresias</h3>
                                             <div class="row">
-                                                <div class="col-lg-4 col-md-6 mb-4" v-for="item in membresiaCliente">
-                                                        <div class="card text-center"  >
-                                                            <div class=" card-header success-color white-text">
-                                                                Membresia
-                                                            </div>
-                                                            <div class="card-body descripcionMembresia" >
-                                                                <h4 class="card-title">{{item.tipo}}</h4>
-                                                                <p class="card-text">Fecha Adquisicion: {{item.fechaCompra}}</p>
-                                                                <p class="card-text">Fecha Expira : {{item.fechaExpiracion}}</p>
-                                                                <p class="card-text">
-                                                                    <span class="badge badge-pill badge-success">Activa</span>
-                                                                    <span class="badge badge-pill badge-danger">Caducada</span>
-                                                                </p>
-                                                            </div>
-                                                            <div class="card-footer text-muted success-color white-text">
-                                                                <p class="mb-0">Descargas : '.$value['numDescargas'].'</p>
-                                                            </div>
+                                                <div class="col-lg-4 col-md-6 mb-4" v-for="item in membresiaCliente" v-if="existeMembresia">
+                                                    <div class="card text-center"  >
+                                                        <div class=" card-header success-color white-text">
+                                                            Membresia
+                                                        </div>
+                                                        <div class="card-body descripcionMembresia" >
+                                                            <h4 class="card-title">{{item.tipo}}</h4>
+                                                            <p class="card-text">Fecha Adquisicion: {{item.fechaCompra}}</p>
+                                                            <p class="card-text">Fecha Expira : {{item.fechaExpiracion}}</p>
+                                                            <p class="card-text">
+                                                                <span class="badge badge-pill badge-success">Activa</span>
+                                                                <span class="badge badge-pill badge-danger">Caducada</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="card-footer text-muted success-color white-text">
+                                                            <p class="mb-0">Descargas : '.$value['numDescargas'].'</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- Grid row -->
-                                            <div class="alert alert-warning" role="alert">
-                                                        Your membresias Is empty
+                                            <div class="alert alert-warning" role="alert" v-if="!existeMembresia">
+                                                        No tienes membresias disponibles
                                             </div>
                                         </div>
                                     </div>
     
-                                    <!-- Single Tab Content Start -->
-                                    <div class="tab-pane fade show active " id="download" role="tabpanel">
+                                    <div class="tab-pane fade  " id="productos" role="tabpanel">
                                         <div class="myaccount-content ">
                                             <div class="accordion" id="accordionExample">
                                                 <div class="card" v-for="item in detalleFactura">
@@ -172,55 +181,65 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Single Tab Content End -->
     
-    
-                                    <!-- Single Tab Content Start Detalle de mi cuenta -->
                                     <div class="tab-pane fade" id="account-info" role="tabpanel">
                                         <div class="myaccount-content ">
-                                            <h3>Account Details</h3>
+                                            <h3>DETALLES DE MI CUENTA</h3>
                                             <div class="account-details-form ">
-                                                    <form  method="post" action="../../controler/ctrCliente.php" id="idEditarCliente" name="FormAddProveedor" enctype="multipart/form-data" target="_blank">
-                                                        <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <div class="md-form">
-                                                                    <input type="text" maxlength="20" id="idRegistroName" class="form-control form-control-sm validate" required="" name="inpuNameCliente" value="<?php echo $nombre?>">
-                                                                </div>
+                                                <form   id="idEditarCliente">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="md-form">
+                                                                <input type="text" 
+                                                                        id="idRegistroName" 
+                                                                        class="form-control form-control-sm validate" 
+                                                                        v-model="nombre"
+                                                                        name="inpuNameCliente">
                                                             </div>
-    
-                                                            <div class="col-lg-12">
-                                                                <div class="md-form">
-                                                                    <input type="text" id="idRegistroLastName" maxlength="20" class="form-control form-control-sm validate" required="" name="inputApellidoCliente" value="<?php echo $apellido?>">
-                                                                </div>
-                                                            </div>
-    
-                                                            <div class="col-lg-12">
-                                                                <div class="md-form">
-                                                                    <input type="password" id="id_password_login" class="form-control" name="inputPasswordCliente"  maxlength="20">
-                                                                    <label for="materialLoginFormPassword">Password</label>
-                                                                </div>
-                                                            </div>
-    
-                                                            <div class="col-lg-12">
-                                                                <div class="md-form">
-                                                                    <input type="email" id="id_password_login" class="form-control"  value="<?php echo $correo ?>" disabled>
-                                                                    <label for="materialLoginFormPassword">Email</label>
-                                                                </div>
-                                                            </div>
-    
-                                                            <div class="col-lg-12">
-                                                                <div class="md-form">
-                                                                    <div class="smsConfirmacion">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-    
                                                         </div>
-    
+
+                                                        <div class="col-lg-6">
+                                                            <div class="md-form">
+                                                                <input type="text" 
+                                                                    id="idRegistroLastName" 
+                                                                    class="form-control form-control-sm validate" 
+                                                                    v-model="apellido"
+                                                                    name="inputApellidoCliente">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6">
+                                                            <div class="md-form">
+                                                                <input type="password" 
+                                                                        id="id_password_login" 
+                                                                        class="form-control" 
+                                                                        v-model="password">
+                                                                <label for="materialLoginFormPassword">Password</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6">
+                                                            <div class="md-form">
+                                                                <input type="email" 
+                                                                        id="id_password_login" 
+                                                                        class="form-control"  
+                                                                        v-model="correo"
+                                                                        disabled>
+                                                                <label for="materialLoginFormPassword">Email</label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-12">
+                                                            <div class="md-form">
+                                                                <div class="smsConfirmacion">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
                                                     <div class="md-form">
-                                                        <input type="hidden" name="Cliente" value="editCliente">
-                                                        <input type="hidden" name="idCliente" class="idCliente" value="<?php echo $_SESSION['id_cliente']?>">
-                                                        <button class="btn btn-primary btn-lg">Guardar datos editados</button>
+                                                        <button class="btn btn-primary btn-lg">Actualizar datos</button>
                                                     </div>
                                                 </form>
                                             </div>

@@ -59,9 +59,10 @@
           </div>
           <!--Grid column-->
           <!--Grid column-->
-          <div class="col-md-6 col-xl-5 mb-4" id="loginCliente">
+          <div class="col-md-6 col-xl-5 mb-4" >
             <!--Form-->
-            <form  method="post"
+            <form 
+                  id="loginCliente"
                   @submit="formLoginCliente">     
                 <div class="card wow fadeInRight" data-wow-delay="0.3s">
                     <div class="card-body">

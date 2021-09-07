@@ -19,12 +19,12 @@ const  panelCliente = new Vue({
       apellido:"",
       membresiaCliente:[],
       detalleFactura:[],
-      clienteProducto:[]
+      clienteProducto:[],
+      existeMembresia:false
     },
 
     //logica
     methods:{
-  
       verMembresia(){
           let cliente= new FormData();
           cliente.append('id',this.idCliente);
@@ -36,6 +36,11 @@ const  panelCliente = new Vue({
               }
               //actuaizar el precio de los productos en el array en memori
               this.membresiaCliente=data['res'];
+              if(!this.membresiaCliente.length ){
+                this.existeMembresia=false;
+                return;
+              }
+              this.existeMembresia=true;
           } )
           .catch(error => {
               console.log(error);
@@ -67,23 +72,38 @@ const  panelCliente = new Vue({
       },
       onChange(){
         console.log("X");
+      },
+      cerrrarSession(){
+        Swal.fire({
+          title: '¿ Estás seguro en cerrar su sesión ?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            let eliminarUsuario=localStorage.removeItem("usuario");
+            window.location.href='../../';
+          }
+        })
       }
-
-
     },
     //cuando se cargue la pagina cargar los datos del local sotorage
     created:function(){
       //al cargar la pagina pregunto si existe el item producto
         let usuario=JSON.parse(localStorage.getItem("usuario"));
         if(!usuario){
-            toastr.warning ("DEBE INICIAR SESIÓN");
+            //window.location.href='../../';
             return;
         }
+        this.usuarioExiste=true;
         //ver la informacion de tablero
         this.nombre=usuario['nombre'];
         this.apellido=usuario['apellido'];
         this.saldo=usuario['saldo'];
         this.idCliente=usuario['id'];
+        this.correo=usuario['correo'];
     }
     ,
 

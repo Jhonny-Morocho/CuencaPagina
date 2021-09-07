@@ -33,6 +33,7 @@ class ClienteController extends Controller
             $respUsuario=array(
                 "id"=>$this->encriptarDatosCliente($existeUsuario->id),
                 "nombre"=>$existeUsuario->nombre,
+                "correo"=>$existeUsuario->correo,
                 "apellido"=> $existeUsuario->apellido,
                 "saldo"=>$existeUsuario->saldoActual,
                 "rol"=>$existeUsuario->rol,
@@ -43,5 +44,5 @@ class ClienteController extends Controller
             return response()->json(["sms"=>$th->getMessage(),"Siglas"=>"ERROR"]);
         }
     }
- 
+
 }
