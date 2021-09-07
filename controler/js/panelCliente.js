@@ -18,11 +18,9 @@ const  panelCliente = new Vue({
       saldo:"",
       apellido:"",
       membresiaCliente:[],
-      detalleFactura:[],
-      clienteProducto:[],
+      dataFactura:[],
       existeMembresia:false
     },
-
     //logica
     methods:{
       verMembresia(){
@@ -50,7 +48,7 @@ const  panelCliente = new Vue({
       },
       
       listarFacturasCliente(){
-        let endPoint="../../Api/public/index.php/detalleFactura/listarFacturaCliente/";
+        let endPoint="../../Api/public/index.php/clienteProducto/listarProductoCliente/";
         axios.post(endPoint+this.idCliente)
         .then(response =>{
             console.log(response);
@@ -58,20 +56,45 @@ const  panelCliente = new Vue({
             if(!(data['Siglas']=='OE')){
               return toastr.warning (data['sms']);
             }
-            this.detalleFactura=data['res'];
-            console.log(this.detalleFactura);
+            this.dataFactura=data['res'];
+            for (let index = 0; index < this.dataFactura.length; index++) {
+              const element = array[index];
+              console.log(element);
+            }
+            console.log(this.dataFactura)
+            return;
+            const arrayFactuaCliente=[];
+            Object.keys(this.dataFactura).forEach(key=>{
+              const fc=this.dataFactura[key];
+              arrayFactuaCliente.push(fc);
+            })
+            console.log(arrayFactuaCliente);
+            //this.dataFactura=arrayFactuaCliente;
+        /*     const arrayFactura=[];
+            if(data['res']==null){
+              return this.dataFactura= [];
+            } 
+            Object.keys(this.dataFactura).forEach(key=>{
+              const factura=this.dataFactura[key];
+              console.log(factura);
+              arrayFactura.push(factura);
+            })
+            console.log(arrayFactura);
+            console.log(this.dataFactura);
+            this.dataFactura=arrayFactura; */
 
-            this.detalleFactura.forEach(element => {
-              //console.log(element);
-            });
         })
         .catch(error => {
             console.log(error);
             toastr.error (`Error: ${error.message}`);
         });
       },
-      onChange(){
-        console.log("X");
+      onChange(id){
+        console.log(id);
+        alert("llegue");
+      },
+      cargarTabla($event){
+        console.log($event);
       },
       cerrrarSession(){
         Swal.fire({

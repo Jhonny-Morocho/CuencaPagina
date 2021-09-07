@@ -18,7 +18,7 @@ class ClienteProductoController extends Controller{
     use PaypalBootstrap;
     use TemplateCorreoNotificacion;
 
-    public function listarProductoCliente($idFactura,$idCliente){
+    public function listarProductoCliente($idCliente){
         try {
 
             $idClienteDesencriptado=$this->desencriptarCliente($idCliente);
@@ -28,14 +28,32 @@ class ClienteProductoController extends Controller{
                 return response()->json(["sms"=>"El cliente  ".$idCliente." no tiene permisos","Siglas"=>"UNE"]);
             }
             //cliente factura
-            $clienteProducto=ClienteProducto::join("cliente","cliente.id","cliente_producto.idCliente")
-                                            ->join("detalle_factura","detalle_factura.id","cliente_producto.idFactura")
-                                            ->join("producto","producto.id","cliente_producto.idProducto")
-                                            ->select("metodoCompra","precioCompra","remixCompleto")
-                                            ->where("detalle_factura.id",$idFactura)
-                                            ->where("detalle_factura.estado",1)
-                                            ->get();
-            return response()->json(["sms"=>'Operación exitosa',"Siglas"=>"OE",'res'=>$clienteProducto]);
+            function clienteProducto($idFactura){
+                return ClienteProducto::join("cliente","cliente.id","cliente_producto.idCliente")
+                                                ->join("detalle_factura","detalle_factura.id","cliente_producto.idFactura")
+                                                ->join("producto","producto.id","cliente_producto.idProducto")
+                                                ->join("proveedor","proveedor.id","producto.idProveedor")
+                                                ->select("metodoCompra","precioCompra",
+                                                            "artista","nombrePista",
+                                                            "metodoCompra",
+                                                            "cliente_producto.precioCompra",
+                                                            "remixCompleto","apodo",)
+                                                ->where("detalle_factura.id",$idFactura)
+                                                ->where("detalle_factura.estado",1)
+                                                ->get();
+
+            }
+
+            $detalleFactura=($detalleFactura=DetalleFactura::where("detalle_factura.idCliente",$idClienteDesencriptado)
+                                                            ->orderBy('detalle_factura.id', 'DESC')
+                                                            ->get());
+            $factura=[];
+            foreach ($detalleFactura->reverse() as $key => $value) {
+                $factura['factura'][$key]['detalle']=$value;
+                $factura['factura'][$key]['productosCliente']=clienteProducto(672);
+               // $factura[$key]["productosCliente"]=clienteProducto(672);
+            }
+            return response()->json(["sms"=>'Operación exitosa',"Siglas"=>"OE",'res'=>$factura]);
 
         } catch (\Throwable $th) {
             return response()->json(["sms"=>$th->getMessage(),"Siglas"=>"ERROR"]);
@@ -100,4 +118,5 @@ class ClienteProductoController extends Controller{
         }
 
     }
+
 }

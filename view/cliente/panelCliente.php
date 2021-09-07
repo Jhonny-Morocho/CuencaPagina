@@ -113,40 +113,34 @@
                                         </div>
                                     </div>
     
-                                    <div class="tab-pane fade  " id="productos" role="tabpanel">
+                                    <div class="tab-pane fade" id="productos" role="tabpanel">
                                         <div class="myaccount-content ">
                                             <div class="accordion" id="accordionExample">
-                                                <div class="card" v-for="item in detalleFactura">
+                                                <div class="card" v-for="(factura,index) in dataFactura.factura" v:bind:key="factura">
                                                     <div class="card-header" id="headingOne">
-                                                        <h5 class="mb-0">
-                                                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                                                <p style="font-size: 20px;">+</p>
-                                                            </button>
-                                                        </h5>
-                                                        <span class="text-dark  font-weight-bold"># Orden {{item.id}}</span>
+                                                        <span class="text-dark  font-weight-bold"># FACTURA {{factura.detalle.id}}</span>
                                                         <hr>
                                                         <p class="font-weight-normal text-dark">
-                                                            <span class="font-weight-light">Fecha: </span>{{item.created_at|fechaFormato}}
+                                                            <span class="font-weight-light">Fecha: </span>{{factura.detalle.created_at|fechaFormato}}
                                                         </p>
                                                         <hr>
                                                         <p class="font-weight-normal text-dark">
-                                                            <span class="font-weight-light">Metodo compra: </span>{{item.metodoPago}}
+                                                            <span class="font-weight-light">Metodo compra: </span>{{factura.detalle.metodoPago}}
                                                         </p>
                                                         <hr>
                                                         <p class="font-weight-normal text-dark">
-                                                            <span class="font-weight-light">Total USD:</span> ${{item.totalCancelar}}
+                                                            <span class="font-weight-light">Total USD:</span> ${{factura.detalle.totalCancelar}}
                                                         </p>
                                                         <hr>
-                                                        <p class="font-weight-normal text-dark"  v-if="item.estado==0">
+                                                        <p class="font-weight-normal text-dark"  v-if="factura.detalle.estado==0">
                                                             <span class="font-weight-light">Estado:</span> 
                                                             <span class="badge badge-danger">No Activo</span>
                                                         </p>
-                                                        <p class="font-weight-normal text-dark"  v-if="item.estado==1">
+                                                        <p class="font-weight-normal text-dark"  v-if="factura.detalle.estado==1">
                                                             <span class="font-weight-light">Estado:</span> 
                                                             <span class="badge badge-success">Activo</span>
-                                                        </p>
+                                                        </p> 
                                                     </div>
-
                                                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                                         <div class="card-body">
                                                             <div class="table-responsive">
@@ -163,15 +157,20 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <tr>   
-                                                                            <th scope="row">'.$cont_2.'</th>
-                                                                            <td><a download   href="../../editCompletos/'.$value['remixCompleto'].'?download_csv=../editCompletos/'.$value['remixCompleto'].'" class="bontIconosProducto"><i class="fas fa-cloud-download-alt"></i></a></td>      
-                                                                            <td>'.$value['apodo'].'</td>
-                                                                            <td>'.$value['artista'].'</td>
-                                                                            <td>'.$value['nombrePista'].'</td>
-                                                                            <td>$ '.$value['precioCompra'].'</td>
-                                                                            <td>'.$value['metodoCompra'].'</td>
-                                                                        </tr>
+                                                                       <tr v-for="(productos,index) in factura.productosCliente" >   
+                                                                            <th scope="row">{{index+1}}</th>
+                                                                           <td>
+                                                                                <a download   href="../../editCompletos/'.$value['remixCompleto'].'?download_csv=../editCompletos/'.$value['remixCompleto'].'" class="bontIconosProducto">
+                                                                                    <i class="fas fa-cloud-download-alt"></i>
+                                                                                </a>
+                                                                            </td> 
+                                                                            <td>{{productos.apodo}}</td>    
+                                                                            <td>{{productos.apodo}}</td>
+                                                                            <td>{{productos.artista}}</td>
+                                                                            <td>{{productos.nombrePista}}</td>
+                                                                            <td>{{productos.precioCompra}}</td>
+                                                                            <td>{{productos.metodoCompra}}</td>  
+                                                                        </tr>  
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -254,9 +253,8 @@
             </div>
         </div>
     </div>
-    <!-- my account wrapper end -->
-
 </div>
+
 
 
 
