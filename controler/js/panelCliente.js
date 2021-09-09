@@ -89,9 +89,10 @@ const  panelCliente = new Vue({
             toastr.error (`Error: ${error.message}`);
         });
       },
-      onChange(id){
-        console.log(id);
-        alert("llegue");
+
+      download (nombreArchivo) {
+            const url = '../../editCompletos/'+nombreArchivo;
+            window.location.href = url;
       },
       cargarTabla($event){
         console.log($event);

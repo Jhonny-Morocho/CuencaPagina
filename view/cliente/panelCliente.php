@@ -148,7 +148,7 @@
                                                                     <thead class="tablaCabezera">
                                                                         <tr >
                                                                             <th>#</th>
-                                                                            <th>Download</th>
+                                                                            <th>DOWNLOAD</th>
                                                                             <th>REMIXER</th>
                                                                             <th>ARTIST</th>
                                                                             <th>TITLE</th>
@@ -160,13 +160,12 @@
                                                                        <tr v-for="(productos,index) in factura.productosCliente" >   
                                                                             <th scope="row">{{index+1}}</th>
                                                                            <td>
-                                                                                <a download   href="../../editCompletos/'.$value['remixCompleto'].'?download_csv=../editCompletos/'.$value['remixCompleto'].'" class="bontIconosProducto">
+                                                                                <a download :href="`../../editCompletos/${productos.remixCompleto}`" class="bontIconosProducto">
                                                                                     <i class="fas fa-cloud-download-alt"></i>
                                                                                 </a>
                                                                             </td> 
-                                                                            <td>{{productos.apodo}}</td>    
                                                                             <td>{{productos.apodo}}</td>
-                                                                            <td>{{productos.artista}}</td>
+                                                                            <td>{{productos.artista}}</td>    
                                                                             <td>{{productos.nombrePista}}</td>
                                                                             <td>{{productos.precioCompra}}</td>
                                                                             <td>{{productos.metodoCompra}}</td>  

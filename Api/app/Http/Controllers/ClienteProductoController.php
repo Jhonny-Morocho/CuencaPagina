@@ -50,7 +50,7 @@ class ClienteProductoController extends Controller{
             $factura=[];
             foreach ($detalleFactura->reverse() as $key => $value) {
                 $factura['factura'][$key]['detalle']=$value;
-                $factura['factura'][$key]['productosCliente']=clienteProducto(672);
+                $factura['factura'][$key]['productosCliente']=clienteProducto($value['id']);
                // $factura[$key]["productosCliente"]=clienteProducto(672);
             }
             return response()->json(["sms"=>'Operación exitosa',"Siglas"=>"OE",'res'=>$factura]);

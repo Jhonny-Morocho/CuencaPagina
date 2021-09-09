@@ -111,7 +111,7 @@ class DetalleFacturaController extends Controller{
              $rutaPago=new RedirectUrls();
              $rutaDeConfirmacionPago=getenv("DOMINIO_WEB")."/Api/public/index.php/clienteProducto/compraPaypal/?idFactura=".$objFactura->id."&idCliente=".$idCliente;
              $rutaPago->setReturnUrl($rutaDeConfirmacionPago)//pago exitoso
-                                   ->setCancelUrl(getenv("DOMINIO_WEB")."/resultado.php?estado=false&idpago{$ID_registro}");
+                                   ->setCancelUrl(getenv("DOMINIO_WEB")."/resultado.php?estado=FALSE&idpago{$ID_registro}");
              //redireccionar a la pagina de paypal
              $pago=new Payment();
              $pago->setIntent("sale")
