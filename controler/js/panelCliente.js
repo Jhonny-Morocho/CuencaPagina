@@ -49,8 +49,15 @@ const  panelCliente = new Vue({
       
       listarFacturasCliente(){
         let endPoint="../../Api/public/index.php/clienteProducto/listarProductoCliente/";
+        Swal.fire({
+          allowOutsideClick: false,
+          icon: 'info',
+          text: 'Espere por favor...'
+        });
+        Swal.showLoading();
         axios.post(endPoint+this.idCliente)
         .then(response =>{
+            Swal.close();
             console.log(response);
             const data=response['data'];
             if(!(data['Siglas']=='OE')){
@@ -61,41 +68,13 @@ const  panelCliente = new Vue({
               const element = array[index];
               console.log(element);
             }
-            console.log(this.dataFactura)
-            return;
-            const arrayFactuaCliente=[];
-            Object.keys(this.dataFactura).forEach(key=>{
-              const fc=this.dataFactura[key];
-              arrayFactuaCliente.push(fc);
-            })
-            console.log(arrayFactuaCliente);
-            //this.dataFactura=arrayFactuaCliente;
-        /*     const arrayFactura=[];
-            if(data['res']==null){
-              return this.dataFactura= [];
-            } 
-            Object.keys(this.dataFactura).forEach(key=>{
-              const factura=this.dataFactura[key];
-              console.log(factura);
-              arrayFactura.push(factura);
-            })
-            console.log(arrayFactura);
-            console.log(this.dataFactura);
-            this.dataFactura=arrayFactura; */
 
         })
         .catch(error => {
+            Swal.close();
             console.log(error);
             toastr.error (`Error: ${error.message}`);
         });
-      },
-
-      download (nombreArchivo) {
-            const url = '../../editCompletos/'+nombreArchivo;
-            window.location.href = url;
-      },
-      cargarTabla($event){
-        console.log($event);
       },
       cerrrarSession(){
         Swal.fire({

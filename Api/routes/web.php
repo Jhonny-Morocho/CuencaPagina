@@ -29,6 +29,7 @@ try {
     $router->post('/cupon/aplicarCupon/{nombreCupon}','CuponController@aplicarCupon');
     $router->get('/productos/listasProductos','ProductoController@listasProductos');
     $router->post('/detalleFactura/crearFacturaProductosPaypal/{idCliente}','DetalleFacturaController@crearFacturaProductosPaypal');
+    $router->post('/detalleFactura/crearFacturaProductosDataFast/{idCliente}','DetalleFacturaController@crearFacturaProductosDataFast');
     $router->post('/detalleFactura/listarFacturaCliente/{idCliente}','DetalleFacturaController@listarFacturaCliente');
     $router->post('/paypal/paypal','PaypalController@paypal');
     $router->get('/clienteProducto/compraPaypal','ClienteProductoController@compraPaypal');

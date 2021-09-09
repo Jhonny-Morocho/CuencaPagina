@@ -39,7 +39,7 @@ class ClienteProductoController extends Controller{
                                                             "cliente_producto.precioCompra",
                                                             "remixCompleto","apodo",)
                                                 ->where("detalle_factura.id",$idFactura)
-                                                ->where("detalle_factura.estado",1)
+                                               
                                                 ->get();
 
             }

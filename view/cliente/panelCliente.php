@@ -159,10 +159,11 @@
                                                                     <tbody>
                                                                        <tr v-for="(productos,index) in factura.productosCliente" >   
                                                                             <th scope="row">{{index+1}}</th>
-                                                                           <td>
-                                                                                <a download :href="`../../editCompletos/${productos.remixCompleto}`" class="bontIconosProducto">
+                                                                            <td>
+                                                                                <a v-if="factura.detalle.estado==1"  download :href="`../../editCompletos/${productos.remixCompleto}`" class="bontIconosProducto">
                                                                                     <i class="fas fa-cloud-download-alt"></i>
                                                                                 </a>
+                                                                                <span class="badge badge-danger" v-if="factura.detalle.estado==0">NO DIPONIBLE</span>
                                                                             </td> 
                                                                             <td>{{productos.apodo}}</td>
                                                                             <td>{{productos.artista}}</td>    
