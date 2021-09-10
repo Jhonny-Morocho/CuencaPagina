@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => 'dev-master',
-        'version' => 'dev-master',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'dd3fb4ee7563ed982a8c02a63b836b50de25dfca',
+        'reference' => NULL,
         'name' => 'laravel/lumen',
         'dev' => true,
     ),
@@ -472,6 +472,15 @@
             'reference' => '696a1d6d2213be192429e97245a3d2bb4d6d1849',
             'dev_requirement' => false,
         ),
+        'ixudra/curl' => array(
+            'pretty_version' => '6.21.0',
+            'version' => '6.21.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../ixudra/curl',
+            'aliases' => array(),
+            'reference' => '796bd307ca35c66a3f6a47b559f8ccad9f06e93f',
+            'dev_requirement' => false,
+        ),
         'justinrainbow/json-schema' => array(
             'pretty_version' => '5.2.10',
             'version' => '5.2.10.0',
@@ -488,12 +497,12 @@
             ),
         ),
         'laravel/lumen' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'dd3fb4ee7563ed982a8c02a63b836b50de25dfca',
+            'reference' => NULL,
             'dev_requirement' => false,
         ),
         'laravel/lumen-framework' => array(

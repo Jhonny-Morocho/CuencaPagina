@@ -17,6 +17,7 @@ use PayPal\Api\Transaction;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Payment;
 use Illuminate\Support\Facades\Crypt;
+use Ixudra\Curl\Facades\Curl;
 class DetalleFacturaController extends Controller{
     use Encriptar;
     use PaypalBootstrap;
@@ -159,6 +160,10 @@ class DetalleFacturaController extends Controller{
                 $auxProductos[$key]['precio']=$value['precio'];
                 $sumaTotalCancelar=(double)$auxProductos[$key]['precio']+$sumaTotalCancelar;
             }
+
+
+            //============== USANDO API DE DATA FAST ===========
+
             $formCliente=($request->json()->all())['formCliente'];
             //extraigo el primer
             $formCliente=$formCliente[0];
@@ -177,82 +182,84 @@ class DetalleFacturaController extends Controller{
                 'customer_identificationDocType'=>'IDCARD',
                 'customer_identificationDocId'=>$formCliente['documentoIdentidad'],
                 'customer_phone'=>$formCliente['telefono'],
-                'billing_street1'=>'Direcion del cliente los rosales',
+                'billing_street1'=>$formCliente['direccion'],
                 'billing_country'=>'EC',
-                'billing_postcode'=>'003',
-                'shipping_street1'=>'EN peru es la entrega',
-                'shipping_country'=>'PE',
+                'billing_postcode'=>'110110',
+                'shipping_street1'=>'AUTOMATICO',
+                'shipping_country'=>'US',
                 'risk_parameters_USER_DATA2'=>'LATINEDIT',
                 'customParameters_SHOPPER_MID'=>'1000000505',
                 'customParameters_SHOPPER_TID'=>'PD100406',
                 'customParameters_SHOPPER_ECI'=>'0103910',
                 'customParameters_SHOPPER_PSERV'=>'17913101',
-                'customParameters_SHOPPER_VAL_BASE0'=>5,
+                'customParameters_SHOPPER_VAL_BASE0'=>$sumaTotalCancelar,
                 'customParameters_SHOPPER_VAL_BASEIMP'=>0,
                 'customParameters_SHOPPER_VAL_IVA'=>0,
             );
-            return $datosFactura;
-            $item=[
-                [ 'id'=>1,'product_name'=>'Traicinera- Javito.mp3',
-                    'product_price'=>2,'quantity'=>1],
 
-                [ 'id'=>2,'product_name'=>'Gerardo moral- Antony Sanchez.mp3','product_price'=>1,'quantity'=>1],
-                    ['id'=>3,'product_name'=>'Farruko - Daddy Yanke.mp3','product_price'=>2,'quantity'=>1]
-            ];
-            $url = "https://test.oppwa.com/v1/checkouts";
+            $url = "http://test.oppwa.com/v1/checkouts";
             $data = "entityId=8ac7a4ca7af1cb93017af38fb8da0afe".
-            "&amount=".$datos['amount'].
-            "&currency=".$datos['currency'].
-            "&paymentType=".$datos['paymentType'].
-            "&customer.givenName=".$datos['customer_givenName'].
-            "&customer.middleName=".$datos['customer_middleName'].
-            "&customer.surname=".$datos['customer_surname'].
-            "&customer.ip=".$datos['customer_ip'].
-            "&customer.merchantCustomerId=".$datos['customer_merchantCustomerId'].
-            "&merchantTransactionId=".$datos['merchantTransactionId'].
-            "&customer.email=".$datos['customer_email'].
-            "&customer.identificationDocType=".$datos['customer_identificationDocType'].
-            "&customer.identificationDocId=".$datos['customer_identificationDocId'].
-            "&customer.phone=".$datos['customer_phone'].
-            "&billing.street1=".$datos['billing_street1'].
-            "&billing.country=".$datos['billing_country'].
-            "&billing.postcode=".$datos['billing_postcode'].
-            "&shipping.street1=".$datos['shipping_street1'].
-            "&shipping.country=".$datos['shipping_country'].
-            "&risk.parameters[USER_DATA2]=".$datos['risk_parameters_USER_DATA2'].
-            "&customParameters[SHOPPER_MID]=".$datos['customParameters_SHOPPER_MID'].
-            "&customParameters[SHOPPER_TID]=".$datos['customParameters_SHOPPER_TID'].
-            "&customParameters[SHOPPER_ECI]=".$datos['customParameters_SHOPPER_ECI'].
-            "&customParameters[SHOPPER_PSERV]=".$datos['customParameters_SHOPPER_PSERV'].
-            "&customParameters[SHOPPER_VAL_BASE0]=".$datos['customParameters_SHOPPER_VAL_BASE0'].
-            "&customParameters[SHOPPER_VAL_BASEIMP]=".$datos['customParameters_SHOPPER_VAL_BASEIMP'].
-            "&customParameters[SHOPPER_VAL_IVA]=".$datos['customParameters_SHOPPER_VAL_IVA'];
-            foreach ($productos as $key => $value) {
+            "&amount=".$datosFactura['amount'].
+            "&currency=".$datosFactura['currency'].
+            "&paymentType=".$datosFactura['paymentType'].
+            "&customer.givenName=".$datosFactura['customer_givenName'].
+            "&customer.middleName=".$datosFactura['customer_middleName'].
+            "&customer.surname=".$datosFactura['customer_surname'].
+            "&customer.ip=".$datosFactura['customer_ip'].
+            "&customer.merchantCustomerId=".$datosFactura['customer_merchantCustomerId'].
+            "&merchantTransactionId=".$datosFactura['merchantTransactionId'].
+            "&customer.email=".$datosFactura['customer_email'].
+            "&customer.identificationDocType=".$datosFactura['customer_identificationDocType'].
+            "&customer.identificationDocId=".$datosFactura['customer_identificationDocId'].
+            "&customer.phone=".$datosFactura['customer_phone'].
+            "&billing.street1=".$datosFactura['billing_street1'].
+            "&billing.country=".$datosFactura['billing_country'].
+            "&billing.postcode=".$datosFactura['billing_postcode'].
+            "&shipping.street1=".$datosFactura['shipping_street1'].
+            "&shipping.country=".$datosFactura['shipping_country'].
+            "&risk.parameters[USER_DATA2]=".$datosFactura['risk_parameters_USER_DATA2'].
+            "&customParameters[SHOPPER_MID]=".$datosFactura['customParameters_SHOPPER_MID'].
+            "&customParameters[SHOPPER_TID]=".$datosFactura['customParameters_SHOPPER_TID'].
+            "&customParameters[SHOPPER_ECI]=".$datosFactura['customParameters_SHOPPER_ECI'].
+            "&customParameters[SHOPPER_PSERV]=".$datosFactura['customParameters_SHOPPER_PSERV'].
+            "&customParameters[SHOPPER_VAL_BASE0]=".$datosFactura['customParameters_SHOPPER_VAL_BASE0'].
+            "&customParameters[SHOPPER_VAL_BASEIMP]=".$datosFactura['customParameters_SHOPPER_VAL_BASEIMP'].
+            "&customParameters[SHOPPER_VAL_IVA]=".$datosFactura['customParameters_SHOPPER_VAL_IVA'];
+            foreach ($auxProductos as $key => $value) {
 
-                $data.="&cart.items[".$key."].name=".$value['product_name'];
-                $data.="&cart.items[".$key."].description="."Descripcion: ".$value['product_name'];
-                $data.="&cart.items[".$key."].price=".$value['product_price'];
-                $data.="&cart.items[".$key."].quantity=".$value['quantity'];
+                $data.="&cart.items[".$key."].name=".$value['idProducto'];
+                $data.="&cart.items[".$key."].description=".$value['nombreProducto'];
+                $data.="&cart.items[".$key."].price=".$value['precio'];
+                $data.="&cart.items[".$key."].quantity="."1";
             }
             $data.="&customParameters[SHOPPER_VERSIONDF]=2";
             $data.="&testMode=EXTERNAL";
+            $dat2="entityId=8a829418533cf31d01533d06f2ee06fa"."&amount=92.00"."&curremcy=USD"."&paymentType=DB";
+ /*            $response = Curl::to("https://test.oppwa.com/v1/checkouts")
+            ->withHeaders(array(
+                'Authorization:Bearer
+                   OGE4Mjk0MTg1YTY1YmY1ZTAxNWE2YzhjNzI4YzBkOTV8YmZxR3F3UTMyWA=='))
+            ->post();
 
+            return $response;
+ */
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
+
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(
              'Authorization:Bearer
-             OGE4Mjk0MTg1YTY1YmY1ZTAxNWE2YzhjNzI4YzBkOTV8YmZxR3F3UTMyWA=='));
+                OGE4Mjk0MTg1YTY1YmY1ZTAxNWE2YzhjNzI4YzBkOTV8YmZxR3F3UTMyWA=='));
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);// this should be set to true in production
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $responseData = curl_exec($ch);
             if(curl_errno($ch)) {
+            echo "ENTRO AL IF";
             return curl_error($ch);
             }
             curl_close($ch);
-            print_r($responseData);
-            return TRUE;
+            return  $responseData;
 
         } catch (\Throwable $th) {
             return response()->json(["sms"=>$th->getMessage(),"Siglas"=>"ONE",'res'=>null]);
