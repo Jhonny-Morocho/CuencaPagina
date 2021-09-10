@@ -18,6 +18,7 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Api\Payment;
 use Illuminate\Support\Facades\Crypt;
 use Ixudra\Curl\Facades\Curl;
+use Illuminate\Support\Facades\Http;
 class DetalleFacturaController extends Controller{
     use Encriptar;
     use PaypalBootstrap;
@@ -197,7 +198,7 @@ class DetalleFacturaController extends Controller{
                 'customParameters_SHOPPER_VAL_IVA'=>0,
             );
 
-            $url = "http://test.oppwa.com/v1/checkouts";
+            $url = "https://test.oppwa.com/v1/checkouts";
             $data = "entityId=8ac7a4ca7af1cb93017af38fb8da0afe".
             "&amount=".$datosFactura['amount'].
             "&currency=".$datosFactura['currency'].
@@ -235,7 +236,8 @@ class DetalleFacturaController extends Controller{
             $data.="&customParameters[SHOPPER_VERSIONDF]=2";
             $data.="&testMode=EXTERNAL";
             $dat2="entityId=8a829418533cf31d01533d06f2ee06fa"."&amount=92.00"."&curremcy=USD"."&paymentType=DB";
- /*            $response = Curl::to("https://test.oppwa.com/v1/checkouts")
+            //return $response = Http::post('https://restcountries.eu/rest/v2/all',[$data]);
+            /*            $response = Curl::to("https://test.oppwa.com/v1/checkouts")
             ->withHeaders(array(
                 'Authorization:Bearer
                    OGE4Mjk0MTg1YTY1YmY1ZTAxNWE2YzhjNzI4YzBkOTV8YmZxR3F3UTMyWA=='))
@@ -247,11 +249,10 @@ class DetalleFacturaController extends Controller{
             curl_setopt($ch, CURLOPT_URL, $url);
 
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-             'Authorization:Bearer
-                OGE4Mjk0MTg1YTY1YmY1ZTAxNWE2YzhjNzI4YzBkOTV8YmZxR3F3UTMyWA=='));
-            curl_setopt($ch, CURLOPT_POST, 1);
+             'Authorization:Bearer OGE4Mjk0MTg1YTY1YmY1ZTAxNWE2YzhjNzI4YzBkOTV8YmZxR3F3UTMyWA=='));
+            //curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);// this should be set to true in production
+            //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);// this should be set to true in production
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $responseData = curl_exec($ch);
             if(curl_errno($ch)) {
