@@ -18,7 +18,6 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Api\Payment;
 use Illuminate\Support\Facades\Crypt;
 use Ixudra\Curl\Facades\Curl;
-use Illuminate\Support\Facades\Http;
 class DetalleFacturaController extends Controller{
     use Encriptar;
     use PaypalBootstrap;
@@ -185,7 +184,7 @@ class DetalleFacturaController extends Controller{
                 'customer_phone'=>$formCliente['telefono'],
                 'billing_street1'=>$formCliente['direccion'],
                 'billing_country'=>'EC',
-                'billing_postcode'=>'110110',
+                'billing_postcode'=>'010105',
                 'shipping_street1'=>'AUTOMATICO',
                 'shipping_country'=>'US',
                 'risk_parameters_USER_DATA2'=>'LATINEDIT',
@@ -235,32 +234,29 @@ class DetalleFacturaController extends Controller{
             }
             $data.="&customParameters[SHOPPER_VERSIONDF]=2";
             $data.="&testMode=EXTERNAL";
-            $dat2="entityId=8a829418533cf31d01533d06f2ee06fa"."&amount=92.00"."&curremcy=USD"."&paymentType=DB";
-            //return $response = Http::post('https://restcountries.eu/rest/v2/all',[$data]);
-            /*            $response = Curl::to("https://test.oppwa.com/v1/checkouts")
-            ->withHeaders(array(
-                'Authorization:Bearer
-                   OGE4Mjk0MTg1YTY1YmY1ZTAxNWE2YzhjNzI4YzBkOTV8YmZxR3F3UTMyWA=='))
-            ->post();
 
-            return $response;
- */
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
 
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(
              'Authorization:Bearer OGE4Mjk0MTg1YTY1YmY1ZTAxNWE2YzhjNzI4YzBkOTV8YmZxR3F3UTMyWA=='));
-            //curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch,CURLOPT_POSTFIELDS,$data);
-            //curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);// this should be set to true in production
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);// this should be set to true in production
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $responseData = curl_exec($ch);
             if(curl_errno($ch)) {
-            echo "ENTRO AL IF";
-            return curl_error($ch);
+            return response()->json(["sms"=>curl_error($ch),"Siglas"=>"ONE",'res'=>null]);
             }
             curl_close($ch);
-            return  $responseData;
+            $respCheckup=json_decode($responseData);
+
+            //identificador de pago CHECKOUT_iD
+            if(!($respCheckup->result->code==="000.200.100")){
+                return response()->json(["sms"=>$respCheckup->result->description,"Siglas"=>"NSCC",'res'=>$respCheckup]);
+            }
+            //si pasa todo bien es exitoso la respuesta entonces creo la factura y registro en la BD 
+            return response()->json(["sms"=>$respCheckup->result->description,"Siglas"=>"OE",'res'=>$respCheckup]);
 
         } catch (\Throwable $th) {
             return response()->json(["sms"=>$th->getMessage(),"Siglas"=>"ONE",'res'=>null]);

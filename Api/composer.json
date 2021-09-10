@@ -7,9 +7,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "flipbox/lumen-generator": "^8.2",
-        "guzzlehttp/guzzle": "^7.3",
         "hmazter/laravel-schedule-list": "^2.2",
-        "ixudra/curl": "^6.21",
         "laravel/lumen-framework": "^8.0",
         "paypal/rest-api-sdk-php": "^1.14",
         "phpmailer/phpmailer": "^6.3"

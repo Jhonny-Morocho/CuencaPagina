@@ -22,9 +22,7 @@ date_default_timezone_set(env('APP_TIMEZONE', 'UTC'));
 $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
-//curls ixudra/curl
-$app->withFacades();
-class_alias('Ixudra\Curl\Facades\Curl', 'Curl');
+
     // PERMITE TRABAJAR CON LAS CONSULTAS DE Eloquent X ESO LO DESCOMENTE
  $app->withEloquent();
 
@@ -102,7 +100,6 @@ $app->middleware([
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 // Package service providers
-$app->register(Ixudra\Curl\CurlServiceProvider::class);
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 
 /*
