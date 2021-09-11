@@ -16,8 +16,6 @@ use PayPal\Api\Amount;
 use PayPal\Api\Transaction;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Payment;
-use Illuminate\Support\Facades\Crypt;
-use Ixudra\Curl\Facades\Curl;
 class DetalleFacturaController extends Controller{
     use Encriptar;
     use PaypalBootstrap;
@@ -128,7 +126,7 @@ class DetalleFacturaController extends Controller{
             return response()->json(["sms"=>"Operación exitosa","Siglas"=>"OE",'res'=>$respuesta]);
 
         } catch (\Throwable $th) {
-            return response()->json(["sms"=>$th->getMessage(),"Siglas"=>"ONE",'res'=>null]);
+            return response()->json(["sms"=>$th->getMessage(),"Siglas"=>"ERROR",'res'=>null]);
         }
     }
 
@@ -136,6 +134,7 @@ class DetalleFacturaController extends Controller{
     public function crearFacturaProductosDataFast(Request $request,$idCliente){
 
         try {
+
             if(!($request->json())){
                 return response()->json(["sms"=>"La data no tiene el formato requerido","Siglas"=>"ONE",'res'=>null]);
             }
@@ -160,16 +159,24 @@ class DetalleFacturaController extends Controller{
                 $auxProductos[$key]['precio']=$value['precio'];
                 $sumaTotalCancelar=(double)$auxProductos[$key]['precio']+$sumaTotalCancelar;
             }
+            //agrego un producto mas para realizar el descuento por uso del servicio
+            $productosItemServicio=$auxProductos;
+            $usoServicio="0.30";
+            $posicion=(count($auxProductos));
+            $productosItemServicio[ $posicion]['idProducto'] = '0';
+            //Nombre del Producto //COSTO POR TRANSACCION
+            $productosItemServicio[ $posicion]['nombreProducto'] = 'COSTO POR USO DEL SERVICIO';
+            //Valor total del producto
+            $productosItemServicio[ $posicion]['precio'] =$usoServicio;
 
 
             //============== USANDO API DE DATA FAST ===========
-
             $formCliente=($request->json()->all())['formCliente'];
             //extraigo el primer
             $formCliente=$formCliente[0];
             $ultimoRegistroFactura=DetalleFactura::latest()->select('id')->limit(1)->first();
             $datosFactura=array(
-                'amount'=>$sumaTotalCancelar,
+                'amount'=>(double)$sumaTotalCancelar+(double)$usoServicio,
                 'currency'=>'USD',
                 'paymentType'=>'DB',
                 'customer_givenName'=>$formCliente['nombre'],
@@ -192,7 +199,7 @@ class DetalleFacturaController extends Controller{
                 'customParameters_SHOPPER_TID'=>'PD100406',
                 'customParameters_SHOPPER_ECI'=>'0103910',
                 'customParameters_SHOPPER_PSERV'=>'17913101',
-                'customParameters_SHOPPER_VAL_BASE0'=>$sumaTotalCancelar,
+                'customParameters_SHOPPER_VAL_BASE0'=>$sumaTotalCancelar+$usoServicio,
                 'customParameters_SHOPPER_VAL_BASEIMP'=>0,
                 'customParameters_SHOPPER_VAL_IVA'=>0,
             );
@@ -225,7 +232,7 @@ class DetalleFacturaController extends Controller{
             "&customParameters[SHOPPER_VAL_BASE0]=".$datosFactura['customParameters_SHOPPER_VAL_BASE0'].
             "&customParameters[SHOPPER_VAL_BASEIMP]=".$datosFactura['customParameters_SHOPPER_VAL_BASEIMP'].
             "&customParameters[SHOPPER_VAL_IVA]=".$datosFactura['customParameters_SHOPPER_VAL_IVA'];
-            foreach ($auxProductos as $key => $value) {
+            foreach ($productosItemServicio as $key => $value) {
 
                 $data.="&cart.items[".$key."].name=".$value['idProducto'];
                 $data.="&cart.items[".$key."].description=".$value['nombreProducto'];
@@ -246,24 +253,50 @@ class DetalleFacturaController extends Controller{
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $responseData = curl_exec($ch);
             if(curl_errno($ch)) {
-            return response()->json(["sms"=>curl_error($ch),"Siglas"=>"ONE",'res'=>null]);
+            return response()->json(["sms"=>curl_error($ch),"Siglas"=>"CURL_ERROR",'res'=>null]);
             }
             curl_close($ch);
             $respCheckup=json_decode($responseData);
 
             //identificador de pago CHECKOUT_iD
             if(!($respCheckup->result->code==="000.200.100")){
-                return response()->json(["sms"=>$respCheckup->result->description,"Siglas"=>"NSCC",'res'=>$respCheckup]);
+                return response()->json(["sms"=>$respCheckup->result->description,"Siglas"=>"ONE",'res'=>$respCheckup]);
             }
-            //si pasa todo bien es exitoso la respuesta entonces creo la factura y registro en la BD 
-            return response()->json(["sms"=>$respCheckup->result->description,"Siglas"=>"OE",'res'=>$respCheckup]);
+
+
+            //si pasa todo bien es exitoso la respuesta entonces creo la factura y registro en la BD
+            //crear factura
+            $formCliente=($request->json()->all())['formCliente'];
+            $arrayFormCliente=array("productos"=>$auxProductos,
+                                    'idTrasanccion'=>$respCheckup->id,
+                                    'productosCostoServicio'=>$productosItemServicio,
+                                    "formCliente"=>$formCliente);
+            $objFactura=new DetalleFactura();
+            $objFactura->totalCancelar=$sumaTotalCancelar;
+            $objFactura->idCliente=$idDesencriptado;
+            $objFactura->estado=0;
+            $objFactura->metodoPago="Tarjeta";
+            $objFactura->formFactura=json_encode($arrayFormCliente);
+            $objFactura->save();
+
+            //cliente producto
+            foreach ($auxProductos as $key => $value) {
+                $objClienteProducto=new ClienteProducto();
+                $objClienteProducto->idCliente=$idDesencriptado;
+                $objClienteProducto->idProducto =$value['idProducto'];
+                $objClienteProducto->idFactura=$objFactura->id;
+                $objClienteProducto->metodoCompra="Tarjeta";
+                $objClienteProducto->precioCompra=$value['precio'];;
+                $objClienteProducto->estadoPagoProveedor=0;
+                $objClienteProducto->save();
+            }
+            $repuesta=array("idFactura"=>$objFactura->id,
+                            "respCheckup"=>$respCheckup);
+            return response()->json(["sms"=>$respCheckup->result->description,"Siglas"=>"OE",'res'=>$repuesta]);
 
         } catch (\Throwable $th) {
-            return response()->json(["sms"=>$th->getMessage(),"Siglas"=>"ONE",'res'=>null]);
+            return response()->json(["sms"=>$th->getMessage(),"Siglas"=>"ERROR",'res'=>null]);
         }
-
-
-
 
     }
 
