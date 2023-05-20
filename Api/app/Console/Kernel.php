@@ -5,9 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
-use Psy\Command\Command;
-use App\Models\Estudiante;
-use Illuminate\Database\Eloquent\Model;
+
 
 class Kernel extends ConsoleKernel
 {
@@ -28,7 +26,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('command:notificarUsuarios')->everyMinute();
+        //$schedule->command('command:notificarUsuarios')->everyMinute();
         //$schedule->command('command:eliminarMensaje')->everyMinute();
     }
 

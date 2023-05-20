@@ -3,7 +3,7 @@ class ClassPlantilla{
   
   public static function funcionPlantilla($filtroFechaProductos,$nombreDj,$comision){
 
-    $nombreDueño="Ing. Marco Arias ";
+    $nombreDueño="Christian Robalino";
     date_default_timezone_set('America/Guayaquil');
     $fecha_actual=date("Y-m-d");
     $empresa="WWW.LATINEDIT.COM";

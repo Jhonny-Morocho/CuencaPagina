@@ -10,7 +10,7 @@ trait TemplateCorreoNotificacion {
         $objDetalleFactura=DetalleFactura::where('id',$idFactura)->first();
         //convierto el string a objeto
         $factura=json_decode($objDetalleFactura->formFactura, true);
-        
+
         $productos=$factura['productos'];
         $formCliente=$factura['formCliente'][0];
 

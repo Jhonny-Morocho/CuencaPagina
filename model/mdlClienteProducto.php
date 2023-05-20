@@ -94,6 +94,7 @@ class ModeloClienteProducto {
                                                         cliente_producto.estadoPagoProveedor,
                                                         producto.idProveedor,
                                                         cliente_producto.id,
+
                                                         cliente_producto.fechaCompra,
                                                         cliente_producto.metodoCompra,	
                                                         cliente_producto.idCliente
@@ -135,7 +136,7 @@ class ModeloClienteProducto {
         $db=new Conexion();
         try {
             $stmt= $db->conectar()->prepare("SELECT
-                                                        cliente_producto.idProducto,
+                                                     cliente_producto.idProducto,
                                                         cliente_producto.idFactura,
                                                         producto.nombrePista,
                                                         cliente_producto.precioCompra,
@@ -155,24 +156,22 @@ class ModeloClienteProducto {
 
                                                 and     cliente_producto.idProducto=producto.id
 
-                                                and     cliente_producto.fechaCompra between  '$fechaInicio' and '$fechaFin'
+                                                and     cliente_producto.fechaCompra >='$fechaInicio' 
+                                                and  cliente_producto.fechaCompra <='$fechaFin'
 
 
-                                                ORDER by  cliente_producto.fechaCompra desc
+                                                ORDER by  cliente_producto.id desc
                 ");
 
 
                 $stmt->execute();
-
+                return $stmt->fetchAll(PDO::FETCH_ASSOC);
             } catch (Exception $e) {
                 $error=$e->getMessage();
-                echo $error;
+                return $error;
 
-              }
+            }
 
-        return $stmt->fetchAll();
-
-        $stmt->close();
 
 
     }

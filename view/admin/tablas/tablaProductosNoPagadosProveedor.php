@@ -58,7 +58,6 @@
                 </div>
             </form>
         </div>
-        <!-- /.box-header -->
         <div class="box-body ">
         <table id="example2_wrapper" class="table table-striped table-bordered dt-responsive nowrap table-hover"  width="100%"  >
             <thead>
@@ -113,20 +112,15 @@
         </table>
         <div class="small-box bg-aqua">
             <div class="inner">
-              <h3 class="sumaTotal"><? echo$suma_total;?></h3>
+              <h3 class="sumaTotal">$<?php echo $suma_total; ?></h3>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
           </div>
         </div>
-        <!-- /.box-body -->
       </div>
     </div>
   </div> 
-  <!-- /.row -->
-
 </section>
-<!-- /.content -->
 </div>
-<!-- /.content-wrapper -->

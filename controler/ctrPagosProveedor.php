@@ -7,9 +7,12 @@ switch (@$_POST['FiltroPagoProveedor']) {
     case 'FiltrarFechas':
         require'../model/conexion.php';
         require'../model/mdlClienteProducto.php';
-        $filtroFechaProductos=ModeloClienteProducto::sqlListarProductosVendidosProveedorFiltroFecha($_POST['idProveedor'],$_POST['fechaInicio'],$_POST['fechaFin']);
+        $idProveedor=$_POST['idProveedor'];
+        $fechaIncio=$_POST['fechaInicio'];
+        $fechaFin=$_POST['fechaFin'];
+        $filtroFechaProductos=ModeloClienteProducto::sqlListarProductosVendidosProveedorFiltroFecha($idProveedor,$fechaIncio,$fechaFin);
+        
         return die(json_encode($filtroFechaProductos));
-        break;
     case 'CambiarEstadoPagado':
        
         require'../model/conexion.php';
@@ -22,7 +25,6 @@ switch (@$_POST['FiltroPagoProveedor']) {
          }
 
         return die(json_encode(($_POST)));
-        break;
 
 
         case 'CambiarEstadoNoPagado':
@@ -37,7 +39,6 @@ switch (@$_POST['FiltroPagoProveedor']) {
              }
     
             return die(json_encode(($_POST)));
-            break;
     
         // case 'GenerarPdf':
         //     echo "soy el filtrro";
@@ -54,7 +55,7 @@ switch (@$_POST['FiltroPagoProveedor']) {
     
     default:
         # code...
-        break;
+        return;
 }
 
 // ================== GENERAR REPORTE MEDIANTE USO DE MTODO GET ==================
@@ -76,7 +77,7 @@ switch (@$_GET['FiltroPagoProveedor']) {
         $mpdf->Output();
 
 
-        break;
+        return;
     }
 
 //  ?>

@@ -39,7 +39,7 @@ class ClienteProductoController extends Controller{
                                                             "cliente_producto.precioCompra",
                                                             "remixCompleto","apodo",)
                                                 ->where("detalle_factura.id",$idFactura)
-                                               
+
                                                 ->get();
 
             }
@@ -58,6 +58,9 @@ class ClienteProductoController extends Controller{
         } catch (\Throwable $th) {
             return response()->json(["sms"=>$th->getMessage(),"Siglas"=>"ERROR"]);
         }
+    }
+    public function listVentasCliente(Request $request,$idProveedor){
+        return Repositorio\ClienteProducto\ListarVentasProveedor::listarTodas( $request,$idProveedor);
     }
     public function compraPaypal(Request $request){
 
